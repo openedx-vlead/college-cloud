@@ -56,7 +56,7 @@
        labs onto it. Two vagrant boxes will be used for creating the
        portable edition. Two vagrant boxes are as follows.
        
-       Static IP (192.168.1.3) to be assigned to this machine. 
+       Static IP (192.168.1.3) is to be assigned to this machine. 
 
     + Vagrant Box (Open edX platform) ::
 	 Virtual-Labs portable edition ,this box provides us Open edX
@@ -64,7 +64,7 @@
          experiments and for the images, this box contacts to *Cluster
          Vagrant box* for the labs over the LAN.
 
-	 Static IP(192.168.1.4) to be assigned to this box.
+	 Static IP(192.168.1.4) is to be assigned to this box.
   
     + Vagrant Box (Cluster) :: 
          The box with cluster setup.  In this box, labs are
@@ -72,7 +72,7 @@
          have a separate container so that we can avoid memory leakage
          issues of the labs.
 
-	 Static IP(192.168.1.4) to be assigned to this box.
+	 Static IP(192.168.1.4) is to be assigned to this box.
 
   - Porting Labs :: If there is any requirement for porting or
                     creating a new course on Open edX platform, we
