@@ -1,71 +1,96 @@
-#+TITLE: Portable Media - Personal Edition
+#+TITLE: Portable Edition
 #+DATE: <2016-09-14 Wed>
 
 * Introduction
-  This document describes building a *Personal Edition* for
+  This document describes building a *Portable Edition* for
   virtual-labs.
 
-  Personal-Edition is a portable-media( Hard Disk Drive (HDD)) which
-  will have open edx platform installed and labs ported onto it. So
+  Portable-Edition is a portable-media( Hard Disk Drive (HDD)) which
+  will have Open edX platform installed and labs ported onto it. So
   that we can use this media as portable. 
 
   Using this portable media, labs can be accessed directly from the
-  local machine itself ( no need of internet connection).
+  local machine itself (no need of internet connection).
 
 ** Objective 
-   Build the Personal-Edition using two vagrant boxes (virtual
+   Build the Pertable-Edition using two vagrant boxes (virtual
    machines) on a physical machine and use the HDD of the physical
    machine as a portable media.
  
-   - First Vagrant Box :: Open edX platform installed and ported labs(
-   Labs that are hosted on AWS VMs).
+   - First Vagrant Box ( running edX platform) :: Open edX platform
+        and ported labs (Labs that are hosted on AWS VMs).
  
-   - Second Vagrant Box :: Setup Cluster and host the labs  
+   - Second Vagrant Box ( Running cluster) :: Setup cluster and host
+        the labs on this cluster.
 
    For cluster setup, please follow the documentation of [[https://bitbucket.org/vlead/systems-model/src/97cc25543f8032cb84c1372c4c9ca170945f79a6/src/bootstrapping.org?at%3Ddevelop&fileviewer%3Dfile-view-default][bootstrapping]]
    process.
 
 * Requirements 
-** Functional  Requirement
-   - Labs that are ported to personal edition should be available in
-     one box/machine and all the ported labs should be accessible by
-     lab users without the internet connection.
-** System Requirements
-   The basic requirements are 
-   - Operating System : Ubutnu 14.04 LTS
-     As we are using it for the open edx platform on production (AWS)
-   - RAM : 16 GB
-   - Hard Drive : 250 GB for SSD or 400-500 for Magnetic.
-** Network bandwidth requirements
-   - At least 1 MBPS download speed. 
-   - Need stable internet and network proxies if there are any.
+** Portable Edition Requirement
+   - Labs that are ported to portable edition should be available in
+     one box/machine and all the ported labs should be accessible
+     locally by the lab users without the internet connection.
+** Open edX platform installation Requirements
+*** System Requirements
+    The basic requirements are 
+    - Operating System : Ubutnu 14.04 LTS server version. 
+    - RAM : 16 GB
+    - Hard Drive : 250 GB for SSD or 400-500 for Magnetic.
+*** Network bandwidth requirements
+    - At least 1 MBPS download speed. 
+    - Need stable internet and network proxies if there are any.
 * Design
   #+CAPTION:  Configuration Server Services Design Diagram
   #+LABEL:  Portable-media-diagram
-  [[./images/Portable-media-Design.jpg]]
+  [[./images/Portable-Edition-Design.jpg]]
    
-  - Router :: Wi-Fi router is responsible for name resolution within
-              the LAN network.
+  - Router :: Wi-Fi router is resolves the domain name(FQDN) of the
+              labs within the LAN network. And it allocates dhcp ips
+              to the Vagrant boxes and to the users who wants to acces
+              the labs. Configure the wi-fi router such that it has to
+              provide 192.168.1.0/24 subnet ip range to its clients.
 
-  - Physical Machine :: 
-       A machine with Ubuntu-14.04 LTS operating systems installed.
+  - Virtual-Labs portable edition :: 
+       A portable edition, which contains Open edX platform and ported
+       labs onto it. Two vagrant boxes will be used for creating the
+       portable edition. Two vagrant boxes are as follows.
+       
+       Static IP (192.168.1.3) to be assigned to this machine. 
 
-  - Vagrant Box (Open edX platform) :: 
-       Created on top of Physical machine,this box provides us Open
-       edX platform with the labs ported onto it. For the experiment's
-       simulations and for the images, this box talks to respective
-       labs over the LAN.
+    + Vagrant Box (Open edX platform) ::
+	 Virtual-Labs portable edition ,this box provides us Open edX
+         platform with the labs ported onto it. For the simulations of
+         experiments and for the images, this box contacts to *Cluster
+         Vagrant box* for the labs over the LAN.
 
-       Porting labs :: Get the lab/course sources from [[https://github.com/openedx-vlead][GitHub]] and
-       create tar ball and import into Vagrant Box (Open edX platform) 
+	 Static IP(192.168.1.4) to be assigned to this box.
+  
+    + Vagrant Box (Cluster) :: The box with cluster setup.  In this
+         box, labs are hosted/deployed locally on OpenVZ
+         containers. Each lab will have a separate container so that
+         we can avoid memory leakage issues of the labs.
 
-  - Vagrant Box (Cluster) :: 
-       The box with cluster setup.  In this box, labs are
-       hosted/deployed locally on OpenVZ containers. Each lab will
-       have a separate container so that we can avoid memory leakage
-       issues of the labs.
+	 Static IP(192.168.1.4) to be assigned to this box.
 
- 
+  - Porting Labs ::  If there is any requirement for porting or
+                     creating a new course on Open edX platform, we
+                     have to follow the steps
+		     
+		     Get the lab/course sources from [[https://github.com/openedx-vlead][GitHub]] and create
+                     tar ball and import into Vagrant Box (Open edX
+                     platform)
+
+  - ELK stack :: ELK(Elasticsearch,Logstash and Kibana) stack. ELK is
+                 for showing the analytics of the labs used by lab
+                 users.  
+
+    + Elasticsearch - A storage, No Sql database. It acts as backend
+      data store for logstash.
+    + Logstash - A log processor, can process any data - from any source
+    + Kibana - Analytics visualization tool. Acts as a frontend to
+      logstash              
+
 * TODO Implementation 
 ** Setup physical machine
    - Install Ubuntu-14.04 LTS server
@@ -84,6 +109,12 @@
    - Host/deploy the labs on vagrant box and make these labs available
      to edx platform.
 
+* Deployment 
+Due to the size of Labs (and containers) and edX (Vagrant  Box), creating a portable media will be as follows:
+1) Institute orders a Portable Media (to VLEAD Platform team)
+2) VLEAD creates Potable Media by following the above said procedure.
+3) Test the Portable Media
+4) Ship the Portable Media to the requesting institute.
 * COMMENT Memory Leakage labs
   - What could be the solution for hosting memory leakage labs on
     personal edition? 
