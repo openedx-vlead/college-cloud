@@ -1,0 +1,94 @@
+#+TITLE: Portable Media - Personal Edition
+#+DATE: <2016-09-14 Wed>
+
+* Introduction
+  This document describes building a *Personal Edition* for
+  virtual-labs.
+
+  Personal-Edition is a portable-media( Hard Disk Drive (HDD)) which
+  will have open edx platform installed and labs ported onto it. So
+  that we can use this media as portable. 
+
+  Using this portable media, labs can be accessed directly from the
+  local machine itself ( no need of internet connection).
+
+** Objective 
+   Build the Personal-Edition using two vagrant boxes (virtual
+   machines) on a physical machine. 
+ 
+   - First Vagrant Box :: Open edX platform installed and ported labs(
+   Labs that are hosted on AWS VMs).
+ 
+   - Second Vagrant Box :: Setup Cluster and host the labs  
+
+   For cluster setup, please follow the documentation of [[https://bitbucket.org/vlead/systems-model/src/97cc25543f8032cb84c1372c4c9ca170945f79a6/src/bootstrapping.org?at%3Ddevelop&fileviewer%3Dfile-view-default][bootstrapping]]
+   process.
+
+* Requirements 
+** Functional  Requirement
+   - Labs that are ported to personal edition should be available in
+     one box/machine and all the ported labs should be accessible by
+     lab users without the internet connection.
+** System Requirements
+   The basic requirements are 
+   - Operating System : Ubutnu 14.04 LTS
+     As we are using it for the open edx platform on production (AWS)
+   - RAM : 16 GB
+   - Hard Drive : 250 GB for SSD or 400-500 for Magnetic.
+** Network bandwidth requirements
+   - At least 1 MBPS download speed. 
+   - Need stable internet and network proxies if there are any.
+* Design
+  Diagram :  [[./images/Portable-media-Design.jpg][Design diagram]]
+   
+  - Router :: Wi-Fi router is responsible for name resolution within
+              the LAN network.
+
+  - Physical Machine :: 
+       A machine with Ubuntu-14.04 LTS operating systems installed.
+
+  - Vagrant Box (Open edX platform) :: 
+       Created on top of Physical machine,this box provides us Open
+       edX platform with the labs ported onto it. For the experiment's
+       simulations and for the images, this box talks to respective
+       labs over the LAN.
+
+       Porting labs :: Get the lab/course sources from [[https://github.com/openedx-vlead][GitHub]] and
+       create tar ball and import into Vagrant Box (Open edX platform) 
+
+  - Vagrant Box (Cluster) :: 
+       The box with cluster setup.  In this box, labs are
+       hosted/deployed locally on OpenVZ containers. Each lab will
+       have a separate container so that we can avoid memory leakage
+       issues of the labs.
+
+ 
+* TODO Implementation 
+** Setup physical machine
+   - Install Ubuntu-14.04 LTS server
+   - Install [[http://www.vagrantup.com/downloads.html][Vagrant]] 1.6.5 or later 
+   - Install [[https://www.virtualbox.org/wiki/Downloads][VirtualBox]] 4.3.12 (i386) or later
+   - install other requirements 
+     #+BEGIN_EXAMPLE
+     apt-get install virtualbox-dkms virtualbox-guest-dkms
+     #+END_EXAMPLE
+
+** Open edX platform in a Vagrant Box 
+   Steps:
+   - Create a Vagrant box with the Ubutnu-14.04 LTS
+   - Install Open edX platform
+   - Import/Port labs to Open edX platform
+   - Host/deploy the labs on vagrant box and make these labs available
+     to edx platform.
+
+* COMMENT Memory Leakage labs
+  - What could be the solution for hosting memory leakage labs on
+    personal edition? 
+    
+    Solution could be:
+    for Vagrant box *Vagrant box down* and *vagrant box up* and 
+    for Personal edition, *shutdown and restart the machine*
+
+  - How to find out the labs that are causing the memory leakage? 
+  - Can we create OpenVZ/Docker containers for the memory leakage
+    labs? is it a good idea?
