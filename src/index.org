@@ -39,7 +39,7 @@
    - At least 1 MBPS download speed. 
    - Need stable internet and network proxies if there are any.
 * Design
-  Diagram :  [[./images/Portable-media-Design.jpg][Design diagram]]
+  Diagram :  [[./images/Portable-media-Design.jpg]]
    
   - Router :: Wi-Fi router is responsible for name resolution within
               the LAN network.
