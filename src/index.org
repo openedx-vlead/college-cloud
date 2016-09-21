@@ -36,9 +36,9 @@
     The basic requirements are 
     - Operating System : Ubutnu 14.04 LTS server version. 
     - RAM : 16 GB
-    - Hard Drive : 250 GB for SSD or 400-500 for Magnetic.
+    - Hard Disk Drive : >=250 GB  SSD or Magnetic.
 *** Network bandwidth requirements
-    - At least 1 MBPS download speed. 
+    - At least 1 Mbps download speed. 
     - Need stable internet and network proxies if there are any.
 * Design
   #+CAPTION:  Configuration Server Services Design Diagram
