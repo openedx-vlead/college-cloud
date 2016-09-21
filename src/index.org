@@ -14,7 +14,8 @@
 
 ** Objective 
    Build the Personal-Edition using two vagrant boxes (virtual
-   machines) on a physical machine. 
+   machines) on a physical machine and use the HDD of the physical
+   machine as a portable media.
  
    - First Vagrant Box :: Open edX platform installed and ported labs(
    Labs that are hosted on AWS VMs).
