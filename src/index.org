@@ -66,30 +66,31 @@
 
 	 Static IP(192.168.1.4) to be assigned to this box.
   
-    + Vagrant Box (Cluster) :: The box with cluster setup.  In this
-         box, labs are hosted/deployed locally on OpenVZ
-         containers. Each lab will have a separate container so that
-         we can avoid memory leakage issues of the labs.
+    + Vagrant Box (Cluster) :: 
+         The box with cluster setup.  In this box, labs are
+         hosted/deployed locally on OpenVZ containers. Each lab will
+         have a separate container so that we can avoid memory leakage
+         issues of the labs.
 
 	 Static IP(192.168.1.4) to be assigned to this box.
 
-  - Porting Labs ::  If there is any requirement for porting or
-                     creating a new course on Open edX platform, we
-                     have to follow the steps
-		     
-		     Get the lab/course sources from [[https://github.com/openedx-vlead][GitHub]] and create
-                     tar ball and import into Vagrant Box (Open edX
-                     platform)
+  - Porting Labs :: If there is any requirement for porting or
+                    creating a new course on Open edX platform, we
+                    have to follow the below steps
+		    
+		    - Get the lab/course sources from [[https://github.com/openedx-vlead][GitHub]] and
+                      create tar ball.
+		    - Import the lab into Vagrant Box (Open edX
+                      platform studio)
 
   - ELK stack :: ELK(Elasticsearch,Logstash and Kibana) stack. ELK is
-                 for showing the analytics of the labs used by lab
-                 users.  
+                 for showing the analytics of the labs.
 
     + Elasticsearch - A storage, No Sql database. It acts as backend
       data store for logstash.
     + Logstash - A log processor, can process any data - from any source
-    + Kibana - Analytics visualization tool. Acts as a frontend to
-      logstash              
+    + Kibana - Analytics visualization tool. Acts as a frontend tool
+      to logstash
 
 * TODO Implementation 
 ** Setup physical machine
