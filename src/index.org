@@ -13,24 +13,15 @@
   local machine itself (no need of internet connection).
 
 ** Objective 
-   Build the Pertable-Edition using two vagrant boxes (virtual
-   machines) on a physical machine and use the HDD of the physical
-   machine as a portable media.
+   Build the Portable-Edition on HDD and make it portable. This
+   portable media can be used for accessing the labs from local
+   machine (no need of internet connection).
  
-   - First Vagrant Box ( running edX platform) :: Open edX platform
-        and ported labs (Labs that are hosted on AWS VMs).
- 
-   - Second Vagrant Box ( Running cluster) :: Setup cluster and host
-        the labs on this cluster.
-
-   For cluster setup, please follow the documentation of [[https://bitbucket.org/vlead/systems-model/src/97cc25543f8032cb84c1372c4c9ca170945f79a6/src/bootstrapping.org?at%3Ddevelop&fileviewer%3Dfile-view-default][bootstrapping]]
-   process.
-
 * Requirements 
 ** Portable Edition Requirement
    - Labs that are ported to portable edition should be available in
-     one box/machine and all the ported labs should be accessible
-     locally by the lab users without the internet connection.
+     one HDD and all the ported labs should be accessible locally by
+     the lab users without the internet connection.
 ** Open edX platform installation Requirements
 *** System Requirements
     The basic requirements are 
@@ -40,7 +31,7 @@
 *** Network bandwidth requirements
     - At least 1 Mbps download speed. 
     - Need stable internet and network proxies if there are any.
-* Design
+* Design Plan on 2016-09-19
   #+CAPTION:  Configuration Server Services Design Diagram
   #+LABEL:  Portable-media-diagram
   [[./images/Portable-Edition-Design.jpg]]
@@ -74,6 +65,73 @@
 
 	 Static IP(192.168.1.4) is to be assigned to this box.
 
+  - ELK stack :: ELK(Elasticsearch,Logstash and Kibana) stack. ELK is
+                 for showing the analytics of the labs.
+
+    + Elasticsearch - A storage, No Sql database. It acts as backend
+      data store for logstash.
+    + Logstash - A log processor, can process any data - from any source
+    + Kibana - Analytics visualization tool. Acts as a frontend tool
+      to logstash
+** Discontinued this plan
+   Reasons why discontinued 
+   - Setting up cluster in a vagrant box is difficult.
+     Why ::
+     + VLEAD cluster setup is done based on bare metal machine not on
+       Vagrant box. we do not have bootstrapping steps for this kind
+       of setup.
+     + Need more time to understand the network design of Vagrant Box
+     + NAT rules (firewall rules) issues after creating vagrant
+       box. 
+  - Okay with the setting up Open edX platform in a vagrant box     
+* Design Plan on 2016-09-23
+  #+CAPTION:  Configuration Server Services Design Diagram
+  #+LABEL:  Portable-media-diagram
+  [[./images/Design-of-Portable-Edition-2016-09-22.jpg]]
+   
+  - Router :: Wi-Fi router is resolves the domain name(FQDN) of the
+              labs within the LAN network. And it allocates dhcp ips
+              to the Vagrant boxes and to the users who wants to acces
+              the labs. Configure the wi-fi router such that it has to
+              provide 192.168.1.0/24 subnet ip range to its clients.
+
+  - Portable edition of Virtual Labs :: 
+       A portable edition, which contains Open edX platform and ported
+       labs onto it. One vagrant box will be used for Open edX
+       platform.
+
+       
+       Static IP (192.168.1.3) will be assigned to this machine.
+
+    + Vagrant Box (Open edX platform) ::
+	 Virtual-Labs portable edition ,this box provides us Open edX
+         platform with the labs ported onto it. For the simulations of
+         experiments and for the images, this box contacts to *Cluster
+         Vagrant box* for the labs over the LAN.
+
+	 Static IP(192.168.1.4) is to be assigned to this box.
+  
+    + Cluster :: 
+		 It runs on localhost (Host machine) and serves labs
+                 to the Open edX platform. In this cluster, labs are
+                 hosted/deployed locally on OpenVZ containers and also
+                 runs server nodes. Each lab will have a separate
+                 container so that we can avoid memory leakage issues
+                 of the labs.
+		 - Cluster server nodes are 
+		   + Router :: is for forwarding incoming packets to
+                               respective server nodes
+		   + Reverse proxy :: Accepts http and https packets
+                                      from router and forwards these
+                                      packets to respective labs.
+		   + Public DNS :: For external name resolution 
+		   + Private DNS :: For internal name resolution
+
+		   + ADS :: A service for hosting new labs inside the
+                            cluster
+
+	 Static IP(192.168.1.4) is to be assigned to this box.
+
   - Porting Labs :: If there is any requirement for porting or
                     creating a new course on Open edX platform, we
                     have to follow the below steps
@@ -83,8 +141,9 @@
 		    - Import the lab into Vagrant Box (Open edX
                       platform studio)
 
-  - ELK stack :: ELK(Elasticsearch,Logstash and Kibana) stack. ELK is
-                 for showing the analytics of the labs.
+  - ELK stack :: ELK(Elasticsearch,Logstash and Kibana) stack runs on
+                 localhost. ELK is responsible for collecting the logs
+                 and showing the analytics of the labs.
 
     + Elasticsearch - A storage, No Sql database. It acts as backend
       data store for logstash.
