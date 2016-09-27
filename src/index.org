@@ -42,7 +42,7 @@
               labs within the LAN network. And it allocates dhcp ips
               to the Vagrant boxes and to the users who wants to acces
               the labs. Configure the wi-fi router such that it has to
-              provide 192.168.1.0/24 subnet ip range to its clients.
+              provide 192.168.2.0/24 subnet ip range to its clients.
 
   - Portable edition of Virtual Labs :: 
        A portable edition, which contains Open edX platform and ported
