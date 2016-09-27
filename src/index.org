@@ -22,6 +22,8 @@
    - Labs that are ported to portable edition should be available in
      one HDD and all the ported labs should be accessible locally by
      the lab users without the internet connection.
+   - Collect logs from Open edX platform and push them to ELK stack to
+     get analytics
 ** Open edX platform installation Requirements
 *** System Requirements
     The basic requirements are 
@@ -53,8 +55,8 @@
     + Vagrant Box (Open edX platform) ::
 	 Virtual-Labs portable edition ,this box provides us Open edX
          platform with the labs ported onto it. For the simulations of
-         experiments and for the images, this box contacts to *Cluster
-         Vagrant box* for the labs over the LAN.
+         experiments and for the images, this box contacts to
+         *Cluster* for the labs over the LAN.
 
 	 Static IP(192.168.2.3) is to be assigned to this box.
   
@@ -76,11 +78,13 @@
 
 		   + ADS :: A service for hosting new labs inside the
                             cluster
-	           + Config-Server :: To configure cluster with automated
-                                scripts using ansible  
+	          
+                   + Config-Server :: To configure cluster with
+                                      automated scripts using ansible
+                                      playbooks
 
 	 Static IP(192.168.2.4) is to be assigned to Router container.
-	 Static IP(192.168.2.5) is to be assigned to Router container.
+	 Static IP(192.168.2.5) is to be assigned to Config-server container.
 
   - ELK stack :: ELK(Elasticsearch,Logstash and Kibana) stack runs on
                  localhost. ELK is responsible for collecting the logs
@@ -92,8 +96,8 @@
     + Kibana - Analytics visualization tool. Acts as a frontend tool
       to logstash
   - DNS service :: Runs in separate container on localhost. This
-                   service will be used by Wi-Fi router in order to
-                   internal name resolution( To map IP with FQDN).
+                   service will be used by Wi-Fi router for internal
+                   name resolution( To map IP with FQDN).
 		   
 		   This service will be configured using ansible
                    playbooks from config-server which is running
