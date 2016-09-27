@@ -31,10 +31,10 @@
 *** Network bandwidth requirements
     - At least 1 Mbps download speed. 
     - Need stable internet and network proxies if there are any.
-* Design Plan on 2016-09-19
-  #+CAPTION:  Configuration Server Services Design Diagram
+* Design Plan on 2016-09-26
+  #+CAPTION:  Portable Edition design diagram
   #+LABEL:  Portable-media-diagram
-  [[./images/Portable-Edition-Design.jpg]]
+  [[./images/Design-of-Portable-Edition-2016-09-26.jpg]]
    
   - Router :: Wi-Fi router is resolves the domain name(FQDN) of the
               labs within the LAN network. And it allocates dhcp ips
@@ -42,12 +42,13 @@
               the labs. Configure the wi-fi router such that it has to
               provide 192.168.1.0/24 subnet ip range to its clients.
 
-  - Virtual-Labs portable edition :: 
+  - Portable edition of Virtual Labs :: 
        A portable edition, which contains Open edX platform and ported
-       labs onto it. Two vagrant boxes will be used for creating the
-       portable edition. Two vagrant boxes are as follows.
+       labs onto it. One vagrant box will be used for Open edX
+       platform.
+
        
-       Static IP (192.168.1.3) is to be assigned to this machine. 
+       Static IP (192.168.2.2) will be assigned to this machine.
 
     + Vagrant Box (Open edX platform) ::
 	 Virtual-Labs portable edition ,this box provides us Open edX
@@ -55,37 +56,79 @@
          experiments and for the images, this box contacts to *Cluster
          Vagrant box* for the labs over the LAN.
 
-	 Static IP(192.168.1.4) is to be assigned to this box.
+	 Static IP(192.168.2.3) is to be assigned to this box.
   
-    + Vagrant Box (Cluster) :: 
-         The box with cluster setup.  In this box, labs are
-         hosted/deployed locally on OpenVZ containers. Each lab will
-         have a separate container so that we can avoid memory leakage
-         issues of the labs.
+    + Cluster :: 
+		 It runs on localhost (Host machine) and serves labs
+                 to the Open edX platform. In this cluster, labs are
+                 hosted/deployed locally on OpenVZ containers and also
+                 runs server nodes. Each lab will have a separate
+                 container so that we can avoid memory leakage issues
+                 of the labs.
+		 - Cluster server nodes are 
+		   + Router :: is for forwarding incoming packets to
+                               respective server nodes
+		   + Reverse proxy :: Accepts http and https packets
+                                      from router and forwards these
+                                      packets to respective labs.
+		   + Public DNS :: For external name resolution 
+		   + Private DNS :: For internal name resolution
 
-	 Static IP(192.168.1.4) is to be assigned to this box.
+		   + ADS :: A service for hosting new labs inside the
+                            cluster
+	           + Config-Server :: To configure cluster with automated
+                                scripts using ansible  
 
-  - ELK stack :: ELK(Elasticsearch,Logstash and Kibana) stack. ELK is
-                 for showing the analytics of the labs.
+	 Static IP(192.168.2.4) is to be assigned to Router container.
+	 Static IP(192.168.2.5) is to be assigned to Router container.
+
+  - ELK stack :: ELK(Elasticsearch,Logstash and Kibana) stack runs on
+                 localhost. ELK is responsible for collecting the logs
+                 and showing the analytics of the labs.
 
     + Elasticsearch - A storage, No Sql database. It acts as backend
       data store for logstash.
     + Logstash - A log processor, can process any data - from any source
     + Kibana - Analytics visualization tool. Acts as a frontend tool
       to logstash
-** Discontinued this plan
-   Reasons why discontinued 
-   - Setting up cluster in a vagrant box is difficult.
-     Why ::
-     + VLEAD cluster setup is done based on bare metal machine not on
-       Vagrant box. we do not have bootstrapping steps for this kind
-       of setup.
-     + Need more time to understand the network design of Vagrant Box
-     + NAT rules (firewall rules) issues after creating vagrant
-       box. 
-  - Okay with the setting up Open edX platform in a vagrant box     
-* Design Plan on 2016-09-23
-  #+CAPTION:  Configuration Server Services Design Diagram
+  - DNS service :: Runs in separate container on localhost. This
+                   service will be used by Wi-Fi router in order to
+                   internal name resolution( To map IP with FQDN).
+		   
+		   This service will be configured using ansible
+                   playbooks from config-server which is running
+                   inside cluster
+		   
+		   Static IP :: 192.168.2.6
+
+* (In Progress) Implementation 
+** Setup physical machine
+   - Install Ubuntu-14.04 LTS server
+   - Install [[http://www.vagrantup.com/downloads.html][Vagrant]] 1.6.5 or later 
+   - Install [[https://www.virtualbox.org/wiki/Downloads][VirtualBox]] 4.3.12 (i386) or later
+   - install other requirements 
+     #+BEGIN_EXAMPLE
+     apt-get install virtualbox-dkms virtualbox-guest-dkms
+     #+END_EXAMPLE
+
+** Open edX platform in a Vagrant Box 
+   Steps:
+   - Create a Vagrant box with the Ubutnu-14.04 LTS
+   - Install Open edX platform
+   - Import/Port labs to Open edX platform
+   - Host/deploy the labs on vagrant box and make these labs available
+     to edx platform.
+
+* Deployment 
+Due to the size of Labs (and containers) and edX (Vagrant  Box), creating a portable media will be as follows:
+1) Institute orders a Portable Media (to VLEAD Platform team)
+2) VLEAD creates Potable Media by following the above said procedure.
+3) Test the Portable Media
+4) Ship the Portable Media to the requesting institute.
+
+* Proposed and changed designed plans
+** Design Plan on 2016-09-23
+  #+CAPTION: Portable Edition design diagram
   #+LABEL:  Portable-media-diagram
   [[./images/Design-of-Portable-Edition-2016-09-22.jpg]]
    
@@ -140,41 +183,76 @@
                       create tar ball.
 		    - Import the lab into Vagrant Box (Open edX
                       platform studio)
+*** Design plan has changed 
+    Based on the design discussions.
+      In VLEAD cluster setup we used VLEAD's private DNS for
+      internal name resolution.
+      
+     After the implementation of this plan, we understood that we need
+     one more external dns service running in container outside the
+     cluster, so that we can use it's ip in Wi-Fi router to resolve
+     fully qualified domain name(FQDN).
+     
+     
+    - Decision
+    - DNS service has to be configured for internal name resolution.
 
-  - ELK stack :: ELK(Elasticsearch,Logstash and Kibana) stack runs on
-                 localhost. ELK is responsible for collecting the logs
-                 and showing the analytics of the labs.
+    Please see the changed design plan of [[Design%20Plan%20on%202016-09-26][Design Plan on 2016-09-26]]
+** Design Plan on 2016-09-19
+  #+CAPTION:  Portable Edition Design Diagram
+  #+LABEL:  Portable-media-diagram
+  [[./images/Portable-Edition-Design.jpg]]
+   
+  - Router :: Wi-Fi router is resolves the domain name(FQDN) of the
+              labs within the LAN network. And it allocates dhcp ips
+              to the Vagrant boxes and to the users who wants to acces
+              the labs. Configure the wi-fi router such that it has to
+              provide 192.168.1.0/24 subnet ip range to its clients.
+
+  - Virtual-Labs portable edition :: 
+       A portable edition, which contains Open edX platform and ported
+       labs onto it. Two vagrant boxes will be used for creating the
+       portable edition. Two vagrant boxes are as follows.
+       
+       Static IP (192.168.1.3) is to be assigned to this machine. 
+
+    + Vagrant Box (Open edX platform) ::
+	 Virtual-Labs portable edition ,this box provides us Open edX
+         platform with the labs ported onto it. For the simulations of
+         experiments and for the images, this box contacts to *Cluster
+         Vagrant box* for the labs over the LAN.
+
+	 Static IP(192.168.1.4) is to be assigned to this box.
+  
+    + Vagrant Box (Cluster) :: 
+         The box with cluster setup.  In this box, labs are
+         hosted/deployed locally on OpenVZ containers. Each lab will
+         have a separate container so that we can avoid memory leakage
+         issues of the labs.
+
+	 Static IP(192.168.1.4) is to be assigned to this box.
+
+  - ELK stack :: ELK(Elasticsearch,Logstash and Kibana) stack. ELK is
+                 for showing the analytics of the labs.
 
     + Elasticsearch - A storage, No Sql database. It acts as backend
       data store for logstash.
     + Logstash - A log processor, can process any data - from any source
     + Kibana - Analytics visualization tool. Acts as a frontend tool
       to logstash
+*** Discontinued this plan
+    Reasons why discontinued 
+   - Setting up cluster in a vagrant box is difficult.
+     Why ?::
+     + VLEAD cluster setup is done based on bare metal machine not on
+       Vagrant box. we do not have bootstrapping steps for this kind
+       of setup.
+     + Need more time to understand the network design of Vagrant Box
+     + NAT rules (firewall rules) issues after creating vagrant
+       box. 
+   - Okay with the setting up Open edX platform in a vagrant box     
 
-* TODO Implementation 
-** Setup physical machine
-   - Install Ubuntu-14.04 LTS server
-   - Install [[http://www.vagrantup.com/downloads.html][Vagrant]] 1.6.5 or later 
-   - Install [[https://www.virtualbox.org/wiki/Downloads][VirtualBox]] 4.3.12 (i386) or later
-   - install other requirements 
-     #+BEGIN_EXAMPLE
-     apt-get install virtualbox-dkms virtualbox-guest-dkms
-     #+END_EXAMPLE
 
-** Open edX platform in a Vagrant Box 
-   Steps:
-   - Create a Vagrant box with the Ubutnu-14.04 LTS
-   - Install Open edX platform
-   - Import/Port labs to Open edX platform
-   - Host/deploy the labs on vagrant box and make these labs available
-     to edx platform.
-
-* Deployment 
-Due to the size of Labs (and containers) and edX (Vagrant  Box), creating a portable media will be as follows:
-1) Institute orders a Portable Media (to VLEAD Platform team)
-2) VLEAD creates Potable Media by following the above said procedure.
-3) Test the Portable Media
-4) Ship the Portable Media to the requesting institute.
 * COMMENT Memory Leakage labs
   - What could be the solution for hosting memory leakage labs on
     personal edition? 
