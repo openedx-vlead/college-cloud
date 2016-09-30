@@ -22,8 +22,9 @@
    - Labs that are ported to portable edition should be available in
      one HDD and all the ported labs should be accessible locally by
      the lab users without the internet connection.
-   - Collect logs from Open edX platform and push them to ELK stack to
-     get analytics
+   - Analytics to be captured from portable hardrive version. [[https://github.com/openedx-vlead/portable-media/issues/2][Read link]]
+   - Analytics to be fetched from portble hardriver version.  [[https://github.com/openedx-vlead/portable-media/issues/2][Read link]]
+   
 ** Open edX platform installation Requirements
 *** System Requirements
     The basic requirements are 
