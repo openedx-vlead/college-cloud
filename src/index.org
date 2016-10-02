@@ -18,12 +18,10 @@
    machine (no need of internet connection).
  
 * Requirements 
-** Portable Edition Requirement
-   - Labs that are ported to portable edition should be available in
-     one HDD and all the ported labs should be accessible locally by
-     the lab users without the internet connection.
-   - Analytics to be captured from portable hardrive version. [[https://github.com/openedx-vlead/portable-media/issues/2][Read link]]
-   - Analytics to be fetched from portble hardriver version.  [[https://github.com/openedx-vlead/portable-media/issues/2][Read link]]
+** Portable Edition Requirements
+   - Build a portable hard drive with X labs on it.
+   - A facility for collecting logs.
+   - A facility for collecting analytics 
    
 ** Open edX platform installation Requirements
 *** System Requirements
@@ -31,15 +29,16 @@
     - Operating System : Ubutnu 14.04 LTS server version. 
     - RAM : 16 GB
     - Hard Disk Drive : >=250 GB  SSD or Magnetic.
+
 *** Network bandwidth requirements
     - At least 1 Mbps download speed. 
     - Need stable internet and network proxies if there are any.
-* Design Plan on 2016-09-26
+* Design 
   #+CAPTION:  Portable Edition design diagram
   #+LABEL:  Portable-media-diagram
   [[./images/Design-of-Portable-Edition-2016-09-26.jpg]]
    
-  - Router :: Wi-Fi router is resolves the domain name(FQDN) of the
+  - Wi-Fi Router :: Wi-Fi router resolves the domain name(FQDN) of the
               labs within the LAN network. And it allocates dhcp ips
               to the Vagrant boxes and to the users who wants to acces
               the labs. Configure the wi-fi router such that it has to
@@ -51,7 +50,7 @@
        platform.
 
        
-       Static IP (192.168.2.2) will be assigned to this machine.
+       Static IP (192.168.2.3) will be assigned to this machine.
 
     + Vagrant Box (Open edX platform) ::
 	 Virtual-Labs portable edition ,this box provides us Open edX
@@ -59,7 +58,7 @@
          experiments and for the images, this box contacts to
          *Cluster* for the labs over the LAN.
 
-	 Static IP(192.168.2.3) is to be assigned to this box.
+	 Static IP(192.168.2.5) is to be assigned to this box.
   
     + Cluster :: 
 		 It runs on localhost (Host machine) and serves labs
@@ -84,8 +83,8 @@
                                       automated scripts using ansible
                                       playbooks
 
-	 Static IP(192.168.2.4) is to be assigned to Router container.
-	 Static IP(192.168.2.5) is to be assigned to Config-server container.
+	 Static IP(192.168.2.3) is to be assigned to Router container.
+	 Static IP(192.168.2.4) is to be assigned to Config-server container.
 
   - ELK stack :: ELK(Elasticsearch,Logstash and Kibana) stack runs on
                  localhost. ELK is responsible for collecting the logs
@@ -106,24 +105,227 @@
 		   
 		   Static IP :: 192.168.2.6
 
-* (In Progress) Implementation 
-** Setup physical machine
-   - Install Ubuntu-14.04 LTS server
-   - Install [[http://www.vagrantup.com/downloads.html][Vagrant]] 1.6.5 or later 
-   - Install [[https://www.virtualbox.org/wiki/Downloads][VirtualBox]] 4.3.12 (i386) or later
-   - install other requirements 
+
+   - Analytics to be captured from portable hardrive version. [[https://github.com/openedx-vlead/portable-media/issues/2][Read link]]
+   - Analytics to be fetched from portble hardrive version.  [[https://github.com/openedx-vlead/portable-media/issues/2][Read link]]
+
+
+* Implementation 
+  Implementation is done based on the above design diagram.
+  We need internet connection for
+  - Setting up cluster
+  - Hosting the labs in the cluster using ADS service
+** Machine setup
+   - Install CentOS--6.x (Desktop or Server  version)
+
+** Cluster setup
+   - Use [[https://bitbucket.org/vlead/systems-model/src/97cc25543f8032cb84c1372c4c9ca170945f79a6/src/bootstrapping.org?at%3Ddevelop&fileviewer%3Dfile-view-default][bootstrapping steps]] for setting up cluster.
+     Cluster will have OpenVZ containers. Each server node will have
+     a separate container and also for each lab.
+
+     In this cluster setup we have not used all server nodes. So
+     comment =nagios_server=, =nagios_client=, =rsnapshot_server=,
+     =rsnapshot_client=, =ossec_server= and =ossec_client= roles in
+     following playbooks before running them.
+
+     In this cluster setup, we used only following server nodes.
+     + Config-Server
+     + Router
+     + Public DNS
+     + Private DNS 
+     + Reverse proxy
+     + ADS service
+
+    
+       NOTE :: All other server nodes are not necessary( may not be
+       needed ) such that we can reduce the load on the machine.
+
+** DNS service configuration
+   - Create a separate OpenVZ container for dns service 
      #+BEGIN_EXAMPLE
-     apt-get install virtualbox-dkms virtualbox-guest-dkms
+     vzctl create 1010 --ostemplate centos-6-x86_64  --hostname dns.vlabs.ac.in
+     vzctl set 1010 --netif_add eth0,,,,br0  --save 
+     vzctl set 1010 --onboot yes --save
+     vzctl start 1010
      #+END_EXAMPLE
+   - Configure network in dns container
+     + Enter into the container
+       #+BEGIN_EXAMPLE
+       vzctl enter 1010
+       #+END_EXAMPLE
+     + Open/create the file 
+       #+BEGIN_EXAMPLE
+       vim /etc/sysconfig/network-scripts/ifcfg-eth0
+       #+END_EXAMPLE
+     + Update above file with 
+       #+BEGIN_EXAMPLE
+       DEVICE=eth0
+       TYPE=Ethernet
+       HWADDR=<MAC address of the eth0 interface>
+       BOOTPROTO=static
+       ONBOOT=yes
+       NM_CONTROLLED=no
+       IPADDR=<ip-address>
+       NETMASK=<netmask>
+       GATEWAY=<gateway>
+       DNS1=<external-dns1>
+       DNS2=<external-dns2>
+       #+END_EXAMPLE
+
+    + Enable SSH access to root account from config-server
+    + Run =public_dns.yml= playbook from config-server to configure
+      dns service which is outside the cluster.
+      #+BEGIN_EXAMPLE
+      vlead$cd systems-model/build/edx/
+      vlead$vim dns.txt     # inventory file for DNS service node
+      #+END_EXAMPLE
+      - Add the following lines to that file
+	#+BEGIN_EXAMPLE
+	[public_dns]
+	192.168.2.5        # DNS service node ip address
+	#+END_EXAMPLE
+      - Run =public_dns.yml=
+	#+BEGIN_EXAMPLE
+	vlead$ansible-playbook -i dns.txt public_dns.yml
+	#+END_EXAMPLE
+    + Change =/etc/resolv.conf= file 
+      #+BEGIN_EXAMPLE
+      vim /etc/resolv.conf
+      and add
+      nameserver 127.0.0.1    # as localhost has become name server 
+      #+END_EXAMPLE
+    + You are done configuring DNS service
 
 ** Open edX platform in a Vagrant Box 
-   Steps:
-   - Create a Vagrant box with the Ubutnu-14.04 LTS
-   - Install Open edX platform
-   - Import/Port labs to Open edX platform
-   - Host/deploy the labs on vagrant box and make these labs available
-     to edx platform.
+  - Install [[http://www.vagrantup.com/downloads.html][Vagrant]] 1.6.5 or later 
+    #+BEGIN_EXAMPLE
+    wget https://releases.hashicorp.com/vagrant/1.8.6/vagrant_1.8.6_x86_64.rpm
+    sudo rpm -i vagrant_1.8.6_x86_64.rpm
+    #+END_EXAMPLE
+  - Install [[https://www.virtualbox.org/wiki/Downloads][VirtualBox]] 4.3.12 (i386) or later
+    #+BEGIN_EXAMPLE
+    wget http://download.virtualbox.org/virtualbox/5.1.6/VirtualBox-5.1-5.1.6_110634_el6-1.x86_64.rpm
+    sudo rpm -i VirtualBox-5.1-5.1.6_110634_el6-1.x86_64.rpm
+    #+END_EXAMPLE
+  - install other requirements 
+    #+BEGIN_EXAMPLE
+    sudo apt-get install virtualbox-dkms virtualbox-guest-dkms
+    #+END_EXAMPLE
+  - Install other dependencies if there are any
+    #+BEGIN_EXAMPLE
+    sudo apt-get install -f 
+    #+END_EXAMPLE
+  - Add/Get a ubuntu 14.04 LTS box to vagrant box list
+    #+BEGIN_EXAMPLE
+    vagrant box add ubuntu/trusyt64
+    #+END_EXAMPLE
+  - Create a Vagrant box with the Ubutnu-14.04 LTS
+    #+BEGIN_EXAMPLE
+    vagrant init
+    #+END_EXAMPLE
+  - The above command generates basic Vagrantfile and modify the file
+    with the following info
+    #+BEGIN_EXAMPLE
+    base = "ubuntu/trusty64"
+    #+END_EXAMPLE
+    And also you can change the other required parameters in
+    Vagrantfile ( as per your requirement) 
+  - Install Open edX platform
+    1. SSH to Vagrant box that was created just now
+       #+BEGIN_EXAMPLE
+       vagrant ssh
+       #+END_EXAMPLE
+    2. Install Packages
+       #+BEGIN_EXAMPLE 
+       sudo apt-get install -y build-essential software-properties-common python-software-properties curl git-core libxml2-dev libxslt1-dev libfreetype6-dev python-pip python-apt python-dev libxmlsec1-dev swig libmysqlclient-dev
+       sudo pip install --upgrade pip
+       sudo pip install paramiko==1.10
+       #+END_EXAMPLE
 
+    3. Clone configuration repository
+       #+BEGIN_EXAMPLE 
+       cd /var/tmp
+       git clone https://github.com/edx/configuration
+       #+END_EXAMPLE
+
+    4. Choose the release
+       #+BEGIN_EXAMPLE
+       export OPENEDX_RELEASE=named-release/dogwood.3 
+       #+END_EXAMPLE
+
+       OR
+       + Checkout to the release verion of configuration repository
+         #+BEGIN_EXAMPLE
+         cd /var/tmp/configuration
+         git checkout <version>
+         git checkout  named-release/dogwood.3 #example
+         #+END_EXAMPLE
+
+    5. Configure password based SSH authentication
+       Edit the =main.yaml= to and set =COMMON_SSH_PASSWORD_AUTH= to =yes= 
+       #+BEGIN_EXAMPLE
+       sudo vim =configuration/playbooks/roles/common_vars/defaults/main.yml
+       COMMON_SSH_PASSWORD_AUTH = yes
+       #+END_EXAMPLE
+
+    6. Install the ansible requirements 
+       
+       #+BEGIN_EXAMPLE 
+       cd /var/tmp/configuration
+       sudo pip install -r requirements.txt
+       sudo pip install setuptools --upgrade
+       #+END_EXAMPLE
+
+    7. Run the playbook
+       #+BEGIN_EXAMPLE 
+       cd /var/tmp/configuration/playbooks && sudo ansible-playbook -c local ./edx_sandbox.yml -i "localhost,"
+       #+END_EXAMPLE
+
+    8. The above command will copy the platform files and runs various ansible
+       playbooks to setup the platform.  When there are zero failures displayed
+       in the status, the installation is successful.
+  
+    9. Platform is ready, 
+       + LMS is accessible on port 80
+         #+BEGIN_EXAMPLE
+         http://<public-ip> # courses dashboard
+         #+END_EXAMPLE
+
+       + CMS is accessible on port 18010
+         #+BEGIN_EXAMPLE
+         http://<public_ip>:18010    # Studio
+         #+END_EXAMPLE
+
+    10. Login
+	A default user =staff@example.com= comes with the installation.  This
+	login is used to quickly test the instalaltion.  The password is =edx=
+ 
+    11. Reference
+	+ [[https://github.com/openedx-vlead/port-labs-to-openedx/tree/develop/src/platform-install-configure][Open edX platform  installation using Manual steps provided
+          by VLEAD]]  
+        + [[https://openedx.atlassian.net/wiki/display/OpenOPS/Native+Open+edX+Ubuntu+12.04+64+bit+Installation][Native Open edX installation on Ubuntu 12.04 64-bit]]
+	
+
+** One stop solution for setting up Open edX platform using vagrantbox
+  - Get the Vagrantfile from http://files.vlabs.ac.in
+    #+BEGIN_EXAMPLE
+    wget http://files.virtual-labs.ac.in/downloads/open-edx-vagrant-boxes/Vagrantfile
+    #+END_EXAMPLE
+  - Get the vagrant box 
+    #+BEGIN_EXAMPLE
+    wget http://files.virtual-labs.ac.in/downloads/open-edx-vagrant-boxes/open-edx-platform-installed-2016-09-19.box
+    #+END_EXAMPLE
+  - Add downloaded box to vagrant box list 
+    #+BEGIN_EXAMPLE
+    vagrant box add edx-platform-installed-2016-09-19 open-edx-platform-installed-2016-09-19.box
+    #+END_EXAMPLE
+  - Run Open edX platform 
+    #+BEGIN_EXAMPLE
+    vagrant up
+    #+END_EXAMPLE
+  - That's all, you are ready to use Open edX platform.
+* Test Cases
+** 
 * Deployment 
 Due to the size of Labs (and containers) and edX (Vagrant  Box), creating a portable media will be as follows:
 1) Institute orders a Portable Media (to VLEAD Platform team)
@@ -269,3 +471,5 @@ Due to the size of Labs (and containers) and edX (Vagrant  Box), creating a port
   - How to find out the labs that are causing the memory leakage? 
   - Can we create OpenVZ/Docker containers for the memory leakage
     labs? is it a good idea?
+
+
