@@ -101,21 +101,21 @@
                       create tar ball.
 		    - Import the lab into Vagrant Box (Open edX
                       platform studio)
-*** Design plan has changed 
-    Based on the design discussions.
-      In VLEAD cluster setup we used VLEAD's private DNS for
-      internal name resolution.
+**** Design plan has changed 
+     Based on the design discussions.
+       In VLEAD cluster setup we used VLEAD's private DNS for
+       internal name resolution.
+       
+      After the implementation of this plan, we understood that we need
+      one more external dns service running in container outside the
+      cluster, so that we can use it's ip in Wi-Fi router to resolve
+      fully qualified domain name(FQDN).
       
-     After the implementation of this plan, we understood that we need
-     one more external dns service running in container outside the
-     cluster, so that we can use it's ip in Wi-Fi router to resolve
-     fully qualified domain name(FQDN).
-     
-     
-    - Decision ::
-       DNS service has to be configured for internal name resolution.
+      
+     - Decision ::
+       	DNS service has to be configured for internal name resolution.
 
-    Please see the changed design plan of [[Design%20Plan%20on%202016-09-26][Design Plan on 2016-09-26]]
+     Please see the changed design plan of [[Design%20Plan%20on%202016-09-26][Design Plan on 2016-09-26]]
 *** Design Plan on 2016-09-19
   #+CAPTION:  Portable Edition Design Diagram
   #+LABEL:  Portable-media-diagram
@@ -158,17 +158,17 @@
     + Logstash - A log processor, can process any data - from any source
     + Kibana - Analytics visualization tool. Acts as a frontend tool
       to logstash
-*** Discontinued this plan
-    Reasons why discontinued 
-   - Setting up cluster in a vagrant box is difficult.
-     Why ?::
-     + VLEAD cluster setup is done based on bare metal machine not on
-       Vagrant box. we do not have bootstrapping steps for this kind
-       of setup.
-     + Need more time to understand the network design of Vagrant Box
-     + NAT rules (firewall rules) issues after creating vagrant
-       box. 
-   - Okay with the setting up Open edX platform in a vagrant box     
+**** Discontinued this plan
+     Reasons why discontinued 
+    - Setting up cluster in a vagrant box is difficult.
+      Why ?::
+      + VLEAD cluster setup is done based on bare metal machine not on
+       	Vagrant box. we do not have bootstrapping steps for this kind
+       	of setup.
+      + Need more time to understand the network design of Vagrant Box
+      + NAT rules (firewall rules) issues after creating vagrant
+       	box. 
+    - Okay with the setting up Open edX platform in a vagrant box     
 
 ** Hardware requirements
 *** Proposed Machine and Wifi router specifications and requirements 
