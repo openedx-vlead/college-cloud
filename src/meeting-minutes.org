@@ -50,7 +50,7 @@
   #+LABEL:  Portable-media-diagram
   [[./images/Design-of-Portable-Edition-2016-09-22.jpg]]
    
-  - Router :: Wi-Fi router is resolves the domain name(FQDN) of the
+  - Wi-Fi Router :: Wi-Fi router is resolves the domain name(FQDN) of the
               labs within the LAN network. And it allocates dhcp ips
               to the Vagrant boxes and to the users who wants to acces
               the labs. Configure the wi-fi router such that it has to

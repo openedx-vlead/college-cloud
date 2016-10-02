@@ -325,7 +325,7 @@
     #+END_EXAMPLE
   - That's all, you are ready to use Open edX platform.
 * GitHub Issues
-  - [[https://github.com/openedx-vlead/portable-media/issues/1][Cluster and Open edx Platform setup]]
+  - [[https://github.com/openedx-vlead/portable-media/issues/1][Cluster and Open edX Platform setup]]
   - [[https://github.com/openedx-vlead/portable-media/issues/2][Analytics for the portable media]]
 * Test Cases
   [[https://github.com/openedx-vlead/portable-media/issues/1#issuecomment-250976103][Basic Test]]
