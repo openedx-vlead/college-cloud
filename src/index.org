@@ -2,26 +2,26 @@
 #+DATE: <2016-09-14 Wed>
 
 * Introduction
-  This document describes building a *Portable Edition* for
+  The document describes building a *Portable Edition* for
   virtual-labs.
 
   Portable-Edition is a portable-media( Hard Disk Drive (HDD)) which
   will have Open edX platform installed and labs ported onto it. So
   that we can use this media as portable. 
 
-  Using this portable media, labs can be accessed directly from the
+  Using the portable media, labs can be accessed directly from the
   local machine itself (no need of internet connection).
 
 ** Objective 
-   Build the Portable-Edition on HDD and make it portable. This
+   Build the Portable-Edition on HDD and make it portable. The
    portable media can be used for accessing the labs from local
    machine (no need of internet connection).
  
 * Requirements 
 ** Portable Edition Requirements
    - Build a portable hard drive with X labs on it.
-   - A facility for collecting logs.
-   - A facility for collecting analytics 
+   - Create a facility for collecting logs.
+   - Create a facility for collecting analytics 
    
 ** Open edX platform installation Requirements
 *** System Requirements
@@ -29,6 +29,7 @@
     - Operating System : Ubutnu 14.04 LTS server version. 
     - RAM : 16 GB
     - Hard Disk Drive : >=250 GB  SSD or Magnetic.
+    - CPUs : >=2 
 
 *** Network bandwidth requirements
     - At least 1 Mbps download speed. 
