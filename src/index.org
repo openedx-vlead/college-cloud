@@ -110,7 +110,6 @@
    - Analytics to be captured from portable hardrive version. [[https://github.com/openedx-vlead/portable-media/issues/2][Read link]]
    - Analytics to be fetched from portble hardrive version.  [[https://github.com/openedx-vlead/portable-media/issues/2][Read link]]
 
-
 * Implementation 
   Implementation is done based on the above design diagram.
   We need internet connection for
@@ -325,15 +324,11 @@
     vagrant up
     #+END_EXAMPLE
   - That's all, you are ready to use Open edX platform.
+* GitHub Issues
+  - [[https://github.com/openedx-vlead/portable-media/issues/1][Cluster and Open edx Platform setup]]
+  - [[https://github.com/openedx-vlead/portable-media/issues/2][Analytics for the portable media]]
 * Test Cases
-** 
-* Deployment 
-Due to the size of Labs (and containers) and edX (Vagrant  Box), creating a portable media will be as follows:
-1) Institute orders a Portable Media (to VLEAD Platform team)
-2) VLEAD creates Potable Media by following the above said procedure.
-3) Test the Portable Media
-4) Ship the Portable Media to the requesting institute.
-
+  [[https://github.com/openedx-vlead/portable-media/issues/1#issuecomment-250976103][Basic Test]]
 * Proposed and changed designed plans
   [[https://github.com/openedx-vlead/portable-media/blob/master/src/meeting-minutes.org#proposed-and-changed-designed-plans][Design plans]]
 
