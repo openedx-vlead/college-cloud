@@ -43,7 +43,7 @@
               labs within the LAN network. And it allocates dhcp ips
               to the Vagrant boxes and to the users who wants to acces
               the labs. Configure the wi-fi router such that it has to
-              provide 192.168.2.0/24 subnet ip range to its clients.
+              provide 10.2.57.0/24 subnet ip range to its clients.
 
   - Portable edition of Virtual Labs :: 
        A portable edition, which contains Open edX platform and ported
@@ -51,7 +51,7 @@
        platform.
 
        
-       Static IP (192.168.2.3) will be assigned to this machine.
+       Static IP (10.2.57.61) will be assigned to this machine.
 
     + Vagrant Box (Open edX platform) ::
 	 Virtual-Labs portable edition ,this box provides us Open edX
@@ -59,7 +59,7 @@
          experiments and for the images, this box contacts to
          *Cluster* for the labs over the LAN.
 
-	 Static IP(192.168.2.5) is to be assigned to this box.
+	 Static IP(10.2.57.65) is to be assigned to this box.
   
     + Cluster :: 
 		 It runs on localhost (Host machine) and serves labs
@@ -84,12 +84,14 @@
                                       automated scripts using ansible
                                       playbooks
 
-	 Static IP(192.168.2.3) is to be assigned to Router container.
-	 Static IP(192.168.2.4) is to be assigned to Config-server container.
+	 Static IP(10.2.57.62) is to be assigned to Router container.
+	 Static IP(10.2.57.63) is to be assigned to Config-server container.
 
   - ELK stack :: ELK(Elasticsearch,Logstash and Kibana) stack runs on
                  localhost. ELK is responsible for collecting the logs
-                 and showing the analytics of the labs.
+                 and showing the analytics of the labs. 
+		 
+		 ELK will be used by analytics-api service
 
     + Elasticsearch - A storage, No Sql database. It acts as backend
       data store for logstash.
@@ -97,18 +99,21 @@
     + Kibana - Analytics visualization tool. Acts as a frontend tool
       to logstash
   - DNS service :: Runs in separate container on localhost. This
-                   service will be used by Wi-Fi router for internal
-                   name resolution( To map IP with FQDN).
+                   service will be used by Wi-Fi router for name
+                   resolution( To map IP with FQDN).
 		   
-		   This service will be configured using ansible
-                   playbooks from config-server which is running
-                   inside cluster
+		   DNS service will be configured using ansible
+                   playbooks from config-server. Use =public_dns.yml=
+                   playbook to configure DNS service
 		   
-		   Static IP :: 192.168.2.6
-
-
+		   Static IP :: 10.2.57.64
+  
    - Analytics to be captured from portable hardrive version. [[https://github.com/openedx-vlead/portable-media/issues/2][Read link]]
    - Analytics to be fetched from portble hardrive version.  [[https://github.com/openedx-vlead/portable-media/issues/2][Read link]]
+  - Nagios :: Nagios is a monitoring tool. Job of the nagios in this
+              setup is to monitor system resources such as RAM,
+              Processes,etc.
+  
 
 * Implementation 
   Implementation is done based on the above design diagram.
@@ -304,8 +309,6 @@
 	+ [[https://github.com/openedx-vlead/port-labs-to-openedx/tree/develop/src/platform-install-configure][Open edX platform  installation using Manual steps provided
           by VLEAD]]  
         + [[https://openedx.atlassian.net/wiki/display/OpenOPS/Native+Open+edX+Ubuntu+12.04+64+bit+Installation][Native Open edX installation on Ubuntu 12.04 64-bit]]
-	
-
 ** One stop solution for setting up Open edX platform using vagrantbox
   - Get the Vagrantfile from http://files.vlabs.ac.in
     #+BEGIN_EXAMPLE
@@ -324,6 +327,77 @@
     vagrant up
     #+END_EXAMPLE
   - That's all, you are ready to use Open edX platform.
+	
+** Install ELK on host machine
+   #+BEGIN_EXAMPLE
+   # install java-1.8 version
+   yum install java-1.8.0-openjdk.x86_64
+
+   # Get ELK rpm packages 
+   wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/rpm/elasticsearch/2.4.1/elasticsearch-2.4.1.rpm
+   wget https://download.elastic.co/kibana/kibana/kibana-4.6.1-x86_64.rpm
+   wget https://download.elastic.co/logstash/logstash/packages/centos/logstash-2.4.0.noarch.rpm
+   wget https://download.elastic.co/beats/filebeat/filebeat-1.3.1-x86_64.rpm
+
+
+   # Install elasticsearch
+   rpm -i elasticsearch-2.4.1.rpm 
+   service elasticsearch start   
+   chkconfig elasticsearch on
+
+   # Install filebeat
+   rpm -i filebeat-1.3.1-x86_64.rpm 
+   service filebeat start
+   chkconfig filebeat on
+   
+
+   # Install Kibana
+   rpm -i kibana-4.6.1-x86_64.rpm 
+   service kibana start
+   chkconfig kibana on
+
+   # Install Logstash
+   rpm -i logstash-2.4.0.noarch.rpm 
+   service logstash start
+   chkconfig logstash on
+
+   #+END_EXAMPLE
+** Install Nagios on host machine
+   #+BEGIN_EXAMPLE
+   yum install nagios nagios-plugins-all.x86_64 nagios-plugins-nrpe nrpe
+   
+
+   vim /etc/nagios/nrpe.cfg # Change the allowed_hosts values to 127.0.0.1,10.2.57.61
+   service nrpe resstart
+   service nrpe restart
+   service nagios restart
+
+   chkconfig nagios on
+   chkconfig nrpe on
+   #+END_EXAMPLE
+*** Set nagiosadmin user passowrd
+    #+BEGIN_EXAMPLE
+    htpasswd -C /etc/nagios/passwd nagiosadmin
+    #+END_EXAMPLE
+    and access the nagios web console using =localhost/nagios= and
+    provide user name and password.
+** Install OpenVZ web console
+   #+BEGIN_EXAMPLE
+   git clone https://github.com/sibprogrammer/owp.git
+   cd owp/build
+   sh build.sh
+   
+   cd ..
+   cd installer
+   sh ai.sh
+   
+   #+END_EXAMPLE
+   Then access the web console using =localhost:3000= by providing
+   credentials
+   user name: admin  password:admin.   Change the password if you want
+
+* Deployment 
+  
 * GitHub Issues
   - [[https://github.com/openedx-vlead/portable-media/issues/1][Cluster and Open edX Platform setup]]
   - [[https://github.com/openedx-vlead/portable-media/issues/2][Analytics for the portable media]]
