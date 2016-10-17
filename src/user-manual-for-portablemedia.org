@@ -2,10 +2,10 @@
 * Introduction
   The user manual is for conducting a workshop using portable media.
 * Known Issues
-  - Videos will not be loading from Open edX platform
+  - Videos will not be loading from Open edX platform.
     In the next release, we will resolve this problem
 * Steps for portable-media setup
-  - Be ready with the system with the following machine specs
+  - Be ready with the system with following machine specs
     + *Intel i7* processor or *Intel Xenon (Rack/server grade Version)*
     + *16 GB RAM* minimum 
   - Be ready with the Wifi router
