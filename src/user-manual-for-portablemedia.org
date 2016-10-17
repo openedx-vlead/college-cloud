@@ -2,16 +2,18 @@
 * Introduction
   The user manual is for conducting a workshop using portable media.
 * Known Issues
-  - Videos will not load from Open edX platform
+  - Videos will not be loading from Open edX platform
+    In the next release, we will resolve this problem
 * Steps for portable-media setup
   - Be ready with the system with the following machine specs
     + *Intel i7* processor or *Intel Xenon (Rack/server grade Version)*
     + *16 GB RAM* minimum 
   - Be ready with the Wifi router
-    + Configure the WiFi-Router 
-      Router has to serve 10.2.57.0/24 to its clients. That means we
-      have to configure LAN settings in router such that routers dhcp
-      server will serve IPs from the above IP range to its clients.
+    + Configure WiFi-Router :: 
+	 Router has to serve 10.2.57.0/24 to its clients. That means
+         we have to configure LAN settings in router such that
+         router's dhcp server will serve IPs from the above IP range
+         to its clients.
   - Take a LAN cable and connect it to machine. This connection has to
     come from router only. *Do not touch WAN port*
   - Take the HDD (portable-media)
@@ -19,17 +21,17 @@
   - User credentials to log into the machine
     + User name :: Virtual-Labs
     + Password :: admin123
-  - run the following command on terminal to run virtual labs on
+  - Run the following command on terminal to run virtual labs on
     OpenedX platform. This may take a few minutes to launch platform.
     #+BEGIN_EXAMPLE
-    vagrant up           #Look for Vagrant file in "vlabs" account and run this command
+    vagrant-boxes$vagrant up           #Look for Vagrant file in "vlabs" account and run this command
     
     #+END_EXAMPLE
   - Virtual labs are ready in our machine , we are ready to use the
     labs
 
 * Steps for conducting a workshop
-  - Admin user will be using this portable media.
+  - Admin/Workshop coordinator user will be using this portable media machine setup.
 ** OpenVZ web panel
    - Use the link http://localhost:3000
    - It will ask for the user name and password, provide following
@@ -38,9 +40,12 @@
      + Password :: admin
 
    This web panel is for managing virtual-labs which are running on
-   localhost. Each lab has one OpenVZ container. *All the lab
-   containers are stopped by default*. But, server nodes will be
-   in running state( We have to keep them running)
+   localhost(Portable media). Each lab has one OpenVZ container. * By
+   default, all lab containers are stopped*. But, server nodes will be
+   in running state( We have to keep them running). 
+
+   - NOTE :: *Please don't play around the portable media setup unless
+             you know what you are doing*. 
    - Server nodes are 
      |------+--------------------------+------|
      | S.No | Conatiner Name           | CTID |
@@ -55,17 +60,32 @@
      |------+--------------------------+------|
      |    5 | Reverse proxy            | 1007 |
      |------+--------------------------+------|
-     |    6 | ADS                      | 1009 |
+     |    6 | Analytics-api            | 1008 |
      |------+--------------------------+------|
-     |    7 | DNS service              | 1010 |
+     |    7 | ADS                      | 1009 |
+     |------+--------------------------+------|
+     |    8 | DNS service              | 1010 |
      |------+--------------------------+------|
      We can stop ADS (1009) and Config-server (1002).
 
    - Once you are logged into web panel,
      + Look for =localhost= on left side of the panel and Click on
        =localhost=
-     + Then you will be seeing all the OpenVZ containers(stopped and
-       running)
+     + Then you will be seeing all labs running on OpenVZ
+       containers(stopped and running)
+*** How to start Lab containers
+    - Go to OpenedX platform http://open-edx.vlabs.ac.in
+    - Select the course/lab that you want to take for the
+      workshop. And remember the lab name
+    - Go to http://localhost:3000 and Sign into =OpenVZ web panel= 
+      + Use following user credentials
+        User name : admin,    Password : admin
+    - Click on localhost located at left side of the panel
+    - Search for the lab name that you have selected in the Second
+      step.
+    - Then, choose that lab by clicking on CTID (ex.213) and look for
+      =change state= button on the panel, and select =start=
+      + If you face any problem, try starting container again.
 *** Limitations on starting lab containers for better results
     + If you are using server grade machine/system *(>=32 GB RAM,
       Intel Xenon processor)*
@@ -73,11 +93,10 @@
     + If you are using *Intel i7 processor and 16GB RAM
       machine/system*, 
       - In this kind of machine, Maximum 5 simultaneous users can
-        access one lab at a time
-      - Please start the labs containers which are needed for the
-        workshop.
+        access one lab at a time.
+      - Please start the labs which are needed for the workshop.
       - The best choice is start one lab at a time and maximum of 4
-        labs we can start.
+        labs.
        
 ** Nagios 
    It is for monitoring systems resources such as load on the machine,
@@ -99,23 +118,44 @@
     2. Copy the compressed zip file in ELK-analytics server.
     3. Execute a simple python script which reads from this log file
        and writes data to elasticsearch.
-** Steps for Lab users to access the lab
+** Change your DNS servers settings
    Workshop coordinator has to give following instructions to lab users
    - Lab user can access the labs through LAN cable and also over
      wireless. LAN cable should be connected to WiFi-router.
    - Once the user is connected to wireless or LAN, user has to modify
-     their *nameserver* in =/etc/resolv.conf=. 
-     + Open the file
-     #+BEGIN_EXAMPLE
-     sudo vim /etc/resolv.conf
-     #+END_EXAMPLE
-     + Delete existing entries and add the following line
-       #+BEGIN_EXAMPLE
-       nameserver 10.2.57.64
-       #+END_EXAMPLE
-   - Then the user can access the lab
+     their *DNS servers* 
 
+     + *Linux*  
+       - Open the file
+         #+BEGIN_EXAMPLE
+	 sudo vim /etc/resolv.conf
+         #+END_EXAMPLE
+       - Delete existing entries and add the following line
+         #+BEGIN_EXAMPLE
+         nameserver 10.2.57.64
+         #+END_EXAMPLE
+     + *Windows*
+        *Example: Changing DNS server settings on Windows 7*
+
+        - Go to the Control Panel.
+        - Click Network and Internet > Network and Sharing Center >
+          Change adapter settings.
+
+        - Select the connection for which you want to configure Public
+          DNS. For example:
+          + To change the settings for an Ethernet connection,
+            right-click Local Area Connection > Properties.
+          + To change the settings for a wireless connection,
+            right-click Wireless Network Connection > Properties.
+    
+        - Select the Networking tab. Under =This connection uses the
+          following items=, select =Internet Protocol Version 4
+          (TCP/IPv4)= or =Internet Protocol Version 6 (TCP/IPv6)= and
+          then click Properties.
+        - =Select Use the following DNS server addresses=. and add =10.2.57.64=
+        - Desable wifi connection and enable wifi again.
+       
 * Support 
-  - For any help, please contact engg@vlabs.ac.in
+  - For any help, please contact =engg@vlabs.ac.in=
   - You can create issues on GitHub 
 
