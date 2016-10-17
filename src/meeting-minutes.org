@@ -44,6 +44,45 @@
 	 
 	  Solution can be grep and replace https with http in all the
 	  labs 
+** <2016-09-28 Wed> Hardware requirements
+*** Proposed Machine and Wifi router specifications and requirements 
+    The following requirements are captured based on discussion
+    happened on <2016-09-28 Wed> 
+
+    Attendees:  Siva, Sanchitha, Maruthi Rao and Biswajit, and Aashay
+    also involved partly.
+
+    Discussion:
+    Portable media with 80 labs.
+    Workshop with around 100 students. For this kind of workshop, what
+    are all the things we need for portable media.
+    Assumptions :: 
+    - Workshop duration (Average duration of time) 3hrs and 6hrs 
+    - Web services 70 and other services 10
+    - Students in workshop - 50-100 
+    - 30-40 simultaneous users accessing the labs
+    - Rest of the people 70-60 ---> accesing edX
+  
+    Based on above assumptions we come up with the following basic
+    requirements are needed for the poratable media and their
+    approximate costs are as follows
+    - AMD FX-8 series or Intel Xeonon processor -Rs.26K
+    - Motherboard - Asus or Inetl Rs.40k-45K
+    - RAM - 32GB
+    - Non ECC RAM
+    - Cooler -liquid cooler 10K
+    - Cabinet - 6-7K
+    - SMPS  - 6K
+    - LAN switch
+    - 3 wifi router with LAN ports
+    - 50 cat5 cables with 2 mitres
+
+*** ACTIONS Items
+    -  Collect the systems requirements as mentioned in the above-
+       Biswajit - Done
+       + Biswajit has come up with the table of 3 builds/sets
+	 These 3 builds/Sets are updated in [[https://mail.google.com/mail/u/0/#inbox/15774d2efec0c111?projector%3D1][Google Spreadsheet]]. 
+	  Need to be discussed on this requirements and specifications
 ** Proposed and changed designed plans
 *** Design Plan on 2016-09-23
   #+CAPTION: Portable Edition design diagram
@@ -170,47 +209,7 @@
        	box. 
     - Okay with the setting up Open edX platform in a vagrant box     
 
-** Hardware requirements
-*** Proposed Machine and Wifi router specifications and requirements 
-    The following requirements are captured based on discussion
-    happened on <2016-09-28 Wed> 
-
-    Attendees:  Siva, Sanchitha, Maruthi Rao and Biswajit, and Aashay
-    also involved partly.
-
-    Discussion:
-    Portable media with 80 labs.
-    Workshop with around 100 students. For this kind of workshop, what
-    are all the things we need for portable media.
-    Assumptions :: 
-    - Workshop duration (Average duration of time) 3hrs and 6hrs 
-    - Web services 70 and other services 10
-    - Students in workshop - 50-100 
-    - 30-40 simultaneous users accessing the labs
-    - Rest of the people 70-60 ---> accesing edX
-  
-    Based on above assumptions we come up with the following basic
-    requirements are needed for the poratable media and their
-    approximate costs are as follows
-    - AMD FX-8 series or Intel Xeonon processor -Rs.26K
-    - Motherboard - Asus or Inetl Rs.40k-45K
-    - RAM - 32GB
-    - Non ECC RAM
-    - Cooler -liquid cooler 10K
-    - Cabinet - 6-7K
-    - SMPS  - 6K
-    - LAN switch
-    - 3 wifi router with LAN ports
-    - 50 cat5 cables with 2 mitres
-
-*** ACTIONS Items
-    -  Collect the systems requirements as mentioned in the above-
-       Biswajit - Done
-       + Biswajit has come up with the table of 3 builds/sets
-	 These 3 builds/Sets are updated in [[https://mail.google.com/mail/u/0/#inbox/15774d2efec0c111?projector%3D1][Google Spreadsheet]]. 
-	  Need to be discussed on this requirements and specifications
-
-      
+   
 ** Deployment process 
    Due to the size of Labs (and containers) and edX (Vagrant Box),
    creating a portable media will be as follows:
@@ -218,7 +217,8 @@
    2) VLEAD creates Potable Media by following the above said procedure.
    3) Test the Portable Media
    4) Ship the Portable Media to the requesting institute.
-* Meeting minutes of All hands meeting
+
+* Meeting minutes in All hands meeting
 ** <2016-09-28 Wed>
   - Search based on keyword  and if possible institute and discipline
     wise search   - Ashay
@@ -229,6 +229,18 @@
     performance 
   - Facility for sending logs to central server to workshop
     coordinator.  - Done by Ashay
+** <2016-10-03 Mon>
+   - Stickers for virtual labs portable media
+
+   Discussions:
+   - edx logs and rp logs  and keep them in tar ball
+   - Log size 10-100 MB in each day
+   - Send logs to centralized server 
+     + by Email - 25MB max 
+     + FTP server
+       - Which institue is loading that files we have no clue
+     + Syncthing
+
 * COMMENT Memory Leakage labs
   - What could be the solution for hosting memory leakage labs on
     personal edition? 

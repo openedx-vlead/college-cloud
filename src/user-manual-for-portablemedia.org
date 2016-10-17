@@ -1,0 +1,121 @@
+#+Title: User manual
+* Introduction
+  The user manual is for conducting a workshop using portable media.
+* Known Issues
+  - Videos will not load from Open edX platform
+* Steps for portable-media setup
+  - Be ready with the system with the following machine specs
+    + *Intel i7* processor or *Intel Xenon (Rack/server grade Version)*
+    + *16 GB RAM* minimum 
+  - Be ready with the Wifi router
+    + Configure the WiFi-Router 
+      Router has to serve 10.2.57.0/24 to its clients. That means we
+      have to configure LAN settings in router such that routers dhcp
+      server will serve IPs from the above IP range to its clients.
+  - Take a LAN cable and connect it to machine. This connection has to
+    come from router only. *Do not touch WAN port*
+  - Take the HDD (portable-media)
+  - Boot the machine from portable-media through USB
+  - User credentials to log into the machine
+    + User name :: Virtual-Labs
+    + Password :: admin123
+  - run the following command on terminal to run virtual labs on
+    OpenedX platform. This may take a few minutes to launch platform.
+    #+BEGIN_EXAMPLE
+    vagrant up           #Look for Vagrant file in "vlabs" account and run this command
+    
+    #+END_EXAMPLE
+  - Virtual labs are ready in our machine , we are ready to use the
+    labs
+
+* Steps for conducting a workshop
+  - Admin user will be using this portable media.
+** OpenVZ web panel
+   - Use the link http://localhost:3000
+   - It will ask for the user name and password, provide following
+     credentials
+     + User Name :: admin
+     + Password :: admin
+
+   This web panel is for managing virtual-labs which are running on
+   localhost. Each lab has one OpenVZ container. *All the lab
+   containers are stopped by default*. But, server nodes will be
+   in running state( We have to keep them running)
+   - Server nodes are 
+     |------+--------------------------+------|
+     | S.No | Conatiner Name           | CTID |
+     |------+--------------------------+------|
+     |    1 | Router                   | 1001 |
+     |------+--------------------------+------|
+     |    2 | Ansible or Config-server | 1002 |
+     |------+--------------------------+------|
+     |    3 | Private DNS              | 1005 |
+     |------+--------------------------+------|
+     |    4 | Public DNS               | 1006 |
+     |------+--------------------------+------|
+     |    5 | Reverse proxy            | 1007 |
+     |------+--------------------------+------|
+     |    6 | ADS                      | 1009 |
+     |------+--------------------------+------|
+     |    7 | DNS service              | 1010 |
+     |------+--------------------------+------|
+     We can stop ADS (1009) and Config-server (1002).
+
+   - Once you are logged into web panel,
+     + Look for =localhost= on left side of the panel and Click on
+       =localhost=
+     + Then you will be seeing all the OpenVZ containers(stopped and
+       running)
+*** Limitations on starting lab containers for better results
+    + If you are using server grade machine/system *(>=32 GB RAM,
+      Intel Xenon processor)*
+      - You can start all lab containers (that are stopped).
+    + If you are using *Intel i7 processor and 16GB RAM
+      machine/system*, 
+      - In this kind of machine, Maximum 5 simultaneous users can
+        access one lab at a time
+      - Please start the labs containers which are needed for the
+        workshop.
+      - The best choice is start one lab at a time and maximum of 4
+        labs we can start.
+       
+** Nagios 
+   It is for monitoring systems resources such as load on the machine,
+   RAM usage, Processes, etc.
+   - Use the link http://localhost/nagios
+   - User credentials are
+     + User Name :: nagiosadmin
+     + Password :: admin123
+** Analytics 
+*** How workshop coordinator will fetch and share the analytics logs?
+    1. Workshop coordinator will be given a a command line tool or
+       desktop icon to click (Shell script)
+    2. Command line tool or script will grab the compressed log file
+       and will copy it on desktop.
+    3. Workshop coordinator to send out the compressed log file and
+       share it on email (analytics-admin@vlabs.ac.in)
+*** How analytics-admin@vlabs.ac.in will restore logs?
+    1. Download the compressed zip file and decompress it.
+    2. Copy the compressed zip file in ELK-analytics server.
+    3. Execute a simple python script which reads from this log file
+       and writes data to elasticsearch.
+** Steps for Lab users to access the lab
+   Workshop coordinator has to give following instructions to lab users
+   - Lab user can access the labs through LAN cable and also over
+     wireless. LAN cable should be connected to WiFi-router.
+   - Once the user is connected to wireless or LAN, user has to modify
+     their *nameserver* in =/etc/resolv.conf=. 
+     + Open the file
+     #+BEGIN_EXAMPLE
+     sudo vim /etc/resolv.conf
+     #+END_EXAMPLE
+     + Delete existing entries and add the following line
+       #+BEGIN_EXAMPLE
+       nameserver 10.2.57.64
+       #+END_EXAMPLE
+   - Then the user can access the lab
+
+* Support 
+  - For any help, please contact engg@vlabs.ac.in
+  - You can create issues on GitHub 
+
