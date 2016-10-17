@@ -9,11 +9,10 @@
     + *Intel i7* processor or *Intel Xenon (Rack/server grade Version)*
     + *16 GB RAM* minimum 
   - Be ready with the Wifi router
-    + Configure WiFi-Router :: 
-	 Router has to serve 10.2.57.0/24 to its clients. That means
-         we have to configure LAN settings in router such that
-         router's dhcp server will serve IPs from the above IP range
-         to its clients.
+    + Configure WiFi-Router ::  Router has to serve 10.2.57.0/24 to
+         its clients. That means we have to configure LAN settings in
+         router such that router's dhcp server will serve IPs from the
+         above IP range to its clients.
   - Take a LAN cable and connect it to machine. This connection has to
     come from router only. *Do not touch WAN port*
   - Take the HDD (portable-media)
