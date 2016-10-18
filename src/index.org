@@ -25,9 +25,10 @@
   #+LABEL:  Portable-media-diagram
   [[./images/Design-of-Portable-Edition-2016-09-26.jpg]]
 
+
   #+CAPTION:  Portable Edition's Cluster diagram
   #+LABEL:  Portable-media Cluster Design diagram
-  [[./images/Portable-media-cluster-design.png]]
+  [[./images/Portable-media-cluster-design.jpg]]
      
    
   - Wi-Fi Router :: Wi-Fi router resolves the domain name(FQDN) of the
