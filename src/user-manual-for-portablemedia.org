@@ -1,4 +1,4 @@
-#+Title: User manual
+#+Title: Portable Media User Manual
 * Introduction
   The user manual is for conducting a workshop using portable media.
 * Known Issues
@@ -104,19 +104,7 @@
    - User credentials are
      + User Name :: nagiosadmin
      + Password :: admin123
-** Analytics 
-*** How workshop coordinator will fetch and share the analytics logs?
-    1. Workshop coordinator will be given a a command line tool or
-       desktop icon to click (Shell script)
-    2. Command line tool or script will grab the compressed log file
-       and will copy it on desktop.
-    3. Workshop coordinator to send out the compressed log file and
-       share it on email (analytics-admin@vlabs.ac.in)
-*** How analytics-admin@vlabs.ac.in will restore logs?
-    1. Download the compressed zip file and decompress it.
-    2. Copy the compressed zip file in ELK-analytics server.
-    3. Execute a simple python script which reads from this log file
-       and writes data to elasticsearch.
+
 ** Change your DNS servers settings
    Workshop coordinator has to give following instructions to lab users
    - Lab user can access the labs through LAN cable and also over
@@ -154,6 +142,23 @@
         - =Select Use the following DNS server addresses=. and add =10.2.57.64=
         - Desable wifi connection and enable wifi again.
        
+** Analytics 
+*** How workshop coordinator will fetch and share the analytics logs?
+    1. Workshop coordinator will be given a a command line tool or
+       desktop icon to click (Shell script)
+    2. Command line tool or script will grab the compressed log file
+       and will copy it on desktop.
+       
+       For above 1 and 2 steps, see [[./analytics-from-portable-media.org][the document]] and apply the changes
+       as mentioned
+       
+    3. Workshop coordinator to send out the compressed log file and
+       share it on email (analytics-admin@vlabs.ac.in)
+*** How analytics-admin@vlabs.ac.in will restore logs?
+    1. Download the compressed zip file and decompress it.
+    2. Copy the compressed zip file in ELK-analytics server.
+    3. Execute a simple python script which reads from this log file
+       and writes data to elasticsearch.
 * Support 
   - For any help, please contact =engg@vlabs.ac.in=
   - You can create issues on GitHub 
