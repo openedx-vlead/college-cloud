@@ -24,6 +24,11 @@
   #+CAPTION:  Portable Edition design diagram
   #+LABEL:  Portable-media-diagram
   [[./images/Design-of-Portable-Edition-2016-09-26.jpg]]
+
+  #+CAPTION:  Portable Edition's Cluster diagram
+  #+LABEL:  Portable-media Cluster Design diagram
+  [[./images/Portable-media-cluster-design.png]]
+     
    
   - Wi-Fi Router :: Wi-Fi router resolves the domain name(FQDN) of the
               labs within the LAN network. And it allocates dhcp ips
@@ -107,7 +112,11 @@
   - Setting up cluster
   - Hosting the labs in the cluster using ADS service
 ** Machine setup
-   - Install CentOS--6.x (Desktop or Server  version)
+   - Install CentOS--6.x Desktop
+   - Update OS
+     #+BEGIN_EXAMPLE
+     yum update -y
+     #+END_EXAMPLE
 
 ** Cluster setup
    - Use [[https://bitbucket.org/vlead/systems-model/src/97cc25543f8032cb84c1372c4c9ca170945f79a6/src/bootstrapping.org?at%3Ddevelop&fileviewer%3Dfile-view-default][bootstrapping steps]] for setting up cluster.
