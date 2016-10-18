@@ -240,86 +240,87 @@
      Vagrantfile ( as per your requirement) 
 
    - Install Open edX platform
-     1. SSH to Vagrant box that was created just now
-	#+BEGIN_EXAMPLE
-	vagrant ssh
-	#+END_EXAMPLE
-     2. Update and upgrade 
-	#+BEGIN_EXAMPLE
-	sudo apt-get update -y
-	sudo apt-get upgrade -y
-	#+END_EXAMPLE
-     3. Install Packages
-	#+BEGIN_EXAMPLE 
-	sudo apt-get install -y build-essential software-properties-common python-software-properties curl git-core libxml2-dev libxslt1-dev libfreetype6-dev python-pip python-apt python-dev libxmlsec1-dev swig libmysqlclient-dev
-	sudo pip install --upgrade pip
-	sudo pip install paramiko==1.10
-	#+END_EXAMPLE
+     * SSH to Vagrant box that was created just now
+       #+BEGIN_EXAMPLE
+       vagrant ssh
+       #+END_EXAMPLE
+     * Update and upgrade 
+       #+BEGIN_EXAMPLE
+       sudo apt-get update -y
+       sudo apt-get upgrade -y
+       #+END_EXAMPLE
+     * Install Packages
+       #+BEGIN_EXAMPLE 
+       sudo apt-get install -y build-essential software-properties-common python-software-properties curl git-core libxml2-dev libxslt1-dev libfreetype6-dev python-pip python-apt python-dev libxmlsec1-dev swig libmysqlclient-dev
+       sudo pip install --upgrade pip
+       sudo pip install paramiko==1.10
+       #+END_EXAMPLE
 
-     4. Clone configuration repository
-	#+BEGIN_EXAMPLE 
-	cd /var/tmp
-	git clone https://github.com/edx/configuration
-	#+END_EXAMPLE
+     * Clone configuration repository
+       #+BEGIN_EXAMPLE 
+       cd /var/tmp
+       git clone https://github.com/edx/configuration
+       #+END_EXAMPLE
 
-     5. Choose the release
-	- Choose the required Open edX release version
-          #+BEGIN_EXAMPLE
- 	  export OPENEDX_RELEASE=named-release/dogwood.3 
+     * Choose the release
+       - Choose the required Open edX release version
+         #+BEGIN_EXAMPLE
+ 	 export OPENEDX_RELEASE=named-release/dogwood.3 
 	  
-          OR
+         OR
 	
-         #Checkout to the release verion of configuration repository
+        #Checkout to the release verion of configuration repository
 
-          cd /var/tmp/configuration
-          git checkout <version>
-          git checkout  named-release/dogwood.3 #example
+         cd /var/tmp/configuration
+         git checkout <version>
+         git checkout  named-release/dogwood.3 #example
 
-          #+END_EXAMPLE
+         #+END_EXAMPLE
 
-     6. Configure password based SSH authentication
-	Edit the =main.yaml= to and set =COMMON_SSH_PASSWORD_AUTH= to =yes= 
-	#+BEGIN_EXAMPLE
-	sudo vim =configuration/playbooks/roles/common_vars/defaults/main.yml
-	COMMON_SSH_PASSWORD_AUTH = yes
-	#+END_EXAMPLE
+     * Configure password based SSH authentication
 
-     7. Install the ansible requirements 
+       Edit the =main.yaml= to and set =COMMON_SSH_PASSWORD_AUTH= to =yes= 
+       #+BEGIN_EXAMPLE
+       sudo vim =configuration/playbooks/roles/common_vars/defaults/main.yml
+       COMMON_SSH_PASSWORD_AUTH = yes
+       #+END_EXAMPLE
+
+     * Install the ansible requirements 
        
-	#+BEGIN_EXAMPLE 
-	cd /var/tmp/configuration
-	sudo pip install -r requirements.txt
-	sudo pip install setuptools --upgrade
-	#+END_EXAMPLE
+       #+BEGIN_EXAMPLE 
+       cd /var/tmp/configuration
+       sudo pip install -r requirements.txt
+       sudo pip install setuptools --upgrade
+       #+END_EXAMPLE
 
-     8. Run the playbook
-	#+BEGIN_EXAMPLE 
-	cd /var/tmp/configuration/playbooks && sudo ansible-playbook -c local ./edx_sandbox.yml -i "localhost,"
-	#+END_EXAMPLE
+     * Run the playbook
+       #+BEGIN_EXAMPLE 
+       cd /var/tmp/configuration/playbooks && sudo ansible-playbook -c local ./edx_sandbox.yml -i "localhost,"
+       #+END_EXAMPLE
 
-     9. The above command will copy the platform files and runs various ansible
-	playbooks to setup the platform.  When there are zero failures displayed
-	in the status, the installation is successful.
+     * The above command will copy the platform files and runs various ansible
+       playbooks to setup the platform.  When there are zero failures displayed
+       in the status, the installation is successful.
   
-     10. Platform is ready, 
-	 + LMS is accessible on port 80
-           #+BEGIN_EXAMPLE
-           http://<public-ip> # courses dashboard
-           #+END_EXAMPLE
+     * Platform is ready, 
+       + LMS is accessible on port 80
+         #+BEGIN_EXAMPLE
+         http://<public-ip> # courses dashboard
+         #+END_EXAMPLE
 
-	 + CMS is accessible on port 18010
-           #+BEGIN_EXAMPLE
-           http://<public_ip>:18010    # Studio
-           #+END_EXAMPLE
+       + CMS is accessible on port 18010
+         #+BEGIN_EXAMPLE
+         http://<public_ip>:18010    # Studio
+         #+END_EXAMPLE
 
-     11. Login
-	 A default user =staff@example.com= comes with the installation.  This
-	 login is used to quickly test the instalaltion.  The password is =edx=
+     * Login
+       A default user =staff@example.com= comes with the installation.  This
+       login is used to quickly test the instalaltion.  The password is =edx=
  
-     12. Reference
-	 + [[https://github.com/openedx-vlead/port-labs-to-openedx/tree/develop/src/platform-install-configure][Open edX platform  installation using Manual steps provided
-           by VLEAD]]  
-	 + [[https://openedx.atlassian.net/wiki/display/OpenOPS/Native+Open+edX+Ubuntu+12.04+64+bit+Installation][Native Open edX installation on Ubuntu 12.04 64-bit]]
+     * Reference
+       + [[https://github.com/openedx-vlead/port-labs-to-openedx/tree/develop/src/platform-install-configure][Open edX platform  installation using Manual steps provided
+         by VLEAD]]  
+       + [[https://openedx.atlassian.net/wiki/display/OpenOPS/Native+Open+edX+Ubuntu+12.04+64+bit+Installation][Native Open edX installation on Ubuntu 12.04 64-bit]]
 ** One stop solution for setting up Open edX platform using vagrantbox
   - Get the Vagrantfile from http://files.vlabs.ac.in
     #+BEGIN_EXAMPLE
