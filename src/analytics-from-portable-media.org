@@ -21,8 +21,8 @@
     #+END_SRC
   + Use command as given below to take dump in a file 
     #+BEGIN_SRC command
-    elasticdump --input=http://localhost:9200/vlabs --output=/home/ubuntu/vlabs_data.json --type=data
-    elasticdump --input=http://localhost:9200/vlabs --output=/home/ubuntu/vlabs_mapping.json --type=mapping
+    elasticdump --input=http://localhost:9200/vlabs --output=/home/vlabs/vlabs_data.json --type=data
+    elasticdump --input=http://localhost:9200/vlabs --output=/home/vlabs/vlabs_mapping.json --type=mapping
     #+END_SRC
 
 * Utility
