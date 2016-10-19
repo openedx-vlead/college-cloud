@@ -109,7 +109,6 @@
               setup is to monitor system resources such as RAM,
               Processes,etc.
   
-
 * Implementation 
   Implementation is done based on the above design diagram.
   We need internet connection for
@@ -408,6 +407,8 @@
    credentials
    user name: admin  password:admin.   Change the password if you want
 
+* List of labs hosted on cluster and on Open edX platform 
+  - [[https://docs.google.com/spreadsheets/d/10oarpSmBUYbd0szQU3q0KWO77IF58tSPFkq2e7JE0Mw/edit#gid%3D0][List of labs hosted on cluster and on Open edX platform ]]
 * Deployment 
   - [[./user-manual-for-portablemedia.org][Check the Portable-Media user manual]]
   

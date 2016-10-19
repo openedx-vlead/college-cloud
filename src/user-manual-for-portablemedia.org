@@ -23,6 +23,7 @@
   - Run the following command on terminal to run virtual labs on
     OpenedX platform. This may take a few minutes to launch platform.
     #+BEGIN_EXAMPLE
+    cd vagrant-boxes
     vagrant-boxes$vagrant up           #Look for Vagrant file in "vlabs" account and run this command
     
     #+END_EXAMPLE
