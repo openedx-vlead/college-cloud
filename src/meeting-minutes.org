@@ -154,7 +154,7 @@
      - Decision ::
        	DNS service has to be configured for internal name resolution.
 
-     Please see the changed design plan of [[Design%20Plan%20on%202016-09-26][Design Plan on 2016-09-26]]
+     Please see the changed design plan of
 *** Design Plan on 2016-09-19
   #+CAPTION:  Portable Edition Design Diagram
   #+LABEL:  Portable-media-diagram
