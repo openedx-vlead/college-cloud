@@ -177,6 +177,20 @@
     + Click on =Save= button at the bottom.
   - That's it, registered users can login and explore the courses
 
+* Installing Same Portable-Media in different machines?
+  If you want to install same Portable-Media in diferent machine,
+  - Perform the follwoing step.
+  #+BEGIN_EXAMPLE
+  su -
+  passwd is : admin123
+  vim /etc/udev/rules.d/70-persistent-net.rules
+  #+END_EXAMPLE
+  - And delete the lines that says about network interfaces, wlan0,
+    eth0,eth1, etc.
+  - Poweroff your machine.
+  - Take out the portable-media
+  - Install portable-media into new machine.
+  
 * Support 
   - For any help, please contact =engg@vlabs.ac.in=
   - You can create issues on GitHub 
