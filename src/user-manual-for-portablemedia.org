@@ -159,6 +159,23 @@
     2. Copy the compressed zip file in ELK-analytics server.
     3. Execute a simple python script which reads from this log file
        and writes data to elasticsearch.
+* User registrations on Open edX platform
+  - Users can register using register button on open edx platform page
+    but they can not log out and login. to achieve this follow the
+    steps
+  - Admin user has log  into http://open-edx.vlabs.ac.in/admin and
+    then active the registered users.
+    + User credentials are 
+      - User name :: admin-vlabs
+      - Password :: admin123
+      - Email :: admin@vlabs.ac.in    
+  - After logged in, go to =Authentication and Authorization= section
+    + Select =Users= 
+    + Click on =user name=
+    + Click on =Activate=
+    + Click on =Save= button at the bottom.
+  - That's it, registered users can login and explore the courses
+
 * Support 
   - For any help, please contact =engg@vlabs.ac.in=
   - You can create issues on GitHub 
