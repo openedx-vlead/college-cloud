@@ -143,6 +143,13 @@
         - =Select Use the following DNS server addresses=. and add =10.2.57.64=
         - Desable wifi connection and enable wifi again.
        
+** Set No Proxy on browsers
+   - Once the lab users got connected to wifi, lab user has to unset
+     proxy if any proxies used previously( Set =No Proxy=) in their
+     browsers . For example, In firefox, 
+     #+BEGIN_EXAMPLE
+     Firefox --> Preferences --> Advanced --> Network --> Settings 
+     #+END_EXAMPLE
 ** Analytics 
 *** How workshop coordinator will fetch and share the analytics logs?
     1. Workshop coordinator will be given a a command line tool or
@@ -160,22 +167,22 @@
     2. Copy the compressed zip file in ELK-analytics server.
     3. Execute a simple python script which reads from this log file
        and writes data to elasticsearch.
-* User registrations on Open edX platform
-  - Users can register using register button on open edx platform page
-    but they can not log out and login. to achieve this follow the
-    steps
-  - Admin user has log  into http://open-edx.vlabs.ac.in/admin and
-    then active the registered users.
-    + User credentials are 
-      - User name :: admin-vlabs
-      - Password :: admin123
-      - Email :: admin@vlabs.ac.in    
-  - After logged in, go to =Authentication and Authorization= section
-    + Select =Users= 
-    + Click on =user name=
-    + Click on =Activate=
-    + Click on =Save= button at the bottom.
-  - That's it, registered users can login and explore the courses
+** User registrations on Open edX platform
+   - Users can register using register button on open edx platform page
+     but they can not log out and login. to achieve this follow the
+     steps
+   - Admin user has log  into http://open-edx.vlabs.ac.in/admin and
+     then active the registered users.
+     + User credentials are 
+       - User name :: admin-vlabs
+       - Password :: admin123
+       - Email :: admin@vlabs.ac.in    
+   - After logged in, go to =Authentication and Authorization= section
+     + Select =Users= 
+     + Click on =user name=
+     + Click on =Activate=
+     + Click on =Save= button at the bottom.
+   - That's it, registered users can login and explore the courses
 
 * Installing Same Portable-Media in different machines?
   If you want to install same Portable-Media in diferent machine,
@@ -187,10 +194,11 @@
   #+END_EXAMPLE
   - And delete the lines that says about network interfaces, wlan0,
     eth0,eth1, etc.
-  - Poweroff your machine.
+  - Shutdown your machine.
   - Take out the portable-media
-  - Install portable-media into new machine.
-  
+  - Install portable-media into new machine through USB.
+  - Now, you can boot your machine from USB media (i.e, Portable-Media
+    (HDD))
 * Support 
   - For any help, please contact =engg@vlabs.ac.in=
   - You can create issues on GitHub 
