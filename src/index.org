@@ -182,10 +182,10 @@
       vlead$cd systems-model/build/edx/
       vlead$vim dns.txt     # inventory file for DNS service node
       #+END_EXAMPLE
-      - Add the following lines to that file
+      - Add the following lines to the file =dns.txt=
 	#+BEGIN_EXAMPLE
 	[public_dns]
-	192.168.2.5        # DNS service node ip address
+	10.2.57.65        # DNS service node ip address
 	#+END_EXAMPLE
       - Run =public_dns.yml=
 	#+BEGIN_EXAMPLE
@@ -196,6 +196,16 @@
       vim /etc/resolv.conf
       and add
       nameserver 127.0.0.1    # as localhost has become name server 
+      #+END_EXAMPLE
+    + Add these entries in =/var/named/virtual-labs.ac.in.forward= and
+      =/var/named/vlabs.ac.in.forward=
+      #+BEGIN_EXAMPLE
+      analytics-api    IN    A     10.2.57.66
+      open-edx         IN    A     10.2.57.65
+      #+END_EXAMPLE
+    + Restart DNS service =named=
+      #+BEGIN_EXAMPLE
+      service named restart
       #+END_EXAMPLE
     + You are done configuring DNS service
 
@@ -321,17 +331,40 @@
          by VLEAD]]  
        + [[https://openedx.atlassian.net/wiki/display/OpenOPS/Native+Open+edX+Ubuntu+12.04+64+bit+Installation][Native Open edX installation on Ubuntu 12.04 64-bit]]
 ** One stop solution for setting up Open edX platform using vagrantbox
-  - Get the Vagrantfile from http://files.vlabs.ac.in
+  - Get the Vagrantfile 
     #+BEGIN_EXAMPLE
+    mkdir vagrant-boxes
+    cd vagrant-boxes/
     wget http://files.virtual-labs.ac.in/downloads/open-edx-vagrant-boxes/Vagrantfile
     #+END_EXAMPLE
   - Get the vagrant box 
     #+BEGIN_EXAMPLE
+    #For plain OpenedX platform
     wget http://files.virtual-labs.ac.in/downloads/open-edx-vagrant-boxes/open-edx-platform-installed-2016-09-19.box
+
+
+    #For 68 labs ported onto OpenedX platform
+    wget http://files.vlabs.ac.in/downloads/open-edx-vagrant-boxes/openedx-platform-wtih-68-labs.box
+
     #+END_EXAMPLE
   - Add downloaded box to vagrant box list 
     #+BEGIN_EXAMPLE
-    vagrant box add edx-platform-installed-2016-09-19 open-edx-platform-installed-2016-09-19.box
+    #For plain edX platform
+    vagrant box add plain-edx-platform open-edx-platform-installed-2016-09-19.box
+
+    #For edX platform with 68 labs
+    vagrant box add edX-platform-with-68-labs openedx-platform-wtih-68-labs.box
+
+    #+END_EXAMPLE
+  - Modify the Vagrantfile.  Search for =config.vm.box= and replace
+    with the following
+    #+BEGIN_EXAMPLE
+    config.vm.box = "plain-edx-platform"  # For plain edX platform
+    
+    or 
+
+    config.vm.box = "edX-platform-with-68-labs"  # For edX platform with 68 labs
+    
     #+END_EXAMPLE
   - Run Open edX platform 
     #+BEGIN_EXAMPLE
