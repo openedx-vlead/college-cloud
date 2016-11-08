@@ -26,8 +26,7 @@
    |-------------------------+-------------------------+-------+-------+------+--------------+---------------+---------------|
    - Reference
      + [[http://ark.intel.com/products/88970/Intel-Core-i7-6820HQ-Processor-8M-Cache-up-to-3_60-GHz][Laptop version]] 
-     + [[http://ark.intel.com/products/59043/Intel-Desktop-Board-DB75EN][Desktop Version
-]]
+     + [[http://ark.intel.com/products/59043/Intel-Desktop-Board-DB75EN][Desktop Version]]
 ** Boot up time on Desktop version
    - Portable media (1TB), Sony external HDD(USB) 
      + NOTE :: CPU utilization and RAM utilization are noted down after
@@ -35,7 +34,7 @@
                server nodes
    |--------------+-----------------------+-----------------+-----------------+-----------------+-----------------|
    |              | HDD (portable-media)  | Through USB 2.0 | Through USB 3.0 | CPU utilization | RAM utilization |
-   |              |                       |                 |                 | After boot      | After boot      |
+   |              |                       |                 |                 | after the boot  | after the boot  |
    |--------------+-----------------------+-----------------+-----------------+-----------------+-----------------|
    | Boot up time | Sony external 1TB HDD | 3-4 minutes     | 3-4 minutes     | 28 %            | 36% (6GB/16GB)  |
    |--------------+-----------------------+-----------------+-----------------+-----------------+-----------------|
@@ -43,7 +42,7 @@
    - Portable media (1TB), WD external HDD(USB) 
    |--------------+-----------------------+-----------------+-----------------+-----------------+-----------------|
    |              | HDD (portable-media)  | Through USB 2.0 | Through USB 3.0 | CPU utilization | RAM utilization |
-   |              |                       |                 |                 | After the boot  | After the boot  |
+   |              |                       |                 |                 | after the boot  | after the boot  |
    |--------------+-----------------------+-----------------+-----------------+-----------------+-----------------|
    | Boot up time | Sony external 1TB HDD | 3-4 minutes     | 3-4 minutes     | 28 %            | 36% (6GB/16GB)  |
    |--------------+-----------------------+-----------------+-----------------+-----------------+-----------------|
@@ -51,7 +50,7 @@
    - Portable media (500 GB), SATA 
    |--------------+----------------------+-----------------+-----------------+-----------------|
    |              | HDD (portable-media) | SATA connection | CPU utilization | RAM utilization |
-   |              |                      |                 | After boot      | After boot      |
+   |              |                      |                 | after the boot  | after the boot  |
    |--------------+----------------------+-----------------+-----------------+-----------------|
    | Boot up time | SATA disk            | 2-3 minutes     | 28 %            | 36% (6GB/16GB)  |
    |--------------+----------------------+-----------------+-----------------+-----------------|
