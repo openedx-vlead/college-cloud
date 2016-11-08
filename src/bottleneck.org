@@ -1,8 +1,8 @@
-#+TITLE: Find out the bottleneck
+#+TITLE: Find out the bottleneck for Boot Portable-Media
 
 * Introduction
   Find out the bottleneck for current portable media setup. 
-  Portable-media has following now( As on 2016-11-01)
+  Portable-media has following( As on 2016-11-01)
   - 68 labs ported to open-edx platform 
   - 68 labs deployed/hosted on cluster 
   - Other services such as dns, rp, ads.
@@ -11,6 +11,49 @@
     media setup
   
 * Observations
+** System Specificatios
+   |-------------------------+-------------------------+-------+-------+------+--------------+---------------+---------------|
+   | Machine                 | Processor (model)       | SMPS  | RAM   | CPUs | MotherBoard  | No.of USB 2.0 | No.of USB 3.0 |
+   |                         |                         |       |       |      | wattage      |               |               |
+   |-------------------------+-------------------------+-------+-------+------+--------------+---------------+---------------|
+   | Desktop(Currently used) | Intel(R) Core(TM)       | 600 W | 16/32 |    8 | 77 watts max |             4 |             2 |
+   |                         | i7-3770 CPU @ 3.40GHz   |       |       |      |              |               |               |
+   |                         | (intel-db75en)          |       |       |      |              |               |               |
+   |-------------------------+-------------------------+-------+-------+------+--------------+---------------+---------------|
+   | Laptop(Thirumal's)      | Intel(R) Core(TM)       | N/A   | 16/64 |    8 | 45 watts max |               |               |
+   |                         | i7-6820HQ CPU @ 2.70GHz |       |       |      |              |               |               |
+   |                         | (i7-6820HQ)             |       |       |      |              |               |               |
+   |-------------------------+-------------------------+-------+-------+------+--------------+---------------+---------------|
+   - Reference
+     [[http://ark.intel.com/products/88970/Intel-Core-i7-6820HQ-Processor-8M-Cache-up-to-3_60-GHz][Laptop version]] 
+     [[http://ark.intel.com/products/59043/Intel-Desktop-Board-DB75EN][Desktop Version
+]]
+** Boot up time on Desktop version
+   - Portable media (1TB), Sony external HDD(USB) 
+   |--------------+-----------------------+-----------------+-----------------+-----------------+-----------------|
+   |              | HDD (portable-media)  | Through USB 2.0 | Through USB 3.0 | CPU utilization | RAM utilization |
+   |              |                       |                 |                 | After boot      | After boot      |
+   |--------------+-----------------------+-----------------+-----------------+-----------------+-----------------|
+   | Boot up time | Sony external 1TB HDD | 3-4 minutes     | 3-4 minutes     | 28 %            | 36% (6GB/16GB)  |
+   |--------------+-----------------------+-----------------+-----------------+-----------------+-----------------|
+
+   - Portable media (1TB), WD external HDD(USB) 
+   |--------------+-----------------------+-----------------+-----------------+-----------------+-----------------|
+   |              | HDD (portable-media)  | Through USB 2.0 | Through USB 3.0 | CPU utilization | RAM utilization |
+   |              |                       |                 |                 | After boot      | After boot      |
+   |--------------+-----------------------+-----------------+-----------------+-----------------+-----------------|
+   | Boot up time | Sony external 1TB HDD | 3-4 minutes     | 3-4 minutes     | 28 %            | 36% (6GB/16GB)  |
+   |--------------+-----------------------+-----------------+-----------------+-----------------+-----------------|
+
+   - Portable media (500 GB), SATA 
+   |--------------+----------------------+-----------------+-----------------+-----------------|
+   |              | HDD (portable-media) | SATA connection | CPU utilization | RAM utilization |
+   |              |                      |                 | After boot      | After boot      |
+   |--------------+----------------------+-----------------+-----------------+-----------------|
+   | Boot up time | SATA disk            | 2-3 minutes     | 28 %            | 36% (6GB/16GB)  |
+   |--------------+----------------------+-----------------+-----------------+-----------------|
+ 
+** TODO Boot up time on Laptop version
 ** System specifications
    Mother Board Model : intel-db75en
    USB 2.0  ---  4
@@ -52,7 +95,7 @@
 			  
     
   
-**** Portable-media with 500GB Siegate Internal hard disk drive.
+**** Portable-media with 500GB Siagate Internal hard disk drive.
      - Start the machine and boot from portable-media through internal HDD
        port 
        + Observation ::  
