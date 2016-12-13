@@ -166,96 +166,6 @@
        ansible-playbook -i hosts site.yaml
        #+END_EXAMPLE
 
-** DNS service configuration
-   - Create a separate OpenVZ container for dns service 
-     #+BEGIN_EXAMPLE
-     vzctl create 1010 --ostemplate centos-6-x86_64  --hostname dns.vlabs.ac.in
-     vzctl set 1010 --netif_add eth0,,,,br0  --save 
-     vzctl set 1010 --onboot yes --save
-     vzctl start 1010
-     #+END_EXAMPLE
-   - Configure network in dns container
-     + Enter into the container
-       #+BEGIN_EXAMPLE
-       vzctl enter 1010
-       #+END_EXAMPLE
-     + Open/create the file 
-       #+BEGIN_EXAMPLE
-       vim /etc/sysconfig/network-scripts/ifcfg-eth0
-       #+END_EXAMPLE
-     + Update above file with 
-       #+BEGIN_EXAMPLE
-       DEVICE=eth0
-       TYPE=Ethernet
-       HWADDR=<MAC address of the eth0 interface>
-       BOOTPROTO=static
-       ONBOOT=yes
-       NM_CONTROLLED=no
-       IPADDR=<ip-address>
-       NETMASK=<netmask>
-       GATEWAY=<gateway>
-       DNS1=<external-dns1>
-       DNS2=<external-dns2>
-       #+END_EXAMPLE
-
-    + Enable SSH access to root account from config-server 
-      - Set root password for DNS server node and remember or note it
-        down somewhere
-      - From config-server, perform the following steps
-	#+BEGIN_EXAMPLE
-	ssh-copy-id root@10.2.57.65 
-	#+END_EXAMPLE
-      - Provide the password when prompted for root password.
-
-    + Since we are setting up a separate DNS server which is not a
-      part of the cluster, but we are using =public_dns.yaml= playbook
-      for running the ansible playbook for this server as well. It
-      will try to set up the gateway as 10.100.1.1 which would throw
-      error as our DNS is not a part of the cluster. To solve this
-      problem, we need to comment the default gateway lines in
-      =roles/common/tasks/main.yml= file in the ansible sever. Below
-      lines should be commented
-      #+BEGIN_EXAMPLE
-      #- name: setting the default gw, skips if router or ansible server
-      #  shell: route del default; route add default gw {{router_internal_ip}}
-      #  when: not ( i_ans is defined or i_router is defined )
-      #  ignore_errors: yes
-      #
-      #- name: make this route persistent after reboot
-      #  lineinfile: line="route del default; route add default gw {{router_internal_ip}}" destfile=/etc/rc.local state=present regexp="route *"
-      #  when: not ( i_ans is defined or i_router is defined )
-      #+END_EXAMPLE
-    + Run =public_dns.yml= playbook from config-server to configure
-      dns service which is outside the cluster.
-      #+BEGIN_EXAMPLE
-      vlead$cd systems-model/build/edx/
-      vlead$vim dns.txt     # inventory file for DNS service node
-      #+END_EXAMPLE
-      - Add the following lines to the file =dns.txt=
-	#+BEGIN_EXAMPLE
-	[public_dns]
-	10.2.57.65        # DNS service node ip address
-	#+END_EXAMPLE
-      - Run =public_dns.yml=
-	#+BEGIN_EXAMPLE
-	vlead$ansible-playbook -i dns.txt public_dns.yml
-	#+END_EXAMPLE
-    + Change =/etc/resolv.conf= file 
-      #+BEGIN_EXAMPLE
-      vim /etc/resolv.conf
-      and add
-      nameserver 127.0.0.1    # as localhost has become name server 
-      #+END_EXAMPLE
-    + Add these entries in =/var/named/{cluster}.virtual-labs.ac.in.forward= and
-      =/var/named/{cluster}.vlabs.ac.in.forward=
-      #+BEGIN_EXAMPLE
-      open-edx         IN    A     10.2.57.65
-      #+END_EXAMPLE
-    + Restart DNS service =named=
-      #+BEGIN_EXAMPLE
-      service named restart
-      #+END_EXAMPLE
-    + You are done configuring DNS service
 
 ** Open edX platform in a Vagrant Box 
 *** Perform the below steps on host machine .
@@ -497,6 +407,133 @@
    credentials
    user name: admin  password:admin.   Change the password if you want
 
+** Steps for hosting labs
+  - Once you are done with all the above steps, you are ready to host
+    labs into portable media. Follow the steps  
+  - Use working dns servers( e.g 10.4.12.160, 8.8.8.8 ) for hosting
+    labs with the domain names =lab-id.{{cluster-name}}.vlabs.ac.in=
+  - Open http://ads.{cluster-name}.vlabs.ac.in:8080
+  - Provide the necessary details and deploy the lab await for the
+    domain of the lab that will be displayed on the browser
+** Steps are accessing the labs using Wi-Fi router
+   - Check the [[./user-manual-for-portablemedia.org][User Manual]] for Wifi router configuration
+   - Modify the =is_amazon= variable in
+     =systems-model/build/{{cluster}}/roles/common_vars/vars/main.yml=
+    #+BEGIN_EXAMPLE
+    is_amazon: no 
+    to
+    is_amazon: yes
+    #+END_EXAMPLE
+     Then run =site.yaml= file on config-server
+     #+BEGIN_EXAMPLE
+     cd systems-model/build/{{cluster}}/
+     ansible-playbook -i hosts site.yaml
+
+     or 
+     You can run individual files 
+     ansible-playbook -i hosts public_dns.yaml
+     ansible-playbook -i hosts private_dns.yaml
+     ansible-playbook -i hosts reverseproxy_server.yaml
+     #+END_EXAMPLE
+   - Configure the [[DNS service configuration][DNS service]]
+   - Then see the [[./user-manual-for-portablemedia.org][User manual]] for other steps to access the labs over
+     Wifi. 
+   - Then Labs will be accessible using ={{lab-id}}.vlabs.ac.in= format
+** DNS service configuration
+   - Create a separate OpenVZ container for dns service 
+     #+BEGIN_EXAMPLE
+     vzctl create 1010 --ostemplate centos-6-x86_64  --hostname dns.vlabs.ac.in
+     vzctl set 1010 --netif_add eth0,,,,br0  --save 
+     vzctl set 1010 --onboot yes --save
+     vzctl start 1010
+     #+END_EXAMPLE
+   - Configure network in dns container
+     + Enter into the container
+       #+BEGIN_EXAMPLE
+       vzctl enter 1010
+       #+END_EXAMPLE
+     + Open/create the file 
+       #+BEGIN_EXAMPLE
+       vim /etc/sysconfig/network-scripts/ifcfg-eth0
+       #+END_EXAMPLE
+     + Update above file with 
+       #+BEGIN_EXAMPLE
+       DEVICE=eth0
+       TYPE=Ethernet
+       HWADDR=<MAC address of the eth0 interface>
+       BOOTPROTO=static
+       ONBOOT=yes
+       NM_CONTROLLED=no
+       IPADDR=<ip-address>
+       NETMASK=<netmask>
+       GATEWAY=<gateway>
+       DNS1=<external-dns1>
+       DNS2=<external-dns2>
+       #+END_EXAMPLE
+
+    + Enable SSH access to root account from config-server 
+      - Set root password for DNS server node and remember or note it
+        down somewhere
+      - From config-server, perform the following steps
+	#+BEGIN_EXAMPLE
+	ssh-copy-id root@10.2.57.65 
+	#+END_EXAMPLE
+      - Provide the password when prompted for root password.
+
+    + Since we are setting up a separate DNS server which is not a
+      part of the cluster, but we are using =public_dns.yaml= playbook
+      for running the ansible playbook for this server as well. It
+      will try to set up the gateway as 10.100.1.1 which would throw
+      error as our DNS is not a part of the cluster. To solve this
+      problem, we need to comment the default gateway lines in
+      =roles/common/tasks/main.yml= file in the ansible sever. Below
+      lines should be commented
+      #+BEGIN_EXAMPLE
+      #- name: setting the default gw, skips if router or ansible server
+      #  shell: route del default; route add default gw {{router_internal_ip}}
+      #  when: not ( i_ans is defined or i_router is defined )
+      #  ignore_errors: yes
+      #
+      #- name: make this route persistent after reboot
+      #  lineinfile: line="route del default; route add default gw {{router_internal_ip}}" destfile=/etc/rc.local state=present regexp="route *"
+      #  when: not ( i_ans is defined or i_router is defined )
+      #+END_EXAMPLE
+    + Run =public_dns.yml= playbook from config-server to configure
+      dns service which is outside the cluster.
+      #+BEGIN_EXAMPLE
+      vlead$cd systems-model/build/edx/
+      vlead$vim dns.txt     # inventory file for DNS service node
+      #+END_EXAMPLE
+      - Add the following lines to the file =dns.txt=
+	#+BEGIN_EXAMPLE
+	[public_dns]
+	10.2.57.65        # DNS service node ip address
+	#+END_EXAMPLE
+      - Run =public_dns.yml=
+	#+BEGIN_EXAMPLE
+	vlead$ansible-playbook -i dns.txt public_dns.yml
+	#+END_EXAMPLE
+    + Change =/etc/resolv.conf= file 
+      #+BEGIN_EXAMPLE
+      vim /etc/resolv.conf
+      and add
+      nameserver 127.0.0.1    # as localhost has become name server 
+      #+END_EXAMPLE
+    + Add these entries in =/var/named/{cluster}.virtual-labs.ac.in.forward= and
+      =/var/named/{cluster}.vlabs.ac.in.forward=
+      #+BEGIN_EXAMPLE
+      open-edx         IN    A     10.2.57.65
+      #+END_EXAMPLE
+    + Restart DNS service =named=
+      #+BEGIN_EXAMPLE
+      service named restart
+      #+END_EXAMPLE
+    + You are done configuring DNS service
+
+
+** TODO Feedback service integration 
+** TODO Analytics-service integration
+ 
 * List of labs hosted on cluster and on Open edX platform 
   - [[https://docs.google.com/spreadsheets/d/10oarpSmBUYbd0szQU3q0KWO77IF58tSPFkq2e7JE0Mw/edit#gid%3D0][List of labs hosted on cluster and on Open edX platform ]]
 * Deployment 
