@@ -530,9 +530,8 @@
       #+END_EXAMPLE
     + You are done configuring DNS service
 
-
-** TODO Feedback service integration 
-** TODO Analytics-service integration
+** Feedback service integration 
+** Analytics-service integration
  
 * List of labs hosted on cluster and on Open edX platform 
   - [[https://docs.google.com/spreadsheets/d/10oarpSmBUYbd0szQU3q0KWO77IF58tSPFkq2e7JE0Mw/edit#gid%3D0][List of labs hosted on cluster and on Open edX platform ]]

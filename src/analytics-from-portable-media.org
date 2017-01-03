@@ -4,20 +4,21 @@
 
 
 * Introduction 
-  This document describes the process of fetching logs from portable media
-  version of VLABS.
+  This document describes the process of fetching analytics and
+  feedbacks from portable media version of VLABS.
 
 * Requirements 
-  + VLABS Analytics must be captured from portable version of VLABS 
-  + A utility for workshop coordinator to fetch analytics and share with 
-    central team
-  + Analytics captured must be shared to VLEAD team 
+  + VLABS Analytics and feedbacks must be captured from portable version of VLABS 
+  + A script for workshop coordinator to fetch analytics and feedbacks and share with 
+    central team ( VLEAD Team)
  
-* Technically
-  + Install elasticdump 
+* Install requirements
     #+BEGIN_SRC command
-    apt-get install npm
-    npm install elasticdump -g   
+    apt-get install python-software-properties
+    apt-add-repository ppa:chris-lea/node.js
+    apt-get update
+    apt-get install nodejs
+    npm install elasticdump -g
     #+END_SRC
   + Use command as given below to take dump in a file. No need to run
     the following commands. These were test for =elasticdump=
@@ -26,72 +27,59 @@
     elasticdump --input=http://localhost:9200/vlabs --output=/home/vlabs/vlabs_mapping.json --type=mapping
     #+END_EXAMPLE
 
-* Utility
-  A python GUI to fetch the following -
-  + webserver logs
-  + analytics(ELK) logs  
+* Script for fetching anlytics and feedbacks
+  Save this code in =/root/workshop-analytics/=
+  #+BEGIN_EXAMPLE 
+  #!/bin/sh
   
-* Setting utility
-  + Install tkinter 
-   #+BEGIN_SRC command
-   yum -y install tkinter 
-   #+END_SRC
-
-  + GUI source 
-    
-    - Create =workshop-analytics= directory
-    #+BEGIN_SRC command
-    mkdir /root/workshop-analytics
-    #+END_SRC    
-    - Create =fetch_analytics.py= file and put this file in
-    =/root/workshop-analytics= directory with the following
-    code snippet.
-    #+BEGIN_SRC command
-
-    #!/usr/bin/python
-
-    import Tkinter
-    import tkMessageBox
-    import subprocess as sub
-
-    window = Tkinter.Tk()
-    window.title("VLABS Portable log fetcher")
-    window.geometry("400x400") 
-    window.configure(background='grey')
-    
-    B1 = Tkinter.Button(window, text = "Get Analytics Logs", command = sub.call('/root/fetch_analytics.sh'))
-    B1.pack()
-    tkMessageBox.showinfo("", "Click Generate logs button to generate logs once workshop is over")
-    
-    window.mainloop()
-
-
-    #+END_SRC 
-    
-  + Create a script =fetch_analytics.sh= script in =root= directory 
-    
-    #+BEGIN_SRC command
-
-    #!/bin/sh
-    
-    DATE=`date +"%d-%m-%y-%H-%M"`
-    WORKSHOP_FOLDER="workshop-analytics-$DATE"
-    WORKSHOP_DIR="/root/$WORKSHOP_FOLDER"
-    INDEX_NAME="vlabs"
-    user="portablemedia"
-    
-    rm -rf workshop-analytics*
-    mkdir $WORKSHOP_DIR
-    
-    echo "`elasticdump --input=http://localhost:9200/$INDEX_NAME --output=$WORKSHOP_DIR/vlabs_mapping_$DATE.json --type=mapping`"
-    echo "`elasticdump --input=http://localhost:9200/$INDEX_NAME --output=$WORKSHOP_DIR/vlabs_data_$DATE.json --type=data`"
-    
-    cp -r /var/log/httpd $WORKSHOP_DIR/
-    
-    echo "`tar -zcvf $WORKSHOP_FOLDER.tar.gz $WORKSHOP_FOLDER`"
-    echo "`cp $WORKSHOP_FOLDER.tar.gz ~/Desktop`" 
-    echo "`cp $WORKSHOP_FOLDER.tar.gz /home/$user/Desktop`" 
-    
-    #+END_SRC
-
+  DATE=`date +"%d-%m-%y-%H-%M"`
+  WORKSHOP_FOLDER="workshop-analytics-$DATE"
+  WORKSHOP_DIR="/root/workshop-analytics"
+  INDEX_NAME="vlabs"
+  CTID_ANALYTICS=280
+  CTID_FEEDBACK=278
+  mysql_user="root"
+  mysql_pass="root"
+  mysql_feedback_db="feedback"
+  institute_name=$1
+  LOCAL_WORKSHOP_DIR=$WORKSHOP_DIR/$WORKSHOP_FOLDER
+  mkdir $LOCAL_WORKSHOP_DIR
   
+  if [ "$#" -ne 1 ]
+  then 
+	echo "Usage : This script expects College name as its argument" 
+	echo "Usage : sh fetch_analytics.sh <your_college_name>" 
+	echo "Usage : Exiting - Try again" 
+	exit
+  fi
+  
+  # Take elasticdump - the logs captured in ELK server
+  # Details 
+  # 1. Logs gets copied in localmachine in /root/workshop-analytics/workshop-analytics-$DATE folder
+  # 2. Two logs files - vlabs_mapping_$DATE.json and vlabs_data_$DATE.json files are generated.
+  # 3. Log files will not be generated in case they already exist.
+  
+  echo "`date`: Executing elasticdump command " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
+  echo "`vzctl exec $CTID_ANALYTICS elasticdump --input=http://localhost:9200/$INDEX_NAME --output=$WORKSHOP_DIR/vlabs_mapping_$DATE.json --type=mapping`"
+  echo "`vzctl exec $CTID_ANALYTICS elasticdump --input=http://localhost:9200/$INDEX_NAME --output=$WORKSHOP_DIR/vlabs_data_$DATE.json --type=data`"
+  echo "`date`: Finished Executing elasticdump command " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
+  
+  echo "`cp /vz/private/280/$WORKSHOP_DIR/vlabs_mapping_$DATE.json $LOCAL_WORKSHOP_DIR/`"
+  echo "`cp /vz/private/280/$WORKSHOP_DIR/vlabs_data_$DATE.json $LOCAL_WORKSHOP_DIR/`"
+  echo "`date`: Copied files in $LOCAL_WORKSHOP_DIR " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
+  
+  # Take mysqldump of feedback - only sql dump is captured and needed
+  # Details -
+  # 1. SQLdump  gets copied in /root/workshop-analytics/workshop-analytics-$DATE folder
+  # 2. filename will be feedbackdump-$DATE.sql 
+  
+  
+  echo "`date`: Start Mysql dump for feedback " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
+  echo "`vzctl exec $CTID_FEEDBACK mysqldump -u $mysql_user -p$mysql_pass $mysql_feedback_db`" > $LOCAL_WORKSHOP_DIR/feedbackdump-$DATE.sql
+  echo "`date`: End Mysql dump for feedback " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
+  
+  # Compress the folder 
+  echo "`date`: Start Compressing " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
+  echo "`tar -zvcf $institute_name.tar.gz $LOCAL_WORKSHOP_DIR`"
+  echo "`date`: File Compressed - Look for file - $institute_name.tar.gz " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
+  #+END_EXAMPLE
