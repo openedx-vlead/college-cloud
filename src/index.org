@@ -415,7 +415,7 @@
   - Open http://ads.{cluster-name}.vlabs.ac.in:8080
   - Provide the necessary details and deploy the lab await for the
     domain of the lab that will be displayed on the browser
-** Steps are accessing the labs using Wi-Fi router
+** Steps for accessing the labs using Wi-Fi router
    - Check the [[./user-manual-for-portablemedia.org][User Manual]] for Wifi router configuration
    - Modify the =is_amazon= variable in
      =systems-model/build/{{cluster}}/roles/common_vars/vars/main.yml=
@@ -532,7 +532,7 @@
 
 ** Feedback service integration 
 ** Analytics-service integration
- 
+** ELK service integration 
 * List of labs hosted on cluster and on Open edX platform 
   - [[https://docs.google.com/spreadsheets/d/10oarpSmBUYbd0szQU3q0KWO77IF58tSPFkq2e7JE0Mw/edit#gid%3D0][List of labs hosted on cluster and on Open edX platform ]]
 * Deployment 
@@ -542,6 +542,7 @@
   - [[https://github.com/openedx-vlead/portable-media/issues/1][Cluster and Open edX Platform setup]]
   - [[https://github.com/openedx-vlead/portable-media/issues/2][Analytics for the portable media]]
 * Test Cases
+  [[p./Performance-test.org][Performance Test]]
   [[https://github.com/openedx-vlead/portable-media/issues/1#issuecomment-250976103][Basic Test]]
 * Proposed and changed designed plans
   [[https://github.com/openedx-vlead/portable-media/blob/master/src/meeting-minutes.org#proposed-and-changed-designed-plans][Design plans]]
