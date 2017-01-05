@@ -25,13 +25,13 @@
 * Test System 
   Machine with the below given configuration (used for portable media
   college cloud) is subjected to tests.
-  + #+BEGIN_SRC
+  #+BEGIN_SRC 
        Processor : Intel(R) Core(TM) i7-3770 CPU @ 3.40GHz   (Mother Board Model : intel-db75en)
        RAM : 16 GB
        SMPS : 600 W
        CPUs: 8
        MotherBoard wattage: 77 W
-    #+END_SRC
+  #+END_SRC
 
 * Test parameters or components to be observed
   + Number of users accessing the system in unit time. 
