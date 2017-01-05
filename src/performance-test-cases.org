@@ -45,12 +45,15 @@
 * Test Cases 
   Higly probable cases are listed as below -
 
-** Test P-TEST-SCENARIO-1 : Run 1 lab container and perform testing using variable number of users 
+** Test P-TEST-SCENARIO-1 : Run 1 lab container 
 *** Evaluate the values for the test parameters with variable test arguments 
     + Vary the number of users hitting the system for particular time period
        = vary(no_of_users/requests) and vary(time interval for which machine was subjected to test)
+** Test P-TEST-SCENARIO-2 : Increment the lab containers runnning at an instance of time 
+    + Vary the number of users hitting the system for particular time period
+        = vary(no_of_users/requests) and vary(time interval for which machine was subjected to test)
     + Vary the number of labs running in portable media at an instance of time 
-       = vary(the number of labs running at instant of time) and vary(number of users/requests) and vary(time interval for which machine was sujected to test) 
+        = vary(the number of labs running at instant of time) and vary(number of users/requests) and vary(time interval for which machine was sujected to test) 
   
 * References 
   + http://www.softwaretestinghelp.com/what-is-performance-testing-load-testing-stress-testing/
