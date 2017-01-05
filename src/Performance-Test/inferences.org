@@ -1,0 +1,60 @@
+#+Title: Inference from the Apache benchmark test 
+#+Date: JAnuary 5, 2016
+#+Author: VLEAD Systems 
+
+
+* Introduction 
+  This document refers the raw data fetched from the Apache benchmark test.
+  
+* Test Procedure and details 
+  + Tool used :: Apache benchmark 
+  + Subject :: Open edX on portable media and Host Server
+  + Apache benchmark simulates requests to a particular URL or web page. 
+  + Sample command 
+    #+BEGIN_SRC 
+    ab -c 10 -n 500 http://open-edx.vlabs.ac.in/
+    #+END_SRC
+  + The above command throws 500 total requests to the URL http://open-edx.vlabs.ac.in
+  + Here, -c is the number of concurrent requests at an instance of time 
+  + Here, -n is the number of total requests made to the server.
+
+* Understanding the sample results -
+  + Command used 
+    #+BEGIN_SRC 
+    ab -c 10 -n 1000 http://open-edx.vlabs.ac.in
+    #+END_SRC
+  + Sample output snippet obtained . 
+    #+BEGIN_SRC
+     Concurrency Level:      10  
+     Time taken for tests:   35.868 seconds
+     Complete requests:      1000
+     Failed requests:        0
+     Time per request:       358.676 [ms] (mean)
+     Time per request:       35.868 [ms]
+    #+END_SRC
+  + Explaination for the above terms ::
+    + Concurrency level ::
+         Number of requests at an instance of time. This can be
+         considered as number of users making a request at an instance
+         of time, where each user make a single request.
+    + Time taken for tests ::
+         This is the time taken to complete the test. 
+         = Time at which last request was made - Time at which first request was made.
+    + Complete Requests ::
+      Number of requests which resulted into 200,201,404 error code. 
+    + Failed Requests ::
+      Number of requests which resulted into 503 - Service not available.
+    + Time per request (1) ::
+      Mean time taken to serve one set of concurrent request.
+      For example if c = 10 and n = 100, we have 10 concurrent sets.
+    + Time per request (2) ::
+      Mean time taken to server one request out of concurrency set.
+      For example, if c = 10, then it is one concurrency set.
+  
+  
+* Inferences 
+  
+  |-     |                   |                      |                   |                  |                  |
+  | S.No | Concurrency Level | Time taken for tests | Complete requests | Time per request | Time per request |
+  |-     |                   |                      |                   |                  |                  |
+  |      |                   |                      |                   |                  |                  |
