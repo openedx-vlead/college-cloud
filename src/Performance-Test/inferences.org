@@ -9,7 +9,7 @@
 
 * Test Procedure and details 
   + Tool used :: Apache benchmark 
-  + Subject :: Open edX on portable media and Host Server
+  + Test Subject :: Open edX on portable media and Host Server
   + No of labs running :: 1 Lab was running and rest of them were turned off.
   + Apache benchmark simulates requests to a particular URL or web page. 
   + Sample command 
@@ -54,25 +54,27 @@
       Mean time taken to server one request out of concurrency set.
       For example, if c = 10, then it is one concurrency set.
   
+* Raw Data 
+  + [[./benchmark-test-2017-01-05.org]]
   
 * Observation table 
   
-  |------+-------------------+---------------------------+---------------------+---------------------------+-----------------|
-  | S.No | Concurrency Level | Mean Time taken for tests | Number of Completed |     Mean Time per request |   Mean Time per |
-  |      |                   |              (in seconds) |            requests | (Concurrency set) (in ms) | request (in ms) |
-  |------+-------------------+---------------------------+---------------------+---------------------------+-----------------|
-  |    1 |                10 |                    57.808 |                1500 |                   385.389 |          38.539 |
-  |------+-------------------+---------------------------+---------------------+---------------------------+-----------------|
-  |    2 |                20 |                    47.821 |                1500 |                   637.608 |          31.880 |
-  |------+-------------------+---------------------------+---------------------+---------------------------+-----------------|
-  |    3 |                30 |                    46.200 |                1500 |                   924.007 |          30.800 |
-  |------+-------------------+---------------------------+---------------------+---------------------------+-----------------|
-  |    4 |                40 |                    43.390 |                1500 |                  1157.073 |          28.927 |
-  |------+-------------------+---------------------------+---------------------+---------------------------+-----------------|
-  |    5 |                50 |                    49.252 |                1500 |                  1641.742 |          32.835 |
-  |------+-------------------+---------------------------+---------------------+---------------------------+-----------------|
-  |    6 |                60 |                    45.309 |                1500 |                  1812.347 |          30.206 |
-  |------+-------------------+---------------------------+---------------------+---------------------------+-----------------|
+  |------+-------------------+---------------------+---------------------------+-----------------|
+  | S.No | Concurrency Level | Number of Completed |     Mean Time per request |   Mean Time per |
+  |      |                   |            requests | (Concurrency set) (in ms) | request (in ms) |
+  |------+-------------------+---------------------+---------------------------+-----------------|
+  |    1 |                10 |                1500 |                   385.389 |          38.539 |
+  |------+-------------------+---------------------+---------------------------+-----------------|
+  |    2 |                20 |                1500 |                   637.608 |          31.880 |
+  |------+-------------------+---------------------+---------------------------+-----------------|
+  |    3 |                30 |                1500 |                   924.007 |          30.800 |
+  |------+-------------------+---------------------+---------------------------+-----------------|
+  |    4 |                40 |                1500 |                  1157.073 |          28.927 |
+  |------+-------------------+---------------------+---------------------------+-----------------|
+  |    5 |                50 |                1500 |                  1641.742 |          32.835 |
+  |------+-------------------+---------------------+---------------------------+-----------------|
+  |    6 |                60 |                1500 |                  1812.347 |          30.206 |
+  |------+-------------------+---------------------+---------------------------+-----------------|
  
   + Each row in the above obeservation table display the result of test with various concurrencly level. 
   + Each row can be read as given below - 
@@ -81,9 +83,17 @@
   Total 1500 rquests were sent in burst of 10. On an average each request takes 38.539 ms.
   #+END_SRC
 
+
 * Inference
+** Assumtions 
+  + Its quite likely that web caching at reverse proxy might have
+    resulted into faster response.
   
   + Based on the above output, it can be assured that 30/40 people can
     use College cloud with enough performance.
   + Using Sar command on host machine hosting labs and open edx, Memory
-  (RAM) was observed to be used only upto 37
+    (RAM) was observed to be used only upto 39.11 %
+  + Observation on Nagios monitoring said 50% utilization.
+
+* References 
+  https://www.mnot.net/cache_docs/
