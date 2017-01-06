@@ -6,9 +6,11 @@
 * Introduction 
   This document refers the raw data fetched from the Apache benchmark test.
   
+
 * Test Procedure and details 
   + Tool used :: Apache benchmark 
   + Subject :: Open edX on portable media and Host Server
+  + No of labs running :: 1 Lab was running and rest of them were turned off.
   + Apache benchmark simulates requests to a particular URL or web page. 
   + Sample command 
     #+BEGIN_SRC 
@@ -17,6 +19,7 @@
   + The above command throws 500 total requests to the URL http://open-edx.vlabs.ac.in
   + Here, -c is the number of concurrent requests at an instance of time 
   + Here, -n is the number of total requests made to the server.
+
 
 * Understanding the sample results -
   + Command used 
@@ -71,4 +74,5 @@
   |    6 |                60 |                    45.309 |                1500 |                  1812.347 |          30.206 |
   |------+-------------------+---------------------------+---------------------+---------------------------+-----------------|
  
- 
+  + Using Sar command on host machine hosting labs and open edx, Memory
+  (RAM) was observed to be used only upto 37
