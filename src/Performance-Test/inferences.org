@@ -55,7 +55,7 @@
       For example, if c = 10, then it is one concurrency set.
   
   
-* Inferences 
+* Observation table 
   
   |------+-------------------+---------------------------+---------------------+---------------------------+-----------------|
   | S.No | Concurrency Level | Mean Time taken for tests | Number of Completed |     Mean Time per request |   Mean Time per |
@@ -74,5 +74,16 @@
   |    6 |                60 |                    45.309 |                1500 |                  1812.347 |          30.206 |
   |------+-------------------+---------------------------+---------------------+---------------------------+-----------------|
  
+  + Each row in the above obeservation table display the result of test with various concurrencly level. 
+  + Each row can be read as given below - 
+  #+BEGIN_SRC 
+  When 10 requests are sent to http://open-edx.vlabs.ac.in/ at a time instance t1, it took 3285.389 ms to complete 10 requests.
+  Total 1500 rquests were sent in burst of 10. On an average each request takes 38.539 ms.
+  #+END_SRC
+
+* Inference
+  
+  + Based on the above output, it can be assured that 30/40 people can
+    use College cloud with enough performance.
   + Using Sar command on host machine hosting labs and open edx, Memory
   (RAM) was observed to be used only upto 37
