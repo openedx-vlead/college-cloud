@@ -1,0 +1,41 @@
+#+TITLE: Automation of Portable media deployment
+#+Author: VLEAD
+#+Date: [2017-01-11]
+#+PROPERTY: results output
+#+PROPERTY: exports code
+#+SETUPFILE: ./org-templates/level-0.org
+
+* Introduction
+  This document describes the steps taken to automate the deployment
+  of portable media. Most of the tasks can help in automating the same
+  in Online version of VLABS Open edX.
+
+* Tasks to be automated 
+  + Autmation of course import in Open edX 
+ 
+* Automation of course import in Open edX
+** Use case and problem defination
+   Once a lab is ported into openedx, the course is exported and
+   sources are pushed to github. When the same course is to be
+   improted into the same or or a different open edx system, the
+   sources are to be compressed and imported using the GUI of Open edX
+   studio. This process is tiresome and must be automated by possible
+   means.
+
+** Tried :: Managing tips and tricks for Open edX
+   As per the [[https://openedx.atlassian.net/wiki/display/OpenOPS/Managing+OpenEdX+Tips+and+Tricks][documentation by Open edX]], one can import the course from github
+   using CLI command. 
+   
+   #+BEGIN_SRC command
+   cd /var/tmp
+   git clone https://github.com/edx/edx-demo-course.git
+   cd /edx/app/edxapp/edx-platform
+   sudo -u www-data /edx/bin/python.edxapp ./manage.py cms --settings=aws import /edx/var/edxapp/data  /var/tmp/edx-demo-course
+   #+END_SRC
+   
+   The above set of commands were tried and where found to be giving the following error
+   #+BEGIN_SRC error_block
+   Jan  9 09:30:15 ip-172-31-24-144 [service_variant=cms][xmodule.modulestore.django][env:sandbox] INFO [ip-172-31-24-144  26035] [django.py:116] - Sent course_published signal to <function trigger_update_xblocks_cache_task at 0x7f831b7a3c08> with kwargs {'course_key': CourseLocator(u'edX', u'DemoX', u'Demo_Course', None, None)}. Response was: None
+   Jan  9 09:30:15 ip-172-31-24-144 [service_variant=cms][xmodule.modulestore.django][env:sandbox] INFO [ip-172-31-24-144  26035] [django.py:116] - Sent course_published signal to <function _listen_for_course_publish at 0x7f831b7a3b90> with kwargs {'course_key': CourseLocator(u'edX', u'DemoX', u'Demo_Course', None, None)}. Response was: None
+   #+END_SRC
+  
