@@ -39,3 +39,167 @@
    Jan  9 09:30:15 ip-172-31-24-144 [service_variant=cms][xmodule.modulestore.django][env:sandbox] INFO [ip-172-31-24-144  26035] [django.py:116] - Sent course_published signal to <function _listen_for_course_publish at 0x7f831b7a3b90> with kwargs {'course_key': CourseLocator(u'edX', u'DemoX', u'Demo_Course', None, None)}. Response was: None
    #+END_SRC
   
+** Tried :: Using a script https://github.com/leosamu/UPVX-tools.git
+   + There is a script available
+     https://github.com/leosamu/UPVX-tools.git which has some code in it
+     to transfer the couse chapter from one edx instance to another edx
+     instance.
+   + Idea is to see how script is using edX APIs to make this happen. 
+   + You need to install he follwing packages 
+     #+BEGIN_SRC command
+     sudo apt-get install python-lxml
+     echo "deb http://us.archive.ubuntu.com/ubuntu trusty main universe" >>  /etc/apt/sources.list
+     sudo apt-get update
+     sudo apt-get install python-cssselect
+     #+END_SRC
+   + Create a settings.py file 
+     #+BEGIN_SRC python
+     SERVERS = [
+        {
+            'name':'vlead-test-from',
+            'url_lms':'http://lms1.vlabs.ac.in',
+            'url_studio': 'http://studio1.vlabs.ac.in:18010',
+            'user': 'admin2-username@vlabs.ac.in',
+            'password': 'secretpasswordhere'
+        }    ,
+        {
+            'name':'vlead-test-to',
+            'url':'http://lms2.vlabs.ac.in',
+            'url_studio': 'http://studio2.vlabs.ac.in:18010',
+            'user':'admin2-username@vlabs.ac.in',
+            'password':'secretpasswordhere'
+        }
+    ]
+
+     #+END_SRC
+   + Execute python trans_chapter.py
+   + Error received 
+     #+BEGIN_SRC error
+       File "test_chapter.py", line 79, in <module>
+    cookiesSource = logIn(url_lms,url_studio,user,password)
+  File "test_chapter.py", line 66, in logIn
+    response = urllib2.urlopen(request)
+  File "/usr/lib/python2.7/urllib2.py", line 127, in urlopen
+    return _opener.open(url, data, timeout)
+  File "/usr/lib/python2.7/urllib2.py", line 410, in open
+    response = meth(req, response)
+  File "/usr/lib/python2.7/urllib2.py", line 523, in http_response
+    'http', request, response, code, msg, hdrs)
+  File "/usr/lib/python2.7/urllib2.py", line 448, in error
+    return self._call_chain(*args)
+  File "/usr/lib/python2.7/urllib2.py", line 382, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python2.7/urllib2.py", line 531, in http_error_default
+    raise HTTPError(req.get_full_url(), code, msg, hdrs, fp)
+urllib2.HTTPError: HTTP Error 403: Forbidden
+
+     #+END_SRC
+   + Testing code block by block  ::
+     This approach was taken to test each module one by one 
+   + Snipped module 
+     #+BEGIN_SRC python
+     #!/usr/bin/env python
+# -*- coding: utf-8 -*-
+__author__ = u"Leonardo Salom Muñoz"
+__credits__ = u"Leonardo Salom Muñoz"
+__version__ = u"2.0.1-SNAPSHOT"
+__maintainer__ = u"Leonardo Salom Muñoz"
+__email__ = u"leosamu@upv.es"
+__status__ = u"Development"
+
+import requests
+import urllib,urllib2, cookielib,json
+import sys
+#import settings
+from lxml.cssselect import CSSSelector
+from lxml import html
+
+reload(sys)
+sys.setdefaultencoding('utf8')
+
+
+
+def logIn(_lms_server,_cms_server,_user,_password):
+    '''
+    log in into the lms server and return the required cookies to use the
+    studio internal api
+    '''
+    cj = cookielib.CookieJar()
+
+    opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
+    urllib2.install_opener(opener)
+
+
+    response = opener.open(_lms_server +'/login')
+    set_cookie = {}
+    for cookie in cj:
+        set_cookie[cookie.name] = cookie.value
+    #Prepare Headers #Tried with this header
+    headers = {'User-Agent' : "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/534.30 (KHTML, like Gecko) Ubuntu/11.04 Chromium/12.0.742.112 Chrome/12.0.742.112 Safari/534.30",
+               #'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+               'Accept': 'application/json, text/javascript, */*; q=0.01',
+               'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+               'Referer': _lms_server,
+               'X-Requested-With': 'XMLHttpRequest',
+               'X-CSRFToken': set_cookie.get('csrftoken', '') }
+
+    #Tried with this header too
+    headers ={'Accept':"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+          'Accept-Encoding': "gzip, deflate, sdch",
+          'Accept-Language': "en-GB,en-US;q=0.8,en;q=0.6",
+          'Cache-Control': "no-cache",
+          #'Cookie': 'csrftoken=JnbJOzFZXytAXZVdxq9IuEWAwXKKZbAt; sessionid="1|eotf5n78pqd3u62m8zgv5ohcawwsobg1|vlvwVltlzlOk|IjI5MmQ5NzBmM2QzYTA5M2I3MWQxNDlkZDEyYjJlNmJmMjNiZWQwZmQyYWQwZDgxMDU3NGVlNDgxZmRkZmZmNGIi:1cRHY3:LdVTSaz0Q0h3nCxr7EEbiimMx6o"'
+          'Host': "54.153.44.188",
+          'Pragma': "no-cache",
+          'Proxy-Connection': "keep-alive",
+          'Referer': "http://lms1.vlabs.ac.in/",
+          'Upgrade-Insecure-Requests': 1,
+          'User-Agent': "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.100 Safari/537.36"}
+
+    #Login
+    post_data = urllib.urlencode({
+                'email' : _user,
+                'password' : _password,
+                'remember' : False
+                }).encode('utf-8')
+    request = urllib2.Request(_lms_server + '/user_api/v1/account/login_session/', post_data, headers)
+    response = urllib2.urlopen(request)
+    print response.getcode()
+
+    response = opener.open(_cms_server)
+    for cookie in cj:
+        set_cookie[cookie.name] = cookie.value
+    return set_cookie
+
+url_lms = "http://lms1.vlabs.ac.in"
+url_studio = "http://studio1.vlabs.ac.in:18010/"
+user = "admin-username@vlabs.ac.in"
+password = "secretpasswordhere"
+
+cookiesSource = logIn(url_lms,url_studio,user,password)
+exit(1)
+
+     #+END_SRC
+    + Resulted into same error 
+      #+BEGIN_SRC error
+      Traceback (most recent call last):
+  File "test_chapter.py", line 79, in <module>
+    cookiesSource = logIn(url_lms,url_studio,user,password)
+  File "test_chapter.py", line 66, in logIn
+    response = urllib2.urlopen(request)
+  File "/usr/lib/python2.7/urllib2.py", line 127, in urlopen
+    return _opener.open(url, data, timeout)
+  File "/usr/lib/python2.7/urllib2.py", line 410, in open
+    response = meth(req, response)
+  File "/usr/lib/python2.7/urllib2.py", line 523, in http_response
+    'http', request, response, code, msg, hdrs)
+  File "/usr/lib/python2.7/urllib2.py", line 448, in error
+    return self._call_chain(*args)
+  File "/usr/lib/python2.7/urllib2.py", line 382, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python2.7/urllib2.py", line 531, in http_error_default
+    raise HTTPError(req.get_full_url(), code, msg, hdrs, fp)
+urllib2.HTTPError: HTTP Error 403: Forbidden
+
+      #+END_SRC
+    
