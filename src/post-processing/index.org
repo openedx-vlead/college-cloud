@@ -1,0 +1,26 @@
+#+TITLE:  Post/pre processing of logs from college cloud
+#+AUTHOR: VLEAD Systems
+#+DATE: [2017-01-17]
+#+PROPERTY: results output
+#+PROPERTY: exports code
+#+SETUPFILE: ./org-templates/level-0.org
+#+options: ^:nil
+
+* Introduction 
+  This document lists the requirements, use-cases for post-processing
+  the logs (analytics, feedbacks, user-data) from college cloud.
+
+* Requirements 
+  + A mechanism to allow sys-admin of college to collect logs
+  + A mechanism to allow sys-admin of college to upload logs 
+  + A mechanism to process the obtained data at VLEAD end.
+  + A cronjob to fetch data on daily basis 
+  + Feedback and analytics must be captured on the date basis
+
+
+
+
+
+
+
+
