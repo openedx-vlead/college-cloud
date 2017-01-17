@@ -16,14 +16,41 @@
   + A mechanism to allow sys-admin of college to upload logs 
   + A mechanism to process the obtained data at VLEAD end.
   + A cronjob to fetch data on daily basis 
-  + Feedback and analytics must be captured on the date basis
+  + Feedback and analytics must be captured on the basis date. 
 
-* How a sys-admin will collect logs ?
 
+* How a sys-admin/workhop coordinator will collect logs ?
+** Analytics and Feedback 
+    1. Workshop coordinator will be given a shell script.
+       + Login as =vlabs= user to machine using following credentials
+	 #+BEGIN_EXAMPLE
+	 username: vlabs
+         password : admin123
+ 	 #+END_EXAMPLE
+       + Then run the following script
+         #+BEGIN_EXAMPLE
+	 sh /home/vlabs/script/fetch_analytics.sh 
+         #+END_EXAMPLE
+       
+         The above script will get the dump of analytics and feedbacks
+         and saves as =<InstituteName>-<DATE>.tar.gz=
+       + Logs will be saved at =/home/vlabs/college-cloud-data/<Name-of-college-date>.tar.gz 
+       + Identify the ip address of your college-cloud-machine . By default it will be 10.2.57.61
+         #+BEGIN_SRC command
+         ifconfig br0
+         #+END_SRC
+       + Open a web browser on a machine connected to college-cloud/ machine form which college-cloud was accessible.
+       + Use the URL - http://<your-college-cloud-ip>/college-cloud-data/
+       + Download the tar.gz file in the format <COllege-name-Date>.tar.gz
+
+       
+      
 * How a sys-admin will upload logs ?
-
+  + Take downloaded file in pendrive and take a machine with internet connection.
+  + Upload the file in your google drive and share it with engg@vlabs.ac.in (Can be decided)
+  
 * How VLEAD team will process logs ?
-
+  This has to be decided. 
 
 
 
