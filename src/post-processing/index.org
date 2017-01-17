@@ -10,12 +10,20 @@
   This document lists the requirements, use-cases for post-processing
   the logs (analytics, feedbacks, user-data) from college cloud.
 
+
 * Requirements 
   + A mechanism to allow sys-admin of college to collect logs
   + A mechanism to allow sys-admin of college to upload logs 
   + A mechanism to process the obtained data at VLEAD end.
   + A cronjob to fetch data on daily basis 
   + Feedback and analytics must be captured on the date basis
+
+* How a sys-admin will collect logs ?
+
+* How a sys-admin will upload logs ?
+
+* How VLEAD team will process logs ?
+
 
 
 
