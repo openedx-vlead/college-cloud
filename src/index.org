@@ -1,12 +1,12 @@
-#+TITLE: Portable Edition
+#+TITLE: College Cloud Edition
 #+DATE: <2016-09-14 Wed>
 
 * Introduction
-  The document describes building a *Portable Edition* for
+  The document describes building a *College Cloud Edition* for
   virtual-labs.
 
-  Portable-Edition is a portable-media( Hard Disk Drive (HDD)) which
-  will have Open edX platform installed and labs ported onto it.
+  *College Cloud Edition* is a portable-media( Hard Disk Drive (HDD))
+  which will have Open edX platform installed and labs ported onto it.
 
   Using the portable media, labs can be accessed directly from the
   local machine itself (no need of internet connection).
@@ -17,7 +17,7 @@
    machine (no need of internet connection).
  
 * Requirements
-** Portable Edition Requirements
+** College Cloud Edition Requirements
    - Build a portable hard drive with X labs on it.
    - Create a facility for collecting logs and Collecting analytics.
 * Design 
@@ -40,10 +40,12 @@
   - Portable edition of Virtual Labs :: 
        A portable edition, which contains Open edX platform and ported
        labs onto it. One vagrant box will be used for Open edX
-       platform.
-
+       platform. Host machine will contain OpenVZ containers. Each
+       container will have one lab. we call it as *Cluster*. You will
+       read about the cluster later in this document.
        
-       Static IP (10.2.57.61) will be assigned to this machine.
+       Static IP (10.2.57.61) will be assigned to this machine ( Host
+       machine).
 
     + Vagrant Box (Open edX platform) ::
 	 Virtual-Labs portable edition ,this box provides us Open edX
@@ -82,17 +84,6 @@
 		 Static IP(10.2.57.63) is to be assigned to
                  Config-server container.
 
-  - ELK stack :: ELK(Elasticsearch,Logstash and Kibana) stack runs on
-                 localhost. ELK is responsible for collecting the logs
-                 and showing the analytics of the labs. 
-		 
-		 ELK will be used by analytics-api service
-
-    + Elasticsearch - A storage, No Sql database. It acts as backend
-      data store for logstash.
-    + Logstash - A log processor, can process any data - from any source
-    + Kibana - Analytics visualization tool. Acts as a frontend tool
-      to logstash
   - DNS service :: Runs in separate container on localhost. This
                    service will be used by Wi-Fi router for name
                    resolution( To map IP with FQDN).
@@ -102,9 +93,6 @@
                    playbook to configure DNS service
 		   
 		   Static IP :: 10.2.57.64
-  
-   - Analytics to be captured from portable hardrive version. [[https://github.com/openedx-vlead/portable-media/issues/2][Read link]]
-   - Analytics to be fetched from portble hardrive version.  [[https://github.com/openedx-vlead/portable-media/issues/2][Read link]]
   - Nagios :: Nagios is a monitoring tool. Job of the nagios in this
               setup is to monitor system resources such as RAM,
               Processes,etc.
@@ -337,40 +325,6 @@
     #+END_EXAMPLE
   - That's all, you are ready to use Open edX platform.
 	
-** Install ELK on host machine
-   #+BEGIN_EXAMPLE
-   # install java-1.8 version
-   yum install java-1.8.0-openjdk.x86_64
-
-   # Get ELK rpm packages 
-   wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/rpm/elasticsearch/2.4.1/elasticsearch-2.4.1.rpm
-   wget https://download.elastic.co/kibana/kibana/kibana-4.6.1-x86_64.rpm
-   wget https://download.elastic.co/logstash/logstash/packages/centos/logstash-2.4.0.noarch.rpm
-   wget https://download.elastic.co/beats/filebeat/filebeat-1.3.1-x86_64.rpm
-
-
-   # Install elasticsearch
-   rpm -i elasticsearch-2.4.1.rpm 
-   service elasticsearch start   
-   chkconfig elasticsearch on
-
-   # Install filebeat
-   rpm -i filebeat-1.3.1-x86_64.rpm 
-   service filebeat start
-   chkconfig filebeat on
-   
-
-   # Install Kibana
-   rpm -i kibana-4.6.1-x86_64.rpm 
-   service kibana start
-   chkconfig kibana on
-
-   # Install Logstash
-   rpm -i logstash-2.4.0.noarch.rpm 
-   service logstash start
-   chkconfig logstash on
-
-   #+END_EXAMPLE
 ** Install Nagios on host machine
    #+BEGIN_EXAMPLE
    yum install nagios nagios-plugins-all.x86_64 nagios-plugins-nrpe nrpe
@@ -415,6 +369,30 @@
   - Open http://ads.{cluster-name}.vlabs.ac.in:8080
   - Provide the necessary details and deploy the lab await for the
     domain of the lab that will be displayed on the browser
+** Feedback service integration 
+   Deploy feedback service using ADS service in the cluster.
+
+   GitHub link is https://github.com/vlead/feedback-portal.git
+   
+   While deploying feedback service using ADS, Lab-ID should be
+   *feedback*
+
+** Analytics-api service integration
+   Deploy analytics-api service using ADS service in the cluster.
+
+   GitHub link is https://github.com/openedx-vlead/vlabs-analytics-api-for-portable-media.git
+   
+   While deploying analytics-api service using ADS, Lab-ID should be
+   *analytics-api*
+
+** ELK service integration 
+   Deploy vlabs-analytics service using ADS service in the cluster.
+
+   GitHub link is https://github.com/openedx-vlead/elk-stack-for-analytics.git
+   
+   While deploying vlabs-analytics service using ADS, Lab-ID should be
+   *analytics-api*
+
 ** Steps for accessing the labs using Wi-Fi router
    - Check the [[./user-manual-for-portablemedia.org][User Manual]] for Wifi router configuration
    - Modify the =is_amazon= variable in
@@ -439,6 +417,7 @@
    - Then see the [[./user-manual-for-portablemedia.org][User manual]] for other steps to access the labs over
      Wifi. 
    - Then Labs will be accessible using ={{lab-id}}.vlabs.ac.in= format
+
 ** DNS service configuration
    - Create a separate OpenVZ container for dns service 
      #+BEGIN_EXAMPLE
@@ -507,7 +486,7 @@
       - Add the following lines to the file =dns.txt=
 	#+BEGIN_EXAMPLE
 	[public_dns]
-	10.2.57.65        # DNS service node ip address
+	10.2.57.64        # DNS service node ip address
 	#+END_EXAMPLE
       - Run =public_dns.yml=
 	#+BEGIN_EXAMPLE
@@ -523,16 +502,13 @@
       =/var/named/{cluster}.vlabs.ac.in.forward=
       #+BEGIN_EXAMPLE
       open-edx         IN    A     10.2.57.65
+      labs             IN    A     10.2.57.65
       #+END_EXAMPLE
     + Restart DNS service =named=
       #+BEGIN_EXAMPLE
       service named restart
       #+END_EXAMPLE
     + You are done configuring DNS service
-
-** Feedback service integration 
-** Analytics-service integration
-** ELK service integration 
 * List of labs hosted on cluster and on Open edX platform 
   - [[https://docs.google.com/spreadsheets/d/10oarpSmBUYbd0szQU3q0KWO77IF58tSPFkq2e7JE0Mw/edit#gid%3D0][List of labs hosted on cluster and on Open edX platform ]]
 * Deployment 
