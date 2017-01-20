@@ -198,8 +198,7 @@
      And also you can change the other required parameters in
      Vagrantfile ( as per your requirement) 
 
-***  Install Open edX platform
-     - 
+*** Install Open edX platform
      - SSH to Vagrant box 
        #+BEGIN_EXAMPLE
        cd ~/vagrant-boxes/
@@ -280,9 +279,55 @@
        login is used to quickly test the instalaltion.  The password is =edx=
  
      - Reference
-       + [[https://github.com/openedx-vlead/port-labs-to-openedx/tree/develop/src/platform-install-configure][Open edX platform  installation using Manual steps provided
+       + [[https://github.com/openedx-vlead/port-labs-to-openedx/tree/develop/src/platform-install-configure][Open edX platform installation using Manual steps provided
          by VLEAD]]  
-       + [[https://openedx.atlassian.net/wiki/display/OpenOPS/Native+Open+edX+Ubuntu+12.04+64+bit+Installation][Native Open edX installation on Ubuntu 12.04 64-bit]]
+       +
+         [[https://openedx.atlassian.net/wiki/display/OpenOPS/Native+Open+edX+Ubuntu+12.04+64+bit+Installation][Native Open edX installation on Ubuntu 12.04 64-bit]]
+*** Apply Theme on edX platform
+    To apply comprehensive theme on dogwood3 follow the steps -
+    - Once the Vagrant box is ready 
+    - SSH to vagrant box from host machine 
+      #+BEGIN_EXAMPLE
+      cd ~/vagrant-boxes
+      vagrant up  ; if not up already
+      vagrant ssh
+      #+END_EXAMPLE
+    - Once you are entered into vagrant box perform the below steps
+      #+BEGIN_EXAMPLE
+      cd edx/app/edxapp/themes
+      #+END_EXAMPLE
+      + Clone repository
+        https://github.com/openedx-vlead/vlabs-theme-for-portable-media
+	#+BEGIN_EXAMPLE
+	git clone https://github.com/openedx-vlead/vlabs-theme-for-portable-media starter-theme	
+	#+END_EXAMPLE
+      + Give proper permissions,
+	#+BEGIN_EXAMPLE
+	chmod -R 755 starter-theme
+	#+END_EXAMPLE
+      + Open /edx/app/edxapp/lms.env.json, Then change the following
+        keys -
+       #+BEGIN_EXAMPLE
+       "COMPREHENSIVE_THEME_DIRS": ["/edx/app/edxapp/themes"]
+       "ENABLE_COMPREHENSIVE_THEMING": true
+       "DEFAULT_SITE_THEME": "starter-theme"
+       "USE_CUSTOM_THEME": false
+       "THEME_NAME": ""
+       #+END_EXAMPLE
+
+      + Save changes
+      + Compile changes using the commands below -
+        #+BEGIN_EXAMPLE
+	sudo -H -u edxapp bash 
+	cd /edx/app/edxapp/edx-platform
+	source ../edxapp_env
+	paver update_assets lms --setting=aws
+        #+END_EXAMPLE
+
+      + Once done, restart services using 
+	#+BEGIN_EXAMPLE
+        sudo /edx/bin/supervisorctl restart all	
+	#+END_EXAMPLE
 ** One stop solution for setting up Open edX platform using vagrantbox
   - Get the Vagrantfile 
     #+BEGIN_EXAMPLE
@@ -324,7 +369,8 @@
     vagrant up
     #+END_EXAMPLE
   - That's all, you are ready to use Open edX platform.
-	
+*** Once you have Vagrant box is ready apply Comprehensive Theme
+    [[Apply Theme on edX platform][Steps are here]]
 ** Install Nagios on host machine
    #+BEGIN_EXAMPLE
    yum install nagios nagios-plugins-all.x86_64 nagios-plugins-nrpe nrpe
@@ -513,6 +559,7 @@
   - [[https://docs.google.com/spreadsheets/d/10oarpSmBUYbd0szQU3q0KWO77IF58tSPFkq2e7JE0Mw/edit#gid%3D0][List of labs hosted on cluster and on Open edX platform ]]
 * Deployment 
   - [[./user-manual-for-portablemedia.org][Check the Portable-Media user manual]]
+
   
 * GitHub Issues
   - [[https://github.com/openedx-vlead/portable-media/issues/1][Cluster and Open edX Platform setup]]
