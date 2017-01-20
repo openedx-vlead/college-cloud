@@ -1,4 +1,4 @@
-#+Title: Portable Media User Manual
+#+Title: User Manual for College Cloud Setup
 * Introduction
   The user manual is for conducting a workshop using portable media.
 * Known Issues
