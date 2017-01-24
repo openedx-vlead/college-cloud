@@ -11,16 +11,16 @@
   + Apache benchmark simulates requests to a particular URL or web page. 
   + Sample command 
     #+BEGIN_SRC 
-    ab -c 10 -n 500 http://ps-iiith.edx.vlabs.ac.in/
+    ab -c 10 -n 500 http://ps-iiith.vlabs.ac.in/
     #+END_SRC
-  + The above command throws 500 total requests to the URL http://ps-iiith.edx.vlabs.ac.in/
+  + The above command throws 500 total requests to the URL http://ps-iiith.vlabs.ac.in/
   + Here, -c is the number of concurrent requests at an instance of time 
   + Here, -n is the number of total requests made to the server.
 
 * Understanding the sample results -
   + Command used 
     #+BEGIN_SRC 
-    ab -c 10 -n 1000 http://ps-iiith.edx.vlabs.ac.in/
+    ab -c 10 -n 1000 http://ps-iiith.vlabs.ac.in/
     #+END_SRC
   + Sample output snippet obtained . 
     #+BEGIN_SRC
@@ -84,11 +84,17 @@ Time per request:       1.087 [ms] (mean, across all concurrent requests)
 |   19 |               190 |                         1500 |                                  213.899 |                    1.126 |
 
 * Inference
+  + Each row in the above obeservation table display the result of test with various concurrencly level. 
+  + Each row can be read as given below - 
+  #+BEGIN_SRC 
+  When 10 requests are sent to http://ps-iiith.vlabs.ac.in/ at a time instance t1, it took 10.863 ms to complete 10 requests.
+  Total 1500 rquests were sent in burst of 10. On an average each request takes 10.863 ms.
+  #+END_SRC
 ** Assumtions 
   + Its quite likely that web caching at reverse proxy might have
     resulted into faster response.
   
-  + Based on the above output, it can be assured that 50/60 people can
+  + Based on the above output, it can be assured that 100 people can
     use College cloud with enough performance.
   + Using Sar command on host machine hosting lab, Memory (RAM) was
     observed to be used only upto 63.93 %

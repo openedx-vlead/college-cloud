@@ -82,6 +82,12 @@ Time per request:       1.275 [ms] (mean, across all concurrent requests)
 |   18 |               180 |                         1500 |                                  584.256 |                    3.246 |
 |   19 |               190 |                         1000 |                                  325.072 |                    1.711 |
 * Inference
+  + Each row in the above obeservation table display the result of test with various concurrencly level. 
+  + Each row can be read as given below - 
+  #+BEGIN_SRC 
+  When 10 requests are sent to http://cse02-iiith.vlabs.ac.in/ at a time instance t1, it took 12.693 ms to complete 10 requests.
+  Total 1500 rquests were sent in burst of 10. On an average each request takes 12.693 ms.
+  #+END_SRC
 ** Assumtions 
   + Its quite likely that web caching at reverse proxy might have
     resulted into faster response.

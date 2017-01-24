@@ -20,7 +20,7 @@
 * Understanding the sample results -
   + Command used 
     #+BEGIN_SRC 
-    ab -c 10 -n 1000 http://cse19-iiith.vlabs.ac.in/
+    ab -c 10 -n 1000 http://ccnsb06-iiith.vlabs.ac.in/
     #+END_SRC
   + Sample output snippet obtained . 
     #+BEGIN_SRC
@@ -83,6 +83,12 @@ Time per request:       3.861 [ms] (mean, across all concurrent requests)
 |   19 |               190 |                         1500 |                                  838.278 |                    4.412 |
 
 * Inference
+  + Each row in the above obeservation table display the result of test with various concurrencly level. 
+  + Each row can be read as given below - 
+  #+BEGIN_SRC 
+  When 10 requests are sent to http://ccnsb06-iiith.vlabs.ac.in/ at a time instance t1, it took 39.412 ms to complete 10 requests.
+  Total 1500 rquests were sent in burst of 10. On an average each request takes 39.412 ms.
+  #+END_SRC
 ** Assumtions 
   + Its quite likely that web caching at reverse proxy might have
     resulted into faster response.

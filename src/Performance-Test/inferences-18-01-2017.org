@@ -79,14 +79,14 @@
 |    8 |                80 |                         1500 |                                  684.976 |                    8.562 |
 |    9 |                90 |                         1500 |                                  769.962 |                    8.555 |
 |   10 |               100 |                         1500 |                                  855.787 |                    8.558 |
+
+* Inference
   + Each row in the above obeservation table display the result of test with various concurrencly level. 
   + Each row can be read as given below - 
   #+BEGIN_SRC 
   When 10 requests are sent to http://open-edx.vlabs.ac.in/ at a time instance t1, it took 92.656 ms to complete 10 requests.
   Total 1500 rquests were sent in burst of 10. On an average each request takes 92.656 ms.
   #+END_SRC
-
-* Inference
 ** Assumtions 
   + Its quite likely that web caching at reverse proxy might have
     resulted into faster response.
