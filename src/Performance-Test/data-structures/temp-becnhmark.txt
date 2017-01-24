@@ -1,0 +1,42 @@
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking cse01-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        cse01-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        12082 bytes
+
+Concurrency Level:      190
+Time taken for tests:   1.750 seconds
+Complete requests:      1500
+Failed requests:        0
+Total transferred:      18567000 bytes
+HTML transferred:       18123000 bytes
+Requests per second:    857.04 [#/sec] (mean)
+Time per request:       221.693 [ms] (mean)
+Time per request:       1.167 [ms] (mean, across all concurrent requests)
+Transfer rate:          10359.82 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        3   12  57.6      9    1009
+Processing:     6  184 251.7    148    1737
+Waiting:        4  183 251.7    147    1736
+Total:          9  195 259.3    157    1747
+
+Percentage of the requests served within a certain time (ms)
+  50%    157
+  66%    157
+  75%    157
+  80%    157
+  90%    158
+  95%    158
+  98%   1717
+  99%   1732
+ 100%   1747 (longest request)

@@ -1,0 +1,42 @@
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking courses.vlabs.ac.in (be patient)
+
+
+Server Software:        nginx/1.10.1
+Server Hostname:        courses.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        99552 bytes
+
+Concurrency Level:      190
+Time taken for tests:   12.858 seconds
+Complete requests:      1500
+Failed requests:        0
+Total transferred:      149937000 bytes
+HTML transferred:       149328000 bytes
+Requests per second:    116.66 [#/sec] (mean)
+Time per request:       1628.721 [ms] (mean)
+Time per request:       8.572 [ms] (mean, across all concurrent requests)
+Transfer rate:          11387.40 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        2  147 172.6    142    2474
+Processing:    68 1438 593.2   1293    4751
+Waiting:       46  252 229.6    158    1840
+Total:         70 1585 615.3   1435    4757
+
+Percentage of the requests served within a certain time (ms)
+  50%   1435
+  66%   1602
+  75%   1874
+  80%   2013
+  90%   2435
+  95%   2761
+  98%   3293
+  99%   3858
+ 100%   4757 (longest request)

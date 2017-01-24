@@ -1,0 +1,2568 @@
+##### Start benchmark for 10 concurrent users and 500 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      10
+Time taken for tests:   3.884 seconds
+Complete requests:      500
+Failed requests:        0
+Total transferred:      4869220 bytes
+HTML transferred:       4753000 bytes
+Requests per second:    128.74 [#/sec] (mean)
+Time per request:       77.675 [ms] (mean)
+Time per request:       7.768 [ms] (mean, across all concurrent requests)
+Transfer rate:          1224.36 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.2      0       2
+Processing:    17   58  87.7     51    1508
+Waiting:       16   56  87.7     50    1507
+Total:         18   58  87.6     51    1508
+
+Percentage of the requests served within a certain time (ms)
+  50%     51
+  66%     56
+  75%     59
+  80%     61
+  90%     75
+  95%     84
+  98%     94
+  99%    498
+ 100%   1508 (longest request)
+##### End benchmark for 10 concurrent users and 1000 requests #####
+##### Start benchmark for 10 concurrent users and 1000 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      10
+Time taken for tests:   3.861 seconds
+Complete requests:      1000
+Failed requests:        0
+Total transferred:      9737868 bytes
+HTML transferred:       9506000 bytes
+Requests per second:    258.98 [#/sec] (mean)
+Time per request:       38.612 [ms] (mean)
+Time per request:       3.861 [ms] (mean, across all concurrent requests)
+Transfer rate:          2462.84 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.2      0       2
+Processing:    21   38  10.9     33      88
+Waiting:       20   35  10.2     31      82
+Total:         21   38  10.9     34      88
+
+Percentage of the requests served within a certain time (ms)
+  50%     34
+  66%     39
+  75%     41
+  80%     44
+  90%     55
+  95%     64
+  98%     71
+  99%     75
+ 100%     88 (longest request)
+##### End benchmark for 10 concurrent users and 1500 requests #####
+##### Start benchmark for 10 concurrent users and 1500 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      10
+Time taken for tests:   5.912 seconds
+Complete requests:      1500
+Failed requests:        0
+Total transferred:      14606672 bytes
+HTML transferred:       14259000 bytes
+Requests per second:    253.73 [#/sec] (mean)
+Time per request:       39.412 [ms] (mean)
+Time per request:       3.941 [ms] (mean, across all concurrent requests)
+Transfer rate:          2412.85 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.2      0       2
+Processing:    17   39  11.8     33     107
+Waiting:       16   36  11.2     31     100
+Total:         18   39  11.8     34     107
+
+Percentage of the requests served within a certain time (ms)
+  50%     34
+  66%     41
+  75%     44
+  80%     49
+  90%     59
+  95%     64
+  98%     70
+  99%     75
+ 100%    107 (longest request)
+##### End benchmark for 10 concurrent users and 2000 requests #####
+##### Start benchmark for 20 concurrent users and 500 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      20
+Time taken for tests:   1.945 seconds
+Complete requests:      500
+Failed requests:        0
+Total transferred:      4868180 bytes
+HTML transferred:       4753000 bytes
+Requests per second:    257.07 [#/sec] (mean)
+Time per request:       77.800 [ms] (mean)
+Time per request:       3.890 [ms] (mean, across all concurrent requests)
+Transfer rate:          2444.26 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.2      0       2
+Processing:    36   76  14.4     73     138
+Waiting:       31   74  13.6     71     133
+Total:         37   77  14.3     74     138
+
+Percentage of the requests served within a certain time (ms)
+  50%     74
+  66%     78
+  75%     82
+  80%     84
+  90%     98
+  95%    104
+  98%    113
+  99%    125
+ 100%    138 (longest request)
+##### End benchmark for 20 concurrent users and 1000 requests #####
+##### Start benchmark for 20 concurrent users and 1000 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      20
+Time taken for tests:   3.837 seconds
+Complete requests:      1000
+Failed requests:        0
+Total transferred:      9737400 bytes
+HTML transferred:       9506000 bytes
+Requests per second:    260.59 [#/sec] (mean)
+Time per request:       76.749 [ms] (mean)
+Time per request:       3.837 [ms] (mean, across all concurrent requests)
+Transfer rate:          2477.99 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.3      0       2
+Processing:    20   76  12.9     72     118
+Waiting:       18   73  12.3     70     113
+Total:         21   76  12.9     73     118
+
+Percentage of the requests served within a certain time (ms)
+  50%     73
+  66%     78
+  75%     82
+  80%     86
+  90%     96
+  95%    102
+  98%    108
+  99%    112
+ 100%    118 (longest request)
+##### End benchmark for 20 concurrent users and 1500 requests #####
+##### Start benchmark for 20 concurrent users and 1500 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      20
+Time taken for tests:   5.780 seconds
+Complete requests:      1500
+Failed requests:        0
+Total transferred:      14606646 bytes
+HTML transferred:       14259000 bytes
+Requests per second:    259.53 [#/sec] (mean)
+Time per request:       77.064 [ms] (mean)
+Time per request:       3.853 [ms] (mean, across all concurrent requests)
+Transfer rate:          2467.97 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.2      0       3
+Processing:    32   76  13.1     73     147
+Waiting:       27   74  12.4     70     144
+Total:         32   77  13.0     73     147
+
+Percentage of the requests served within a certain time (ms)
+  50%     73
+  66%     79
+  75%     83
+  80%     87
+  90%     96
+  95%    103
+  98%    109
+  99%    113
+ 100%    147 (longest request)
+##### End benchmark for 20 concurrent users and 2000 requests #####
+##### Start benchmark for 30 concurrent users and 500 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      30
+Time taken for tests:   1.927 seconds
+Complete requests:      500
+Failed requests:        0
+Total transferred:      4868232 bytes
+HTML transferred:       4753000 bytes
+Requests per second:    259.47 [#/sec] (mean)
+Time per request:       115.619 [ms] (mean)
+Time per request:       3.854 [ms] (mean, across all concurrent requests)
+Transfer rate:          2467.14 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   0.2      0       2
+Processing:    33  112  16.9    110     155
+Waiting:       29  109  16.3    108     147
+Total:         34  113  16.9    110     155
+ERROR: The median and mean for the initial connection time are more than twice the standard
+       deviation apart. These results are NOT reliable.
+
+Percentage of the requests served within a certain time (ms)
+  50%    110
+  66%    116
+  75%    120
+  80%    124
+  90%    135
+  95%    142
+  98%    145
+  99%    148
+ 100%    155 (longest request)
+##### End benchmark for 30 concurrent users and 1000 requests #####
+##### Start benchmark for 30 concurrent users and 1000 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      30
+Time taken for tests:   3.855 seconds
+Complete requests:      1000
+Failed requests:        0
+Total transferred:      9737530 bytes
+HTML transferred:       9506000 bytes
+Requests per second:    259.38 [#/sec] (mean)
+Time per request:       115.662 [ms] (mean)
+Time per request:       3.855 [ms] (mean, across all concurrent requests)
+Transfer rate:          2466.48 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   0.5      0      12
+Processing:    32  114  15.5    111     170
+Waiting:       28  111  14.9    109     159
+Total:         33  114  15.5    111     170
+ERROR: The median and mean for the initial connection time are more than twice the standard
+       deviation apart. These results are NOT reliable.
+
+Percentage of the requests served within a certain time (ms)
+  50%    111
+  66%    117
+  75%    121
+  80%    126
+  90%    134
+  95%    142
+  98%    148
+  99%    154
+ 100%    170 (longest request)
+##### End benchmark for 30 concurrent users and 1500 requests #####
+##### Start benchmark for 30 concurrent users and 1500 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      30
+Time taken for tests:   5.759 seconds
+Complete requests:      1500
+Failed requests:        0
+Total transferred:      14606646 bytes
+HTML transferred:       14259000 bytes
+Requests per second:    260.46 [#/sec] (mean)
+Time per request:       115.183 [ms] (mean)
+Time per request:       3.839 [ms] (mean, across all concurrent requests)
+Transfer rate:          2476.81 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.2      0       3
+Processing:    32  114  14.6    111     166
+Waiting:       27  111  13.8    108     163
+Total:         32  114  14.5    111     166
+
+Percentage of the requests served within a certain time (ms)
+  50%    111
+  66%    116
+  75%    121
+  80%    124
+  90%    135
+  95%    142
+  98%    148
+  99%    152
+ 100%    166 (longest request)
+##### End benchmark for 30 concurrent users and 2000 requests #####
+##### Start benchmark for 40 concurrent users and 500 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      40
+Time taken for tests:   1.928 seconds
+Complete requests:      500
+Failed requests:        0
+Total transferred:      4868440 bytes
+HTML transferred:       4753000 bytes
+Requests per second:    259.39 [#/sec] (mean)
+Time per request:       154.210 [ms] (mean)
+Time per request:       3.855 [ms] (mean, across all concurrent requests)
+Transfer rate:          2466.43 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   0.3      0       2
+Processing:    36  148  22.1    149     203
+Waiting:       32  146  21.8    147     187
+Total:         38  149  22.0    149     204
+ERROR: The median and mean for the initial connection time are more than twice the standard
+       deviation apart. These results are NOT reliable.
+
+Percentage of the requests served within a certain time (ms)
+  50%    149
+  66%    153
+  75%    159
+  80%    162
+  90%    170
+  95%    176
+  98%    185
+  99%    188
+ 100%    204 (longest request)
+##### End benchmark for 40 concurrent users and 1000 requests #####
+##### Start benchmark for 40 concurrent users and 1000 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      40
+Time taken for tests:   3.855 seconds
+Complete requests:      1000
+Failed requests:        0
+Total transferred:      9737296 bytes
+HTML transferred:       9506000 bytes
+Requests per second:    259.43 [#/sec] (mean)
+Time per request:       154.183 [ms] (mean)
+Time per request:       3.855 [ms] (mean, across all concurrent requests)
+Transfer rate:          2466.96 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   0.3      0       2
+Processing:    32  151  19.1    149     197
+Waiting:       28  148  18.3    147     191
+Total:         34  151  19.0    150     197
+ERROR: The median and mean for the initial connection time are more than twice the standard
+       deviation apart. These results are NOT reliable.
+
+Percentage of the requests served within a certain time (ms)
+  50%    150
+  66%    154
+  75%    159
+  80%    163
+  90%    174
+  95%    180
+  98%    188
+  99%    190
+ 100%    197 (longest request)
+##### End benchmark for 40 concurrent users and 1500 requests #####
+##### Start benchmark for 40 concurrent users and 1500 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      40
+Time taken for tests:   5.766 seconds
+Complete requests:      1500
+Failed requests:        0
+Total transferred:      14606490 bytes
+HTML transferred:       14259000 bytes
+Requests per second:    260.15 [#/sec] (mean)
+Time per request:       153.755 [ms] (mean)
+Time per request:       3.844 [ms] (mean, across all concurrent requests)
+Transfer rate:          2473.92 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   0.3      0       2
+Processing:    33  152  16.8    149     197
+Waiting:       28  149  16.5    147     192
+Total:         34  152  16.7    150     198
+ERROR: The median and mean for the initial connection time are more than twice the standard
+       deviation apart. These results are NOT reliable.
+
+Percentage of the requests served within a certain time (ms)
+  50%    150
+  66%    154
+  75%    159
+  80%    162
+  90%    173
+  95%    180
+  98%    186
+  99%    189
+ 100%    198 (longest request)
+##### End benchmark for 40 concurrent users and 2000 requests #####
+##### Start benchmark for 50 concurrent users and 500 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      50
+Time taken for tests:   1.920 seconds
+Complete requests:      500
+Failed requests:        0
+Total transferred:      4868310 bytes
+HTML transferred:       4753000 bytes
+Requests per second:    260.43 [#/sec] (mean)
+Time per request:       191.993 [ms] (mean)
+Time per request:       3.840 [ms] (mean, across all concurrent requests)
+Transfer rate:          2476.24 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   0.3      0       2
+Processing:    32  183  31.1    186     230
+Waiting:       27  181  30.9    184     228
+Total:         33  184  31.0    187     230
+ERROR: The median and mean for the initial connection time are more than twice the standard
+       deviation apart. These results are NOT reliable.
+
+Percentage of the requests served within a certain time (ms)
+  50%    187
+  66%    192
+  75%    196
+  80%    199
+  90%    209
+  95%    215
+  98%    225
+  99%    229
+ 100%    230 (longest request)
+##### End benchmark for 50 concurrent users and 1000 requests #####
+##### Start benchmark for 50 concurrent users and 1000 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      50
+Time taken for tests:   3.855 seconds
+Complete requests:      1000
+Failed requests:        0
+Total transferred:      9737270 bytes
+HTML transferred:       9506000 bytes
+Requests per second:    259.39 [#/sec] (mean)
+Time per request:       192.759 [ms] (mean)
+Time per request:       3.855 [ms] (mean, across all concurrent requests)
+Transfer rate:          2466.57 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   0.3      0       2
+Processing:    21  188  23.8    188     237
+Waiting:       20  185  23.3    186     231
+Total:         22  189  23.7    188     237
+ERROR: The median and mean for the initial connection time are more than twice the standard
+       deviation apart. These results are NOT reliable.
+
+Percentage of the requests served within a certain time (ms)
+  50%    188
+  66%    193
+  75%    198
+  80%    201
+  90%    212
+  95%    219
+  98%    224
+  99%    226
+ 100%    237 (longest request)
+##### End benchmark for 50 concurrent users and 1500 requests #####
+##### Start benchmark for 50 concurrent users and 1500 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      50
+Time taken for tests:   6.050 seconds
+Complete requests:      1500
+Failed requests:        0
+Total transferred:      14606620 bytes
+HTML transferred:       14259000 bytes
+Requests per second:    247.95 [#/sec] (mean)
+Time per request:       201.654 [ms] (mean)
+Time per request:       4.033 [ms] (mean, across all concurrent requests)
+Transfer rate:          2357.88 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   0.3      0       2
+Processing:    34  198  26.2    197     272
+Waiting:       29  195  25.2    194     268
+Total:         35  199  26.1    197     273
+ERROR: The median and mean for the initial connection time are more than twice the standard
+       deviation apart. These results are NOT reliable.
+
+Percentage of the requests served within a certain time (ms)
+  50%    197
+  66%    204
+  75%    209
+  80%    213
+  90%    229
+  95%    240
+  98%    253
+  99%    263
+ 100%    273 (longest request)
+##### End benchmark for 50 concurrent users and 2000 requests #####
+##### Start benchmark for 60 concurrent users and 500 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      60
+Time taken for tests:   1.932 seconds
+Complete requests:      500
+Failed requests:        0
+Total transferred:      4868232 bytes
+HTML transferred:       4753000 bytes
+Requests per second:    258.78 [#/sec] (mean)
+Time per request:       231.861 [ms] (mean)
+Time per request:       3.864 [ms] (mean, across all concurrent requests)
+Transfer rate:          2460.51 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   0.4      0       2
+Processing:    37  219  39.9    225     280
+Waiting:       32  216  39.7    223     269
+Total:         39  220  39.6    226     280
+ERROR: The median and mean for the initial connection time are more than twice the standard
+       deviation apart. These results are NOT reliable.
+
+Percentage of the requests served within a certain time (ms)
+  50%    226
+  66%    232
+  75%    236
+  80%    240
+  90%    251
+  95%    257
+  98%    265
+  99%    270
+ 100%    280 (longest request)
+##### End benchmark for 60 concurrent users and 1000 requests #####
+##### Start benchmark for 60 concurrent users and 1000 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      60
+Time taken for tests:   3.856 seconds
+Complete requests:      1000
+Failed requests:        0
+Total transferred:      9737712 bytes
+HTML transferred:       9506000 bytes
+Requests per second:    259.33 [#/sec] (mean)
+Time per request:       231.370 [ms] (mean)
+Time per request:       3.856 [ms] (mean, across all concurrent requests)
+Transfer rate:          2466.05 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   0.4      0       7
+Processing:    39  225  29.4    226     292
+Waiting:       34  222  29.2    224     275
+Total:         40  225  29.3    227     293
+ERROR: The median and mean for the initial connection time are more than twice the standard
+       deviation apart. These results are NOT reliable.
+
+Percentage of the requests served within a certain time (ms)
+  50%    227
+  66%    233
+  75%    236
+  80%    239
+  90%    249
+  95%    256
+  98%    263
+  99%    268
+ 100%    293 (longest request)
+##### End benchmark for 60 concurrent users and 1500 requests #####
+##### Start benchmark for 60 concurrent users and 1500 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      60
+Time taken for tests:   5.903 seconds
+Complete requests:      1500
+Failed requests:        0
+Total transferred:      14606256 bytes
+HTML transferred:       14259000 bytes
+Requests per second:    254.12 [#/sec] (mean)
+Time per request:       236.109 [ms] (mean)
+Time per request:       3.935 [ms] (mean, across all concurrent requests)
+Transfer rate:          2416.50 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   0.4      0       9
+Processing:    37  231  27.7    230     302
+Waiting:       34  229  27.2    228     295
+Total:         39  232  27.5    231     302
+ERROR: The median and mean for the initial connection time are more than twice the standard
+       deviation apart. These results are NOT reliable.
+
+Percentage of the requests served within a certain time (ms)
+  50%    231
+  66%    238
+  75%    244
+  80%    249
+  90%    257
+  95%    265
+  98%    277
+  99%    284
+ 100%    302 (longest request)
+##### End benchmark for 60 concurrent users and 2000 requests #####
+##### Start benchmark for 70 concurrent users and 500 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      70
+Time taken for tests:   1.944 seconds
+Complete requests:      500
+Failed requests:        0
+Total transferred:      4868700 bytes
+HTML transferred:       4753000 bytes
+Requests per second:    257.25 [#/sec] (mean)
+Time per request:       272.108 [ms] (mean)
+Time per request:       3.887 [ms] (mean, across all concurrent requests)
+Transfer rate:          2446.24 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   0.4      0       2
+Processing:    38  254  49.1    265     322
+Waiting:       34  252  48.8    263     317
+Total:         38  255  49.0    266     322
+ERROR: The median and mean for the initial connection time are more than twice the standard
+       deviation apart. These results are NOT reliable.
+
+Percentage of the requests served within a certain time (ms)
+  50%    266
+  66%    270
+  75%    274
+  80%    277
+  90%    290
+  95%    296
+  98%    305
+  99%    312
+ 100%    322 (longest request)
+##### End benchmark for 70 concurrent users and 1000 requests #####
+##### Start benchmark for 70 concurrent users and 1000 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      70
+Time taken for tests:   3.842 seconds
+Complete requests:      1000
+Failed requests:        0
+Total transferred:      9737400 bytes
+HTML transferred:       9506000 bytes
+Requests per second:    260.26 [#/sec] (mean)
+Time per request:       268.964 [ms] (mean)
+Time per request:       3.842 [ms] (mean, across all concurrent requests)
+Transfer rate:          2474.84 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   0.3      0       2
+Processing:    31  260  37.9    265     313
+Waiting:       27  257  37.6    262     311
+Total:         33  260  37.7    265     314
+ERROR: The median and mean for the initial connection time are more than twice the standard
+       deviation apart. These results are NOT reliable.
+
+Percentage of the requests served within a certain time (ms)
+  50%    265
+  66%    270
+  75%    274
+  80%    277
+  90%    287
+  95%    293
+  98%    300
+  99%    302
+ 100%    314 (longest request)
+##### End benchmark for 70 concurrent users and 1500 requests #####
+##### Start benchmark for 70 concurrent users and 1500 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      70
+Time taken for tests:   5.770 seconds
+Complete requests:      1500
+Failed requests:        0
+Total transferred:      14605866 bytes
+HTML transferred:       14259000 bytes
+Requests per second:    259.96 [#/sec] (mean)
+Time per request:       269.272 [ms] (mean)
+Time per request:       3.847 [ms] (mean, across all concurrent requests)
+Transfer rate:          2471.97 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   0.3      0       2
+Processing:    34  263  31.8    265     323
+Waiting:       29  260  31.6    263     315
+Total:         35  264  31.7    265     323
+ERROR: The median and mean for the initial connection time are more than twice the standard
+       deviation apart. These results are NOT reliable.
+
+Percentage of the requests served within a certain time (ms)
+  50%    265
+  66%    270
+  75%    274
+  80%    278
+  90%    288
+  95%    294
+  98%    300
+  99%    304
+ 100%    323 (longest request)
+##### End benchmark for 70 concurrent users and 2000 requests #####
+##### Start benchmark for 80 concurrent users and 500 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      80
+Time taken for tests:   1.931 seconds
+Complete requests:      500
+Failed requests:        0
+Total transferred:      4869012 bytes
+HTML transferred:       4753000 bytes
+Requests per second:    258.89 [#/sec] (mean)
+Time per request:       309.013 [ms] (mean)
+Time per request:       3.863 [ms] (mean, across all concurrent requests)
+Transfer rate:          2461.98 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   0.3      0       2
+Processing:    33  286  61.3    303     367
+Waiting:       31  284  61.0    301     357
+Total:         34  287  61.1    303     367
+ERROR: The median and mean for the initial connection time are more than twice the standard
+       deviation apart. These results are NOT reliable.
+
+Percentage of the requests served within a certain time (ms)
+  50%    303
+  66%    309
+  75%    312
+  80%    316
+  90%    324
+  95%    331
+  98%    336
+  99%    340
+ 100%    367 (longest request)
+##### End benchmark for 80 concurrent users and 1000 requests #####
+##### Start benchmark for 80 concurrent users and 1000 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      80
+Time taken for tests:   3.875 seconds
+Complete requests:      1000
+Failed requests:        0
+Total transferred:      9737348 bytes
+HTML transferred:       9506000 bytes
+Requests per second:    258.08 [#/sec] (mean)
+Time per request:       309.985 [ms] (mean)
+Time per request:       3.875 [ms] (mean, across all concurrent requests)
+Transfer rate:          2454.09 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   0.5      0       2
+Processing:    40  298  44.7    304     375
+Waiting:       35  295  44.6    302     373
+Total:         41  298  44.4    304     377
+ERROR: The median and mean for the initial connection time are more than twice the standard
+       deviation apart. These results are NOT reliable.
+
+Percentage of the requests served within a certain time (ms)
+  50%    304
+  66%    310
+  75%    314
+  80%    316
+  90%    326
+  95%    335
+  98%    341
+  99%    344
+ 100%    377 (longest request)
+##### End benchmark for 80 concurrent users and 1500 requests #####
+##### Start benchmark for 80 concurrent users and 1500 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      80
+Time taken for tests:   5.773 seconds
+Complete requests:      1500
+Failed requests:        0
+Total transferred:      14605814 bytes
+HTML transferred:       14259000 bytes
+Requests per second:    259.85 [#/sec] (mean)
+Time per request:       307.872 [ms] (mean)
+Time per request:       3.848 [ms] (mean, across all concurrent requests)
+Transfer rate:          2470.89 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   0.4      0       2
+Processing:    37  300  37.1    303     360
+Waiting:       35  297  36.6    301     354
+Total:         38  300  36.8    304     362
+ERROR: The median and mean for the initial connection time are more than twice the standard
+       deviation apart. These results are NOT reliable.
+
+Percentage of the requests served within a certain time (ms)
+  50%    304
+  66%    308
+  75%    312
+  80%    316
+  90%    325
+  95%    331
+  98%    338
+  99%    342
+ 100%    362 (longest request)
+##### End benchmark for 80 concurrent users and 2000 requests #####
+##### Start benchmark for 90 concurrent users and 500 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      90
+Time taken for tests:   1.924 seconds
+Complete requests:      500
+Failed requests:        0
+Total transferred:      4869116 bytes
+HTML transferred:       4753000 bytes
+Requests per second:    259.92 [#/sec] (mean)
+Time per request:       346.255 [ms] (mean)
+Time per request:       3.847 [ms] (mean, across all concurrent requests)
+Transfer rate:          2471.88 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   0.4      0       2
+Processing:    38  317  71.2    337     390
+Waiting:       34  314  71.0    335     384
+Total:         39  318  70.9    338     390
+ERROR: The median and mean for the initial connection time are more than twice the standard
+       deviation apart. These results are NOT reliable.
+
+Percentage of the requests served within a certain time (ms)
+  50%    338
+  66%    343
+  75%    346
+  80%    350
+  90%    363
+  95%    370
+  98%    375
+  99%    379
+ 100%    390 (longest request)
+##### End benchmark for 90 concurrent users and 1000 requests #####
+##### Start benchmark for 90 concurrent users and 1000 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      90
+Time taken for tests:   3.843 seconds
+Complete requests:      1000
+Failed requests:        0
+Total transferred:      9737322 bytes
+HTML transferred:       9506000 bytes
+Requests per second:    260.22 [#/sec] (mean)
+Time per request:       345.857 [ms] (mean)
+Time per request:       3.843 [ms] (mean, across all concurrent requests)
+Transfer rate:          2474.49 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   0.4      0       2
+Processing:    32  331  53.5    341     388
+Waiting:       30  328  53.3    338     386
+Total:         33  332  53.3    341     388
+ERROR: The median and mean for the initial connection time are more than twice the standard
+       deviation apart. These results are NOT reliable.
+
+Percentage of the requests served within a certain time (ms)
+  50%    341
+  66%    345
+  75%    350
+  80%    354
+  90%    364
+  95%    371
+  98%    377
+  99%    380
+ 100%    388 (longest request)
+##### End benchmark for 90 concurrent users and 1500 requests #####
+##### Start benchmark for 90 concurrent users and 1500 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      90
+Time taken for tests:   5.777 seconds
+Complete requests:      1500
+Failed requests:        0
+Total transferred:      14605918 bytes
+HTML transferred:       14259000 bytes
+Requests per second:    259.64 [#/sec] (mean)
+Time per request:       346.628 [ms] (mean)
+Time per request:       3.851 [ms] (mean, across all concurrent requests)
+Transfer rate:          2468.98 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   0.5      0       8
+Processing:    41  337  43.9    341     398
+Waiting:       37  334  43.7    339     395
+Total:         42  337  43.7    342     399
+WARNING: The median and mean for the initial connection time are not within a normal deviation
+        These results are probably not that reliable.
+
+Percentage of the requests served within a certain time (ms)
+  50%    342
+  66%    346
+  75%    351
+  80%    354
+  90%    364
+  95%    372
+  98%    377
+  99%    380
+ 100%    399 (longest request)
+##### End benchmark for 90 concurrent users and 2000 requests #####
+##### Start benchmark for 100 concurrent users and 500 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      100
+Time taken for tests:   1.949 seconds
+Complete requests:      500
+Failed requests:        0
+Total transferred:      4868778 bytes
+HTML transferred:       4753000 bytes
+Requests per second:    256.56 [#/sec] (mean)
+Time per request:       389.776 [ms] (mean)
+Time per request:       3.898 [ms] (mean, across all concurrent requests)
+Transfer rate:          2439.69 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   0.8      0       3
+Processing:    28  353  86.3    382     438
+Waiting:       27  350  86.1    379     435
+Total:         30  354  85.7    382     438
+WARNING: The median and mean for the initial connection time are not within a normal deviation
+        These results are probably not that reliable.
+
+Percentage of the requests served within a certain time (ms)
+  50%    382
+  66%    387
+  75%    392
+  80%    396
+  90%    406
+  95%    413
+  98%    419
+  99%    429
+ 100%    438 (longest request)
+##### End benchmark for 100 concurrent users and 1000 requests #####
+##### Start benchmark for 100 concurrent users and 1000 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      100
+Time taken for tests:   3.866 seconds
+Complete requests:      1000
+Failed requests:        0
+Total transferred:      9737686 bytes
+HTML transferred:       9506000 bytes
+Requests per second:    258.67 [#/sec] (mean)
+Time per request:       386.589 [ms] (mean)
+Time per request:       3.866 [ms] (mean, across all concurrent requests)
+Transfer rate:          2459.84 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   0.6      0       3
+Processing:    37  368  62.4    380     426
+Waiting:       34  365  62.2    378     423
+Total:         38  368  62.0    381     426
+WARNING: The median and mean for the initial connection time are not within a normal deviation
+        These results are probably not that reliable.
+
+Percentage of the requests served within a certain time (ms)
+  50%    381
+  66%    386
+  75%    391
+  80%    393
+  90%    403
+  95%    410
+  98%    416
+  99%    420
+ 100%    426 (longest request)
+##### End benchmark for 100 concurrent users and 1500 requests #####
+##### Start benchmark for 100 concurrent users and 1500 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      100
+Time taken for tests:   6.118 seconds
+Complete requests:      1500
+Failed requests:        0
+Total transferred:      14605580 bytes
+HTML transferred:       14259000 bytes
+Requests per second:    245.17 [#/sec] (mean)
+Time per request:       407.884 [ms] (mean)
+Time per request:       4.079 [ms] (mean, across all concurrent requests)
+Transfer rate:          2331.26 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   0.3      0       2
+Processing:    32  395  61.6    406     480
+Waiting:       28  392  61.3    403     479
+Total:         33  395  61.5    407     481
+ERROR: The median and mean for the initial connection time are more than twice the standard
+       deviation apart. These results are NOT reliable.
+
+Percentage of the requests served within a certain time (ms)
+  50%    407
+  66%    418
+  75%    424
+  80%    429
+  90%    440
+  95%    450
+  98%    458
+  99%    462
+ 100%    481 (longest request)
+##### End benchmark for 100 concurrent users and 2000 requests #####
+##### Start benchmark for 110 concurrent users and 500 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      110
+Time taken for tests:   1.934 seconds
+Complete requests:      500
+Failed requests:        0
+Total transferred:      4869636 bytes
+HTML transferred:       4753000 bytes
+Requests per second:    258.52 [#/sec] (mean)
+Time per request:       425.494 [ms] (mean)
+Time per request:       3.868 [ms] (mean, across all concurrent requests)
+Transfer rate:          2458.82 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   1.1      0       4
+Processing:    39  382  97.5    418     467
+Waiting:       34  379  97.5    416     464
+Total:         41  383  96.8    419     469
+
+Percentage of the requests served within a certain time (ms)
+  50%    419
+  66%    424
+  75%    428
+  80%    432
+  90%    441
+  95%    449
+  98%    456
+  99%    460
+ 100%    469 (longest request)
+##### End benchmark for 110 concurrent users and 1000 requests #####
+##### Start benchmark for 110 concurrent users and 1000 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      110
+Time taken for tests:   3.864 seconds
+Complete requests:      1000
+Failed requests:        0
+Total transferred:      9737244 bytes
+HTML transferred:       9506000 bytes
+Requests per second:    258.80 [#/sec] (mean)
+Time per request:       425.038 [ms] (mean)
+Time per request:       3.864 [ms] (mean, across all concurrent requests)
+Transfer rate:          2460.94 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   0.8      0       6
+Processing:    38  402  72.9    420     474
+Waiting:       35  400  72.7    418     468
+Total:         39  403  72.4    420     475
+WARNING: The median and mean for the initial connection time are not within a normal deviation
+        These results are probably not that reliable.
+
+Percentage of the requests served within a certain time (ms)
+  50%    420
+  66%    425
+  75%    428
+  80%    432
+  90%    441
+  95%    448
+  98%    457
+  99%    462
+ 100%    475 (longest request)
+##### End benchmark for 110 concurrent users and 1500 requests #####
+##### Start benchmark for 110 concurrent users and 1500 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      110
+Time taken for tests:   5.779 seconds
+Complete requests:      1500
+Failed requests:        0
+Total transferred:      14605502 bytes
+HTML transferred:       14259000 bytes
+Requests per second:    259.55 [#/sec] (mean)
+Time per request:       423.818 [ms] (mean)
+Time per request:       3.853 [ms] (mean, across all concurrent requests)
+Transfer rate:          2467.96 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   0.3      0       5
+Processing:    32  408  60.8    418     469
+Waiting:       30  406  60.7    415     463
+Total:         34  409  60.7    418     470
+ERROR: The median and mean for the initial connection time are more than twice the standard
+       deviation apart. These results are NOT reliable.
+
+Percentage of the requests served within a certain time (ms)
+  50%    418
+  66%    424
+  75%    428
+  80%    432
+  90%    442
+  95%    449
+  98%    454
+  99%    460
+ 100%    470 (longest request)
+##### End benchmark for 110 concurrent users and 2000 requests #####
+##### Start benchmark for 120 concurrent users and 500 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      120
+Time taken for tests:   2.049 seconds
+Complete requests:      500
+Failed requests:        0
+Total transferred:      4869558 bytes
+HTML transferred:       4753000 bytes
+Requests per second:    244.03 [#/sec] (mean)
+Time per request:       491.735 [ms] (mean)
+Time per request:       4.098 [ms] (mean, across all concurrent requests)
+Transfer rate:          2320.97 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   1.3      0       4
+Processing:    37  438 123.9    485     550
+Waiting:       34  435 123.6    482     544
+Total:         38  439 123.2    486     550
+
+Percentage of the requests served within a certain time (ms)
+  50%    486
+  66%    502
+  75%    509
+  80%    513
+  90%    527
+  95%    532
+  98%    540
+  99%    542
+ 100%    550 (longest request)
+##### End benchmark for 120 concurrent users and 1000 requests #####
+##### Start benchmark for 120 concurrent users and 1000 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      120
+Time taken for tests:   3.842 seconds
+Complete requests:      1000
+Failed requests:        0
+Total transferred:      9737400 bytes
+HTML transferred:       9506000 bytes
+Requests per second:    260.29 [#/sec] (mean)
+Time per request:       461.019 [ms] (mean)
+Time per request:       3.842 [ms] (mean, across all concurrent requests)
+Transfer rate:          2475.17 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   0.9      0       3
+Processing:    21  434  82.9    455     507
+Waiting:       20  432  82.8    453     505
+Total:         24  435  82.3    456     508
+WARNING: The median and mean for the initial connection time are not within a normal deviation
+        These results are probably not that reliable.
+
+Percentage of the requests served within a certain time (ms)
+  50%    456
+  66%    460
+  75%    464
+  80%    467
+  90%    478
+  95%    486
+  98%    492
+  99%    496
+ 100%    508 (longest request)
+##### End benchmark for 120 concurrent users and 1500 requests #####
+##### Start benchmark for 120 concurrent users and 1500 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      120
+Time taken for tests:   5.785 seconds
+Complete requests:      1500
+Failed requests:        0
+Total transferred:      14605190 bytes
+HTML transferred:       14259000 bytes
+Requests per second:    259.28 [#/sec] (mean)
+Time per request:       462.818 [ms] (mean)
+Time per request:       3.857 [ms] (mean, across all concurrent requests)
+Transfer rate:          2465.40 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   0.8      0      11
+Processing:    36  445  69.3    457     507
+Waiting:       33  442  69.0    455     505
+Total:         38  445  68.7    457     508
+WARNING: The median and mean for the initial connection time are not within a normal deviation
+        These results are probably not that reliable.
+
+Percentage of the requests served within a certain time (ms)
+  50%    457
+  66%    463
+  75%    469
+  80%    472
+  90%    482
+  95%    489
+  98%    496
+  99%    500
+ 100%    508 (longest request)
+##### End benchmark for 120 concurrent users and 2000 requests #####
+##### Start benchmark for 130 concurrent users and 500 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      130
+Time taken for tests:   1.953 seconds
+Complete requests:      500
+Failed requests:        0
+Total transferred:      4869454 bytes
+HTML transferred:       4753000 bytes
+Requests per second:    256.03 [#/sec] (mean)
+Time per request:       507.755 [ms] (mean)
+Time per request:       3.906 [ms] (mean, across all concurrent requests)
+Transfer rate:          2435.00 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   0.8      0       3
+Processing:    37  444 125.9    497     551
+Waiting:       33  441 125.8    495     548
+Total:         39  445 125.4    498     551
+WARNING: The median and mean for the initial connection time are not within a normal deviation
+        These results are probably not that reliable.
+
+Percentage of the requests served within a certain time (ms)
+  50%    498
+  66%    503
+  75%    508
+  80%    510
+  90%    524
+  95%    532
+  98%    539
+  99%    544
+ 100%    551 (longest request)
+##### End benchmark for 130 concurrent users and 1000 requests #####
+##### Start benchmark for 130 concurrent users and 1000 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      130
+Time taken for tests:   3.849 seconds
+Complete requests:      1000
+Failed requests:        0
+Total transferred:      9737504 bytes
+HTML transferred:       9506000 bytes
+Requests per second:    259.80 [#/sec] (mean)
+Time per request:       500.380 [ms] (mean)
+Time per request:       3.849 [ms] (mean, across all concurrent requests)
+Transfer rate:          2470.54 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   1.0      0       4
+Processing:    36  468  92.6    493     563
+Waiting:       32  466  92.4    491     561
+Total:         38  469  91.9    494     564
+WARNING: The median and mean for the initial connection time are not within a normal deviation
+        These results are probably not that reliable.
+
+Percentage of the requests served within a certain time (ms)
+  50%    494
+  66%    498
+  75%    502
+  80%    505
+  90%    515
+  95%    523
+  98%    529
+  99%    534
+ 100%    564 (longest request)
+##### End benchmark for 130 concurrent users and 1500 requests #####
+##### Start benchmark for 130 concurrent users and 1500 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      130
+Time taken for tests:   5.806 seconds
+Complete requests:      1500
+Failed requests:        0
+Total transferred:      14605476 bytes
+HTML transferred:       14259000 bytes
+Requests per second:    258.35 [#/sec] (mean)
+Time per request:       503.197 [ms] (mean)
+Time per request:       3.871 [ms] (mean, across all concurrent requests)
+Transfer rate:          2456.57 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   0.8      0       4
+Processing:    41  481  76.9    496     710
+Waiting:       38  479  76.8    494     708
+Total:         43  482  76.3    497     713
+WARNING: The median and mean for the initial connection time are not within a normal deviation
+        These results are probably not that reliable.
+
+Percentage of the requests served within a certain time (ms)
+  50%    497
+  66%    502
+  75%    506
+  80%    510
+  90%    519
+  95%    526
+  98%    534
+  99%    536
+ 100%    713 (longest request)
+##### End benchmark for 130 concurrent users and 2000 requests #####
+##### Start benchmark for 140 concurrent users and 500 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      140
+Time taken for tests:   1.956 seconds
+Complete requests:      500
+Failed requests:        0
+Total transferred:      4869558 bytes
+HTML transferred:       4753000 bytes
+Requests per second:    255.62 [#/sec] (mean)
+Time per request:       547.697 [ms] (mean)
+Time per request:       3.912 [ms] (mean, across all concurrent requests)
+Transfer rate:          2431.13 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    3  44.7      0    1001
+Processing:    34  465 139.0    521     937
+Waiting:       32  463 139.1    519     936
+Total:         37  469 146.1    522    1530
+
+Percentage of the requests served within a certain time (ms)
+  50%    522
+  66%    528
+  75%    530
+  80%    532
+  90%    537
+  95%    542
+  98%    721
+  99%    730
+ 100%   1530 (longest request)
+##### End benchmark for 140 concurrent users and 1000 requests #####
+##### Start benchmark for 140 concurrent users and 1000 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      140
+Time taken for tests:   3.942 seconds
+Complete requests:      1000
+Failed requests:        0
+Total transferred:      9737478 bytes
+HTML transferred:       9506000 bytes
+Requests per second:    253.66 [#/sec] (mean)
+Time per request:       551.913 [ms] (mean)
+Time per request:       3.942 [ms] (mean, across all concurrent requests)
+Transfer rate:          2412.15 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    5  63.0      0    1000
+Processing:    26  503 124.1    526    1741
+Waiting:       24  501 124.1    524    1736
+Total:         28  508 143.8    526    1936
+
+Percentage of the requests served within a certain time (ms)
+  50%    526
+  66%    532
+  75%    535
+  80%    537
+  90%    552
+  95%    562
+  98%    578
+  99%    932
+ 100%   1936 (longest request)
+##### End benchmark for 140 concurrent users and 1500 requests #####
+##### Start benchmark for 140 concurrent users and 1500 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      140
+Time taken for tests:   6.000 seconds
+Complete requests:      1500
+Failed requests:        0
+Total transferred:      14607140 bytes
+HTML transferred:       14259000 bytes
+Requests per second:    250.00 [#/sec] (mean)
+Time per request:       560.005 [ms] (mean)
+Time per request:       4.000 [ms] (mean, across all concurrent requests)
+Transfer rate:          2377.44 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    9  92.6      0    1003
+Processing:    29  526 140.0    535    3781
+Waiting:       27  524 139.9    532    3778
+Total:         30  536 171.9    535    3785
+
+Percentage of the requests served within a certain time (ms)
+  50%    535
+  66%    548
+  75%    556
+  80%    560
+  90%    569
+  95%    576
+  98%    585
+  99%   1529
+ 100%   3785 (longest request)
+##### End benchmark for 140 concurrent users and 2000 requests #####
+##### Start benchmark for 150 concurrent users and 500 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      150
+Time taken for tests:   1.932 seconds
+Complete requests:      500
+Failed requests:        0
+Total transferred:      4868882 bytes
+HTML transferred:       4753000 bytes
+Requests per second:    258.80 [#/sec] (mean)
+Time per request:       579.596 [ms] (mean)
+Time per request:       3.864 [ms] (mean, across all concurrent requests)
+Transfer rate:          2461.08 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    3  44.5      0     997
+Processing:    32  489 247.6    519    1929
+Waiting:       29  486 247.7    517    1927
+Total:         34  492 251.6    519    1930
+
+Percentage of the requests served within a certain time (ms)
+  50%    519
+  66%    524
+  75%    527
+  80%    530
+  90%    538
+  95%    555
+  98%   1716
+  99%   1920
+ 100%   1930 (longest request)
+##### End benchmark for 150 concurrent users and 1000 requests #####
+##### Start benchmark for 150 concurrent users and 1000 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      150
+Time taken for tests:   6.579 seconds
+Complete requests:      1000
+Failed requests:        0
+Total transferred:      9737478 bytes
+HTML transferred:       9506000 bytes
+Requests per second:    152.00 [#/sec] (mean)
+Time per request:       986.867 [ms] (mean)
+Time per request:       6.579 [ms] (mean, across all concurrent requests)
+Transfer rate:          1445.37 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0   13 108.7      0    1000
+Processing:    35  532 409.6    526    6576
+Waiting:       32  529 409.6    524    6572
+Total:         37  544 425.1    527    6577
+
+Percentage of the requests served within a certain time (ms)
+  50%    527
+  66%    532
+  75%    536
+  80%    539
+  90%    551
+  95%    564
+  98%   1355
+  99%   1712
+ 100%   6577 (longest request)
+##### End benchmark for 150 concurrent users and 1500 requests #####
+##### Start benchmark for 150 concurrent users and 1500 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      150
+Time taken for tests:   6.057 seconds
+Complete requests:      1500
+Failed requests:        0
+Total transferred:      14606490 bytes
+HTML transferred:       14259000 bytes
+Requests per second:    247.66 [#/sec] (mean)
+Time per request:       605.657 [ms] (mean)
+Time per request:       4.038 [ms] (mean, across all concurrent requests)
+Transfer rate:          2355.15 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0   28 162.8      0    1000
+Processing:    35  545 169.2    546    3747
+Waiting:       32  542 169.0    543    3735
+Total:         41  573 244.6    548    3749
+
+Percentage of the requests served within a certain time (ms)
+  50%    548
+  66%    568
+  75%    576
+  80%    585
+  90%    605
+  95%    627
+  98%   1546
+  99%   1724
+ 100%   3749 (longest request)
+##### End benchmark for 150 concurrent users and 2000 requests #####
+##### Start benchmark for 160 concurrent users and 500 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      160
+Time taken for tests:   1.923 seconds
+Complete requests:      500
+Failed requests:        0
+Total transferred:      4868310 bytes
+HTML transferred:       4753000 bytes
+Requests per second:    260.03 [#/sec] (mean)
+Time per request:       615.320 [ms] (mean)
+Time per request:       3.846 [ms] (mean, across all concurrent requests)
+Transfer rate:          2472.45 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    3  44.8      0    1002
+Processing:    36  515 306.8    518    1920
+Waiting:       33  513 307.0    515    1919
+Total:         39  518 309.9    518    1921
+
+Percentage of the requests served within a certain time (ms)
+  50%    518
+  66%    524
+  75%    530
+  80%    536
+  90%    554
+  95%    727
+  98%   1902
+  99%   1910
+ 100%   1921 (longest request)
+##### End benchmark for 160 concurrent users and 1000 requests #####
+##### Start benchmark for 160 concurrent users and 1000 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      160
+Time taken for tests:   6.618 seconds
+Complete requests:      1000
+Failed requests:        0
+Total transferred:      9737452 bytes
+HTML transferred:       9506000 bytes
+Requests per second:    151.10 [#/sec] (mean)
+Time per request:       1058.898 [ms] (mean)
+Time per request:       6.618 [ms] (mean, across all concurrent requests)
+Transfer rate:          1436.85 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0   13 108.6      0    1000
+Processing:    39  593 718.4    527    6615
+Waiting:       34  590 718.4    525    6613
+Total:         41  606 726.8    527    6616
+
+Percentage of the requests served within a certain time (ms)
+  50%    527
+  66%    534
+  75%    539
+  80%    544
+  90%    558
+  95%    574
+  98%   1730
+  99%   6579
+ 100%   6616 (longest request)
+##### End benchmark for 160 concurrent users and 1500 requests #####
+##### Start benchmark for 160 concurrent users and 1500 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      160
+Time taken for tests:   6.716 seconds
+Complete requests:      1500
+Failed requests:        0
+Total transferred:      14606308 bytes
+HTML transferred:       14259000 bytes
+Requests per second:    223.36 [#/sec] (mean)
+Time per request:       716.323 [ms] (mean)
+Time per request:       4.477 [ms] (mean, across all concurrent requests)
+Transfer rate:          2124.03 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0   29 198.0      0    3004
+Processing:    41  571 520.3    533    6709
+Waiting:       39  569 520.4    531    6708
+Total:         43  600 562.0    533    6714
+
+Percentage of the requests served within a certain time (ms)
+  50%    533
+  66%    545
+  75%    555
+  80%    559
+  90%    587
+  95%    630
+  98%   1722
+  99%   2192
+ 100%   6714 (longest request)
+##### End benchmark for 160 concurrent users and 2000 requests #####
+##### Start benchmark for 170 concurrent users and 500 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      170
+Time taken for tests:   1.926 seconds
+Complete requests:      500
+Failed requests:        0
+Total transferred:      4868570 bytes
+HTML transferred:       4753000 bytes
+Requests per second:    259.64 [#/sec] (mean)
+Time per request:       654.757 [ms] (mean)
+Time per request:       3.852 [ms] (mean, across all concurrent requests)
+Transfer rate:          2468.88 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   1.5      1       5
+Processing:    37  538 350.6    516    1918
+Waiting:       34  536 350.7    514    1917
+Total:         42  539 350.4    516    1921
+
+Percentage of the requests served within a certain time (ms)
+  50%    516
+  66%    522
+  75%    528
+  80%    532
+  90%    557
+  95%   1709
+  98%   1895
+  99%   1915
+ 100%   1921 (longest request)
+##### End benchmark for 170 concurrent users and 1000 requests #####
+##### Start benchmark for 170 concurrent users and 1000 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      170
+Time taken for tests:   6.695 seconds
+Complete requests:      1000
+Failed requests:        0
+Total transferred:      9737504 bytes
+HTML transferred:       9506000 bytes
+Requests per second:    149.36 [#/sec] (mean)
+Time per request:       1138.205 [ms] (mean)
+Time per request:       6.695 [ms] (mean, across all concurrent requests)
+Transfer rate:          1420.29 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0   18 129.1      0    1002
+Processing:    36  618 783.7    525    6690
+Waiting:       33  616 783.8    522    6688
+Total:         38  636 795.1    525    6693
+
+Percentage of the requests served within a certain time (ms)
+  50%    525
+  66%    531
+  75%    536
+  80%    541
+  90%    558
+  95%    735
+  98%   3778
+  99%   6574
+ 100%   6693 (longest request)
+##### End benchmark for 170 concurrent users and 1500 requests #####
+##### Start benchmark for 170 concurrent users and 1500 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      170
+Time taken for tests:   6.772 seconds
+Complete requests:      1500
+Failed requests:        0
+Total transferred:      14606126 bytes
+HTML transferred:       14259000 bytes
+Requests per second:    221.50 [#/sec] (mean)
+Time per request:       767.478 [ms] (mean)
+Time per request:       4.515 [ms] (mean, across all concurrent requests)
+Transfer rate:          2106.33 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0   20 151.5      0    3005
+Processing:    40  608 763.0    523    6765
+Waiting:       36  605 763.0    520    6763
+Total:         43  628 780.2    523    6770
+
+Percentage of the requests served within a certain time (ms)
+  50%    523
+  66%    528
+  75%    532
+  80%    536
+  90%    552
+  95%    572
+  98%   1921
+  99%   6717
+ 100%   6770 (longest request)
+##### End benchmark for 170 concurrent users and 2000 requests #####
+##### Start benchmark for 180 concurrent users and 500 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      180
+Time taken for tests:   1.940 seconds
+Complete requests:      500
+Failed requests:        0
+Total transferred:      4868908 bytes
+HTML transferred:       4753000 bytes
+Requests per second:    257.69 [#/sec] (mean)
+Time per request:       698.508 [ms] (mean)
+Time per request:       3.881 [ms] (mean, across all concurrent requests)
+Transfer rate:          2450.54 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    4  44.6      1     999
+Processing:    37  570 407.3    523    1933
+Waiting:       35  568 407.4    521    1932
+Total:         40  574 410.4    524    1938
+
+Percentage of the requests served within a certain time (ms)
+  50%    524
+  66%    528
+  75%    530
+  80%    534
+  90%    562
+  95%   1856
+  98%   1912
+  99%   1926
+ 100%   1938 (longest request)
+##### End benchmark for 180 concurrent users and 1000 requests #####
+##### Start benchmark for 180 concurrent users and 1000 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      180
+Time taken for tests:   6.692 seconds
+Complete requests:      1000
+Failed requests:        0
+Total transferred:      9737374 bytes
+HTML transferred:       9506000 bytes
+Requests per second:    149.43 [#/sec] (mean)
+Time per request:       1204.586 [ms] (mean)
+Time per request:       6.692 [ms] (mean, across all concurrent requests)
+Transfer rate:          1420.94 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0   12 104.1      0    1001
+Processing:    41  625 656.7    526    6685
+Waiting:       39  623 656.7    524    6683
+Total:         43  638 666.2    526    6690
+
+Percentage of the requests served within a certain time (ms)
+  50%    526
+  66%    532
+  75%    538
+  80%    543
+  90%    558
+  95%   1520
+  98%   3800
+  99%   3836
+ 100%   6690 (longest request)
+##### End benchmark for 180 concurrent users and 1500 requests #####
+##### Start benchmark for 180 concurrent users and 1500 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      180
+Time taken for tests:   6.842 seconds
+Complete requests:      1500
+Failed requests:        0
+Total transferred:      14606178 bytes
+HTML transferred:       14259000 bytes
+Requests per second:    219.24 [#/sec] (mean)
+Time per request:       821.024 [ms] (mean)
+Time per request:       4.561 [ms] (mean, across all concurrent requests)
+Transfer rate:          2084.79 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0   29 176.6      0    3004
+Processing:    33  636 855.5    523    6834
+Waiting:       32  634 855.6    520    6832
+Total:         36  665 875.2    523    6840
+
+Percentage of the requests served within a certain time (ms)
+  50%    523
+  66%    529
+  75%    534
+  80%    538
+  90%    555
+  95%   1511
+  98%   3863
+  99%   6767
+ 100%   6840 (longest request)
+##### End benchmark for 180 concurrent users and 2000 requests #####
+##### Start benchmark for 190 concurrent users and 500 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      190
+Time taken for tests:   1.934 seconds
+Complete requests:      500
+Failed requests:        0
+Total transferred:      4869220 bytes
+HTML transferred:       4753000 bytes
+Requests per second:    258.58 [#/sec] (mean)
+Time per request:       734.781 [ms] (mean)
+Time per request:       3.867 [ms] (mean, across all concurrent requests)
+Transfer rate:          2459.15 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    2   1.8      1       5
+Processing:    24  591 436.3    519    1927
+Waiting:       23  589 436.4    517    1926
+Total:         26  593 437.0    520    1932
+
+Percentage of the requests served within a certain time (ms)
+  50%    520
+  66%    527
+  75%    532
+  80%    538
+  90%   1360
+  95%   1847
+  98%   1908
+  99%   1916
+ 100%   1932 (longest request)
+##### End benchmark for 190 concurrent users and 1000 requests #####
+##### Start benchmark for 190 concurrent users and 1000 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      190
+Time taken for tests:   3.856 seconds
+Complete requests:      1000
+Failed requests:        0
+Total transferred:      9737400 bytes
+HTML transferred:       9506000 bytes
+Requests per second:    259.32 [#/sec] (mean)
+Time per request:       732.678 [ms] (mean)
+Time per request:       3.856 [ms] (mean, across all concurrent requests)
+Transfer rate:          2465.95 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0   18 129.1      0    1002
+Processing:    37  637 650.0    526    3849
+Waiting:       34  634 650.1    524    3848
+Total:         39  655 663.3    527    3855
+
+Percentage of the requests served within a certain time (ms)
+  50%    527
+  66%    533
+  75%    539
+  80%    544
+  90%    563
+  95%   1725
+  98%   3798
+  99%   3836
+ 100%   3855 (longest request)
+##### End benchmark for 190 concurrent users and 1500 requests #####
+##### Start benchmark for 190 concurrent users and 1500 requests #####
+This is ApacheBench, Version 2.3 <$Revision: 1604373 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ccnsb06-iiith.vlabs.ac.in (be patient)
+
+
+Server Software:        Apache/2.2.22
+Server Hostname:        ccnsb06-iiith.vlabs.ac.in
+Server Port:            80
+
+Document Path:          /
+Document Length:        9506 bytes
+
+Concurrency Level:      190
+Time taken for tests:   6.618 seconds
+Complete requests:      1500
+Failed requests:        0
+Total transferred:      14606360 bytes
+HTML transferred:       14259000 bytes
+Requests per second:    226.66 [#/sec] (mean)
+Time per request:       838.278 [ms] (mean)
+Time per request:       4.412 [ms] (mean, across all concurrent requests)
+Transfer rate:          2155.34 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0   29 198.1      0    3010
+Processing:    38  703 966.9    552    6614
+Waiting:       33  700 966.9    549    6612
+Total:         40  731 986.8    554    6615
+
+Percentage of the requests served within a certain time (ms)
+  50%    554
+  66%    574
+  75%    581
+  80%    587
+  90%    610
+  95%   1553
+  98%   6469
+  99%   6578
+ 100%   6615 (longest request)
+##### End benchmark for 190 concurrent users and 2000 requests #####

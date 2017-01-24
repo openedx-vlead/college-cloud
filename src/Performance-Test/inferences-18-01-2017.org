@@ -1,0 +1,242 @@
+#+Title: Inference from the Apache benchmark test 
+#+Date: January 18, 2017
+#+Author: VLEAD Systems 
+
+* Introduction 
+  This document refers the raw data fetched from the Apache benchmark test.
+
+* Test Procedure and details 
+  + Tool used :: Apache benchmark 
+  + Test Subject :: Open edX on portable media and Host Server
+  + No of labs running :: 5 Labs are running and rest of them were turned off.
+  + Apache benchmark simulates requests to a particular URL or web page. 
+  + Sample command 
+    #+BEGIN_SRC 
+    ab -c 10 -n 500 http://open-edx.vlabs.ac.in/
+    #+END_SRC
+  + The above command throws 500 total requests to the URL http://open-edx.vlabs.ac.in
+  + Here, -c is the number of concurrent requests at an instance of time 
+  + Here, -n is the number of total requests made to the server.
+
+* Understanding the sample results -
+  + Command used 
+    #+BEGIN_SRC 
+    ab -c 10 -n 1000 http://open-edx.vlabs.ac.in
+    #+END_SRC
+  + Sample output snippet obtained . 
+    #+BEGIN_SRC
+    Concurrency Level:      10
+    Time taken for tests:   9.256 seconds
+    Complete requests:      1000
+    Failed requests:        0
+    Requests per second:    108.04 [#/sec] (mean)
+    Time per request:       92.559 [ms] (mean)
+    Time per request:       9.256 [ms] (mean, across all concurrent requests)
+    #+END_SRC
+  + Explaination for the above terms ::
+    + Concurrency level ::
+         Number of requests at an instance of time. This can be
+         considered as number of users making a request at an instance
+         of time, where each user make a single request.
+    + Time taken for tests ::
+         This is the time taken to complete the test. 
+         = Time at which last request was made - Time at which first request was made.
+    + Complete Requests ::
+      Number of requests which resulted into 200,201,404 error code. 
+    + Failed Requests ::
+      Number of requests which resulted into 503 - Service not available.
+    + Time per request (1) ::
+      Mean time taken to serve one set of concurrent request.
+      For example if c = 10 and n = 100, we have 10 concurrent sets.
+    + Time per request (2) ::
+      Mean time taken to server one request out of concurrency set.
+      For example, if c = 10, then it is one concurrency set.
+  
+* Observation Table
+** Problem solving lab
+*** CPU and Memory usage
+| S.No | Average | Concurrency Level | Number of Completed requests |    RAM |   CPU |
+|------+---------+-------------------+------------------------------+--------+-------|
+|    1 | Min     |                10 |                          500 | 63.62% |  1.44% |
+|    2 | Max     |               190 |                         1500 | 63.93% | 12.77% |
+
+*** Performance monitoring
+
+| S.No | Concurrency Level | Number of Completed requests | Time per request concurrency set (in ms) | Time per request (in ms) |
+|------+-------------------+------------------------------+------------------------------------------+--------------------------|
+|    1 |                10 |                         1500 |                                   10.863 |                    1.086 |
+|    2 |                20 |                         1500 |                                   21.732 |                    1.087 |
+|    3 |                30 |                         1500 |                                   32.631 |                    1.088 |
+|    4 |                40 |                         1500 |                                   43.476 |                    1.087 |
+|    5 |                50 |                         1500 |                                   54.399 |                    1.088 |
+|    6 |                60 |                         1500 |                                   65.245 |                    1.087 |
+|    7 |                70 |                         1500 |                                   76.167 |                    1.088 |
+|    8 |                80 |                         1500 |                                   87.104 |                    1.089 |
+|    9 |                90 |                         1500 |                                   97.987 |                    1.089 |
+|   10 |               100 |                         1500 |                                  108.958 |                    1.090 |
+|   11 |               110 |                         1500 |                                  119.901 |                    1.090 |
+|   12 |               120 |                         1500 |                                  130.711 |                    1.089 |
+|   13 |               130 |                         1500 |                                  141.569 |                    1.089 |
+|   14 |               140 |                         1500 |                                  152.476 |                    1.089 |
+|   15 |               150 |                         1500 |                                  164.347 |                    1.096 |
+|   16 |               160 |                         1500 |                                  176.213 |                    1.101 |
+|   17 |               170 |                         1500 |                                  190.723 |                    1.122 |
+|   18 |               180 |                         1500 |                                  205.232 |                    1.140 |
+|   19 |               190 |                         1500 |                                  213.899 |                    1.126 |
+
+** Image processing lab
+*** CPU and Memory usage
+| S.No | Average | Concurrency Level | Number of Completed requests |    RAM |   CPU |
+|------+---------+-------------------+------------------------------+--------+-------|
+|    1 | Min     |                10 |                          500 | 62.68% |  4.09% |
+|    2 | Max     |               190 |                         1500 | 62.97% | 13.59% |
+
+*** Performance monitoring
+| S.No | Concurrency Level | Number of Completed requests | Time per request concurrency set (in ms) | Time per request (in ms) |
+|------+-------------------+------------------------------+------------------------------------------+--------------------------|
+|    1 |                10 |                         1500 |                                   11.988 |                    1.199 |
+|    2 |                20 |                         1500 |                                   23.981 |                    1.199 |
+|    3 |                30 |                         1500 |                                   35.977 |                    1.199 |
+|    4 |                40 |                         1500 |                                   47.959 |                    1.199 |
+|    5 |                50 |                         1500 |                                   59.982 |                    1.200 |
+|    6 |                60 |                         1500 |                                   72.000 |                    1.200 |
+|    7 |                70 |                         1500 |                                   84.012 |                    1.200 |
+|    8 |                80 |                         1500 |                                   96.096 |                    1.201 |
+|    9 |                90 |                         1500 |                                  107.993 |                    1.200 |
+|   10 |               100 |                         1500 |                                  120.133 |                    1.201 |
+|   11 |               110 |                         1500 |                                  132.218 |                    1.202 |
+|   12 |               120 |                         1500 |                                  144.198 |                    1.202 |
+|   13 |               130 |                         1500 |                                  156.264 |                    1.202 |
+|   14 |               140 |                         1500 |                                  168.072 |                    1.201 |
+|   15 |               150 |                         1500 |                                  180.145 |                    1.201 |
+|   16 |               160 |                         1500 |                                  194.478 |                    1.215 |
+|   17 |               170 |                         1500 |                                  372.039 |                    2.188 |
+|   18 |               180 |                         1500 |                                  217.094 |                    1.206 |
+|   19 |               190 |                         1500 |                                  228.344 |                    1.202 |
+
+** Physical chemistry lab
+*** CPU and Memory usage
+| S.No | Average | Concurrency Level | Number of Completed requests |    RAM |   CPU |
+|------+---------+-------------------+------------------------------+--------+-------|
+|    1 | Min     |                10 |                          500 | 63.37% |  1.69% |
+|    2 | Max     |               190 |                         1500 | 63.93% | 13.38% |
+
+*** Performance monitoring
+| S.No | Concurrency Level | Number of Completed requests | Time per request concurrency set (in ms) | Time per request (in ms) |
+|------+-------------------+------------------------------+------------------------------------------+--------------------------|
+|    1 |                10 |                         1500 |                                   39.412 |                    3.941 |
+|    2 |                20 |                         1500 |                                   77.064 |                    3.853 |
+|    3 |                30 |                         1500 |                                  115.183 |                    3.839 |
+|    4 |                40 |                         1500 |                                  153.755 |                    3.844 |
+|    5 |                50 |                         1500 |                                  201.654 |                    4.033 |
+|    6 |                60 |                         1500 |                                  236.109 |                    3.935 |
+|    7 |                70 |                         1500 |                                  269.272 |                    3.847 |
+|    8 |                80 |                         1500 |                                  307.872 |                    3.848 |
+|    9 |                90 |                         1500 |                                  346.628 |                    3.851 |
+|   10 |               100 |                         1500 |                                  407.884 |                    4.079 |
+|   11 |               110 |                         1500 |                                  423.818 |                    3.853 |
+|   12 |               120 |                         1500 |                                  462.818 |                    3.857 |
+|   13 |               130 |                         1500 |                                  503.197 |                    3.871 |
+|   14 |               140 |                         1500 |                                  560.005 |                    4.000 |
+|   15 |               150 |                         1500 |                                  605.657 |                    4.038 |
+|   16 |               160 |                         1500 |                                  716.323 |                    4.477 |
+|   17 |               170 |                         1500 |                                  767.478 |                    4.515 |
+|   18 |               180 |                         1500 |                                  821.024 |                    4.561 |
+|   19 |               190 |                         1500 |                                  838.278 |                    4.412 |
+
+** Computer programming lab
+*** CPU and Memory usage
+| S.No | Average | Concurrency Level | Number of Completed requests |    RAM |   CPU |
+|------+---------+-------------------+------------------------------+--------+-------|
+|    1 | Min     |                10 |                          500 | 62.18% |  1.19% |
+|    2 | Max     |               190 |                         1500 | 62.71% | 14.22% |
+
+*** Performance monitoring
+| S.No | Concurrency Level | Number of Completed requests | Time per request concurrency set (in ms) | Time per request (in ms) |
+|------+-------------------+------------------------------+------------------------------------------+--------------------------|
+|    1 |                10 |                         1500 |                                   12.693 |                    1.269 |
+|    2 |                20 |                         1500 |                                   25.388 |                    1.269 |
+|    3 |                30 |                         1500 |                                   38.084 |                    1.269 |
+|    4 |                40 |                         1500 |                                   50.793 |                    1.270 |
+|    5 |                50 |                         1500 |                                   63.527 |                    1.271 |
+|    6 |                60 |                         1500 |                                   76.243 |                    1.271 |
+|    7 |                70 |                         1500 |                                   88.968 |                    1.271 |
+|    8 |                80 |                         1500 |                                  101.839 |                    1.273 |
+|    9 |                90 |                         1500 |                                  114.442 |                    1.272 |
+|   10 |               100 |                         1500 |                                  127.201 |                    1.272 |
+|   11 |               110 |                         1500 |                                  139.940 |                    1.272 |
+|   12 |               120 |                         1500 |                                  152.690 |                    1.272 |
+|   13 |               130 |                         1500 |                                  165.479 |                    1.273 |
+|   14 |               140 |                         1500 |                                  178.151 |                    1.273 |
+|   15 |               150 |                         1500 |                                  190.851 |                    1.272 |
+|   16 |               160 |                         1500 |                                  203.657 |                    1.273 |
+|   17 |               170 |                         1000 |                                  287.683 |                    1.692 |
+|   18 |               180 |                         1500 |                                  584.256 |                    3.246 |
+|   19 |               190 |                         1000 |                                  325.072 |                    1.711 |
+** Data structures lab
+*** CPU and Memory usage
+| S.No | Average | Concurrency Level | Number of Completed requests |    RAM |   CPU |
+|------+---------+-------------------+------------------------------+--------+-------|
+|    1 | Min     |                10 |                          500 | 62.42% |  2.82% |
+|    2 | Max     |               190 |                         1500 | 62.83% | 15.42% |
+
+*** Performance monitoring
+
+| S.No | Concurrency Level | Number of Completed requests | Time per request concurrency set (in ms) | Time per request (in ms) |
+|------+-------------------+------------------------------+------------------------------------------+--------------------------|
+|    1 |                10 |                         1500 |                                   10.895 |                    1.089 |
+|    2 |                20 |                         1500 |                                   21.795 |                    1.090 |
+|    3 |                30 |                         1500 |                                   32.700 |                    1.090 |
+|    4 |                40 |                         1500 |                                   43.618 |                    1.090 |
+|    5 |                50 |                         1500 |                                   54.535 |                    1.091 |
+|    6 |                60 |                         1500 |                                   65.447 |                    1.091 |
+|    7 |                70 |                         1500 |                                   76.381 |                    1.091 |
+|    8 |                80 |                         1500 |                                   87.322 |                    1.092 |
+|    9 |                90 |                         1500 |                                   98.252 |                    1.092 |
+|   10 |               100 |                         1500 |                                  109.205 |                    1.092 |
+|   11 |               110 |                         1500 |                                  120.217 |                    1.093 |
+|   12 |               120 |                         1500 |                                  130.970 |                    1.091 |
+|   13 |               130 |                         1500 |                                  142.101 |                    1.093 |
+|   14 |               140 |                         1500 |                                  153.062 |                    1.093 |
+|   15 |               150 |                         1500 |                                  163.988 |                    1.093 |
+|   16 |               160 |                         1500 |                                  177.273 |                    1.108 |
+|   17 |               170 |                         1500 |                                  195.895 |                    1.152 |
+|   18 |               180 |                         1500 |                                  207.660 |                    1.154 |
+|   19 |               190 |                         1500 |                                  221.693 |                    1.167 |
+** Open-edX platform
+*** Localhost of CPU and Memory usage
+| S.No | Average | Concurrency Level | Number of Completed requests |    RAM |   CPU |
+|------+---------+-------------------+------------------------------+--------+-------|
+|    1 | Min     |                10 |                          500 | 81.17% |  19.16% |
+|    2 | Max     |               190 |                         1500 | 82.19% | 31.77% |
+
+*** Open-edX of CPU and Memory usage
+| S.No | Average | Concurrency Level | Number of Completed requests |    RAM |   CPU |
+|------+---------+-------------------+------------------------------+--------+-------|
+|    1 | Min     |                10 |                          500 | 78.88% |  10.30% |
+|    2 | Max     |               190 |                         1500 | 79.85% | 17.94% |
+
+*** Performance monitoring
+| S.No | Concurrency Level | Number of Completed requests | Time per request concurrency set (in ms) | Time per request (in ms) |
+|------+-------------------+------------------------------+------------------------------------------+--------------------------|
+|    1 |                10 |                         1500 |                                   92.656 |                    9.266 |
+|    2 |                20 |                         1500 |                                  172.775 |                    8.639 |
+|    3 |                30 |                         1500 |                                  256.801 |                    8.560 |
+|    4 |                40 |                         1500 |                                  342.307 |                    8.558 |
+|    5 |                50 |                         1500 |                                  428.196 |                    8.564 |
+|    6 |                60 |                         1500 |                                  513.708 |                    8.562 |
+|    7 |                70 |                         1500 |                                  607.754 |                    8.682 |
+|    8 |                80 |                         1500 |                                  684.976 |                    8.562 |
+|    9 |                90 |                         1500 |                                  769.962 |                    8.555 |
+|   10 |               100 |                         1500 |                                  855.787 |                    8.558 |
+|   11 |               110 |                         1500 |                                  942.690 |                    8.570 |
+|   12 |               120 |                         1500 |                                 1028.701 |                    8.573 |
+|   13 |               130 |                         1500 |                                 1113.021 |                    8.562 |
+|   14 |               140 |                         1500 |                                 1199.827 |                    8.570 |
+|   15 |               150 |                         1500 |                                 1284.646 |                    8.564 |
+|   16 |               160 |                         1500 |                                 1370.555 |                    8.566 |
+|   17 |               170 |                         1500 |                                 1455.910 |                    8.564 |
+|   18 |               180 |                         1500 |                                 1542.066 |                    8.567 |
+|   19 |               190 |                         1500 |                                 1628.721 |                    8.572 |
+
+

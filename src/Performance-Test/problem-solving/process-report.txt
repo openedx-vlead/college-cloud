@@ -1,0 +1,456 @@
+##### Start benchmark for 10 concurrent users and 500 requests #####
+Concurrency Level:      10
+Time taken for tests:   0.973 seconds
+Complete requests:      500
+Failed requests:        0
+Time per request:       19.459 [ms] (mean)
+Time per request:       1.946 [ms] (mean, across all concurrent requests)
+##### End benchmark for 10 concurrent users and 500 requests #####
+##### Start benchmark for 10 concurrent users and 1000 requests #####
+Concurrency Level:      10
+Time taken for tests:   1.087 seconds
+Complete requests:      1000
+Failed requests:        0
+Time per request:       10.873 [ms] (mean)
+Time per request:       1.087 [ms] (mean, across all concurrent requests)
+##### End benchmark for 10 concurrent users and 1000 requests #####
+##### Start benchmark for 10 concurrent users and 1500 requests #####
+Concurrency Level:      10
+Time taken for tests:   1.629 seconds
+Complete requests:      1500
+Failed requests:        0
+Time per request:       10.863 [ms] (mean)
+Time per request:       1.086 [ms] (mean, across all concurrent requests)
+##### End benchmark for 10 concurrent users and 1500 requests #####
+##### Start benchmark for 20 concurrent users and 500 requests #####
+Concurrency Level:      20
+Time taken for tests:   0.545 seconds
+Complete requests:      500
+Failed requests:        0
+Time per request:       21.791 [ms] (mean)
+Time per request:       1.090 [ms] (mean, across all concurrent requests)
+##### End benchmark for 20 concurrent users and 500 requests #####
+##### Start benchmark for 20 concurrent users and 1000 requests #####
+Concurrency Level:      20
+Time taken for tests:   1.087 seconds
+Complete requests:      1000
+Failed requests:        0
+Time per request:       21.740 [ms] (mean)
+Time per request:       1.087 [ms] (mean, across all concurrent requests)
+##### End benchmark for 20 concurrent users and 1000 requests #####
+##### Start benchmark for 20 concurrent users and 1500 requests #####
+Concurrency Level:      20
+Time taken for tests:   1.630 seconds
+Complete requests:      1500
+Failed requests:        0
+Time per request:       21.732 [ms] (mean)
+Time per request:       1.087 [ms] (mean, across all concurrent requests)
+##### End benchmark for 20 concurrent users and 1500 requests #####
+##### Start benchmark for 30 concurrent users and 500 requests #####
+Concurrency Level:      30
+Time taken for tests:   0.544 seconds
+Complete requests:      500
+Failed requests:        0
+Time per request:       32.655 [ms] (mean)
+Time per request:       1.089 [ms] (mean, across all concurrent requests)
+##### End benchmark for 30 concurrent users and 500 requests #####
+##### Start benchmark for 30 concurrent users and 1000 requests #####
+Concurrency Level:      30
+Time taken for tests:   1.088 seconds
+Complete requests:      1000
+Failed requests:        0
+Time per request:       32.652 [ms] (mean)
+Time per request:       1.088 [ms] (mean, across all concurrent requests)
+##### End benchmark for 30 concurrent users and 1000 requests #####
+##### Start benchmark for 30 concurrent users and 1500 requests #####
+Concurrency Level:      30
+Time taken for tests:   1.632 seconds
+Complete requests:      1500
+Failed requests:        0
+Time per request:       32.631 [ms] (mean)
+Time per request:       1.088 [ms] (mean, across all concurrent requests)
+##### End benchmark for 30 concurrent users and 1500 requests #####
+##### Start benchmark for 40 concurrent users and 500 requests #####
+Concurrency Level:      40
+Time taken for tests:   0.546 seconds
+Complete requests:      500
+Failed requests:        0
+Time per request:       43.676 [ms] (mean)
+Time per request:       1.092 [ms] (mean, across all concurrent requests)
+##### End benchmark for 40 concurrent users and 500 requests #####
+##### Start benchmark for 40 concurrent users and 1000 requests #####
+Concurrency Level:      40
+Time taken for tests:   1.089 seconds
+Complete requests:      1000
+Failed requests:        0
+Time per request:       43.542 [ms] (mean)
+Time per request:       1.089 [ms] (mean, across all concurrent requests)
+##### End benchmark for 40 concurrent users and 1000 requests #####
+##### Start benchmark for 40 concurrent users and 1500 requests #####
+Concurrency Level:      40
+Time taken for tests:   1.630 seconds
+Complete requests:      1500
+Failed requests:        0
+Time per request:       43.476 [ms] (mean)
+Time per request:       1.087 [ms] (mean, across all concurrent requests)
+##### End benchmark for 40 concurrent users and 1500 requests #####
+##### Start benchmark for 50 concurrent users and 500 requests #####
+Concurrency Level:      50
+Time taken for tests:   0.546 seconds
+Complete requests:      500
+Failed requests:        0
+Time per request:       54.612 [ms] (mean)
+Time per request:       1.092 [ms] (mean, across all concurrent requests)
+##### End benchmark for 50 concurrent users and 500 requests #####
+##### Start benchmark for 50 concurrent users and 1000 requests #####
+Concurrency Level:      50
+Time taken for tests:   1.088 seconds
+Complete requests:      1000
+Failed requests:        0
+Time per request:       54.385 [ms] (mean)
+Time per request:       1.088 [ms] (mean, across all concurrent requests)
+##### End benchmark for 50 concurrent users and 1000 requests #####
+##### Start benchmark for 50 concurrent users and 1500 requests #####
+Concurrency Level:      50
+Time taken for tests:   1.632 seconds
+Complete requests:      1500
+Failed requests:        0
+Time per request:       54.399 [ms] (mean)
+Time per request:       1.088 [ms] (mean, across all concurrent requests)
+##### End benchmark for 50 concurrent users and 1500 requests #####
+##### Start benchmark for 60 concurrent users and 500 requests #####
+Concurrency Level:      60
+Time taken for tests:   0.546 seconds
+Complete requests:      500
+Failed requests:        0
+Time per request:       65.550 [ms] (mean)
+Time per request:       1.092 [ms] (mean, across all concurrent requests)
+##### End benchmark for 60 concurrent users and 500 requests #####
+##### Start benchmark for 60 concurrent users and 1000 requests #####
+Concurrency Level:      60
+Time taken for tests:   1.090 seconds
+Complete requests:      1000
+Failed requests:        0
+Time per request:       65.383 [ms] (mean)
+Time per request:       1.090 [ms] (mean, across all concurrent requests)
+##### End benchmark for 60 concurrent users and 1000 requests #####
+##### Start benchmark for 60 concurrent users and 1500 requests #####
+Concurrency Level:      60
+Time taken for tests:   1.631 seconds
+Complete requests:      1500
+Failed requests:        0
+Time per request:       65.245 [ms] (mean)
+Time per request:       1.087 [ms] (mean, across all concurrent requests)
+##### End benchmark for 60 concurrent users and 1500 requests #####
+##### Start benchmark for 70 concurrent users and 500 requests #####
+Concurrency Level:      70
+Time taken for tests:   0.545 seconds
+Complete requests:      500
+Failed requests:        0
+Time per request:       76.293 [ms] (mean)
+Time per request:       1.090 [ms] (mean, across all concurrent requests)
+##### End benchmark for 70 concurrent users and 500 requests #####
+##### Start benchmark for 70 concurrent users and 1000 requests #####
+Concurrency Level:      70
+Time taken for tests:   1.090 seconds
+Complete requests:      1000
+Failed requests:        0
+Time per request:       76.271 [ms] (mean)
+Time per request:       1.090 [ms] (mean, across all concurrent requests)
+##### End benchmark for 70 concurrent users and 1000 requests #####
+##### Start benchmark for 70 concurrent users and 1500 requests #####
+Concurrency Level:      70
+Time taken for tests:   1.632 seconds
+Complete requests:      1500
+Failed requests:        0
+Time per request:       76.167 [ms] (mean)
+Time per request:       1.088 [ms] (mean, across all concurrent requests)
+##### End benchmark for 70 concurrent users and 1500 requests #####
+##### Start benchmark for 80 concurrent users and 500 requests #####
+Concurrency Level:      80
+Time taken for tests:   0.547 seconds
+Complete requests:      500
+Failed requests:        0
+Time per request:       87.520 [ms] (mean)
+Time per request:       1.094 [ms] (mean, across all concurrent requests)
+##### End benchmark for 80 concurrent users and 500 requests #####
+##### Start benchmark for 80 concurrent users and 1000 requests #####
+Concurrency Level:      80
+Time taken for tests:   1.090 seconds
+Complete requests:      1000
+Failed requests:        0
+Time per request:       87.198 [ms] (mean)
+Time per request:       1.090 [ms] (mean, across all concurrent requests)
+##### End benchmark for 80 concurrent users and 1000 requests #####
+##### Start benchmark for 80 concurrent users and 1500 requests #####
+Concurrency Level:      80
+Time taken for tests:   1.633 seconds
+Complete requests:      1500
+Failed requests:        0
+Time per request:       87.104 [ms] (mean)
+Time per request:       1.089 [ms] (mean, across all concurrent requests)
+##### End benchmark for 80 concurrent users and 1500 requests #####
+##### Start benchmark for 90 concurrent users and 500 requests #####
+Concurrency Level:      90
+Time taken for tests:   0.546 seconds
+Complete requests:      500
+Failed requests:        0
+Time per request:       98.350 [ms] (mean)
+Time per request:       1.093 [ms] (mean, across all concurrent requests)
+##### End benchmark for 90 concurrent users and 500 requests #####
+##### Start benchmark for 90 concurrent users and 1000 requests #####
+Concurrency Level:      90
+Time taken for tests:   1.090 seconds
+Complete requests:      1000
+Failed requests:        0
+Time per request:       98.134 [ms] (mean)
+Time per request:       1.090 [ms] (mean, across all concurrent requests)
+##### End benchmark for 90 concurrent users and 1000 requests #####
+##### Start benchmark for 90 concurrent users and 1500 requests #####
+Concurrency Level:      90
+Time taken for tests:   1.633 seconds
+Complete requests:      1500
+Failed requests:        0
+Time per request:       97.987 [ms] (mean)
+Time per request:       1.089 [ms] (mean, across all concurrent requests)
+##### End benchmark for 90 concurrent users and 1500 requests #####
+##### Start benchmark for 100 concurrent users and 500 requests #####
+Concurrency Level:      100
+Time taken for tests:   0.547 seconds
+Complete requests:      500
+Failed requests:        0
+Time per request:       109.499 [ms] (mean)
+Time per request:       1.095 [ms] (mean, across all concurrent requests)
+##### End benchmark for 100 concurrent users and 500 requests #####
+##### Start benchmark for 100 concurrent users and 1000 requests #####
+Concurrency Level:      100
+Time taken for tests:   1.089 seconds
+Complete requests:      1000
+Failed requests:        0
+Time per request:       108.895 [ms] (mean)
+Time per request:       1.089 [ms] (mean, across all concurrent requests)
+##### End benchmark for 100 concurrent users and 1000 requests #####
+##### Start benchmark for 100 concurrent users and 1500 requests #####
+Concurrency Level:      100
+Time taken for tests:   1.634 seconds
+Complete requests:      1500
+Failed requests:        0
+Time per request:       108.958 [ms] (mean)
+Time per request:       1.090 [ms] (mean, across all concurrent requests)
+##### End benchmark for 100 concurrent users and 1500 requests #####
+##### Start benchmark for 110 concurrent users and 500 requests #####
+Concurrency Level:      110
+Time taken for tests:   0.549 seconds
+Complete requests:      500
+Failed requests:        0
+Time per request:       120.682 [ms] (mean)
+Time per request:       1.097 [ms] (mean, across all concurrent requests)
+##### End benchmark for 110 concurrent users and 500 requests #####
+##### Start benchmark for 110 concurrent users and 1000 requests #####
+Concurrency Level:      110
+Time taken for tests:   1.089 seconds
+Complete requests:      1000
+Failed requests:        0
+Time per request:       119.830 [ms] (mean)
+Time per request:       1.089 [ms] (mean, across all concurrent requests)
+##### End benchmark for 110 concurrent users and 1000 requests #####
+##### Start benchmark for 110 concurrent users and 1500 requests #####
+Concurrency Level:      110
+Time taken for tests:   1.635 seconds
+Complete requests:      1500
+Failed requests:        0
+Time per request:       119.901 [ms] (mean)
+Time per request:       1.090 [ms] (mean, across all concurrent requests)
+##### End benchmark for 110 concurrent users and 1500 requests #####
+##### Start benchmark for 120 concurrent users and 500 requests #####
+Concurrency Level:      120
+Time taken for tests:   0.549 seconds
+Complete requests:      500
+Failed requests:        0
+Time per request:       131.699 [ms] (mean)
+Time per request:       1.097 [ms] (mean, across all concurrent requests)
+##### End benchmark for 120 concurrent users and 500 requests #####
+##### Start benchmark for 120 concurrent users and 1000 requests #####
+Concurrency Level:      120
+Time taken for tests:   1.090 seconds
+Complete requests:      1000
+Failed requests:        0
+Time per request:       130.753 [ms] (mean)
+Time per request:       1.090 [ms] (mean, across all concurrent requests)
+##### End benchmark for 120 concurrent users and 1000 requests #####
+##### Start benchmark for 120 concurrent users and 1500 requests #####
+Concurrency Level:      120
+Time taken for tests:   1.634 seconds
+Complete requests:      1500
+Failed requests:        0
+Time per request:       130.711 [ms] (mean)
+Time per request:       1.089 [ms] (mean, across all concurrent requests)
+##### End benchmark for 120 concurrent users and 1500 requests #####
+##### Start benchmark for 130 concurrent users and 500 requests #####
+Concurrency Level:      130
+Time taken for tests:   0.549 seconds
+Complete requests:      500
+Failed requests:        0
+Time per request:       142.812 [ms] (mean)
+Time per request:       1.099 [ms] (mean, across all concurrent requests)
+##### End benchmark for 130 concurrent users and 500 requests #####
+##### Start benchmark for 130 concurrent users and 1000 requests #####
+Concurrency Level:      130
+Time taken for tests:   1.093 seconds
+Complete requests:      1000
+Failed requests:        0
+Time per request:       142.065 [ms] (mean)
+Time per request:       1.093 [ms] (mean, across all concurrent requests)
+##### End benchmark for 130 concurrent users and 1000 requests #####
+##### Start benchmark for 130 concurrent users and 1500 requests #####
+Concurrency Level:      130
+Time taken for tests:   1.633 seconds
+Complete requests:      1500
+Failed requests:        0
+Time per request:       141.569 [ms] (mean)
+Time per request:       1.089 [ms] (mean, across all concurrent requests)
+##### End benchmark for 130 concurrent users and 1500 requests #####
+##### Start benchmark for 140 concurrent users and 500 requests #####
+Concurrency Level:      140
+Time taken for tests:   0.547 seconds
+Complete requests:      500
+Failed requests:        0
+Time per request:       153.215 [ms] (mean)
+Time per request:       1.094 [ms] (mean, across all concurrent requests)
+##### End benchmark for 140 concurrent users and 500 requests #####
+##### Start benchmark for 140 concurrent users and 1000 requests #####
+Concurrency Level:      140
+Time taken for tests:   1.091 seconds
+Complete requests:      1000
+Failed requests:        0
+Time per request:       152.732 [ms] (mean)
+Time per request:       1.091 [ms] (mean, across all concurrent requests)
+##### End benchmark for 140 concurrent users and 1000 requests #####
+##### Start benchmark for 140 concurrent users and 1500 requests #####
+Concurrency Level:      140
+Time taken for tests:   1.634 seconds
+Complete requests:      1500
+Failed requests:        0
+Time per request:       152.476 [ms] (mean)
+Time per request:       1.089 [ms] (mean, across all concurrent requests)
+##### End benchmark for 140 concurrent users and 1500 requests #####
+##### Start benchmark for 150 concurrent users and 500 requests #####
+Concurrency Level:      150
+Time taken for tests:   0.548 seconds
+Complete requests:      500
+Failed requests:        0
+Time per request:       164.507 [ms] (mean)
+Time per request:       1.097 [ms] (mean, across all concurrent requests)
+##### End benchmark for 150 concurrent users and 500 requests #####
+##### Start benchmark for 150 concurrent users and 1000 requests #####
+Concurrency Level:      150
+Time taken for tests:   1.091 seconds
+Complete requests:      1000
+Failed requests:        0
+Time per request:       163.608 [ms] (mean)
+Time per request:       1.091 [ms] (mean, across all concurrent requests)
+##### End benchmark for 150 concurrent users and 1000 requests #####
+##### Start benchmark for 150 concurrent users and 1500 requests #####
+Concurrency Level:      150
+Time taken for tests:   1.643 seconds
+Complete requests:      1500
+Failed requests:        0
+Time per request:       164.347 [ms] (mean)
+Time per request:       1.096 [ms] (mean, across all concurrent requests)
+##### End benchmark for 150 concurrent users and 1500 requests #####
+##### Start benchmark for 160 concurrent users and 500 requests #####
+Concurrency Level:      160
+Time taken for tests:   0.549 seconds
+Complete requests:      500
+Failed requests:        0
+Time per request:       175.687 [ms] (mean)
+Time per request:       1.098 [ms] (mean, across all concurrent requests)
+##### End benchmark for 160 concurrent users and 500 requests #####
+##### Start benchmark for 160 concurrent users and 1000 requests #####
+Concurrency Level:      160
+Time taken for tests:   1.682 seconds
+Complete requests:      1000
+Failed requests:        0
+Time per request:       269.118 [ms] (mean)
+Time per request:       1.682 [ms] (mean, across all concurrent requests)
+##### End benchmark for 160 concurrent users and 1000 requests #####
+##### Start benchmark for 160 concurrent users and 1500 requests #####
+Concurrency Level:      160
+Time taken for tests:   1.652 seconds
+Complete requests:      1500
+Failed requests:        0
+Time per request:       176.213 [ms] (mean)
+Time per request:       1.101 [ms] (mean, across all concurrent requests)
+##### End benchmark for 160 concurrent users and 1500 requests #####
+##### Start benchmark for 170 concurrent users and 500 requests #####
+Concurrency Level:      170
+Time taken for tests:   0.550 seconds
+Complete requests:      500
+Failed requests:        0
+Time per request:       187.014 [ms] (mean)
+Time per request:       1.100 [ms] (mean, across all concurrent requests)
+##### End benchmark for 170 concurrent users and 500 requests #####
+##### Start benchmark for 170 concurrent users and 1000 requests #####
+Concurrency Level:      170
+Time taken for tests:   1.690 seconds
+Complete requests:      1000
+Failed requests:        0
+Time per request:       287.350 [ms] (mean)
+Time per request:       1.690 [ms] (mean, across all concurrent requests)
+##### End benchmark for 170 concurrent users and 1000 requests #####
+##### Start benchmark for 170 concurrent users and 1500 requests #####
+Concurrency Level:      170
+Time taken for tests:   1.683 seconds
+Complete requests:      1500
+Failed requests:        0
+Time per request:       190.723 [ms] (mean)
+Time per request:       1.122 [ms] (mean, across all concurrent requests)
+##### End benchmark for 170 concurrent users and 1500 requests #####
+##### Start benchmark for 180 concurrent users and 500 requests #####
+Concurrency Level:      180
+Time taken for tests:   0.550 seconds
+Complete requests:      500
+Failed requests:        0
+Time per request:       197.860 [ms] (mean)
+Time per request:       1.099 [ms] (mean, across all concurrent requests)
+##### End benchmark for 180 concurrent users and 500 requests #####
+##### Start benchmark for 180 concurrent users and 1000 requests #####
+Concurrency Level:      180
+Time taken for tests:   1.704 seconds
+Complete requests:      1000
+Failed requests:        0
+Time per request:       306.752 [ms] (mean)
+Time per request:       1.704 [ms] (mean, across all concurrent requests)
+##### End benchmark for 180 concurrent users and 1000 requests #####
+##### Start benchmark for 180 concurrent users and 1500 requests #####
+Concurrency Level:      180
+Time taken for tests:   1.710 seconds
+Complete requests:      1500
+Failed requests:        0
+Time per request:       205.232 [ms] (mean)
+Time per request:       1.140 [ms] (mean, across all concurrent requests)
+##### End benchmark for 180 concurrent users and 1500 requests #####
+##### Start benchmark for 190 concurrent users and 500 requests #####
+Concurrency Level:      190
+Time taken for tests:   0.548 seconds
+Complete requests:      500
+Failed requests:        0
+Time per request:       208.165 [ms] (mean)
+Time per request:       1.096 [ms] (mean, across all concurrent requests)
+##### End benchmark for 190 concurrent users and 500 requests #####
+##### Start benchmark for 190 concurrent users and 1000 requests #####
+Concurrency Level:      190
+Time taken for tests:   1.713 seconds
+Complete requests:      1000
+Failed requests:        0
+Time per request:       325.416 [ms] (mean)
+Time per request:       1.713 [ms] (mean, across all concurrent requests)
+##### End benchmark for 190 concurrent users and 1000 requests #####
+##### Start benchmark for 190 concurrent users and 1500 requests #####
+Concurrency Level:      190
+Time taken for tests:   1.689 seconds
+Complete requests:      1500
+Failed requests:        0
+Time per request:       213.899 [ms] (mean)
+Time per request:       1.126 [ms] (mean, across all concurrent requests)
+##### End benchmark for 190 concurrent users and 1500 requests #####
