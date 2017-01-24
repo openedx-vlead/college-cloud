@@ -1,0 +1,95 @@
+#+Title: Inference from the Apache benchmark test 
+#+Date: January 18, 2017
+#+Author: VLEAD Systems 
+
+* Introduction 
+  This document refers the raw data fetched from the Apache benchmark test.
+
+* Test Procedure and details 
+  + Tool used :: Apache benchmark 
+  + Test Subject :: localhost lab on portable media and Host Server
+  + Apache benchmark simulates requests to a particular URL or web page. 
+  + Sample command 
+    #+BEGIN_SRC 
+    ab -c 10 -n 500 http://cse19-iiith.vlabs.ac.in/
+    #+END_SRC
+  + The above command throws 500 total requests to the URL http://cse19-iiith.vlabs.ac.in/
+  + Here, -c is the number of concurrent requests at an instance of time 
+  + Here, -n is the number of total requests made to the server.
+
+* Understanding the sample results -
+  + Command used 
+    #+BEGIN_SRC 
+    ab -c 10 -n 1000 http://cse19-iiith.vlabs.ac.in/
+    #+END_SRC
+  + Sample output snippet obtained . 
+    #+BEGIN_SRC
+Concurrency Level:      10
+Time taken for tests:   1.200 seconds
+Complete requests:      1000
+Failed requests:        0
+Requests per second:    833.60 [#/sec] (mean)
+Time per request:       11.996 [ms] (mean)
+Time per request:       1.200 [ms] (mean, across all concurrent requests)
+    #+END_SRC
+  + Explaination for the above terms ::
+    + Concurrency level ::
+         Number of requests at an instance of time. This can be
+         considered as number of users making a request at an instance
+         of time, where each user make a single request.
+    + Time taken for tests ::
+         This is the time taken to complete the test. 
+         = Time at which last request was made - Time at which first request was made.
+    + Complete Requests ::
+      Number of requests which resulted into 200,201,404 error code. 
+    + Failed Requests ::
+      Number of requests which resulted into 503 - Service not available.
+    + Time per request (1) ::
+      Mean time taken to serve one set of concurrent request.
+      For example if c = 10 and n = 100, we have 10 concurrent sets.
+    + Time per request (2) ::
+      Mean time taken to server one request out of concurrency set.
+      For example, if c = 10, then it is one concurrency set.
+  
+* Observation Table
+** Image processing lab
+*** CPU and Memory usage
+| S.No | Average | Concurrency Level | Number of Completed requests |    RAM |   CPU |
+|------+---------+-------------------+------------------------------+--------+-------|
+|    1 | Min     |                10 |                          500 | 62.68% |  4.09% |
+|    2 | Max     |               190 |                         1500 | 62.97% | 13.59% |
+
+*** Performance monitoring
+| S.No | Concurrency Level | Number of Completed requests | Time per request concurrency set (in ms) | Time per request (in ms) |
+|------+-------------------+------------------------------+------------------------------------------+--------------------------|
+|    1 |                10 |                         1500 |                                   11.988 |                    1.199 |
+|    2 |                20 |                         1500 |                                   23.981 |                    1.199 |
+|    3 |                30 |                         1500 |                                   35.977 |                    1.199 |
+|    4 |                40 |                         1500 |                                   47.959 |                    1.199 |
+|    5 |                50 |                         1500 |                                   59.982 |                    1.200 |
+|    6 |                60 |                         1500 |                                   72.000 |                    1.200 |
+|    7 |                70 |                         1500 |                                   84.012 |                    1.200 |
+|    8 |                80 |                         1500 |                                   96.096 |                    1.201 |
+|    9 |                90 |                         1500 |                                  107.993 |                    1.200 |
+|   10 |               100 |                         1500 |                                  120.133 |                    1.201 |
+|   11 |               110 |                         1500 |                                  132.218 |                    1.202 |
+|   12 |               120 |                         1500 |                                  144.198 |                    1.202 |
+|   13 |               130 |                         1500 |                                  156.264 |                    1.202 |
+|   14 |               140 |                         1500 |                                  168.072 |                    1.201 |
+|   15 |               150 |                         1500 |                                  180.145 |                    1.201 |
+|   16 |               160 |                         1500 |                                  194.478 |                    1.215 |
+|   17 |               170 |                         1500 |                                  372.039 |                    2.188 |
+|   18 |               180 |                         1500 |                                  217.094 |                    1.206 |
+|   19 |               190 |                         1500 |                                  228.344 |                    1.202 |
+
+
+* Inference
+** Assumtions 
+  + Its quite likely that web caching at reverse proxy might have
+    resulted into faster response.
+  
+  + Based on the above output, it can be assured that 50/60 people can
+    use College cloud with enough performance.
+  + Using Sar command on host machine hosting labs, Memory (RAM) was
+    observed to be used only upto 62.97 %
+
