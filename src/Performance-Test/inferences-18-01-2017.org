@@ -52,6 +52,8 @@
       Mean time taken to server one request out of concurrency set.
       For example, if c = 10, then it is one concurrency set.
   
+* Raw Data 
+  + [[./open-edx/benchmark.txt]]
 * Observation Table
 ** Open-edX platform
 *** Localhost of CPU and Memory usage
