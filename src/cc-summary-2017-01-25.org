@@ -15,17 +15,17 @@
   MotherBoard wattage: 77 W
   #+END_EXAMPLE
 ** Performance  
-   LAN : TBD
+   LAN and Wi-fi Together: TBD
    |------------+-------------|
    | No.of Labs | No.of users |
    |------------+-------------|
    |      10-20 |     100-200 |
    |------------+-------------|
-   Wi-Fi : Tested 
+   Only Wi-Fi : Tested 
    |------------+-------------|
    | No.of Labs | No.of users |
    |------------+-------------|
-   |       5-10 |       30-40 |
+   |       5-10 |       20-30 |
    |------------+-------------|
 * Are we ready for the  Workshops with College Cloud?
   Yes, in 2 days, we will finish clubbing labs. It may increase
