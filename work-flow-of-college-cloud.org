@@ -1,0 +1,54 @@
+#+Title: Work flow of the College-cloud
+#+Author: VLEAD
+
+* College Cloud ( CC )
+  Use the college cloud to conduct the offline workshop. That means no
+  Internet is needed to access the labs.
+** User manual for setting up CC and steps for conducting workshop
+   [[./user-manual-for-college-cloud.org][User Manual]]
+* Instructions to the  workshop coordinator or sysadmin for Collecting the Logs
+  1. Use any machine which is connected to College Cloud. Preferably Laptop.
+  2. Use the URL -
+     =http://<your-college-cloud-ip>/college-cloud-data/=
+     - NOTE :: By default =http://10.2.57.61/college-cloud-data/= if
+               not modified IPs or anything else in college cloud.
+  3. Download the tar.gz file in the format
+     <College-name-Date>.tar.gz
+* Sending collected logs to VLEAD team
+  - *Present solution*
+
+    1. Take downloaded file in pendrive and take a machine with
+       internet connection.
+    2. Upload the file in google drive and share the google drive link
+       with engg@vlabs.ac.in.
+
+  - *Proposed Solution*
+
+    Workshop coordinator/sysadmin has to do the following steps
+    1. Take the same machine/Laptop that was connected the college
+       cloud.
+    2. Take the downloaded file and save this file on your
+       machine/Laptop.
+    2. Disconnect from College cloud.
+    3. Connect the laptop/Machine to the Internet.
+    4. Install SyncThing on your machine.
+    5. Once SyncThing is installed, Copy the Downloaded file into
+       SyncThing directory with the =<Key-College_Name-Date>.tar.gz=
+    6. SyncThing will automatically sends incremental files to VLEAD
+       team. 
+** Reference
+   [[./post-processing/index.org][Log collection process]]
+* Post Processing
+  - Once we have the logs from various Colleges/Institutes, How to
+    push analytics, Feedbacks and User Data into respective production
+    server - In Progress
+  
+* College Cloud Contract
+  At present,
+  1. The College cloud runs without Internet connection.
+  2. No videos for the course. It is future implementation.
+  3. If Internet connection is needed to the college cloud,Sysadmin has
+     to modify the files in various places. It is difficult. *Please
+     do not think about giving internet connection to the college
+     cloud machine. It will have many consequences.
+  
