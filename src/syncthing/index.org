@@ -1,0 +1,29 @@
+#+TITLE: Exploring syncthing for College Cloud 
+#+DATE: <2016-09-14 Wed>
+
+* Introduction
+
+  This document mentions the study done in Syncthing tool to manage
+  logs(analytics, feedbacks and user data) between college clouds and
+  central logs server.
+
+* What is it ?
+
+  It is a Client-Server File synchronization tool for cross platforms.
+  A Client will upload new files in his advertised directory, which will 
+  automatically get synchronized to the central server.
+
+* How can we use it ?
+
+  Here the workshop admin/coordinator will be a clinet to VLABS
+  Syncthing server hosted on internet. A script will fetch
+  anaytics,feedback and user data, which once uploaded to the
+  directory advertised to VLABS Syncthing server, all new files and
+  changes will be automatically puhsed by Client to Server.
+  
+
+* Components
+  + A VLABS Syncthing server
+  + A college syncthing client
+
+
