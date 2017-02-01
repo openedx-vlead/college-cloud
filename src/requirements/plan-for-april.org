@@ -8,28 +8,36 @@
 #+LATEX: Literal LaTeX code for export
 
 * Introduction
+  - This document briefly explains plan for =April-delhi= meeting.
 * Use cases
 :PROPERTIES:
 :CUSTOM_ID: use-cases
 :END:    
 
+** Use case1
   - When machine operates as college cloud, there is no internet
+** Use case2
   - When machine is on College LAN, it is not college cloud and there
     is a internet connection.
 * Requriements
 :PROPERTIES:
 :CUSTOM_ID: requriements
 :END:    
-
-  - Giving internet to College cloud with minimum intervention from
-    Sysadmin
-  - Registration API and web form to generate a key with paramaters
-    like College name (Other paramaters to be decided)
+** Req1
+  - Giving internet connection to College cloud with minimum
+    intervention from Sysadmin
+** Req2
+  - Registration web form to generate a key with paramaters like MAC
+    address of college cloud's machine, College name (Other paramaters to be decided)
+  - Registration should happen once for a given college
+** Req3
   - Collection of logs - Automatically daily and manually for a
     specific date/date range
-  - Push to central server - (Syncthing can be used not confirmed to
+** Req4
+  - Push the logs to central server - (Syncthing can be used not confirmed to
     be used)
-  - Post processing API/software
+** Req5
+  - Post processing of logs fetched from colleg cloud
 * Plan
   :PROPERTIES:
   :CUSTOM_ID: plan
@@ -49,3 +57,6 @@
 |    6 | Performance testing for college cloud                          |                          |                        |        |
 |------+----------------------------------------------------------------+--------------------------+------------------------+--------|
 
+
+* Github issues
+  - [[https://github.com/openedx-vlead/college-cloud/issues][Issues]]
