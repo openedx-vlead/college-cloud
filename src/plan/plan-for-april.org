@@ -1,0 +1,37 @@
+#+TITLE: Plan for April Meeting - College Cloud
+#+AUTHOR: VLEAD
+#+DATE: [2017-02-01 Wed]
+#+PROPERTY: results output
+#+PROPERTY: exports code
+#+SETUPFILE: ../org-templates/level-1.org
+#+options: ^:nil
+#+LATEX: Literal LaTeX code for export
+
+* Introduction
+* Use cases
+:PROPERTIES:
+:CUSTOM_ID: use-cases
+:END:    
+
+  - When machine operates as college cloud, there is no internet
+  - When machine is on College LAN, it is not college cloud and there
+    is a internet connection.
+* Requriements
+:PROPERTIES:
+:CUSTOM_ID: requriements
+:END:    
+
+  - Giving internet to College cloud with minimum intervention from
+    Sysadmin
+  - Registration API and web form to generate a key with paramaters
+    like College name (Other paramaters to be decided)
+  - Collection of logs - Automatically daily and manually for a
+    specific date/date range
+  - Push to central server - (Syncthing can be used not confirmed to
+    be used)
+  - Post processing API/software
+* Plan
+  :PROPERTIES:
+  :CUSTOM_ID: plan
+  :END:    
+  

@@ -22,14 +22,14 @@
   [[./design/index.org][College Cloud design]]
 * Implementation 
   [[./implementation/index.org][Implementation]]
-* List of labs hosted on cluster and on Open edX platform 
-  - [[https://docs.google.com/spreadsheets/d/10oarpSmBUYbd0szQU3q0KWO77IF58tSPFkq2e7JE0Mw/edit#gid%3D0][List of labs hosted on cluster and on Open edX platform ]]
 * Deployment 
   - [[./user-manual-for-portablemedia.org][Check the Portable-Media user manual]]
 
 * GitHub Issues
   - [[https://github.com/openedx-vlead/portable-media/issues/1][Cluster and Open edX Platform setup]]
   - [[https://github.com/openedx-vlead/portable-media/issues/2][Analytics for the portable media]]
+* List of labs hosted on cluster and on Open edX platform 
+  - [[https://docs.google.com/spreadsheets/d/10oarpSmBUYbd0szQU3q0KWO77IF58tSPFkq2e7JE0Mw/edit#gid%3D0][List of labs hosted on cluster and on Open edX platform ]]
 * Test Cases
   [[p./Performance-test.org][Performance Test]]
   [[https://github.com/openedx-vlead/portable-media/issues/1#issuecomment-250976103][Basic Test]]
