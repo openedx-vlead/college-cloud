@@ -9,36 +9,26 @@
 
 * Introduction
   - This document briefly explains plan for =April-delhi= meeting.
-* Use cases
-:PROPERTIES:
-:CUSTOM_ID: use-cases
-:END:    
 
-** Use case1
-  - When machine operates as college cloud, there is no internet
-** Use case2
-  - When machine is on College LAN, it is not college cloud and there
-    is a internet connection.
-* Requriements
-:PROPERTIES:
-:CUSTOM_ID: requriements
-:END:    
-** Req1
-  - Giving internet connection to College cloud with minimum
-    intervention from Sysadmin
-** Req2
-  - Registration web form to generate a key with paramaters like MAC
-    address of college cloud's machine, College name (Other paramaters to be decided)
-  - Registration should happen once for a given college
-** Req3
-  - Collection of logs - Automatically daily and manually for a
-    specific date/date range
-** Req4
-  - Push the logs to central server - (Syncthing can be used not confirmed to
-    be used)
-** Req5
-  - Post processing of logs fetched from colleg cloud
+* Design
+** Collection of logs in College Cloud
+
+   #+BEGIN_HTML
+   <img src="https://docs.google.com/drawings/d/1rTyHXCOGJzBwJfAT4m7-5D_eVZTC5v0SRLCqvHpFOy8/pub?w=960&h=720">
+   <p align="center"> Collect Logs in College Cloud </p>
+   #+END_HTML
+
+   A shell script is written to fetch logs (feedback, usages,
+   user-data) in college cloud and it does the following -
+
+   + Calls feedback-dump API to get feedbacks on mentioned date.
+   + GET usages from Elasticsearch index /vlabs/usages for a given date.
+   + Take edx user database dump.
+   + Creates a =compressed file= containing all the logs, to be shared with Central team.
+   + Compressed file will be named as =COLLEGE-NAME-DATE-datewise.tar.gz=
+
 * Plan
+
   :PROPERTIES:
   :CUSTOM_ID: plan
   :END:    
@@ -54,7 +44,20 @@
 |------+----------------------------------------------------------------+---------------+---------------------------------+-------------------------------+--------+--------------------|
 |    5 | Explore Syncthing to push logs into central server (Syncthing) | [[https://github.com/openedx-vlead/college-cloud/issues/10][10]]            | -                               |                               | -      | Ashay & Raghupathi |
 |------+----------------------------------------------------------------+---------------+---------------------------------+-------------------------------+--------+--------------------|
-|    6 | Performance testing for college cloud                          | -             | -                               |                               | -      | System Team        |
+|    6 | Performance testing for college cloud                          | [[https://github.com/openedx-vlead/college-cloud/issues/9][9]]             | -                               |                               | -      | System Team        |
 |------+----------------------------------------------------------------+---------------+---------------------------------+-------------------------------+--------+--------------------|
 
 
+* Realization 
+
+  Implementing the above plan will result into the following -
+  + Installation/Setup of College Cloud in a college.
+  + Ability to register college with College cloud.
+  + Ability to conduct offline workshops using College Cloud.
+  + Ability to submit feedback while using Offile labs.
+  + Ability to collect usages  in local store.
+  + Ability to collect logs (feedback, usages, edx-user-data).
+  + Ability to upload logs to VLEAD Central server (by means of Google drive or syncthing).
+  + Ability to post process obtained logs and generated analytics on it (say no of feedbacks, no of usages etc).
+  
+  
