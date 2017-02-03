@@ -1,5 +1,9 @@
 #+TITLE: College Cloud Edition
 #+DATE: <2016-09-14 Wed>
+#+SETUPFILE: ../../org-templates/level-2.org
+#+TAGS: boilerplate(b)
+#+EXCLUDE_TAGS: boilerplate
+#+OPTIONS: ^:nil
 
 * Introduction
   The document describes building a *College Cloud Edition* for
