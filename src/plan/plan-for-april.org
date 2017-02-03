@@ -9,10 +9,11 @@
 
 * Introduction
   - This document briefly explains plan for =April-delhi= meeting.
-
 * Design
 ** Collection of logs in College Cloud
-
+    :PROPERTIES:
+    :CUSTOM_ID: cc_logs
+    :END:    
    #+BEGIN_HTML
    <img src="https://docs.google.com/drawings/d/1rTyHXCOGJzBwJfAT4m7-5D_eVZTC5v0SRLCqvHpFOy8/pub?w=960&h=720">
    <p align="center"> Collect Logs in College Cloud </p>
@@ -27,8 +28,21 @@
    + Creates a =compressed file= containing all the logs, to be shared with Central team.
    + Compressed file will be named as =COLLEGE-NAME-DATE-datewise.tar.gz=
 
+** Post Processing of College Cloud workshop data
+    :PROPERTIES:
+    :CUSTOM_ID: cc_post_process
+    :END:    
+   #+BEGIN_HTML
+   <img src="https://docs.google.com/drawings/d/1xSelcS88k3ReNS3lNXMCkGyJO5eHs_1r4Q9EhvxY6Ds/pub?w=960&h=720">
+   <p align="center"> Post Processing of College Cloud Workshop Data </p>
+   #+END_HTML
+   - A service which will push the pre-processed dump of feedbacks,
+     usages, user_data and college cloud details to the central VLABS
+     =Elastic Search= database.
+   - API Documentation can be found at Reference  https://github.com/openedx-vlead/college-cloud/blob/cc-april-delhi/src/design/post-processing-api.org#introduction
+   - This service internally uses =Elastic Search= provided APIs to
+     dump the data as show in above diagram.
 * Plan
-
   :PROPERTIES:
   :CUSTOM_ID: plan
   :END:    
@@ -47,8 +61,10 @@
 |    6 | Performance testing for college cloud                          | [[https://github.com/openedx-vlead/college-cloud/issues/9][9]]             | -                               |                               | -      | System Team        |
 |------+----------------------------------------------------------------+---------------+---------------------------------+-------------------------------+--------+--------------------|
 
-
 * Realization 
+    :PROPERTIES:
+    :CUSTOM_ID: cc_realization
+    :END:    
 
   Implementing the above plan will result into the following -
   + Installation/Setup of College Cloud in a college.
