@@ -37,8 +37,8 @@
    <p align="center"> Post Processing of College Cloud Workshop Data </p>
    #+END_HTML
    - A service which will push the pre-processed dump of feedbacks,
-     usages, user_data and college cloud details to the central VLABS
-     =Elastic Search= database.
+     usages and college cloud details (from =config=) to the central VLABS =Elastic
+     Search= database.
    - API documentation can be found at  https://github.com/openedx-vlead/college-cloud/blob/cc-april-delhi/src/design/post-processing-api.org#introduction
    - This service internally uses =Elastic Search= provided APIs to
      dump the data as show in above diagram.
@@ -46,20 +46,20 @@
   :PROPERTIES:
   :CUSTOM_ID: plan
   :END:    
-| S.NO | Task                                                           | Github Issues | Expected Effors (in person hrs) | Actual Effort (in person hrs) | Status | Asignee            |
-|------+----------------------------------------------------------------+---------------+---------------------------------+-------------------------------+--------+--------------------|
-|    1 | Building registration form                                     | [[https://github.com/openedx-vlead/college-cloud/issues/11][11]]            | 3hrs                            |                               | -      | Sripathi           |
-|------+----------------------------------------------------------------+---------------+---------------------------------+-------------------------------+--------+--------------------|
-|    2 | Collection of logs automatically                               | [[https://github.com/openedx-vlead/college-cloud/issues/7][7]]             | -                               |                               | -      | Ashay & Shiva      |
-|------+----------------------------------------------------------------+---------------+---------------------------------+-------------------------------+--------+--------------------|
-|    3 | Provide internet connect to college cloud                      | [[https://github.com/openedx-vlead/college-cloud/issues/12][12]]            | 2hrs                            |                               | -      | Shiva              |
-|------+----------------------------------------------------------------+---------------+---------------------------------+-------------------------------+--------+--------------------|
-|    4 | Implement Micro Service for Post Processing of workshop data   | [[https://github.com/openedx-vlead/college-cloud/issues/13][13]], [[https://github.com/openedx-vlead/college-cloud/issues/14][14]]        | -                               |                               | -      | Sripathi           |
-|------+----------------------------------------------------------------+---------------+---------------------------------+-------------------------------+--------+--------------------|
-|    5 | Explore Syncthing to push logs into central server (Syncthing) | [[https://github.com/openedx-vlead/college-cloud/issues/10][10]]            | -                               |                               | -      | Ashay & Raghupathi |
-|------+----------------------------------------------------------------+---------------+---------------------------------+-------------------------------+--------+--------------------|
-|    6 | Performance testing for college cloud                          | [[https://github.com/openedx-vlead/college-cloud/issues/9][9]]             | -                               |                               | -      | System Team        |
-|------+----------------------------------------------------------------+---------------+---------------------------------+-------------------------------+--------+--------------------|
+| S.NO | Task                                                           | Github Issues | Expected Effors (in person hrs) | Actual Effort (in person hrs) | Status      | Asignee            |
+|------+----------------------------------------------------------------+---------------+---------------------------------+-------------------------------+-------------+--------------------|
+|    1 | Building registration form                                     | [[https://github.com/openedx-vlead/college-cloud/issues/11][11]]            | 3hrs                            |                               | -           | Sripathi           |
+|------+----------------------------------------------------------------+---------------+---------------------------------+-------------------------------+-------------+--------------------|
+|    2 | Collection of logs automatically                               | [[https://github.com/openedx-vlead/college-cloud/issues/7][7]]             | -                               |                               | -           | Ashay & Shiva      |
+|------+----------------------------------------------------------------+---------------+---------------------------------+-------------------------------+-------------+--------------------|
+|    3 | Provide internet connect to college cloud                      | [[https://github.com/openedx-vlead/college-cloud/issues/12][12]]            | 2hrs                            |                               | -           | Shiva              |
+|------+----------------------------------------------------------------+---------------+---------------------------------+-------------------------------+-------------+--------------------|
+|    4 | Implement Micro Service for Post Processing of workshop data   | [[https://github.com/openedx-vlead/college-cloud/issues/13][13]], [[https://github.com/openedx-vlead/college-cloud/issues/14][14]]        | -                               |                               | In progress | Sripathi           |
+|------+----------------------------------------------------------------+---------------+---------------------------------+-------------------------------+-------------+--------------------|
+|    5 | Explore Syncthing to push logs into central server (Syncthing) | [[https://github.com/openedx-vlead/college-cloud/issues/10][10]]            | -                               |                               | In progress | Ashay & Raghupathi |
+|------+----------------------------------------------------------------+---------------+---------------------------------+-------------------------------+-------------+--------------------|
+|    6 | Performance testing for college cloud                          | [[https://github.com/openedx-vlead/college-cloud/issues/9][9]]             | -                               |                               | In progress | System Team        |
+|------+----------------------------------------------------------------+---------------+---------------------------------+-------------------------------+-------------+--------------------|
 
 * Realization 
     :PROPERTIES:
