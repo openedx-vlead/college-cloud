@@ -39,7 +39,7 @@
    - A service which will push the pre-processed dump of feedbacks,
      usages, user_data and college cloud details to the central VLABS
      =Elastic Search= database.
-   - API Documentation can be found at Reference  https://github.com/openedx-vlead/college-cloud/blob/cc-april-delhi/src/design/post-processing-api.org#introduction
+   - API documentation can be found at  https://github.com/openedx-vlead/college-cloud/blob/cc-april-delhi/src/design/post-processing-api.org#introduction
    - This service internally uses =Elastic Search= provided APIs to
      dump the data as show in above diagram.
 * Plan
