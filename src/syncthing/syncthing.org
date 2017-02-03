@@ -1,0 +1,116 @@
+#+AUTHOR: VLEAD 
+#+TITLE: Set up Syncthing Tool
+#+DATE: 03-Feb-2017
+
+* Introduction
+  This document describes the step by step process for setting up the
+  =syncthing= tool for collecting automatical logs.
+* Syncthing
+ - Syncthing is a free, Open Source tool that can be used to sync files/folders between your networked computers. 
+ - Syncthing transfers data directly from one system to another system, and It is completely open source, secure and private. 
+** Create user for =syncthing= on system
+ Create user using below command
+#+BEGIN_EXAMPLE
+sudo adduser <username>
+#+END_EXAMPLE
+** Install =syncthing=
+   Download =syncthing= using below command.
+#+BEGIN_EXAMPLE
+$ wget https://github.com/syncthing/syncthing/releases/download/v0.14.21/syncthing-linux-amd64-v0.14.21.tar.gz
+#+END_EXAMPLE
+** Extract the download file
+    Extract the dowload file using below command
+#+BEGIN_EXAMPLE
+tar xzvf syncthing-linux-amd64-v0.14.21.tar.gz
+#+END_EXAMPLE
+   Change directory to the extracted folder
+#+BEGIN_EXAMPLE
+cd syncthing-linux-amd64-v0.14.21
+#+END_EXAMPLE
+** Copy the excutable file =syncthing= to *$PATH*
+  Do this with sudo privileges by typing
+ #+BEGIN_EXAMPLE
+ sudo cp syncthing /usr/local/bin
+ #+END_EXAMPLE
+** Run =syncthing= client programme.
+ - Complete all of the above steps on your system.
+ - The application is now installed, but there are a few more things we need to do before it will be ready to use.
+ - Now, run the following command to run the syncthing for the first time.
+#+BEGIN_EXAMPLE
+syncthing
+#+END_EXAMPLE
+The syncthing process is not a daemon, which means that it runs in the
+current shell session (we will get around this by implementing an
+Upstart script momentarily). It will start the process and create some
+necessary files.
+
+After a moment, you will see an informational message about your Node
+ID that looks like this:
+#+BEGIN_EXAMPLE
+[2EQK3] 15:47:15 OK: Ready to synchronize default (read-write)
+[2EQK3] 15:47:15 INFO: Node 2EQK3ZR77PTBQGM44KE7VQIQG7ICXJDEOK34TO3SWOVMUL4QFBHA is "server1" at [dynamic]
+#+END_EXAMPLE
+When you see this, it means that the process has initialized correctly. We can now stop the process by typing
+#+BEGIN_EXAMPLE
+CTRL-C
+#+END_EXAMPLE
+This will stop the process and give us control over the terminal again.
+** Configure =syncthing=
+  Edit the following configuration file that was created. Open the file in your text editor
+#+BEGIN_EXAMPLE
+sudo vim ~/.config/syncthing/config.xml
+#+END_EXAMPLE
+Look for a section that deals with the GUI. It should look like this
+#+BEGIN_EXAMPLE
+<gui enabled="true" tls="false">
+    <address>127.0.0.1:8080</address>
+</gui>
+#+END_EXAMPLE
+In the <address> field, change 127.0.0.1:8080 to 0.0.0.0:8080. So, your config.xml will look like below
+#+BEGIN_EXAMPLE
+<gui enabled="true" tls="false">
+    <address>0.0.0.0:8080</address>
+</gui>
+#+END_EXAMPLE
+Save and close the file.
+
+** Create an Upstart Script to Handle Service States
+Upstart script to manage our process. This will allow us to
+automatically start the Syncthing process when the server boots. It
+will also let us run it as a service, without taking control of our
+session.
+
+Create and open the Upstart file with root privileges in your editor by typing
+#+BEGIN_EXAMPLE
+sudo vim /etc/init/syncthing.conf
+#+END_EXAMPLE
+Inside, we will use the following lines to control our Upstart process
+#+BEGIN_EXAMPLE
+description "Syncthing P2P sync service"
+
+start on (local-filesystems and net-device-up IFACE!=lo)
+stop on runlevel [!2345]
+
+env STNORESTART=yes
+env HOME=/home/username
+setuid "username"
+setgid "username"
+
+exec /usr/local/bin/syncthing
+
+respawn
+#+END_EXAMPLE
+  Specify the user and group using the *setuid* and *setgid* parameters respectively. Modify all three of these values to point to your user's information.
+
+  We use respawn to tell Upstart to automatically restart the process if it is stopped prematurely.
+
+  When you are finished, save and close the file.
+
+** Start =syncthig= service
+  Start the =syncthing= service using below command
+#+BEGIN_EXAMPLE
+sudo initctl start syncthing
+#+END_EXAMPLE
+
+** Access the WebGUI
+  Open your browser http://ip-address:8080/.
