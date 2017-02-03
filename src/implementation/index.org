@@ -4,6 +4,7 @@
 #+TAGS: boilerplate(b)
 #+EXCLUDE_TAGS: boilerplate
 #+OPTIONS: ^:nil
+
 * Introduction
   The documentation describes implementation of the College Cloud
 * Implementation College Cloud 
@@ -470,8 +471,8 @@
 ** Conf.sh
    The basic configuration file. Sysadmin has to add the values to the
    fields
-#+name: config_file
-   #+BEGIN_SRC shell 
+#+NAME: config_file
+   #+BEGIN_SRC 
    #!/bin/bash
    ### Edit this file only once while installing  college cloud
    ### All feilds are needed
@@ -599,6 +600,8 @@
 * Tangling
   #+BEGIN_SRC shell :tangle conf.sh
   <<config_file>>
-  <<>>
-  <<fetch_analytics>>
   #+END_SRC
+  #+BEGIN_SRC shell :tangle fetch_analytics.sh 
+  <<fetch_analytics>>  
+  #+END_SRC
+
