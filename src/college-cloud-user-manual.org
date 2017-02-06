@@ -8,7 +8,7 @@
   better performance results.
 
 * Requirements
-  + System Configuration (recommended) 
+  + College Cloud System Configuration (recommended) 
     #+BEGIN_EXAMPLE
      Processor : Intel(R) Core(TM) i7-3770 , CPU with 3.40GHz (Model : intel-db75en) 
      RAM : 16 GB 
@@ -24,8 +24,8 @@
     Cloud accessible over the LAN network providing better results.
   + System Administrator with basic knowledge of CentOS operating systems and
     networking.
-
-* Configuration process
+    
+* Configuration for making a machine as College Cloud Server
   - Configure WiFi-Router :: Router would need to serve 10.2.57.0/24
        to its clients. This would need configuration of LAN settings
        in the router such that router's dhcp server would serve IPs
@@ -35,14 +35,13 @@
     port*.
   - Take the Hard Disk Drive ( HDD ) 
   - Boot the machine from College Cloud edition ( HDD ) through USB
-  - Please default user credentials to log into the college cloud
-    edition.
-    + User name :: vlabs
-    + Password :: admin123
+  - Please use default linux user credentials to log into the College
+    Cloud edition.
     + NOTE :: It is advised that the password is changed after the
               first login . To change the password, follow the [[Linux user Password][Link]]
-  - Run the following command on terminal to run virtual labs on
-    OpenedX platform. This may take a few minutes to launch the
+** Launch Virtual Labs (Open edX) platform
+ - Run the following command on terminal to run Virtual Labs on
+    Open edX platform. This may take a few minutes to launch the
     platform.
     #+BEGIN_EXAMPLE
     cd vagrant-boxes
@@ -50,28 +49,50 @@
     #+END_EXAMPLE
   - College Cloud edition of Virtual Labs is now ready for use.
 ** Changing Passwords
-*** TODO Linux user Password
-    Please note that change of passwords will not be reflected in the
-    default password file located at =TODO= and it would be the responsibility of the System
-    Administrator to manage these passwords.
-*** TODO OpenVZ web panel user password
-*** TODO Nagios user password
-***
+   Please note that change of passwords will not be reflected in the
+   default password file located at =~/passwords.txt= on College Cloud
+   server and it would be the responsibility of the System
+   Administrator to manage these passwords.
+
+*** Default user credentials
+    [[Default user credentials][default user credentials]] are saved in a file called
+    =passwords.txt= in College Cloud server at =~/passwords.txt= in
+    =vlabs= user account.
+    
+    Default password for *vlabs* account is *admin123*. 
+
+*** Linux user Password
+    - Use =passwd= command to change the passwords of =vlabs= and
+      =root=
+      #+BEGIN_EXAMPLE
+      vlabspasswd     # to change vlabs user 
+
+      root#passwd     # for change root user 
+      #+END_EXAMPLE
+*** OpenVZ web panel user password
+
+    #+BEGIN_EXAMPLE
+    sudo ruby /opt/ovz-web-panel/script/runner -e production 'user = User.find_by_login("admin"); user.password = "admin"; user.save(false)'
+    #+END_EXAMPLE
+*** Nagios user password
+    Run the below command on terminal. 
+    #+BEGIN_EXAMPLE
+    sudo htpasswd -C /etc/nagios/passwd nagiosadmin
+    #+END_EXAMPLE 
+
 * Using College Cloud Edition
   College System Administrator/Workshop coordinator should follow the
   steps for enabling students to use labs from College Cloud.
 ** Selecting labs
    - Use the link =http://<College-Cloud-Machine-IP>:3000=
    - This would prompt for the user name and password. Please provide
-     following default credentials.
-     + User Name :: admin
-     + Password :: admin
-
+     [[Default user credentials][default user credentials]]. 
     + NOTE :: It is advised that the password is changed after the
               first login . For the steps for changing the password,
               follow the [[OpenVZ web panel user password][link]]
 
-   OpenVZ web panel is for managing Virtual Labs running on localhost
+
+   [[https://openvz.org/Control_panels#OVZ_Web_Panel][OpenVZ web panel]] is for managing Virtual Labs running on localhost
    (College Cloud). Each lab has one OpenVZ container. *By default,
    all lab containers would be in stopped state*. However, the server
    nodes would be in running state( This needs to be kept in the
@@ -113,7 +134,7 @@
                 setup settings.*
 
 ** Starting Lab containers
-    1. Go to the OpenedX platform http://open-edx.vlabs.ac.in
+    1. Go to the platform http://open-edx.vlabs.ac.in
     2. Select the course/lab to be included in the workshop. Please
        make a note of the course/lab name.
     3. Go to =http://<College-Cloud-Machine-IP>:3000= 
@@ -139,19 +160,18 @@
         maximum of 10 labs running at any given instance.
        
 ** Monitoring system resources
-   Nagios is used for monitoring systems resources such as load on the
+   [[https://www.nagios.org/][Nagios]] is used for monitoring systems resources such as load on the
    machine, RAM usage, Processes, etc.
    - Use the link =http://<College-Cloud-Machine-IP>/nagios=
-   - Use the default credentials are
-     + User Name :: nagiosadmin
-     + Password :: admin123
+   - Use the Nagios [[Default user credentials][default user credentials]]
+
     + NOTE :: It is advised that the password is changed after the
               first login . For the steps for changing the password,
               follow the [[Nagios user password][link]]
 ** Instructions for Lab users		   
    College System Administrator/Workshop Coordinator to issue the
    following instructions to all lab users:
-*** Changing DNS nameserver settings
+*** Changing DNS settings
     - Lab users can access the labs through LAN cable and also over
       wireless. 
     - LAN cable should be connected to the WiFi-router.
@@ -192,7 +212,7 @@
       Firefox --> Preferences --> Advanced --> Network --> Settings 
       #+END_EXAMPLE
 
-*** User registrations on Open edX platform
+*** User registrations on [[https://open.edx.org/getting-started-open-edx][Open edX platform]]
 **** Lab users 
     - Click on register button on http://open-edx.vlabs.ac.in and
       fill in the registration form.
@@ -271,51 +291,60 @@
   different machine, the below steps are to be followed by  System
   Administrator and existing lab users.
 ** Instructions for the systems adminstrator  
-
-  TODO
-  - Log in to the existing [[link][College Cloud (Old) server]] as a super user
-    using default user credentials
+*** On existing College Cloud Server
+  - Log in to the existing [[link][College Cloud (Old) Server]] as a super user
+    using [[Default user credentials][default user credentials]]
     #+BEGIN_EXAMPLE
     su -
-    passwd is : admin123
-   #+END_EXAMPLE
+    password :        # For password please check passwords.txt file on College Cloud server
+    #+END_EXAMPLE
   - Open the file =/etc/udev/rules.d/70-persistent-net.rules=
     #+BEGIN_EXAMPLE
     vim /etc/udev/rules.d/70-persistent-net.rules    
     #+END_EXAMPLE
   - Delete all the lines and save the file.
-  - TODO
-    + Log out from super user
-    + Log in as normal user 
-      Stop the vagrant box.
-      #+BEGIN_EXAMPLE
-       cd ~/vagrant-boxes/
-       vagrant halt
-      #+END_EXAMPLE
+  - Log in as =vlabs= user 
+    #+BEGIN_EXAMPLE
+    su - vlabs   
+    #+END_EXAMPLE
+  - Stop the vagrant box.
+    #+BEGIN_EXAMPLE
+    cd ~/vagrant-boxes/
+    vagrant halt
+    #+END_EXAMPLE
   - Shutdown the College Cloud server.
-  - Remove the College Cloud HDD.
-  - Insert College Cloud into the new machine.
-  - Boot the machine from the College Cloud ( HDD ) edition.
-  - This machine now the College Cloud server.
-  - TODO Follow the link to select the labs
-  - TODO Follow the link to monitor nagios 
-  - TODO Follow the link for Collecting Feedback and Analytics   
+  - Remove the College Cloud HDD.  
+*** Setup new machine as College Cloud Server
+    System administrator has to do the following steps to make new
+    machine as College Cloud Server.
+    - New machine should met the [[Requirements]]
+    - [[Configuration for making a machine as College Cloud
+      Server][Configuration]]
+    - [[Using College Cloud Edition]]
+    - [[Workflow of College Cloud Edition]]
+    - [[Analytics and Feedback]]
   
 ** Instructions for the  existing lab users 
    All lab users would need to follow the below steps to ensure
    smooth migration to the newly configured College Cloud server
-   -TODO Follow the link  [[Changing DNS nameserver settings]]
+   - Follow the link  [[Changing DNS settings]]
    
-* Support  Take from Sanchita for support
-  - For any help, please contact =engg@vlabs.ac.in=
+* Support  
+  - Get help with Virtual Labs College Cloud Edition by sending a mail
+    to =support@vlabs.ac.in= or posting on the IRC channel using
+    =#VLEAD=.
   - Issues would be created on [[https://github.com/openedx-vlead/college-cloud/issues][GitHub Issues]] 
-* Known Issues
-  - TODO Contract Videos will not be loading from Open edX platform.
-    In the next release, we will resolve this problem.
+* Contract Information
+  1. A Server Grade machine (IBM Xenon processor) poses no limitations
+     over the usage of Virtual Labs College Cloud Edition.One could
+     easily work with 10-20 labs at a time catering 100-200 users.
+  2. For the above given System Configuration, one could work with 3-5
+     labs at a time catering 20-30 users.
+  3. Virtual Labs College Cloud server would not be connected to the
+     internet while labs are being accessed over the College Cloud.
+  4. College Cloud server should be connected to the internet on a
+     regular basis to facilitate log collection.
+  5. No videos of the labs would be accessible from the College Cloud
+     Edition.
 
-* TODO 
-** Links for Nagios, Open VZ web panel, Open edX platform.
-** Changing passwords
-** Default user credentials line to same in the entire document.
-** Password file will be in passwords file
-** College Cloud Server 
+
