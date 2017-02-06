@@ -12,7 +12,7 @@
 * REST
 ** API Design
 *** Get college registration form
-  - URL :: /get_college_reg_form
+  - URL :: /get_cc_reg_form
   - Method :: GET
 
   - URL Params ::  None
@@ -47,9 +47,9 @@
     #+BEGIN_EXAMPLE
     http://localhost:5000/get_college_reg_form
     #+END_EXAMPLE
-*** Store college registration form data to local =<file>.json= file
+*** Store college registration form data to local =config.json= file
 
-   - URL :: /store_college_reg_form_data
+   - URL :: /store_cc_reg_form_data
 
    - Method :: POST
 
@@ -96,7 +96,7 @@
     http://localhost:5000/add_user
     #+END_EXAMPLE
 *** Get college cloud ID
-  - URL :: /get_college_cloud_id
+  - URL :: /get_cc_id
   - Method :: GET
 
   - URL Params ::  None
@@ -192,11 +192,8 @@
 
    - Payload ::
      {
-      'tag_name': 'college_name',
-      'mac_id' : 'value',
-      'feedbacks': ['list_of_feedbacks'],
-      'server_name' : 'http://<elastic-search-domain>',
-      'key': 'key'
+      'cc_reg_details' : [],	       
+      'feedbacks': ['list_of_feedbacks']
      }
 
    - Success Response ::
@@ -229,11 +226,8 @@
 
    - Payload ::
      {
-      'tag_name': 'college_name',
-      'mac_id' : 'value',
-      'usages': ['list_of_usages'],
-      'server_name' : 'http://<elastic-search-domain>',
-      'key': 'key'
+      'cc_reg_details': [],
+      'usages': ['list_of_usages']      
      }
 
    - Success Response ::

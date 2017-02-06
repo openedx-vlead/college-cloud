@@ -83,3 +83,35 @@
               setup is to monitor system resources such as RAM,
               Processes,etc.
   
+** Collection of logs in College Cloud
+    :PROPERTIES:
+    :CUSTOM_ID: cc_logs
+    :END:    
+   #+BEGIN_HTML
+   <img src="https://docs.google.com/drawings/d/1rTyHXCOGJzBwJfAT4m7-5D_eVZTC5v0SRLCqvHpFOy8/pub?w=960&h=720">
+   <p align="center"> Collect Logs in College Cloud </p>
+   #+END_HTML
+
+   A shell script is written to fetch logs (feedback, usages,
+   user-data) in college cloud and it does the following -
+
+   + Calls feedback-dump API to get feedbacks on mentioned date.
+   + GET usages from Elasticsearch index /vlabs/usages for a given date.
+   + Take edx user database dump.
+   + Creates a =compressed file= containing all the logs, to be shared with Central team.
+   + Compressed file will be named as =COLLEGE-NAME-DATE-datewise.tar.gz=
+
+** Post Processing of College Cloud workshop data
+    :PROPERTIES:
+    :CUSTOM_ID: cc_post_process
+    :END:    
+   #+BEGIN_HTML
+   <img src="https://docs.google.com/drawings/d/1xSelcS88k3ReNS3lNXMCkGyJO5eHs_1r4Q9EhvxY6Ds/pub?w=960&h=720">
+   <p align="center"> Post Processing of College Cloud Workshop Data </p>
+   #+END_HTML
+   - A service which will push the pre-processed dump of feedbacks,
+     usages and college cloud details (from =config=) to the central VLABS =Elastic
+     Search= database.
+   - API documentation can be found at  https://github.com/openedx-vlead/college-cloud/blob/cc-april-delhi/src/design/post-processing-api.org#introduction
+   - This service internally uses =Elastic Search= provided APIs to
+     dump the data as show in above diagram.

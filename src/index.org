@@ -1,5 +1,9 @@
 #+TITLE: College Cloud Edition
 #+DATE: <2016-09-14 Wed>
+#+SETUPFILE: ../../org-templates/level-2.org
+#+TAGS: boilerplate(b)
+#+EXCLUDE_TAGS: boilerplate
+#+OPTIONS: ^:nil
 
 * Introduction
   The document describes building a *College Cloud Edition* for
@@ -22,30 +26,18 @@
   [[./design/index.org][College Cloud design]]
 * Implementation 
   [[./implementation/index.org][Implementation]]
-* Deployment 
-  - [[./user-manual-for-portablemedia.org][Check the Portable-Media user manual]]
+* List of labs hosted on cluster and on Open edX platform 
+  - [[https://docs.google.com/spreadsheets/d/10oarpSmBUYbd0szQU3q0KWO77IF58tSPFkq2e7JE0Mw/edit#gid%3D0][List of labs hosted on cluster and on Open edX platform ]]
 
+* Performance Test Cases
+  [[./Performance-Test][Performance Test cases]]
+* Proposed and changed designed plans
+  [[https://github.com/openedx-vlead/portable-media/blob/master/src/meeting-minutes.org#proposed-and-changed-designed-plans][Design plans]]
+* SyncThing 
+  [[./syncthing][SyncThing]]
+* Status of the college Cloud
+  [[./cc-status/][Status of the College-Cloud]]
 * GitHub Issues
   - [[https://github.com/openedx-vlead/portable-media/issues/1][Cluster and Open edX Platform setup]]
   - [[https://github.com/openedx-vlead/portable-media/issues/2][Analytics for the portable media]]
-* List of labs hosted on cluster and on Open edX platform 
-  - [[https://docs.google.com/spreadsheets/d/10oarpSmBUYbd0szQU3q0KWO77IF58tSPFkq2e7JE0Mw/edit#gid%3D0][List of labs hosted on cluster and on Open edX platform ]]
-* Test Cases
-  [[p./Performance-test.org][Performance Test]]
-  [[https://github.com/openedx-vlead/portable-media/issues/1#issuecomment-250976103][Basic Test]]
-* Proposed and changed designed plans
-  [[https://github.com/openedx-vlead/portable-media/blob/master/src/meeting-minutes.org#proposed-and-changed-designed-plans][Design plans]]
-
-* COMMENT Memory Leakage labs
-  - What could be the solution for hosting memory leakage labs on
-    personal edition? 
-    
-    Solution could be:
-    for Vagrant box *Vagrant box down* and *vagrant box up* and 
-    for Personal edition, *shutdown and restart the machine*
-
-  - How to find out the labs that are causing the memory leakage? 
-  - Can we create OpenVZ/Docker containers for the memory leakage
-    labs? is it a good idea?
-
 
