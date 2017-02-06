@@ -55,7 +55,7 @@
    Administrator to manage these passwords.
 
 *** Default user credentials
-    [[Default user credentials][default user credentials]] are saved in a file called
+    [[Default user credentials][Default user credentials]] are saved in a file called
     =passwords.txt= in College Cloud server at =~/passwords.txt= in
     =vlabs= user account.
     
@@ -318,8 +318,7 @@
     System administrator has to do the following steps to make new
     machine as College Cloud Server.
     - New machine should met the [[Requirements]]
-    - [[Configuration for making a machine as College Cloud
-      Server][Configuration]]
+    - [[Configuration for making a machine as College Cloud Server]]
     - [[Using College Cloud Edition]]
     - [[Workflow of College Cloud Edition]]
     - [[Analytics and Feedback]]
