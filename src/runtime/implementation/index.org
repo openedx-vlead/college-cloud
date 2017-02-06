@@ -465,7 +465,6 @@
       #+END_EXAMPLE
     + You are done configuring DNS service
 * Collecting logs from College Cloud
-  
   A Shell script that collects logs ( analytics, feedbacks and Open
   edX user data).
 ** Conf.sh
@@ -598,6 +597,356 @@
    
    #+END_SRC
 
+* Post processing of workshop data
+** app
+*** Get Success Template
+   Rest API to render a template on success.
+#+NAME: get_reg_form
+#+BEGIN_SRC  python
+@app.route('/', methods=['GET'])
+def get_reg_template():
+    current_app.logger.debug("")
+    return render_template('index.html')
+
+#+END_SRC
+
+*** Run Server
+#+NAME: run_server
+#+BEGIN_SRC python
+
+if __name__ == "__main__":
+    app = Flask(__name__)
+    app.secret_key = 'djfjsdkjXXS7979dfdfd'
+    # load config values from the config file
+    app.config.from_object(config)
+    cors = CORS(app, resources={r"/*": {"origins": "*"}})
+    
+    app = create_app(config)
+    app.run(debug=True, host='0.0.0.0', threaded=True)
+
+#+END_SRC
+
+*** Imports 							:boilerplate:
+#+NAME: imports
+#+BEGIN_SRC python
+# -*- coding: utf-8 -*-
+import os
+
+from flask import Flask, jsonify, make_response, render_template
+from flask_cors import CORS
+# import config file
+
+#+END_SRC
+
+** Header HTML
+   #+BEGIN_SRC html :tangle ./templates/header.html :eval no :noweb yes
+      <header>
+        <link rel = "stylesheet" href = "/static/css/main.css">
+        <link rel = "stylesheet" href = "/static/css/bootstrap.min.css">
+        <nav class="navbar navbar-default " style="background-color: white !important; margin-bottom: 0px !important;">
+          <div class="container-fluid">
+            <div class="navbar-header page-scroll">
+              <button aria-controls="bs-navbar" aria-expanded="true"  type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar #bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar" style="background-color: #77BB41"></span>
+                <span class="icon-bar" style="background-color: #77BB41"></span>
+                <span class="icon-bar" style="background-color: #77BB41"></span>
+              </button>
+              <a class="navbar-brand main-logo-a" href="https://vlabs.ac.in"><img src="/static/img/logo.png"  style="width:5em" class="img-responsive main-logo" /></a>
+            </div>                  
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse menu-div" id="bs-example-navbar-collapse-1" style="border: 0px;">
+              <ul class="nav navbar-nav navbar-right menu-ul search-ul" style="position: relative; top: -5px;">
+                <li></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right menu-ul">
+                <li class="page-scroll menu-li " >
+                  <a href="https://vlabs.ac.in" class="menu-a" >HOME</a>
+                </li>
+                <li class="page-scroll menu-li">
+                  <a href="https://vlabs.ac.in/courses"  class="menu-a " >ALL LABS</a>
+                </li>
+                <li class="page-scroll menu-li" >
+                  <a href="https://vlabs.ac.in/#partner" class="menu-a" >PARTNERS</a>
+                </li><li class="page-scroll menu-li " >
+                  <a href="https://vlabs.ac.in/#partner" class="menu-a" >CONTACT</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+   #+END_SRC
+   
+** Footer HTML
+   #+BEGIN_SRC html :tangle ./templates/footer.html :eval no :noweb yes
+  <head>
+<script type="text/css">
+.text-h2-lightblue-small
+{
+	color: #2C99CE;
+	font-size: 1.5em;
+}
+.border-right-green-dotted
+{
+	border-right: 2px dotted;
+	 margin-top: 30px;
+	 border-right-color: #678f48;
+	 min-height: 115px;
+	line-height:1em;
+	height:15em;
+
+
+}
+.border-right-green-dotted a{
+	/*padding-left: 10px;*/
+	display: block;
+	/*margin-bottom: 10px;*/
+	line-height:1.2em;
+}
+a:focus
+{
+	color: #72AB44 !important;
+}
+
+.footer-div
+{
+margin-top:120px;
+}
+.text-normal-gray-small
+{
+	color: #888;
+	font-size: 16px;
+}
+.text-normal-gray-small:hover{
+color:green;
+}
+
+</script>
+</head>
+<div class="container-fluid footer-div" style="background: #404040; margin-top: 40px;  padding: 20px;">
+  <div class="col-md-4 border-right-green-dotted">
+    <h2 class="text-h2-lightblue-small" style="font-weight: bold;margin-top: 0px;">Updates</h2>
+    <a href="http://community.virtual-labs.ac.in/w/index.php/Download" class="text-normal-gray-small nounderline" style="color: white" target="_blank"> Lab Integration Kit Releases</a><br>
+    <a href="http://community.virtual-labs.ac.in/w/index.php/First_Integration_workshop" class="text-normal-gray-small nounderline" style="color: white" target="_blank">First Integration Workshop at IIIT Hyderabad</a><br>
+    <a href="http://community.virtual-labs.ac.in/w/index.php/Summer_Sprint_Integration_workshop" class="text-normal-gray-small nounderline" style="color: white" target="_blank"> Summer Integration Workshop at IIT Guwahati</a><br>
+    <a href="http://community.virtual-labs.ac.in/w/index.php/QA/Integration_workshop" class="text-normal-gray-small nounderline" style="color: white" target="_blank"> QA Integration
+      Workshop at IIIT Hyderabad</a><br>
+    <a href="http://community.virtual-labs.ac.in/w/index.php/A_new_set_of_25_Virtual_Labs_on_Portable_Media" class="text-normal-gray-small nounderline" style="color: white" target="_blank"> A new set of 25 Virtual Labs on Portable Media</a>
+  </div>
+  <div class="col-md-2 border-right-green-dotted" id="contact">
+    <h2 class="text-h2-lightblue-small" style="font-weight: bold;margin-top: 0px;"> Contact us</h2>
+    <a href="http://feedback.vlabs.ac.in/" class="text-normal-gray-small nounderline" style="color:white" target="_blank"> Feedback</a><br>
+    <a style="color:white" class="text-normal-gray-small nounderline" href="mailto:support@vlabs.ac.in" target="_blank">support@vlabs.ac.in</a><br>
+    <a href="http://118.102.191.38/labassessment/assessmentform.html" class="text-normal-gray-small nounderline" style="color:white; line-height:20px;" target="_blank"> Lab Assessment Form</a>
+  </div>
+  <div class="col-md-3 border-right-green-dotted">
+    <a href="http://vlabs.ac.in:5959/faq/" class="text-normal-gray-small nounderline" style="color: white" target="_blank"> FAQ</a><br>
+    <a href="http://community.virtual-labs.ac.in/w/index.php/Main_Page" class="text-normal-gray-small nounderline" style="color: white" target="_blank">Community</a><br>
+    <a href="http://www.sakshat.ac.in/" class="text-normal-gray-small nounderline" style="color: white" target="_blank"> Sakshat Portal</a><br>
+    <a href="http://outreach.vlabs.ac.in/" class="text-normal-gray-small nounderline" style="color: white" target="_blank"> Outreach Portal</a><br>
+    <a href="http://outreach.vlabs.ac.in/ncentres" class="text-normal-gray-small nounderline" style="color: white" target="_blank"> Nodal Centers</a><br>
+    <a href="http://118.102.191.38/vlabiitece/" class="text-normal-gray-small nounderline" style="color: white" target="_blank"> Labs Developed by Nodal Centers</a>
+  </div>
+  <div class="col-md-3">
+    <div class="social">
+      <ul class="social-share" style="margin-top:2em">
+	<ul>
+	  <li style="display:inline"><a href="https://www.facebook.com/pages/Virtual-Labs-IIT-Delhi/301510159983871"><img src="/static/img/fb.png"></a></li>
+	  <li style="display:inline "><a href="https://twitter.com/TheVirtualLabs"><img src="/static/img/twitter.png"></a></li>
+	  <li style="display:inline"><a href="http://linkedin.com"><img src="/static/img/linkedin.png"></a></li> 
+	  <li style="display:inline"><a href="https://www.youtube.com/watch?v=mVBYNXLaDdg"><img src="/static/img/youtube.png"></a></li>
+	</ul>
+      </ul>
+    </div>
+  </div>
+</div>
+
+   #+END_SRC
+
+
+#+NAME: header
+#+BEGIN_SRC 
+<form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">College Name</label>
+    <input type="text" class="form-control" id="JNTU" aria-describedby="emailHelp" placeholder="Enter College Name">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>  
+  <div class="form-group">
+    <label for="exampleTextarea">Example textarea</label>
+    <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+  </div>  
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+#+END_SRC
+** CSS 
+#+BEGIN_SRC css :tangle ./static/css/main.css :eval no :noweb yes
+body {
+    font-family:'Raleway' !important;
+#    font-family:  sans-serif;
+    font-size: 14px;
+    color: #767676;
+}
+
+#feedback-form {
+    width: 80%;
+    margin-top: 30px;
+}
+
+.headInfo {
+    margin-left: 0px; 
+    margin-top: 20px;
+}
+
+.values {
+    margin-left: 0px;
+    text-align: left;
+}
+
+.rowCol {
+    border: 1px solid #ccc
+}
+
+.mainrow {
+    margin-top: 4px;
+}
+
+.navbar-default, .navbar-inverse {
+    border: 0;
+}
+
+.footer-div
+{
+    margin-top:120px;
+}
+
+.main-logo-a {
+    height: auto;
+    overflow: visible;
+    margin-left: 0px !important;
+    padding-bottom: 10px !important;
+    padding-top: 10px !important;
+}
+
+.menu-a {
+    font-size: 14px !important;
+    font-family: 'Raleway' !important;
+    color: #2C99CD !important;
+    padding-left: 10px !important;
+    padding-bottom: 5px !important;
+    padding-top: 5px !important;
+    padding-right: 10px !important;
+}
+
+.menu-a-active {
+    color: white !important;
+}
+
+.menu-li {
+    border-radius: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.menu-li:HOVER {
+    background-color: #77BB41 !important;
+}
+
+.menu-a:HOVER {
+    color: white !important;
+}
+
+.menu-li-active {
+    background-color: #77BB41;
+}
+
+.menu-ul {
+    margin-top: 45px;
+}
+
+.text-h2-lightblue-small
+{
+	color: #2C99CE;
+	font-size: 1.5em;
+}
+.text-a-lightgreen
+{
+	color: #72AB44;
+	font-size: 1.3em;
+	text-decoration: underline;
+}
+
+.text-a-lightgreen:HOVER
+{
+	color: #72AB44 !important;
+}
+
+.text-normal-gray-small
+{
+	color: #888;
+	font-size: 16px;
+}
+
+.border-right-green-dotted
+{
+	border-right: 2px dotted;
+	 margin-top: 30px;
+	 border-right-color: #678f48;
+	 min-height: 115px;
+}
+.footer-div
+{
+margin-top:120px;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 32em;
+}
+
+td {
+    border: 0px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+
+#+END_SRC
+
+** Index HTML
+#+BEGIN_SRC html :tangle ./templates/index.html :eval no :noweb yes
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <title>Feedback Portal</title>
+        <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico" />
+    </head>
+    <body">
+      <div id="header">
+        {% include 'header.html' %}        
+      <div class="row">
+        <hr style="background:#ff6600 !important;  height: 8px; margin-top: 0px;">
+      </div>
+      
+      <div id="footer">
+        {% include 'footer.html' %}
+        </div>
+      </div>
+    </body>
+    <script src="/static/js/jquery.min.js"></script>
+    <script type="text/javascript">
+    <<main-js>>
+    </script>
+  </html>
+  
+#+END_SRC
+
 * Infra                                                         :boilerplate:
 
 ** sources
@@ -651,7 +1000,6 @@ if __name__ == '__main__':
 
 #+END_SRC
 
-    
 * Tangle                                                        :boilerplate:
 
 ** sources
@@ -686,7 +1034,6 @@ if __name__ == '__main__':
 <<imports_for_tests>>
 <<run_test_cases>>
 #+end_src
-
 
 
 * Tangling

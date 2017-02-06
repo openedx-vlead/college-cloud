@@ -1,9 +1,11 @@
 #+TITLE: College Cloud Edition
-#+DATE: <2016-09-14 Wed>
-#+SETUPFILE: ../../org-templates/level-2.org
-#+TAGS: boilerplate(b)
-#+EXCLUDE_TAGS: boilerplate
-#+OPTIONS: ^:nil
+#+DATE: [2016-09-14 Wed]
+#+PROPERTY: results output
+#+PROPERTY: exports code
+#+SETUPFILE: ./org-templates/level-0.org
+#+options: ^:nil
+#+LATEX: Literal LaTeX code for export
+
 
 * Introduction
   The document describes building a *College Cloud Edition* for

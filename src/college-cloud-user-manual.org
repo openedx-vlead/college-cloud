@@ -1,5 +1,10 @@
-#+Title: User Manual for Virtual Labs College Cloud Edition
-#+Author: VLEAD
+#+TITLE: User Manual for Virtual Labs College Cloud Edition
+#+AUTHOR: VLEAD
+#+PROPERTY: results output
+#+PROPERTY: exports code
+#+SETUPFILE: ./org-templates/level-0.org
+#+options: ^:nil
+#+LATEX: Literal LaTeX code for export
 
 * Introduction
   This manual details the configuration/workflow process to be
