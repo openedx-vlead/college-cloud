@@ -597,6 +597,98 @@
    fi
    
    #+END_SRC
+
+* Infra                                                         :boilerplate:
+
+** sources
+*** Imports 
+#+name: imports_for_sources
+#+BEGIN_SRC python
+# -*- coding: utf-8 -*-
+import os
+import requests
+import json
+from flask_oauthlib.client import OAuth
+from runtime.config import google_oauth_config as oauth_config
+from flask import session, render_template, Blueprint, request, \
+     jsonify, abort, current_app, redirect, url_for, make_response
+from flask import Flask
+from runtime.utils.type_utils import jsonify_list
+from runtime.exceptions.custom_exceptions import *
+from runtime.system.system_interface import SystemInterface
+import yaml
+
+api = Blueprint('APIs', __name__)
+
+#+end_src
+
+
+** tests
+*** Imports 
+#+name: imports_for_tests
+#+BEGIN_SRC python
+# -*- coding: utf-8 -*-
+import unittest
+from flask_testing import TestCase
+from sqlalchemy.exc import IntegrityError
+from runtime.utils.class_persistence_template import db
+from runtime.rest.app import create_app
+#from runtime.config.system_config import KEY
+from runtime.rest.api import *
+from runtime.system.system import System
+import datetime
+config = {
+         'SQLALCHEMY_DATABASE_URI': ''
+         }
+
+#+end_src
+
+*** Running tests
+#+NAME: run_test_cases
+#+BEGIN_SRC python
+if __name__ == '__main__':
+    unittest.main()
+
+#+END_SRC
+
+    
+* Tangle                                                        :boilerplate:
+
+** sources
+#+BEGIN_SRC python :tangle api.py :eval no :noweb yes
+
+<<imports_for_sources>>
+<<serve_index_html>>
+<<google_oauth_configuration>>
+<<jsonify_list>>
+<<login_route>>
+<<logout_route>>
+<<callback_google_api>>
+<<google_oauth_token>>
+<<create_session>>
+<<add_user>>
+<<del_user>>
+<<show_users>>
+<<show_sessions>>
+<<show_user_details>>
+<<show_roles>>
+<<set_email_of_user>>
+<<set_name_of_user>>
+<<show_roles_of_user>>
+<<add_role_to_user>>
+<<del_role_of_user>>
+
+#+END_SRC
+
+
+** tests
+#+BEGIN_SRC python :tangle test_api.py :eval no :noweb yes
+<<imports_for_tests>>
+<<run_test_cases>>
+#+end_src
+
+
+
 * Tangling
 
   #+BEGIN_SRC shell :tangle conf.sh
