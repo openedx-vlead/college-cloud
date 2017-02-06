@@ -598,9 +598,11 @@
    
    #+END_SRC
 * Tangling
+
   #+BEGIN_SRC shell :tangle conf.sh
   <<config_file>>
   #+END_SRC
+
   #+BEGIN_SRC shell :tangle fetch_analytics.sh 
   <<fetch_analytics>>  
   #+END_SRC
