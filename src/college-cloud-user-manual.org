@@ -34,7 +34,7 @@
     connection has to come from router only. *Please do not touch WAN
     port*.
   - Take the Hard Disk Drive ( HDD ) 
-  - Boot the machine from College Cloud edition ( HDD ) through USB
+  - Boot the machine from College Cloud edition ( HDD )
   - Please use default linux user credentials to log into the College
     Cloud edition.
     + NOTE :: It is advised that the password is changed after the
