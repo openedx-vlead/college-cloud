@@ -8,12 +8,12 @@
 * Syncthing
  - Syncthing is a free, Open Source tool that can be used to sync files/folders between your networked computers. 
  - Syncthing transfers data directly from one system to another system, and It is completely open source, secure and private. 
-** Create user for =syncthing= on system
+** Create user for =syncthing= on system1 and system2
  Create user using below command
 #+BEGIN_EXAMPLE
 sudo adduser <username>
 #+END_EXAMPLE
-** Install =syncthing=
+** Install =syncthing= on system1 and system2
    Download =syncthing= using below command.
 #+BEGIN_EXAMPLE
 $ wget https://github.com/syncthing/syncthing/releases/download/v0.14.21/syncthing-linux-amd64-v0.14.21.tar.gz
@@ -106,11 +106,60 @@ respawn
 
   When you are finished, save and close the file.
 
-** Start =syncthig= service
+** Start =syncthig= service on system1 and system2
   Start the =syncthing= service using below command
 #+BEGIN_EXAMPLE
 sudo initctl start syncthing
 #+END_EXAMPLE
 
 ** Access the WebGUI
-  Open your browser http://ip-address:8080/.
+ - Open your browser and log into each of your servers, Syncthing interfaces by visiting their public IP addresses and port 8080:
+#+BEGIN_EXAMPLE
+http://server1_public_IP:8080
+http://server2_public_IP:8080
+#+END_EXAMPLE
+
+** Configure =Syncthing= Web GUI
+ - For the security enhancement, let us enable TLS, and setup
+   administrative *user* and *password* to access the WebGUI. To od that,
+   click on the gear button and select *Settings* on the top right
+   corner.
+ - Enter the admin *username/password*. In my case it is
+   admin/ubuntu. You should use some strong password. And, check the
+   box that says: Use *HTTPS for GUI*.
+ - Click Save button. Now, you¡¯ll be asked to restart the Syncthing to
+   activate the changes. Click Restart.
+ - Refresh you web browser. You¡¯ll see the SSL warning like
+   below. Click on the button that says: *I understand the Risks*. And,
+   click *Add Exception* button to add this page to the browser trusted
+   lists.
+ - Enter the administrative user and password which we configured in
+  the previous steps. In my case it¡¯s *admin/ubuntu*.
+ - We have secured the WebGUI now. Don¡¯t forget to do the same steps
+   on both server.
+
+** Connect Servers To Each Other
+ - To sync folders between systems, you must told them about each
+   other. This is accomplished by exchanging =device IDs=. You can
+   find it in the web GUI by selecting the =gear menu= (top right) and
+   =ShowID=.
+
+*Ex* : system1 ID
+
+ - Copy the ID, and go to the another system (system 2) WebGUI. From
+   the second system (system 2) WebGUI window, click on the *Add
+   Device* on the right side
+ - Paste the *System 1 ID* in the Device section. Enter the Device
+   name(optional). In the Addresses field, you can either enter the IP
+   address of the other system or leave it as default. The default
+   value is *dynamic*. Finally, select the folder to be synced. In our
+   case, the sync folder is *default*.
+ - Once you done, click on the save button. You¡¯ll be asked to restart
+   the Syncthing. Click Restart button to activate the changes.
+ - Now, go to the *System 1* WebUI, you¡¯ll see a request has been sent
+   from the System 2 to connect and sync. Click *Add* button. Now, the
+   System 2 will ask the System 1 to share and sync the folder called
+   =default=. Click *Share* button.
+ - Next restart the Syncthing service on the System 1 to activate the changes.
+ - Wait for few seconds, approximately 60 seconds, and you¡¯ll see the two systems have been successfully connected and synced to each other.
+ - Now, put any file or folder in any one of the systems *default* folder. You may see the file/folder will be synced to the other system automatically.
