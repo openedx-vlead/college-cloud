@@ -1,44 +1,31 @@
 #SHELL := /bin/bash
-BUILD_DIR=build
 
-LITERATE_TOOLS="https://github.com/vlead/literate-tools.git"
-LITERATE_DIR=literate-tools
-ELISP_DIR=elisp
-ORG_DIR=org-templates
-STYLE_DIR=style
-DOC_DIR=build/docs
-SRC_DIR=src
+CODE_DIR=build/code
 PWD=$(shell pwd)
+LINT_FILE=${PWD}/${CODE_DIR}/lint_output
+EXIT_FILE=${PWD}/exit.txt
 STATUS=0
 
-all:  publish
+all:  build run-py-tests
 
-clean-literate:
-	rm -rf ${ELISP_DIR}
-	rm -rf src/${ORG_DIR}
-	rm -rf src/${STYLE_DIR}
+init: 
+	./init.sh
 
-pull-literate-tools:
-	@echo "pulling literate support code"
-	echo ${PWD}
-ifeq ($(wildcard elisp),)
-	@echo "proxy is..."
-	echo $$http_proxy
-	git clone ${LITERATE_TOOLS}
-	mv ${LITERATE_DIR}/${ELISP_DIR} .
-	mv ${LITERATE_DIR}/${ORG_DIR} ${SRC_DIR}
-	mv ${LITERATE_DIR}/${STYLE_DIR} ${SRC_DIR}
-	rm -rf ${LITERATE_DIR}
-else
-	@echo "Literate support code already present"
-endif
+build: init
+	make -f tangle-make -k all
+	cp src/runtime/web/static/js/* ${CODE_DIR}/runtime/web/static/js/
 
-init: pull-literate-tools
-	rm -rf ${BUILD_DIR}
-	mkdir -p ${BUILD_DIR}
+install-pep:
+	sudo pip install pep8
 
-publish: init
-	emacs  --script elisp/publish.el
+lint:  install-pep
+	pep8 --ignore=E302 ${PWD}/${CODE_DIR} > ${LINT_FILE};
 
-clean:	clean-literate
-	rm -rf ${BUILD_DIR}
+build-with-lint: build lint
+
+run-py-tests:
+	export PYTHONPATH=${PWD}/${CODE_DIR}; find ${PWD}/${CODE_DIR} -name '*test_*.py' -exec python '{}' \;
+
+clean:	
+	make -f tangle-make clean
+
