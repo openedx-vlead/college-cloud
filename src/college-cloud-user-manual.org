@@ -30,20 +30,20 @@
   + System Administrator with basic knowledge of CentOS operating systems and
     networking.
     
-* Configuration for making a machine as College Cloud Server
-  - Configure WiFi-Router :: Router would need to serve 10.2.57.0/24
+* Configuring College Cloud Server
+  1. Configure WiFi-Router ::  Router would need to serve 10.2.57.0/24
        to its clients. This would need configuration of LAN settings
        in the router such that router's dhcp server would serve IPs
        from the above IP range to its clients.
-  - Take a LAN cable and connect it to college cloud machine. This
-    connection has to come from router only. *Please do not touch WAN
-    port*.
-  - Take the Hard Disk Drive ( HDD ) 
-  - Boot the machine from College Cloud edition ( HDD ) through USB
-  - Please use default linux user credentials to log into the College
-    Cloud edition.
-    + NOTE :: It is advised that the password is changed after the
-              first login . To change the password, follow the [[Linux user Password][Link]]
+  2. Connect the identified College Cloud machine to the configured
+     Wi-Fi router through a LAN cable. *Please do not touch the WAN
+     port*.
+  3. Connect the College Cloud Edition Hard Disk Drive to the
+     identified College Cloud machine.
+  4. Boot the machine from College Cloud Edition Hard Disk Drive.
+  5. Please use [[Passwords][default linux user credentials]] to login.
+     + NOTE :: It is advised that the password is changed after the
+               first login . To change the password, follow the [[Linux user Password][Link]]
 ** Launch Virtual Labs (Open edX) platform
  - Run the following command on terminal to run Virtual Labs on
     Open edX platform. This may take a few minutes to launch the
@@ -53,42 +53,46 @@
     vagrant-boxes$vagrant up     #Look for Vagrant file in "vlabs" account and run this command
     #+END_EXAMPLE
   - College Cloud edition of Virtual Labs is now ready for use.
+* Passwords
+   The first login password for =vlabs= user account would be
+   supplied along with Virtual Labs College Cloud Edition Hard Disk
+   Drive. 
+
+   Other default user credentials could be accessed at =passwords.txt=
+   in College Cloud server at =~/passwords.txt= when logged in as
+   =vlabs= user.
+
 ** Changing Passwords
-   Please note that change of passwords will not be reflected in the
-   default password file located at =~/passwords.txt= on College Cloud
-   server and it would be the responsibility of the System
-   Administrator to manage these passwords.
+  Please note that change of passwords will not be reflected in the
+  default password file located at =~/passwords.txt= on College Cloud
+  server and it would be the responsibility of the System
+  Administrator to manage these passwords.
 
-*** Default user credentials
-    Default user credentials are saved in a file called
-    =passwords.txt= in College Cloud server at =~/passwords.txt= in
-    =vlabs= user account.
-    
-    Default password for *vlabs* account is *admin123*. 
+** Linux user Password
+   - Use =passwd= command to change the passwords of =vlabs= and
+     =root=
+     #+BEGIN_EXAMPLE
+     vlabspasswd     # to change vlabs user 
 
-*** Linux user Password
-    - Use =passwd= command to change the passwords of =vlabs= and
-      =root=
-      #+BEGIN_EXAMPLE
-      vlabspasswd     # to change vlabs user 
-
-      root#passwd     # for change root user 
-      #+END_EXAMPLE
-*** OpenVZ web panel user password
-
-    #+BEGIN_EXAMPLE
-    sudo ruby /opt/ovz-web-panel/script/runner -e production 'user = User.find_by_login("admin"); user.password = "admin"; user.save(false)'
-    #+END_EXAMPLE
-*** Nagios user password
-    Run the below command on terminal. 
-    #+BEGIN_EXAMPLE
-    sudo htpasswd -C /etc/nagios/passwd nagiosadmin
-    #+END_EXAMPLE 
-*** Open edX platform default user password change
-    Change admin( default) user from django-administration
-    page. Access this page using =http://open-edx.vlabs.ac.in/admin.
-   
-     [[https://openedx.atlassian.net/wiki/display/OpenOPS/Managing+OpenEdX+Tips+and+Tricks][Administration commands]].
+     root#passwd     # for change root user 
+     #+END_EXAMPLE
+** OpenVZ web panel user password
+   - Use the following command to change the OpenVZ web panel user
+     password
+   #+BEGIN_EXAMPLE
+   sudo ruby /opt/ovz-web-panel/script/runner -e production 'user = User.find_by_login("admin"); user.password = "admin"; user.save(false)'
+   #+END_EXAMPLE
+** Nagios user password
+   - Use the following command to change the Nagios user password
+     password
+   #+BEGIN_EXAMPLE
+   sudo htpasswd -C /etc/nagios/passwd nagiosadmin
+   #+END_EXAMPLE 
+** Open edX platform admin user password
+   To change the Open edX platform  admin( default) user password
+    - Go to   =http://open-edx.vlabs.ac.in/admin.
+    - Login using default [[Passwords][admin user and password]].
+    - Follow the instructions detailed in [[https://openedx.atlassian.net/wiki/display/OpenOPS/Managing+OpenEdX+Tips+and+Tricks][Administration commands]].
 
 * Using College Cloud Edition
   College System Administrator/Workshop coordinator should follow the
@@ -110,7 +114,7 @@
 
    - Server nodes are 
      |------+--------------------------------+------+---------|
-     | S.No | Conatiner Name                 | CTID | Status  |
+     | S.No | Container Name                 | CTID | Status  |
      |------+--------------------------------+------+---------|
      |    1 | Router                         | 1001 | Running |
      |------+--------------------------------+------+---------|
@@ -148,13 +152,15 @@
     2. Select the course/lab to be included in the workshop. Please
        make a note of the course/lab name.
     3. Go to =http://<College-Cloud-Machine-IP>:3000= 
-    4. Sign into =OpenVZ web panel=. For credentials, please follow the [[OpenVZ web panel user password][Link]]
+    4. Sign into =OpenVZ web panel=. For credentials, please follow
+       the [[Passwords][passwords]]
     5. Click on =localhost= located at left side of the panel.
     6. Search for the lab name that has been selected in step 2.
-    7. Cchoose the selected lab by clicking on CTID (ex.213) and look for
-       =change state= button on the panel.
+    7. Choose the selected lab by clicking on CTID (example.213) and
+       look for =change state= button on the panel.
     8. Select =start= and wait for about 1-2 minutes. 
-    9. TODO : Observe the change of color of the selected course/lab..
+    9. Observe the change of color of the selected course/lab in green
+       color and running state.
 
 ** Enhancing Performance
     + If a server grade machine/system *(>=32 GB RAM,
@@ -230,30 +236,29 @@
        coordinator.
      - Do not log out until the System Administrator/Workshop
        coordinator.
-**** System Administrator/Workshop coordinator. 
+**** System Administrator/Workshop coordinator 
      - Go to  http://open-edx.vlabs.ac.in/admin.
-     - Log in using default Open edX user credentials. For default
-       Open edX user credentials please look at [[default user
-       credentials]].
+     - Log in using admin user credentials. Admin user credentials are
+       at [[Passwords][passwords]]
       + NOTE :: It is advised that the password is changed after the
                 first login . For the steps for changing the password,
-                follow the [[Open edX platform default user password
-                change][link]].
-    - Go to =Authentication and Authorization= section
+                follow the [[Open edX platform admin user password][link]].
+    - Go to =Authentication and Authorization= section to activate
+      registered users.
       + Select =Users= 
       + Click on =user name=
       + Click on =Activate=
       + Click on =Save= button at the bottom.
 
 * Workflow of College Cloud Edition
-** Workshop conducted by Workshop Coordinator
+** TODO Workshop conducted by Workshop Coordinator
    + [[https://vlabs.ac.in:5959/college-cloud-edition][Organising workshops]]
-     + Add workshop on [[http://outreach.vlabs.ac.in][Outreach Portal]] choosing College Cloud option.
-     + Make sure the [[Requirements][requirements]] are met by the college.
+     + Add workshop on [[http://outreach.vlabs.ac.in][Outreach Portal]].
+     +  TODO Make sure the [[Requirements][requirements]] are met by the college.
    + [[Configuration for making a machine as College Cloud Server][Configuring College Cloud]]
    + [[Using College Cloud Edition][Using College Cloud]]
    + [[COMMENT Analytics and Feedback][Collecting Analytics and Feedback]]
-** Virtual Labs College Cloud Edition used by colleges as part of their curriculum
+** TODO Virtual Labs College Cloud Edition used by colleges as part of their curriculum
    + TODO Procuring College Cloud From Sanchita
    + [[Configuration for making a machine as College Cloud Server][Configuring College Cloud]]
    + [[Using College Cloud Edition][Using College Cloud]]
@@ -294,13 +299,13 @@
        + Upload the file in your google drive and share it with
          engg@vlabs.ac.in
 * Changing College Cloud Machine
-  To install an already configured College cloud edition in a
-  different machine, the below steps are to be followed by  System
-  Administrator and existing lab users.
+  To change an already configured College Cloud server to a different
+  machine, the below steps are to be followed by System Administrator
+  and existing lab users.
 ** Instructions for the systems adminstrator  
 *** On existing College Cloud Server
   - Log in to the existing *College Cloud Server (old)* as a super user
-    using [[Default user credentials][default user credentials]]
+    using [[Passwords][default user credentials]]
     #+BEGIN_EXAMPLE
     su -
     password :        # For password please check passwords.txt file on College Cloud server
@@ -320,12 +325,12 @@
     vagrant halt
     #+END_EXAMPLE
   - Shutdown the College Cloud server.
-  - Remove the College Cloud HDD.  
+  - Remove the Virtual Labs College Cloud Edition Hard Disk Drive.
 *** Setup new machine as College Cloud Server
-    System administrator has to do the following steps to make new
-    machine as College Cloud Server.
-    - New machine should met the [[Requirements]]
-    - [[Configuration for making a machine as College Cloud Server]]
+    System Administrator should follow the below steps to configure
+    the new machine as College Cloud Server.
+    - Make sure that the machine meets the [[Requirements][requirements]]
+    - [[Configuring College Cloud Server][Configure College Cloud Server]]
     - [[Using College Cloud Edition]]
     - [[Workflow of College Cloud Edition]]
     - [[COMMENT Analytics and Feedback]]
