@@ -251,15 +251,19 @@
       + Click on =Save= button at the bottom.
 
 * Workflow of College Cloud Edition
-** TODO Workshop conducted by Workshop Coordinator
+** Workshop conducted by Workshop Coordinator
    + [[https://vlabs.ac.in:5959/college-cloud-edition][Organising workshops]]
-     + Add workshop on [[http://outreach.vlabs.ac.in][Outreach Portal]].
-     +  TODO Make sure the [[Requirements][requirements]] are met by the college.
+   + The Institute should be a Central/State University or
+     Institute/college approved by AICTE/UGC. Kindly follow the link
+     to get detailed requirements for Virtual Labs College Cloud
+     Edition.
+   + Add workshop on [[http://outreach.vlabs.ac.in][Outreach Portal]].
+   + Make sure the [[Requirements][requirements]] are met by the college.
    + [[Configuration for making a machine as College Cloud Server][Configuring College Cloud]]
    + [[Using College Cloud Edition][Using College Cloud]]
    + [[COMMENT Analytics and Feedback][Collecting Analytics and Feedback]]
-** TODO Virtual Labs College Cloud Edition used by colleges as part of their curriculum
-   + TODO Procuring College Cloud From Sanchita
+** Virtual Labs College Cloud Edition used by colleges as part of their curriculum
+   + [[https://docs.google.com/forms/d/e/1FAIpQLSfN0XH0GvuLRiEs_g5RB2npD3Y_5qsvrE0pCOn2C2lyUJNHjA/viewform?embedded=true][Procure College Cloud]]
    + [[Configuration for making a machine as College Cloud Server][Configuring College Cloud]]
    + [[Using College Cloud Edition][Using College Cloud]]
    + [[COMMENT Analytics and Feedback][Collecting Analytics and Feedback]]
@@ -334,7 +338,6 @@
     - [[Using College Cloud Edition]]
     - [[Workflow of College Cloud Edition]]
     - [[COMMENT Analytics and Feedback]]
-  
 ** Instructions for the  existing lab users 
    All lab users would need to follow the below steps to ensure
    smooth migration to the newly configured College Cloud server
@@ -342,8 +345,8 @@
    
 * Support  
   - Get help with Virtual Labs College Cloud Edition by sending a mail
-    to =support@vlabs.ac.in= or posting on the IRC channel using
-    =#VLEAD=.
+    to =support@vlabs.ac.in= or 
+  - Posting queries on the IRC channel using =#VLEAD=.
   - Issues would be created on [[https://github.com/openedx-vlead/college-cloud/issues][GitHub Issues]] 
 * Contract Information
   1. A Server Grade machine (IBM Xenon processor) poses no limitations
