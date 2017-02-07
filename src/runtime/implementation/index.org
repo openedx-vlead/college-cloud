@@ -598,15 +598,50 @@
    #+END_SRC
 
 * Post processing of workshop data
-** app
+** App
 *** Get Success Template
    Rest API to render a template on success.
 #+NAME: get_reg_form
 #+BEGIN_SRC  python
-@app.route('/', methods=['GET'])
+app = Flask(__name__)
+app.secret_key = 'djfjsdkjXXS7979dfdfd'
+
+@app.route('/', methods=['GET', 'POST'])
 def get_reg_template():
-    current_app.logger.debug("")
-    return render_template('index.html')
+    if request.method == 'GET':
+        try:
+            return render_template('index.html')
+        except Exception as e:
+            abort(404, "template not found")
+    elif request.method == 'POST':
+        clg_name = request.form.get("clg_name")
+        clg_id = request.form.get("clg_id")
+        clg_pincode = request.form.get("clg_pincode")
+        clg_address = request.form.get("clg_addr")
+        interface = "wlan0"
+        path_to_folder = "/home/vlead/script/"
+        try:
+            mac_addr = open('/sys/class/net/'+interface+'/address').readline()[0:17]
+            clg_details = {
+                mac_addr : {
+                    'college_details': {
+                        'college_name' : clg_name,
+                        'college_id' : clg_id,
+                        'college_address' : clg_address,
+                        'college_pincode' : clg_pincode                
+                    }                
+                }
+            }
+        except Exception as e:
+            abort(404, "MAC File not found")
+        try:
+            with open(path_to_folder+'config.json', 'w') as outfile:
+                json.dump(clg_details, outfile, indent=4, sort_keys=True, separators=(',', ':'))
+                
+            return jsonify({"status" : "Succesfully saved records to '%s' directory " 
+                            %(path_to_folder), "data" : clg_details})
+        except Exception as e:
+            abort(500, "Could not write data to file %s" %(str(e)))
 
 #+END_SRC
 
@@ -615,13 +650,6 @@ def get_reg_template():
 #+BEGIN_SRC python
 
 if __name__ == "__main__":
-    app = Flask(__name__)
-    app.secret_key = 'djfjsdkjXXS7979dfdfd'
-    # load config values from the config file
-    app.config.from_object(config)
-    cors = CORS(app, resources={r"/*": {"origins": "*"}})
-    
-    app = create_app(config)
     app.run(debug=True, host='0.0.0.0', threaded=True)
 
 #+END_SRC
@@ -631,51 +659,44 @@ if __name__ == "__main__":
 #+BEGIN_SRC python
 # -*- coding: utf-8 -*-
 import os
-
-from flask import Flask, jsonify, make_response, render_template
-from flask_cors import CORS
-# import config file
-
+import json
+from flask import Flask, jsonify, render_template, request, abort
 #+END_SRC
 
 ** Header HTML
    #+BEGIN_SRC html :tangle ./templates/header.html :eval no :noweb yes
-      <header>
-        <link rel = "stylesheet" href = "/static/css/main.css">
-        <link rel = "stylesheet" href = "/static/css/bootstrap.min.css">
-        <nav class="navbar navbar-default " style="background-color: white !important; margin-bottom: 0px !important;">
-          <div class="container-fluid">
-            <div class="navbar-header page-scroll">
-              <button aria-controls="bs-navbar" aria-expanded="true"  type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar #bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar" style="background-color: #77BB41"></span>
-                <span class="icon-bar" style="background-color: #77BB41"></span>
-                <span class="icon-bar" style="background-color: #77BB41"></span>
-              </button>
-              <a class="navbar-brand main-logo-a" href="https://vlabs.ac.in"><img src="/static/img/logo.png"  style="width:5em" class="img-responsive main-logo" /></a>
-            </div>                  
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse menu-div" id="bs-example-navbar-collapse-1" style="border: 0px;">
-              <ul class="nav navbar-nav navbar-right menu-ul search-ul" style="position: relative; top: -5px;">
-                <li></li>
-              </ul>
-              <ul class="nav navbar-nav navbar-right menu-ul">
-                <li class="page-scroll menu-li " >
-                  <a href="https://vlabs.ac.in" class="menu-a" >HOME</a>
-                </li>
-                <li class="page-scroll menu-li">
-                  <a href="https://vlabs.ac.in/courses"  class="menu-a " >ALL LABS</a>
-                </li>
-                <li class="page-scroll menu-li" >
-                  <a href="https://vlabs.ac.in/#partner" class="menu-a" >PARTNERS</a>
-                </li><li class="page-scroll menu-li " >
-                  <a href="https://vlabs.ac.in/#partner" class="menu-a" >CONTACT</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-      </header>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="http://vlabs.ac.in/images/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/main.css">
+  </head>
+  <body>
+    <div class="navbar navbar-default navbar-custom">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="https://open-edx.vlabs.ac.in"
+             onclick="dashboard()">
+            <img width="100px" height="50px"  src="https://open-edx.vlabs.ac.in/static/edx-bootstrap-theme/images/logo.d4f9ba0ed44c.png" class="logo-img"></a>
+        </div><br>
+      </div>
+    </div>
+    {% block content %}
+    {% endblock %}
+  </body>
+</html>
 
    #+END_SRC
    
@@ -921,32 +942,89 @@ tr:nth-child(even) {
 
 ** Index HTML
 #+BEGIN_SRC html :tangle ./templates/index.html :eval no :noweb yes
-  <!DOCTYPE html>
+{% include "base.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>College Cloud Registration</h2>
+  <form action="/" method="POST">
+    <div class="container">
+      <div class="form-group col-md-5">
+	<label>College-Name:</label>
+	<input type="text" class="form-control" name="clg_name" placeholder="Enter college name">
+      </div>
+    </div>
+    <div class="container">
+      <div class="form-group col-md-5">
+	<label>College ID:</label>
+	<input type="number" class="form-control" min="0" length="6" name="clg_id" placeholder="Enter college id">
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="form-group col-md-5">
+	<label>College Address:</label>
+	<textarea class="form-control" name="clg_addr" placeholder="Enter college address"></textarea>
+      </div>
+    </div>
+    <div class="container">
+      <div class="form-group col-md-3">
+	<label>Pincode:</label>
+	<input type="number" class="form-control" min="0" length="6" name="clg_pincode" placeholder="Enter pincode">
+      </div>
+    </div>
+    <input type="submit" value="Submit"/>
+  </form>
+
+</div>
+
+</body>
+</html>
+<!--
   <html>
     <head>
       <title>Feedback Portal</title>
         <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico" />
     </head>
-    <body">
-      <div id="header">
-        {% include 'header.html' %}        
-      <div class="row">
-        <hr style="background:#ff6600 !important;  height: 8px; margin-top: 0px;">
-      </div>
+    <body>
       
-      <div id="footer">
-        {% include 'footer.html' %}
-        </div>
-      </div>
     </body>
     <script src="/static/js/jquery.min.js"></script>
-    <script type="text/javascript">
-    <<main-js>>
-    </script>
   </html>
+-->
+{% endblock %}
   
 #+END_SRC
 
+** Deployment
+#+NAME: setup_file
+#+BEGIN_SRC python
+
+from setuptools import setup
+
+requires = [
+    'flask'
+]
+
+setup(
+    name='college-cloud',
+    version='1.0',
+    install_requires=requires
+)
+#+END_SRC
 * Infra                                                         :boilerplate:
 
 ** sources
@@ -1000,32 +1078,23 @@ if __name__ == '__main__':
 
 #+END_SRC
 
-* Tangle                                                        :boilerplate:
+* Tangle
 
 ** sources
 #+BEGIN_SRC python :tangle api.py :eval no :noweb yes
+<<imports>>
+<<get_reg_form>>
+<<run_server>>
 
-<<imports_for_sources>>
-<<serve_index_html>>
-<<google_oauth_configuration>>
-<<jsonify_list>>
-<<login_route>>
-<<logout_route>>
-<<callback_google_api>>
-<<google_oauth_token>>
-<<create_session>>
-<<add_user>>
-<<del_user>>
-<<show_users>>
-<<show_sessions>>
-<<show_user_details>>
-<<show_roles>>
-<<set_email_of_user>>
-<<set_name_of_user>>
-<<show_roles_of_user>>
-<<add_role_to_user>>
-<<del_role_of_user>>
-
+#+END_SRC
+#+BEGIN_SRC python :tangle setup.py :eval no :noweb yes
+<<setup_file>>
+#+END_SRC   
+#+BEGIN_SRC shell :tangle conf.sh
+<config_file>>
+#+END_SRC  
+#+BEGIN_SRC shell :tangle fetch_analytics.sh 
+<<fetch_analytics>>  
 #+END_SRC
 
 
@@ -1035,14 +1104,4 @@ if __name__ == '__main__':
 <<run_test_cases>>
 #+end_src
 
-
-* Tangling
-
-  #+BEGIN_SRC shell :tangle conf.sh
-  <<config_file>>
-  #+END_SRC
-
-  #+BEGIN_SRC shell :tangle fetch_analytics.sh 
-  <<fetch_analytics>>  
-  #+END_SRC
 
