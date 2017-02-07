@@ -11,7 +11,7 @@
 ** Create user for =syncthing= on system1 and system2
  Create user using below command
 #+BEGIN_EXAMPLE
-sudo adduser <username>
+$ sudo adduser <username>
 #+END_EXAMPLE
 ** Install =syncthing= on system1 and system2
    Download =syncthing= using below command.
@@ -21,23 +21,23 @@ $ wget https://github.com/syncthing/syncthing/releases/download/v0.14.21/syncthi
 ** Extract the download file
     Extract the dowload file using below command
 #+BEGIN_EXAMPLE
-tar xzvf syncthing-linux-amd64-v0.14.21.tar.gz
+$ tar xzvf syncthing-linux-amd64-v0.14.21.tar.gz
 #+END_EXAMPLE
    Change directory to the extracted folder
 #+BEGIN_EXAMPLE
-cd syncthing-linux-amd64-v0.14.21
+$ cd syncthing-linux-amd64-v0.14.21
 #+END_EXAMPLE
 ** Copy the excutable file =syncthing= to *$PATH*
   Do this with sudo privileges by typing
  #+BEGIN_EXAMPLE
- sudo cp syncthing /usr/local/bin
+ $ sudo cp syncthing /usr/local/bin
  #+END_EXAMPLE
 ** Run =syncthing= client programme.
  - Complete all of the above steps on your system.
  - The application is now installed, but there are a few more things we need to do before it will be ready to use.
  - Now, run the following command to run the syncthing for the first time.
 #+BEGIN_EXAMPLE
-syncthing
+$ syncthing
 #+END_EXAMPLE
 The syncthing process is not a daemon, which means that it runs in the
 current shell session (we will get around this by implementing an
@@ -58,7 +58,7 @@ This will stop the process and give us control over the terminal again.
 ** Configure =syncthing=
   Edit the following configuration file that was created. Open the file in your text editor
 #+BEGIN_EXAMPLE
-sudo vim ~/.config/syncthing/config.xml
+$ sudo vim ~/.config/syncthing/config.xml
 #+END_EXAMPLE
 Look for a section that deals with the GUI. It should look like this
 #+BEGIN_EXAMPLE
@@ -82,7 +82,7 @@ session.
 
 Create and open the Upstart file with root privileges in your editor by typing
 #+BEGIN_EXAMPLE
-sudo vim /etc/init/syncthing.conf
+$ sudo vim /etc/init/syncthing.conf
 #+END_EXAMPLE
 Inside, we will use the following lines to control our Upstart process
 #+BEGIN_EXAMPLE
@@ -109,7 +109,7 @@ respawn
 ** Start =syncthig= service on system1 and system2
   Start the =syncthing= service using below command
 #+BEGIN_EXAMPLE
-sudo initctl start syncthing
+$ sudo initctl start syncthing
 #+END_EXAMPLE
 
 ** Access the WebGUI
@@ -127,15 +127,15 @@ http://server2_public_IP:8080
  - Enter the admin *username/password*. In my case it is
    admin/ubuntu. You should use some strong password. And, check the
    box that says: Use *HTTPS for GUI*.
- - Click Save button. Now, you¡¯ll be asked to restart the Syncthing to
+ - Click Save button. Now, youÂ¡Â¯ll be asked to restart the Syncthing to
    activate the changes. Click Restart.
- - Refresh you web browser. You¡¯ll see the SSL warning like
+ - Refresh you web browser. YouÂ¡Â¯ll see the SSL warning like
    below. Click on the button that says: *I understand the Risks*. And,
    click *Add Exception* button to add this page to the browser trusted
    lists.
  - Enter the administrative user and password which we configured in
-  the previous steps. In my case it¡¯s *admin/ubuntu*.
- - We have secured the WebGUI now. Don¡¯t forget to do the same steps
+  the previous steps. In my case itÂ¡Â¯s *admin/ubuntu*.
+ - We have secured the WebGUI now. DonÂ¡Â¯t forget to do the same steps
    on both server.
 
 ** Connect Servers To Each Other
@@ -154,12 +154,12 @@ http://server2_public_IP:8080
    address of the other system or leave it as default. The default
    value is *dynamic*. Finally, select the folder to be synced. In our
    case, the sync folder is *default*.
- - Once you done, click on the save button. You¡¯ll be asked to restart
+ - Once you done, click on the save button. YouÂ¡Â¯ll be asked to restart
    the Syncthing. Click Restart button to activate the changes.
- - Now, go to the *System 1* WebUI, you¡¯ll see a request has been sent
+ - Now, go to the *System 1* WebUI, youÂ¡Â¯ll see a request has been sent
    from the System 2 to connect and sync. Click *Add* button. Now, the
    System 2 will ask the System 1 to share and sync the folder called
    =default=. Click *Share* button.
  - Next restart the Syncthing service on the System 1 to activate the changes.
- - Wait for few seconds, approximately 60 seconds, and you¡¯ll see the two systems have been successfully connected and synced to each other.
+ - Wait for few seconds, approximately 60 seconds, and youÂ¡Â¯ll see the two systems have been successfully connected and synced to each other.
  - Now, put any file or folder in any one of the systems *default* folder. You may see the file/folder will be synced to the other system automatically.
