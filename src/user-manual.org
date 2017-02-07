@@ -124,6 +124,8 @@
 
   College System Administrator/Workshop coordinator should follow the
   steps for enabling students to use labs from College Cloud.
+** List of labs hosted on College Cloud Edition
+   - [[./labs-on-college-cloud/list-of-labs-in-college-cloud.org::#list-of-labs][Labs on College Cloud]]
 ** Selecting labs
    - Use the link =http://<College-Cloud-Machine-IP>:3000=
    - This would prompt for the user name and password. Please provide
