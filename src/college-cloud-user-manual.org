@@ -5,6 +5,13 @@
 #+SETUPFILE: ./org-templates/level-0.org
 #+options: ^:nil
 #+LATEX: Literal LaTeX code for export
+#+TITLE: User Manual for Virtual Labs College Cloud Edition
+#+AUTHOR: VLEAD
+#+PROPERTY: results output
+#+PROPERTY: exports code
+#+SETUPFILE: ./org-templates/level-0.org
+#+options: ^:nil
+#+LATEX: Literal LaTeX code for export
 
 * Introduction
   This manual details the configuration/workflow process to be
@@ -84,6 +91,11 @@
     #+BEGIN_EXAMPLE
     sudo htpasswd -C /etc/nagios/passwd nagiosadmin
     #+END_EXAMPLE 
+*** Open edX platform default user password change
+    Change admin( default) user from django-administration
+    page. Access this page using =http://open-edx.vlabs.ac.in/admin.
+   
+     [[https://openedx.atlassian.net/wiki/display/OpenOPS/Managing+OpenEdX+Tips+and+Tricks][Administration commands]].
 
 * Using College Cloud Edition
   College System Administrator/Workshop coordinator should follow the
@@ -219,24 +231,21 @@
 
 *** User registrations on [[https://open.edx.org/getting-started-open-edx][Open edX platform]]
 **** Lab users 
-    - Click on register button on http://open-edx.vlabs.ac.in and
-      fill in the registration form.
-    - Use the labs selected by System Administrator/Workshop
-      coordinator.
-    - Do not log out until the System Administrator/Workshop
-      coordinator.
+     - Click on register button on http://open-edx.vlabs.ac.in and
+       fill in the registration form.
+     - Use the labs selected by System Administrator/Workshop
+       coordinator.
+     - Do not log out until the System Administrator/Workshop
+       coordinator.
 **** System Administrator/Workshop coordinator. 
-    - Go to  http://open-edx.vlabs.ac.in/admin.
-    - Log in using default Open edX user credentials in the default
-      password file which can be located at =TODO=.
+     - Go to  http://open-edx.vlabs.ac.in/admin.
+     - Log in using default Open edX user credentials. For default
+       Open edX user credentials please look at [[Default user
+       credentials]].
       + NOTE :: It is advised that the password is changed after the
                 first login . For the steps for changing the password,
-                follow the TODO [[Open edX platform user password][link]]. Also 
-
-      + User credentials are 
-       	- User name :: admin-vlabs
-       	- Password :: admin123
-       	- Email :: admin@vlabs.ac.in    
+                follow the [[Open edX platform default user password
+                change][link]]. 
     - Go to =Authentication and Authorization= section
       + Select =Users= 
       + Click on =user name=
@@ -245,18 +254,18 @@
 
 * Workflow of College Cloud Edition
 ** Workshop conducted by Workshop Coordinator
-   + [[ link to workshops page on vlabs.ac.in][Organising workshops]]
+   + [[https://vlabs.ac.in:5959/college-cloud-edition][Organising workshops]]
      + Add workshop on [[http://outreach.vlabs.ac.in][Outreach Portal]] choosing College Cloud option.
      + Make sure the [[Requirements][requirements]] are met by the college.
-   + [[Configuration process][Configuring College Cloud]]
+   + [[Configuration for making a machine as College Cloud Server][Configuring College Cloud]]
    + [[Using College Cloud Edition][Using College Cloud]]
-   + [[Analytics and Feedback][Collecting Analytics and Feedback]]
+   + TODO [[Analytics and Feedback][Collecting Analytics and Feedback]]
 ** Virtual Labs College Cloud Edition used by colleges as part of their curriculum
    + TODO Procuring College Cloud From Sanchita
-   + [[Configuration process][Configuring College Cloud]]
+   + [[Configuration for making a machine as College Cloud Server][Configuring College Cloud]]
    + [[Using College Cloud Edition][Using College Cloud]]
-   + [[Analytics and Feedback][Collecting Analytics and Feedback]]
-* Analytics and Feedback
+   + TODO [[Analytics and Feedback][Collecting Analytics and Feedback]]
+* COMMENT Analytics and Feedback
 ** Analytics and Feedback : System Administrator
    1. System Administrator will be given a shell script.
        + Login as =vlabs= user to machine using following credentials
@@ -297,7 +306,7 @@
   Administrator and existing lab users.
 ** Instructions for the systems adminstrator  
 *** On existing College Cloud Server
-  - Log in to the existing [[link][College Cloud (Old) Server]] as a super user
+  - Log in to the existing *College Cloud Server (old)* as a super user
     using [[Default user credentials][default user credentials]]
     #+BEGIN_EXAMPLE
     su -
@@ -326,7 +335,7 @@
     - [[Configuration for making a machine as College Cloud Server]]
     - [[Using College Cloud Edition]]
     - [[Workflow of College Cloud Edition]]
-    - [[Analytics and Feedback]]
+    - TODO [[Analytics and Feedback]]
   
 ** Instructions for the  existing lab users 
    All lab users would need to follow the below steps to ensure
@@ -350,22 +359,6 @@
      regular basis to facilitate log collection.
   5. No videos of the labs would be accessible from the College Cloud
      Edition.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
