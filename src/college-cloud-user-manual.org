@@ -5,13 +5,6 @@
 #+SETUPFILE: ./org-templates/level-0.org
 #+options: ^:nil
 #+LATEX: Literal LaTeX code for export
-#+TITLE: User Manual for Virtual Labs College Cloud Edition
-#+AUTHOR: VLEAD
-#+PROPERTY: results output
-#+PROPERTY: exports code
-#+SETUPFILE: ./org-templates/level-0.org
-#+options: ^:nil
-#+LATEX: Literal LaTeX code for export
 
 * Introduction
   This manual details the configuration/workflow process to be
@@ -67,7 +60,7 @@
    Administrator to manage these passwords.
 
 *** Default user credentials
-    [[Default user credentials][Default user credentials]] are saved in a file called
+    Default user credentials are saved in a file called
     =passwords.txt= in College Cloud server at =~/passwords.txt= in
     =vlabs= user account.
     
@@ -193,7 +186,7 @@
       wireless. 
     - LAN cable should be connected to the WiFi-router.
     - Once connected to the wireless or LAN, lab user should modify
-      the *TODO: change name server setting*.
+      the change DNS settings.
 
       + *Linux*  
        	- Open the file
@@ -240,12 +233,12 @@
 **** System Administrator/Workshop coordinator. 
      - Go to  http://open-edx.vlabs.ac.in/admin.
      - Log in using default Open edX user credentials. For default
-       Open edX user credentials please look at [[Default user
+       Open edX user credentials please look at [[default user
        credentials]].
       + NOTE :: It is advised that the password is changed after the
                 first login . For the steps for changing the password,
                 follow the [[Open edX platform default user password
-                change][link]]. 
+                change][link]].
     - Go to =Authentication and Authorization= section
       + Select =Users= 
       + Click on =user name=
@@ -259,12 +252,12 @@
      + Make sure the [[Requirements][requirements]] are met by the college.
    + [[Configuration for making a machine as College Cloud Server][Configuring College Cloud]]
    + [[Using College Cloud Edition][Using College Cloud]]
-   + TODO [[Analytics and Feedback][Collecting Analytics and Feedback]]
+   + [[COMMENT Analytics and Feedback][Collecting Analytics and Feedback]]
 ** Virtual Labs College Cloud Edition used by colleges as part of their curriculum
    + TODO Procuring College Cloud From Sanchita
    + [[Configuration for making a machine as College Cloud Server][Configuring College Cloud]]
    + [[Using College Cloud Edition][Using College Cloud]]
-   + TODO [[Analytics and Feedback][Collecting Analytics and Feedback]]
+   + [[COMMENT Analytics and Feedback][Collecting Analytics and Feedback]]
 * COMMENT Analytics and Feedback
 ** Analytics and Feedback : System Administrator
    1. System Administrator will be given a shell script.
@@ -335,7 +328,7 @@
     - [[Configuration for making a machine as College Cloud Server]]
     - [[Using College Cloud Edition]]
     - [[Workflow of College Cloud Edition]]
-    - TODO [[Analytics and Feedback]]
+    - [[COMMENT Analytics and Feedback]]
   
 ** Instructions for the  existing lab users 
    All lab users would need to follow the below steps to ensure
