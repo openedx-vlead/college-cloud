@@ -1,4 +1,4 @@
-#+TITLE: Implementation of College Cloud Edition 
+#+TITLE: Implementation the  College Cloud Edition 
 #+AUTHOR: VLEAD
 #+SETUPFILE: ../../org-templates/level-2.org
 #+TAGS: boilerplate(b)
@@ -7,7 +7,7 @@
 
 * Introduction
   The documentation describes implementation of the College Cloud
-* Implementation of College Cloud Edition
+* Implementation College Cloud 
   Implementation is done based on the above design diagram.
   We need internet connection for
   - Setting up cluster
@@ -470,8 +470,8 @@
 ** Conf.sh
    The basic configuration file. Sysadmin has to add the values to the
    fields
-   #+NAME: config_file
-   #+BEGIN_SRC shell 
+#+NAME: config_file
+   #+BEGIN_SRC 
    #!/bin/bash
    ### Edit this file only once while installing  college cloud
    ### All feilds are needed
@@ -481,39 +481,9 @@
    AUTHOR=Example
    EMAIL=example@gmail.com
    #+END_SRC
-** Date wise Feedback dump
-   A python program to fetch date wise feedback dump.
-#+NAME: fetch_feedbacks
-  #+BEGIN_SRC python
-  #!/usr/bin/python
-
-  import requests
-  import datetime
-  
-  now = datetime.datetime.now()
-  
-  date = now.strftime("%d-%m-%Y")
-  
-  dump_file = "feedback-dump-"+date+".json"
-  
-  url = "http://feedback.vlabs.ac.in/feedback_dump?date="+date+"&key=defaultkey"
-  response=requests.get(url)
-  fp=open(dump_file,"w")
-  fp.write(response.content)
-  fp.close()
-  #print type(response.content)
-   #+END_SRC   
 
 ** Fetch analytics and feedback
-
-   A Shell script is given as utility which can get -
-   1. Full logs for feedback, analytics and user data
-   2. Date wise logs for feedback and analytics and partial user data
-      (default)
-
-   Full logs will only be taken if requested. By default, date wise
-   logs will be uploaded by user.
-#+NAME: fetch_analytics   
+#+name: fetch_analytics   
    #+BEGIN_SRC shell
    #!/bin/sh
 
@@ -712,7 +682,7 @@ from config import INTERFACE, PATH_TO_FOLDER
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
     <link rel="stylesheet" href="static/css/main.css">
   </head>
   <body>
@@ -841,6 +811,7 @@ color:green;
 </form>
 #+END_SRC
 ** CSS 
+*** main.css
 #+BEGIN_SRC css :tangle ./static/css/main.css :eval no :noweb yes
 body {
     font-family:'Raleway' !important;
@@ -990,9 +961,6 @@ tr:nth-child(even) {
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -1075,7 +1043,7 @@ setup(
 #+BEGIN_SRC python :tangle config.py :eval no :noweb yes
 <<config>>
 #+END_SRC
-#+BEGIN_SRC python :tangle api.py :eval no :noweb yes
+#+BEGIN_SRC python :tangle app.py :eval no :noweb yes
 <<imports>>
 <<get_reg_form>>
 <<run_server>>
@@ -1083,16 +1051,11 @@ setup(
 #+BEGIN_SRC python :tangle setup.py :eval no :noweb yes
 <<setup_file>>
 #+END_SRC   
-
-#+BEGIN_SRC shell :tangle script/conf.sh :eval no :noweb yes
-<<config_file>>
+#+BEGIN_SRC shell :tangle conf.sh
+<config_file>>
 #+END_SRC  
-
-#+BEGIN_SRC shell :tangle script/fetch_analytics.sh :eval no :noweb yes
+#+BEGIN_SRC shell :tangle fetch_analytics.sh 
 <<fetch_analytics>>  
-#+END_SRC
-#+BEGIN_SRC python :tangle script/feedback-dump.py :eval no :noweb yes
-<<fetch_feedbacks>>  
 #+END_SRC
 
 ** tests
