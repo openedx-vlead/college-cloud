@@ -599,10 +599,19 @@
 
 * Post processing of workshop data
 ** App
-*** Get Success Template
-   Rest API to render a template on success.
+*** Config
+#+NAME: config
+#+BEGIN_SRC  python
+
+INTERFACE = "wlan0"
+PATH_TO_FOLDER = "/home/vlead/script/"
+
+#+END_SRC
+*** Get registration form
+   Rest API to render a college cloud registration form
 #+NAME: get_reg_form
 #+BEGIN_SRC  python
+
 app = Flask(__name__)
 app.secret_key = 'djfjsdkjXXS7979dfdfd'
 
@@ -617,11 +626,9 @@ def get_reg_template():
         clg_name = request.form.get("clg_name")
         clg_id = request.form.get("clg_id")
         clg_pincode = request.form.get("clg_pincode")
-        clg_address = request.form.get("clg_addr")
-        interface = "wlan0"
-        path_to_folder = "/home/vlead/script/"
+        clg_address = request.form.get("clg_addr")        
         try:
-            mac_addr = open('/sys/class/net/'+interface+'/address').readline()[0:17]
+            mac_addr = open('/sys/class/net/'+INTERFACE+'/address').readline()[0:17]
             clg_details = {
                 mac_addr : {
                     'college_details': {
@@ -635,11 +642,11 @@ def get_reg_template():
         except Exception as e:
             abort(404, "MAC File not found")
         try:
-            with open(path_to_folder+'config.json', 'w') as outfile:
+            with open(PATH_TO_FOLDER+'config.json', 'w') as outfile:
                 json.dump(clg_details, outfile, indent=4, sort_keys=True, separators=(',', ':'))
                 
             return jsonify({"status" : "Succesfully saved records to '%s' directory " 
-                            %(path_to_folder), "data" : clg_details})
+                            %(PATH_TO_FOLDER), "data" : clg_details})
         except Exception as e:
             abort(500, "Could not write data to file %s" %(str(e)))
 
@@ -661,10 +668,11 @@ if __name__ == "__main__":
 import os
 import json
 from flask import Flask, jsonify, render_template, request, abort
+from config import INTERFACE, PATH_TO_FOLDER
 #+END_SRC
 
 ** Header HTML
-   #+BEGIN_SRC html :tangle ./templates/header.html :eval no :noweb yes
+   #+BEGIN_SRC html :tangle ./templates/base.html :eval no :noweb yes
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -687,8 +695,8 @@ from flask import Flask, jsonify, render_template, request, abort
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="https://open-edx.vlabs.ac.in"
-             onclick="dashboard()">
+          <a class="navbar-brand" href="https://vlabs.ac.in"
+             onclick="dashboard()" style="padding-top:0px">
             <img width="100px" height="50px"  src="https://open-edx.vlabs.ac.in/static/edx-bootstrap-theme/images/logo.d4f9ba0ed44c.png" class="logo-img"></a>
         </div><br>
       </div>
@@ -959,34 +967,41 @@ tr:nth-child(even) {
 <body>
 
 <div class="container">
-  <h2>College Cloud Registration</h2>
+  <h2>College Cloud Registration</h2><br>
   <form action="/" method="POST">
     <div class="container">
       <div class="form-group col-md-5">
+	<label><font color="red">*</font></label>
 	<label>College-Name:</label>
-	<input type="text" class="form-control" name="clg_name" placeholder="Enter college name">
+	<input type="text" class="form-control" name="clg_name" placeholder="Enter college name" required>
       </div>
     </div>
     <div class="container">
       <div class="form-group col-md-5">
 	<label>College ID:</label>
-	<input type="number" class="form-control" min="0" length="6" name="clg_id" placeholder="Enter college id">
+	<input type="text" class="form-control" min="0" length="6" name="clg_id" placeholder="Enter college id">
       </div>
     </div>
 
     <div class="container">
       <div class="form-group col-md-5">
+	<label><font color="red">*</font></label>
 	<label>College Address:</label>
-	<textarea class="form-control" name="clg_addr" placeholder="Enter college address"></textarea>
+	<textarea class="form-control" name="clg_addr" placeholder="Enter college address" required></textarea>
       </div>
     </div>
     <div class="container">
       <div class="form-group col-md-3">
+	<label><font color="red">*</font></label>
 	<label>Pincode:</label>
-	<input type="number" class="form-control" min="0" length="6" name="clg_pincode" placeholder="Enter pincode">
+	<input type="number" class="form-control" min="0" size="6" name="clg_pincode" placeholder="Enter pincode" required>
       </div>
     </div>
-    <input type="submit" value="Submit"/>
+    <div class="container">
+      <div class="form-group col-md-6">
+	<input class="btn" type="submit" value="Save"/>
+      </div>
+    </div>
   </form>
 
 </div>
@@ -1010,82 +1025,30 @@ tr:nth-child(even) {
 #+END_SRC
 
 ** Deployment
+*** Setup
 #+NAME: setup_file
 #+BEGIN_SRC python
 
 from setuptools import setup
-
 requires = [
     'flask'
 ]
-
 setup(
     name='college-cloud',
     version='1.0',
     install_requires=requires
 )
 #+END_SRC
-* Infra                                                         :boilerplate:
-
-** sources
-*** Imports 
-#+name: imports_for_sources
-#+BEGIN_SRC python
-# -*- coding: utf-8 -*-
-import os
-import requests
-import json
-from flask_oauthlib.client import OAuth
-from runtime.config import google_oauth_config as oauth_config
-from flask import session, render_template, Blueprint, request, \
-     jsonify, abort, current_app, redirect, url_for, make_response
-from flask import Flask
-from runtime.utils.type_utils import jsonify_list
-from runtime.exceptions.custom_exceptions import *
-from runtime.system.system_interface import SystemInterface
-import yaml
-
-api = Blueprint('APIs', __name__)
-
-#+end_src
-
-
-** tests
-*** Imports 
-#+name: imports_for_tests
-#+BEGIN_SRC python
-# -*- coding: utf-8 -*-
-import unittest
-from flask_testing import TestCase
-from sqlalchemy.exc import IntegrityError
-from runtime.utils.class_persistence_template import db
-from runtime.rest.app import create_app
-#from runtime.config.system_config import KEY
-from runtime.rest.api import *
-from runtime.system.system import System
-import datetime
-config = {
-         'SQLALCHEMY_DATABASE_URI': ''
-         }
-
-#+end_src
-
-*** Running tests
-#+NAME: run_test_cases
-#+BEGIN_SRC python
-if __name__ == '__main__':
-    unittest.main()
-
 #+END_SRC
-
 * Tangle
-
 ** sources
+#+BEGIN_SRC python :tangle config.py :eval no :noweb yes
+<<config>>
+#+END_SRC
 #+BEGIN_SRC python :tangle api.py :eval no :noweb yes
 <<imports>>
 <<get_reg_form>>
 <<run_server>>
-
 #+END_SRC
 #+BEGIN_SRC python :tangle setup.py :eval no :noweb yes
 <<setup_file>>
@@ -1096,7 +1059,6 @@ if __name__ == '__main__':
 #+BEGIN_SRC shell :tangle fetch_analytics.sh 
 <<fetch_analytics>>  
 #+END_SRC
-
 
 ** tests
 #+BEGIN_SRC python :tangle test_api.py :eval no :noweb yes
