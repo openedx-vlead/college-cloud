@@ -1,16 +1,16 @@
 #+TITLE: Design of the  College Cloud Edition 
 #+AUTHOR: VLEAD
-#+SETUPFILE: ../../org-templates/level-2.org
-#+TAGS: boilerplate(b)
-#+EXCLUDE_TAGS: boilerplate
-#+OPTIONS: ^:nil
+#+PROPERTY: results output
+#+PROPERTY: exports code
+#+SETUPFILE: ../org-templates/level-1.org
+#+options: ^:nil
+#+LATEX: Literal LaTeX code for export
 
 * Introduction 
   This document illustrates building of the College Cloud edition
 * Design 
   #+LABEL:  Portable-media-diagram
   [[../images/Design-of-Portable-Edition-2016-09-26.jpg]]
-
 
   #+CAPTION:  Portable Edition's Cluster diagram
   #+LABEL:  Portable-media Cluster Design diagram

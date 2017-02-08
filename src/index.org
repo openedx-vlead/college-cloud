@@ -1,4 +1,4 @@
-#+TITLE: College Cloud Edition
+#+TITLE: Virtual Labs College Cloud Edition
 #+DATE: [2016-09-14 Wed]
 #+PROPERTY: results output
 #+PROPERTY: exports code
@@ -27,10 +27,12 @@
 * Design
   [[./design/index.org][College Cloud design]]
 * Implementation 
-  [[./implementation/index.org][Implementation]]
+  [[./runtime/implementation/index.org][Implementation]]
 * List of labs hosted on cluster and on Open edX platform 
-  - [[https://docs.google.com/spreadsheets/d/10oarpSmBUYbd0szQU3q0KWO77IF58tSPFkq2e7JE0Mw/edit#gid%3D0][List of labs hosted on cluster and on Open edX platform ]]
-
+  - [[./labs-on-college-cloud/list-of-labs-in-college-cloud.org::#list-of-labs][Labs on College Cloud]]
+  - Google spreadsheet of [[https://docs.google.com/spreadsheets/d/10oarpSmBUYbd0szQU3q0KWO77IF58tSPFkq2e7JE0Mw/edit#gid%3D0][List of labs hosted on cluster and on Open
+    edX platform ]]
+  
 * Performance Test Cases
   [[./Performance-Test][Performance Test cases]]
 * Proposed and changed designed plans
@@ -41,5 +43,5 @@
   [[./cc-status/][Status of the College-Cloud]]
 * GitHub Issues
   - [[https://github.com/openedx-vlead/portable-media/issues/1][Cluster and Open edX Platform setup]]
-  - [[https://github.com/openedx-vlead/portable-media/issues/2][Analytics for the portable media]]
+  - [[https://github.com/openedx-vlead/portable-media/issues/2][Analytics for the College Cloud]]
 
