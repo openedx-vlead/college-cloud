@@ -641,9 +641,9 @@ PATH_TO_FOLDER = "/home/vlead/script/"
 #+END_SRC
 *** Get registration form
    Rest API to render a college cloud registration form
+**** api
 #+NAME: get_reg_form
 #+BEGIN_SRC  python
-
 app = Flask(__name__)
 app.secret_key = 'djfjsdkjXXS7979dfdfd'
 
@@ -656,18 +656,20 @@ def get_reg_template():
             abort(404, "template not found")
     elif request.method == 'POST':
         clg_name = request.form.get("clg_name")
-        clg_id = request.form.get("clg_id")
+        contact_num = request.form.get("clg_contact_no")
         clg_pincode = request.form.get("clg_pincode")
         clg_address = request.form.get("clg_addr")        
+        email_id = request.form.get("email")        
         try:
             mac_addr = open('/sys/class/net/'+INTERFACE+'/address').readline()[0:17]
             clg_details = {
                 mac_addr : {
                     'college_details': {
                         'college_name' : clg_name,
-                        'college_id' : clg_id,
+                        'contact_no' : contact_num,
                         'college_address' : clg_address,
-                        'college_pincode' : clg_pincode                
+                        'college_pincode' : clg_pincode,
+                        'email_id' : email_id                                
                     }                
                 }
             }
@@ -681,6 +683,26 @@ def get_reg_template():
                             %(PATH_TO_FOLDER), "data" : clg_details})
         except Exception as e:
             abort(500, "Could not write data to file %s" %(str(e)))
+
+#+END_SRC
+**** Test case
+ #+NAME: test_get_reg_form
+ #+BEGIN_SRC python
+class TestGetRegForm(TestCase):
+    TESTING = True
+
+    def setUp(self):
+        return app
+    def tearDown(self):
+        print "hello"
+
+    def test_get_generic_feedback_form_data(self):
+        print "test_get_generic_feedback_form_data"
+        headers = {'Content-Type': 'application/json'}
+        request_str = "/"
+        print "request-str = %s" % request_str
+        response = self.client.get(request_str)
+        self.assertEqual(response.status_code, 200)
 
 #+END_SRC
 
@@ -701,6 +723,24 @@ import os
 import json
 from flask import Flask, jsonify, render_template, request, abort
 from config import INTERFACE, PATH_TO_FOLDER
+#+END_SRC
+
+** tests
+*** Imports 
+#+name: imports_for_tests
+#+BEGIN_SRC python
+# -*- coding: utf-8 -*-
+import unittest
+from flask_testing import TestCase
+from runtime.implementation.app import app
+#+end_src
+
+*** Running tests
+#+NAME: run_test_cases
+#+BEGIN_SRC python
+if __name__ == '__main__':
+    unittest.main()
+
 #+END_SRC
 
 ** Header HTML
@@ -1009,13 +1049,6 @@ tr:nth-child(even) {
     </div>
     <div class="container">
       <div class="form-group col-md-5">
-	<label>College ID:</label>
-	<input type="text" class="form-control" min="0" length="6" name="clg_id" placeholder="Enter college id">
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="form-group col-md-5">
 	<label><font color="red">*</font></label>
 	<label>College Address:</label>
 	<textarea class="form-control" name="clg_addr" placeholder="Enter college address" required></textarea>
@@ -1027,6 +1060,19 @@ tr:nth-child(even) {
 	<label>Pincode:</label>
 	<input type="number" class="form-control" min="0" size="6" name="clg_pincode" placeholder="Enter pincode" required>
       </div>
+    </div>
+    <div class="container">
+      <div class="form-group col-md-3">
+	<label><font color="red"></font></label>
+	<label>Contact No:</label>
+	+91<input type="number" class="form-control"  name="clg_contact_no" placeholder="Enter Mobile Number">
+      </div>
+    </div>
+    <div class="container">
+        <div class="form-group col-md-5">
+            <label for="email">Email address:</label>
+            <input type="email" class="form-control" name="email" placeholder="Enter email id">
+        </div>
     </div>
     <br>
     <div class="container">
@@ -1086,8 +1132,9 @@ setup(
 #+END_SRC
 
 ** tests
-#+BEGIN_SRC python :tangle test_api.py :eval no :noweb yes
+#+BEGIN_SRC python :tangle test_app.py :eval no :noweb yes
 <<imports_for_tests>>
+<<test_get_reg_form>>
 <<run_test_cases>>
 #+end_src
 
