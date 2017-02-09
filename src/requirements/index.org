@@ -1,6 +1,6 @@
 #+TITLE: Requirements of the  College Cloud Edition 
 #+AUTHOR: VLEAD
-#+SETUPFILE: ../../org-templates/level-2.org
+#+SETUPFILE: ../org-templates/level-1.org
 #+TAGS: boilerplate(b)
 #+EXCLUDE_TAGS: boilerplate
 #+OPTIONS: ^:nil

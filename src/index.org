@@ -39,7 +39,9 @@
   [[https://github.com/openedx-vlead/portable-media/blob/master/src/meeting-minutes.org#proposed-and-changed-designed-plans][Design plans]]
 * SyncThing 
   [[./syncthing][SyncThing]]
-* Status of the college Cloud
+* Installation Manual
+  [[./installation-manual.org][Installation Manual]]
+* COMMENT Status of the college Cloud
   [[./cc-status/][Status of the College-Cloud]]
 * GitHub Issues
   - [[https://github.com/openedx-vlead/portable-media/issues/1][Cluster and Open edX Platform setup]]

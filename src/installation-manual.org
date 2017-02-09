@@ -49,9 +49,9 @@
   3. Connect the College Cloud Edition Hard Disk Drive to the
      identified College Cloud machine.
   4. Boot the machine from College Cloud Edition Hard Disk Drive.
-  5. Please use [[./user-manual.org::#passwords][default linux user credentials]] to login.
+  5. Please use [[./installation-manual.org::#passwords][default linux user credentials]] to login.
      + NOTE :: It is advised that the password is changed after the
-               first login . To change the password, follow the
+               first login . To change the password, follow the [[./installation-manual.org::#passwords][link]]
 ** Launch Virtual Labs (Open edX) platform
  - Run the following command on terminal to run Virtual Labs on
     Open edX platform. This may take a few minutes to launch the
@@ -114,7 +114,7 @@
 
    To change the Open edX platform  admin( default) user password
     - Go to   =http://open-edx.vlabs.ac.in/admin.
-    - Login using default [[Passwords][admin user and password]].
+    - Login using default [[./inallation-manual.org::#passwords][admin user and password]].
     - Follow the instructions detailed in [[https://openedx.atlassian.net/wiki/display/OpenOPS/Managing+OpenEdX+Tips+and+Tricks][Administration commands]].
 
 * Using College Cloud Edition
@@ -129,10 +129,10 @@
 ** Selecting labs
    - Use the link =http://<College-Cloud-Machine-IP>:3000=
    - This would prompt for the user name and password. Please provide
-     [[./user-manual.org::#passwords][default user credentials]]. 
+     [[./installation-manual.org::#passwords][default user credentials]]. 
     + NOTE :: It is advised that the password is changed after the
               first login . For the steps for changing the password,
-              follow the [[./user-manual.org::#OpenVZ][link]]
+              follow the [[./installation-manual.org::#OpenVZ][link]]
 
 
    [[https://openvz.org/Control_panels#OVZ_Web_Panel][OpenVZ web panel]] is for managing Virtual Labs running on localhost
@@ -182,7 +182,7 @@
        make a note of the course/lab name.
     3. Go to =http://<College-Cloud-Machine-IP>:3000= 
     4. Sign into =OpenVZ web panel=. For credentials, please follow
-       the [[./user-manual.org::#passwords][passwords]]
+       the [[./installation-manual.org::#passwords][passwords]]
     5. Click on =localhost= located at left side of the panel.
     6. Search for the lab name that has been selected in step 2.
     7. Choose the selected lab by clicking on CTID (example.213) and
@@ -208,11 +208,11 @@
    [[https://www.nagios.org/][Nagios]] is used for monitoring systems resources such as load on the
    machine, RAM usage, Processes, etc.
    - Use the link =http://<College-Cloud-Machine-IP>/nagios=
-   - Use the Nagios [[./user-manual.org::#passwords][default user credentials]]
+   - Use the Nagios [[./installation-manual.org::#passwords][default user credentials]]
 
     + NOTE :: It is advised that the password is changed after the
               first login . For the steps for changing the password,
-              follow the [[./user-manual.org::#nagios_password][link]]
+              follow the [[./installation-manual.org::#nagios_password][link]]
 ** Instructions for Lab users		   
    College System Administrator/Workshop Coordinator to issue the
    following instructions to all lab users:
@@ -271,10 +271,10 @@
 **** System Administrator/Workshop coordinator 
      - Go to  http://open-edx.vlabs.ac.in/admin.
      - Log in using admin user credentials. Admin user credentials are
-       at [[./user-manual.org::#passwords][passwords]]
+       at [[./installation-manual.org::#passwords][passwords]]
       + NOTE :: It is advised that the password is changed after the
                 first login . For the steps for changing the password,
-                follow the [[./user-manual.org::#platform_password][link]].
+                follow the [[./installation-manual.org::#platform_password][link]].
     - Go to =Authentication and Authorization= section to activate
       registered users.
       + Select =Users= 
@@ -293,15 +293,15 @@
      to get detailed requirements for Virtual Labs College Cloud
      Edition.
    + Add workshop on [[http://outreach.vlabs.ac.in][Outreach Portal]].
-   + Make sure the [[./user-manual.org::#requirements][requirements]] are met by the college.
-   + [[./user-manual.org::#cc-server][Configure College Cloud Server]]
-   + [[./user-manual.org::#using-cc-server][Using College Cloud]]
-   + [[./user-manual.org::#analytics-feedbacks][Collecting Analytics and Feedback]]
+   + Make sure the [[./installation-manual.org::#requirements][requirements]] are met by the college.
+   + [[./installation-manual.org::#cc-server][Configure College Cloud Server]]
+   + [[./installation-manual.org::#using-cc-server][Using College Cloud]]
+   + [[./installation-manual.org::#analytics-feedbacks][Collecting Analytics and Feedback]]
 ** Virtual Labs College Cloud Edition used by colleges as part of their curriculum
    + [[https://docs.google.com/forms/d/e/1FAIpQLSfN0XH0GvuLRiEs_g5RB2npD3Y_5qsvrE0pCOn2C2lyUJNHjA/viewform?embedded=true][Procure College Cloud]]
-   + [[./user-manual.org::#cc-server][Configure College Cloud Server]]
-   + [[./user-manual.org::#using-cc-server][Using College Cloud]]
-   + [[./user-manual.org::#analytics-feedbacks][Collecting Analytics and Feedback]]
+   + [[./installation-manual.org::#cc-server][Configure College Cloud Server]]
+   + [[./installation-manual.org::#using-cc-server][Using College Cloud]]
+   + [[./installation-manual.org::#analytics-feedbacks][Collecting Analytics and Feedback]]
 * Analytics and Feedback
   :PROPERTIES:
   :CUSTOM_ID: analytics-feedbacks
@@ -327,7 +327,7 @@
 ** Instructions for the systems adminstrator  
 *** On existing College Cloud Server
   - Log in to the existing *College Cloud Server (old)* as a super user
-    using [[./user-manual.org::#passwords][default user credentials]]
+    using [[./installation-manual.org::#passwords][default user credentials]]
     #+BEGIN_EXAMPLE
     su -
     password :        # For password please check passwords.txt file on College Cloud server
@@ -351,14 +351,14 @@
 *** Setup new machine as College Cloud Server
     System Administrator should follow the below steps to configure
     the new machine as College Cloud Server.
-    + Make sure that the machine meets the [[./user-manual.org::#requirements][requirements]]
-    + [[./user-manual.org::#cc-server][Configure College Cloud Server]]
-    + [[./user-manual.org::#using-cc-server][Using College Cloud]]
-    + [[./user-manual.org::#analytics-feedbacks][Collecting Analytics and Feedback]]
+    + Make sure that the machine meets the [[./installation-manual.org::#requirements][requirements]]
+    + [[./installation-manual.org::#cc-server][Configure College Cloud Server]]
+    + [[./installation-manual.org::#using-cc-server][Using College Cloud]]
+    + [[./installation-manual.org::#analytics-feedbacks][Collecting Analytics and Feedback]]
 ** Instructions for the  existing lab users 
    All lab users would need to follow the below steps to ensure
    smooth migration to the newly configured College Cloud server
-   - Follow the link  [[./user-manual.org::#dns-settings][Changing DNS settings]]
+   - Follow the link  [[./installation-manual.org::#dns-settings][Changing DNS settings]]
    
 * Support  
   - Get help with Virtual Labs College Cloud Edition by sending a mail
