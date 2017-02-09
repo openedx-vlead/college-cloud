@@ -9,7 +9,7 @@
 * Introduction
   
   This document lists the Virtual Labs which are available on Virtual Labs
-  College Cloud Edition. Currently there are 80 such labs which are detailed
+  College Cloud Edition. Currently there are 73 such labs which are detailed
   below discipline wise. 
 * List of labs available on College Cloud Edition
   :PROPERTIES:
@@ -48,7 +48,6 @@
    + [[https://vlabs.ac.in/courses/course-v1:COE-Pune+EEE09+Anytime/about][Industrial Automation Laboratory]]
    + [[https://vlabs.ac.in/courses/course-v1:COE-Pune+EEE10+Anytime/about][Electrical Machines]]
    + [[https://vlabs.ac.in/courses/course-v1:COE-Pune+EEE12+Anytime/about][PLC]]
-   + [[https://vlabs.ac.in/courses/course-v1:IIT-Roorkee+EEE02+Anytime/about][Electrical Machines Lab]]
    
 ** Mechanical Engineering
    + [[https://vlabs.ac.in/courses/course-v1:CEO-Pune+MECH04+Anytime/about][Vibration and Acoustics Lab]]
@@ -79,8 +78,6 @@
    + [[https://vlabs.ac.in/courses/course-v1:Amrita-University+MBVII-AU+Anytime/about][Molecular Biology Virtual Lab II]]
    + [[https://vlabs.ac.in/courses/course-v1:COE-Pune+BIO16+Anytime/about][Biomedical and Signal Processing Laboratory]]
    + [[https://vlabs.ac.in/courses/course-v1:IIT-Bombay+BIOTECH25+Anytime/about][Virtual Proteomics Lab]]
-   + [[https://vlabs.ac.in/courses/course-v1:IIT-Roorkee+BIOTECH26+Anytime/about][Biomedical Instrumentation Lab]]
-   + [[https://vlabs.ac.in/courses/course-v1:IIT-Roorkee+EEE23+Anytime/about][Medical Signal and Image Processing]]
 
 ** Civil Engineering
    + [[https://vlabs.ac.in/courses/course-v1:IIIT-Hyderabad+EERC01+Anytime/about][Basic Engineering Mechanics and Strength of Materials]]
@@ -89,9 +86,7 @@
    + [[https://vlabs.ac.in/courses/course-v1:IIT-Bombay+TEL-IITB+Anytime/about][Traffic Engineering Laboratory]]
    + [[https://vlabs.ac.in/courses/course-v1:IIT-Delhi+CIVIL16+Anytime/about][Virtual Smart Structures and Dynamics Laboratory]]
    + [[https://vlabs.ac.in/courses/course-v1:NIT-Surathkal+CIVIL07+Anytime/about][Strength of Materials]]
-   + [[https://vlabs.ac.in/courses/course-v1:IIT-Roorkee+CIVIL15+Anytime/about][Surveying Lab]]
    + [[https://vlabs.ac.in/courses/course-v1:NIT-Surathkal+CIVIL20+Anytime/about][Fluid Mechanics]]
-   
 ** Physical Sciences
    + [[https://vlabs.ac.in/courses/course-v1:Amrita-University+PHY-SC22-AU+Anytime/about][Mechanics Virtual Lab (Pilot)]]
    + [[https://vlabs.ac.in/courses/course-v1:Amrita-University+HTV-AU+Anytime/about][Heat & Thermodynamics Virtual Lab]]
