@@ -30,8 +30,8 @@
   [[./runtime/implementation/index.org][Implementation]]
 * List of labs hosted on cluster and on Open edX platform 
   - [[./labs-on-college-cloud/list-of-labs-in-college-cloud.org::#list-of-labs][Labs on College Cloud]]
-  - Google spreadsheet of [[https://docs.google.com/spreadsheets/d/10oarpSmBUYbd0szQU3q0KWO77IF58tSPFkq2e7JE0Mw/edit#gid%3D0][List of labs hosted on cluster and on Open
-    edX platform ]]
+  - Google spreadsheet of
+    [[https://docs.google.com/spreadsheets/d/10oarpSmBUYbd0szQU3q0KWO77IF58tSPFkq2e7JE0Mw/edit#gid%3D0][List of labs hosted on cluster and on Open edX platform]]
   
 * Performance Test Cases
   [[./Performance-Test][Performance Test cases]]

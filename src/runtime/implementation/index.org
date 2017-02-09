@@ -1118,13 +1118,10 @@ setup(
 #+BEGIN_SRC python :tangle setup.py :eval no :noweb yes
 <<setup_file>>
 #+END_SRC   
-#+BEGIN_SRC shell :tangle script/conf.sh :eval no :noweb yes
-<<config_file>>
-#+END_SRC  
-#+BEGIN_SRC shell :tangle script/fetch_analytics.sh :eval no :noweb yes
+#+BEGIN_SRC shell :tangle log_collection/fetch_analytics.sh :eval no :noweb yes
 <<fetch_analytics>>  
 #+END_SRC
-#+BEGIN_SRC python :tangle script/feedback-dump.py :eval no :noweb yes
+#+BEGIN_SRC python :tangle log_collection/feedback-dump.py :eval no :noweb yes
 <<fetch_feedbacks>>  
 #+END_SRC
 
