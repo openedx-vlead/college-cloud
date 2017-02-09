@@ -520,8 +520,8 @@ CONFIG_FILE=config.json
 TAG=`cat $CONFIG_FILE | jq ".[].college_details.college_name"|sed -e 's/\"//g'`-$DATE
 #TAG=$COLLEGE_NAME-$DATE
 LOCAL_WORKSHOP_DIR=$WORKSHOP_DIR/$WORKSHOP_FOLDER
-EDX_AUTH_USER_DATA=edx-auth-user-data.sql
-EDX_AUTH_REGISTRATION_DATA=edx-auth-registration-data.sql
+EDX_AUTH_USER_DATA=edx-auth-user-data-$TAG-$DATE.sql
+EDX_AUTH_REGISTRATION_DATA=edx-auth-registration-data-$TAG-$DATE.sql
 DEST=/var/www/html/college-cloud-data/
 ELKDATE=`date +"%Y-%m-%d"`
 mkdir $WORKSHOP_DIR
@@ -540,8 +540,8 @@ full_dump()
  
     echo "----FULL DUMP----"
     echo "`date`: Executing elasticdump command " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
-    echo "`sudo vzctl exec $CTID_ANALYTICS elasticdump --input=http://localhost:9200/$INDEX_NAME --output=/root/vlabs_mapping_$DATE.json --type=mapping`"
-    echo "`sudo vzctl exec $CTID_ANALYTICS elasticdump --input=http://localhost:9200/$INDEX_NAME --output=/root/vlabs_data_$DATE.json --type=data`"
+    echo "`sudo vzctl exec $CTID_ANALYTICS elasticdump --input=http://localhost:9200/$INDEX_NAME --output=/root/vlabs-mapping-$TAG-$DATE.json --type=mapping`"
+    echo "`sudo vzctl exec $CTID_ANALYTICS elasticdump --input=http://localhost:9200/$INDEX_NAME --output=/root/vlabs-data-$TAG-$DATE.json --type=data`"
     echo "`date`: Finished Executing elasticdump command " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
     
     echo "`sudo cp /vz/private/280/root/vlabs_mapping_$DATE.json $LOCAL_WORKSHOP_DIR/`"
@@ -555,14 +555,14 @@ full_dump()
      # 2. filename will be feedbackdump-$DATE.sql 
 
     echo "`date`: Start Mysql dump for feedback " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
-    echo "`sudo vzctl exec $CTID_FEEDBACK mysqldump -u $MYSQL_USER -p$MYSQL_PASS $MYSQL_FEEDBACK_DB`" > $LOCAL_WORKSHOP_DIR/feedbackdump-$DATE.sql
+    echo "`sudo vzctl exec $CTID_FEEDBACK mysqldump -u $MYSQL_USER -p$MYSQL_PASS $MYSQL_FEEDBACK_DB`" > $LOCAL_WORKSHOP_DIR/feedbackdump-$TAG-$DATE.sql
     echo "`date`: End Mysql dump for feedback " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
     
     
      # Take mysql dump of open edx platform (auth_user and auth_registratiom) table 
      # Details  
      # 1. SQLdump  gets copied in ~/college-cloud-data/workshop-analytics-$DATE folder
-     # 2. filename will be feedbackdump-$DATE.sql 
+     # 2. filename will be feedbackdump-$TAG-$DATE.sql 
     
     cd $VAGRANT_BOX_PATH
     echo " Mysqldump is in progress"
@@ -588,18 +588,19 @@ datewise_dump()
      echo "-----DATE-WISE-DUMP------"
      echo "`date`: Start Mysql dump for feedback " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
      echo "`python ~/log_collection/feedback-dump.py`"
-     echo "`mv feedback-dump-$DATE.json  $LOCAL_WORKSHOP_DIR/`" 
+     echo "`mv feedback-dump-$DATE.json feedback-dump-TAG-$DATE.json `" 
+     echo "`mv feedback-dump-$TAG-$DATE.json  $LOCAL_WORKSHOP_DIR/`" 
      echo "`date`: End Mysql dump for feedback " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
     
      echo "`date`: Start Vlabs analytics from ELK " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
-    # curl -XGET 'http://vlabs-analytics.vlabs.ac.in:9200/vlabs/_search?pretty&size=1000' -d '{ "query" : { "term" : { "DATE_OF_EXPERIMENT": $ELKDATE }}}' > vlabs-analytics-$DATE.json
-    # echo "`mv vlabs-analytics-$DATE.json  $LOCAL_WORKSHOP_DIR`" 
+     curl -XGET 'http://vlabs-analytics.vlabs.ac.in:9200/vlabs/_search?pretty&size=1000' -d '{ "query" : { "term" : { "DATE_OF_EXPERIMENT": $ELKDATE }}}' > vlabs-data-$TAG-$DATE.json
+     echo "`mv vlabs-data-$TAG-$DATE.json  $LOCAL_WORKSHOP_DIR`" 
      echo "`date`: End VLabs analytics dump  " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
      
      ## Take mysql dump of open edx platform (auth_user and auth_registratiom) table 
      # Details  
      # 1. SQLdump  gets copied in ~/college-cloud-data/workshop-analytics-$DATE folder
-     # 2. filename will be feedbackdump-$DATE.sql 
+     # 2. filename will be feedbackdump-$TAG-$DATE.sql 
    
      #Copy the config.json file into $LOCAL_WORKSHOP_DIR. This file will be used in post workshop tasks at VLEAD. 
      #Using this file, VLEAD dev team will parse and pushes these logs into production.
