@@ -163,3 +163,8 @@ http://server2_public_IP:8080
  - Next restart the Syncthing service on the System 1 to activate the changes.
  - Wait for few seconds, approximately 60 seconds, and you¡¯ll see the two systems have been successfully connected and synced to each other.
  - Now, put any file or folder in any one of the systems *default* folder. You may see the file/folder will be synced to the other system automatically.
+
+* References
+ - [[https://syncthing.net/]]
+ - [[https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-syncthing-to-synchronize-directories-on-ubuntu-14-04]]
+ - [[https://www.unixmen.com/syncthing-private-secure-tool-sync-filesfolders-computers/]]
