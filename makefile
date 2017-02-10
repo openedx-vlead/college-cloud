@@ -13,8 +13,7 @@ init:
 
 build: init
 	make -f tangle-make -k all
-	cp src/runtime/web/static/js/* ${CODE_DIR}/runtime/web/static/js/
-
+	cp -r src/runtime/implementation/static ${CODE_DIR}/runtime/implementation
 install-pep:
 	sudo pip install pep8
 

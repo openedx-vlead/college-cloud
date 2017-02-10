@@ -1,4 +1,4 @@
-#+TITLE: Implementation the  College Cloud Edition 
+#+TITLE: Implementation of  College Cloud Edition 
 #+AUTHOR: VLEAD
 #+SETUPFILE: ../../org-templates/level-2.org
 #+TAGS: boilerplate(b)
@@ -7,7 +7,7 @@
 
 * Introduction
   The documentation describes implementation of the College Cloud
-* Implementation College Cloud 
+* Implementation of College Cloud 
   Implementation is done based on the above design diagram.
   We need internet connection for
   - Setting up cluster
@@ -465,84 +465,104 @@
       #+END_EXAMPLE
     + You are done configuring DNS service
 * Collecting logs from College Cloud
-  
   A Shell script that collects logs ( analytics, feedbacks and Open
   edX user data).
-** Conf.sh
-   The basic configuration file. Sysadmin has to add the values to the
-   fields
-#+NAME: config_file
-   #+BEGIN_SRC 
-   #!/bin/bash
-   ### Edit this file only once while installing  college cloud
-   ### All feilds are needed
-   
-   COLLEGE_NAME=Name-of-the-college ### Replace spaces with "-" in college name
-   DATE=2017-01-17
-   AUTHOR=Example
-   EMAIL=example@gmail.com
-   #+END_SRC
+** Date wise Feedback dump
+   A python program to fetch date wise feedback dump.   
+#+NAME: fetch_feedbacks
+#+BEGIN_SRC python
+#!/usr/bin/python
+
+import requests
+import datetime
+
+now = datetime.datetime.now()
+
+date = now.strftime("%d-%m-%Y")
+
+dump_file = "feedback-dump-"+date+".json"
+
+url = "http://feedback.vlabs.ac.in/feedback_dump?date="+date+"&key=defaultkey"
+response=requests.get(url)
+fp=open(dump_file,"w")
+fp.write(response.content)
+fp.close()
+#print type(response.content)
+
+#+END_SRC
 
 ** Fetch analytics and feedback
-#+name: fetch_analytics   
-   #+BEGIN_SRC shell
-   #!/bin/sh
+   
+   A Shell script is given as utility which can get -
 
-   source ~/script/conf.sh
+   1. Full logs for feedback, analytics and user data
+   2. Date wise logs for feedback and analytics and partial user data
+      (default)
 
-   DATE=`date +"%d-%m-%Y"`
-   WORKSHOP_FOLDER=workshop-analytics-$DATE
-   WORKSHOP_DIR=~/college-cloud-data
-   INDEX_NAME=vlabs
-   CTID_ANALYTICS=280
-   CTID_FEEDBACK=278
-   MYSQL_USER=root
-   MYSQL_PASS=root
-   VAGRANT_BOX_PATH=~/vagrant-boxes/
-   MYSQL_FEEDBACK_DB=feedback
-   TAG=$COLLEGE_NAME-$DATE
-   LOCAL_WORKSHOP_DIR=$WORKSHOP_DIR/$WORKSHOP_FOLDER
-   EDX_AUTH_USER_DATA=edx-auth-user-data.sql
-   EDX_AUTH_REGISTRATION_DATA=edx-auth-registration-data.sql
-   DEST=/var/www/html/college-cloud-data/
-   ELKDATE=`date +"%Y-%m-%d"`
-   
-   mkdir $WORKSHOP_DIR
-   mkdir $LOCAL_WORKSHOP_DIR
+   Full logs will only be taken if requested. By default, date wise
+   logs will be uploaded by user.
+#+NAME: fetch_analytics   
+#+BEGIN_SRC shell
+#!/bin/sh
 
-   # Take elasticdump - the logs captured in ELK server
-   # Details 
-   # 1. Logs gets copied in localmachine in ~/college-cloud-data/workshop-analytics-$DATE folder
-   # 2. Two logs files - vlabs_mapping_$DATE.json and vlabs_data_$DATE.json files are generated.
-   # 3. Log files will not be generated in case they already exist.
-   
-   echo "`date`: Executing elasticdump command " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
-   echo "`sudo vzctl exec $CTID_ANALYTICS elasticdump --input=http://localhost:9200/$INDEX_NAME --output=/root/vlabs_mapping_$DATE.json --type=mapping`"
-   echo "`sudo vzctl exec $CTID_ANALYTICS elasticdump --input=http://localhost:9200/$INDEX_NAME --output=/root/vlabs_data_$DATE.json --type=data`"
-   echo "`date`: Finished Executing elasticdump command " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
-   
-   echo "`sudo cp /vz/private/280/root/vlabs_mapping_$DATE.json $LOCAL_WORKSHOP_DIR/`"
-   echo "`sudo cp /vz/private/280/root/vlabs_data_$DATE.json $LOCAL_WORKSHOP_DIR/`"
-   echo "`date`: Copied files in $LOCAL_WORKSHOP_DIR " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
-   
-   # Take mysqldump of feedback - only sql dump is captured and needed
-   # Details -
-   # 1. SQLdump  gets copied in ~/college-cloud-data/workshop-analytics-$DATE folder
-   # 2. filename will be feedbackdump-$DATE.sql 
-   
-   
-   full_dump()
-   {
+
+DATE=`date +"%d-%m-%Y"`
+WORKSHOP_FOLDER=workshop-analytics-$DATE
+WORKSHOP_DIR=~/college-cloud-data
+INDEX_NAME=vlabs
+CTID_ANALYTICS=280
+CTID_FEEDBACK=278
+MYSQL_USER=root
+MYSQL_PASS=root
+VAGRANT_BOX_PATH=~/vagrant-boxes/
+MYSQL_FEEDBACK_DB=feedback
+CONFIG_FILE=config.json
+TAG=`cat $CONFIG_FILE | jq ".[].college_details.college_name"|sed -e 's/\"//g'`-$DATE
+#TAG=$COLLEGE_NAME-$DATE
+LOCAL_WORKSHOP_DIR=$WORKSHOP_DIR/$WORKSHOP_FOLDER
+EDX_AUTH_USER_DATA=edx-auth-user-data-$TAG-$DATE.sql
+EDX_AUTH_REGISTRATION_DATA=edx-auth-registration-data-$TAG-$DATE.sql
+DEST=/var/www/html/college-cloud-data/
+ELKDATE=`date +"%Y-%m-%d"`
+mkdir $WORKSHOP_DIR
+mkdir $LOCAL_WORKSHOP_DIR
+sudo mkdir $DEST;
+sudo chmod -R 755 $DEST 
+full_dump()
+{
+
+
+     # Take elasticdump - the logs captured in ELK server
+     # Details 
+     # 1. Logs gets copied in localmachine in ~/college-cloud-data/workshop-analytics-$DATE folder
+     # 2. Two logs files - vlabs_mapping_$DATE.json and vlabs_data_$DATE.json files are generated.
+     # 3. Log files will not be generated in case they already exist.
+ 
     echo "----FULL DUMP----"
+    echo "`date`: Executing elasticdump command " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
+    echo "`sudo vzctl exec $CTID_ANALYTICS elasticdump --input=http://localhost:9200/$INDEX_NAME --output=/root/vlabs-mapping-$TAG-$DATE.json --type=mapping`"
+    echo "`sudo vzctl exec $CTID_ANALYTICS elasticdump --input=http://localhost:9200/$INDEX_NAME --output=/root/vlabs-data-$TAG-$DATE.json --type=data`"
+    echo "`date`: Finished Executing elasticdump command " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
+    
+    echo "`sudo cp /vz/private/280/root/vlabs_mapping_$DATE.json $LOCAL_WORKSHOP_DIR/`"
+    echo "`sudo cp /vz/private/280/root/vlabs_data_$DATE.json $LOCAL_WORKSHOP_DIR/`"
+    echo "`date`: Copied files in $LOCAL_WORKSHOP_DIR " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
+    
+
+     # Take mysqldump of feedback - only sql dump is captured and needed
+     # Details -
+     # 1. SQLdump  gets copied in ~/college-cloud-data/workshop-analytics-$DATE folder
+     # 2. filename will be feedbackdump-$DATE.sql 
+
     echo "`date`: Start Mysql dump for feedback " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
-    echo "`sudo vzctl exec $CTID_FEEDBACK mysqldump -u $MYSQL_USER -p$MYSQL_PASS $MYSQL_FEEDBACK_DB`" > $LOCAL_WORKSHOP_DIR/feedbackdump-$DATE.sql
+    echo "`sudo vzctl exec $CTID_FEEDBACK mysqldump -u $MYSQL_USER -p$MYSQL_PASS $MYSQL_FEEDBACK_DB`" > $LOCAL_WORKSHOP_DIR/feedbackdump-$TAG-$DATE.sql
     echo "`date`: End Mysql dump for feedback " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
     
     
-    # Take mysql dump of open edx platform (auth_user and auth_registratiom) table 
-    # Details  
-    # 1. SQLdump  gets copied in ~/college-cloud-data/workshop-analytics-$DATE folder
-    # 2. filename will be feedbackdump-$DATE.sql 
+     # Take mysql dump of open edx platform (auth_user and auth_registratiom) table 
+     # Details  
+     # 1. SQLdump  gets copied in ~/college-cloud-data/workshop-analytics-$DATE folder
+     # 2. filename will be feedbackdump-$TAG-$DATE.sql 
     
     cd $VAGRANT_BOX_PATH
     echo " Mysqldump is in progress"
@@ -556,72 +576,152 @@
     # Compress the folder 
     
     echo "`date`: Start Compressing " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
+    echo "` cp $CONFIG_FILE  $LOCAL_WORKSHOP_DIR`"
     echo "`tar -zvcf $TAG-FULL-DUMP.tar.gz $LOCAL_WORKSHOP_DIR`"
     #mv  $TAG.tar.gz  $WORKSHOP_DIR
     sudo mv  $TAG-FULL-DUMP.tar.gz  $DEST
     echo "`date`: File Compressed - Look for file - $TAG-FULL-DUMP.tar.gz " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
-   }
+}
 
-   datewise_dump()
-   {
+datewise_dump()
+{
      echo "-----DATE-WISE-DUMP------"
      echo "`date`: Start Mysql dump for feedback " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
-     echo "`python ~/script/feedback-dump.py`"
-     echo "`mv feedback-dump-$DATE.json  $LOCAL_WORKSHOP_DIR/feedbackdump-$DATE.sql`" 
+     echo "`python ~/log_collection/feedback-dump.py`"
+     echo "`mv feedback-dump-$DATE.json feedback-dump-TAG-$DATE.json `" 
+     echo "`mv feedback-dump-$TAG-$DATE.json  $LOCAL_WORKSHOP_DIR/`" 
      echo "`date`: End Mysql dump for feedback " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
     
      echo "`date`: Start Vlabs analytics from ELK " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
-     curl -XGET 'http://vlabs-analytics.vlabs.ac.in:9200/vlabs/_search?pretty&size=1000' -d '{ "query" : { "term" : { "DATE_OF_EXPERIMENT": $ELKDATE }}}' > vlabs-analytics-$DATE.json
-     echo "`mv vlabs-analytics-$DATE.json  $LOCAL_WORKSHOP_DIR`" 
+     curl -XGET 'http://vlabs-analytics.vlabs.ac.in:9200/vlabs/_search?pretty&size=1000' -d '{ "query" : { "term" : { "DATE_OF_EXPERIMENT": $ELKDATE }}}' > vlabs-data-$TAG-$DATE.json
+     echo "`mv vlabs-data-$TAG-$DATE.json  $LOCAL_WORKSHOP_DIR`" 
      echo "`date`: End VLabs analytics dump  " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
      
      ## Take mysql dump of open edx platform (auth_user and auth_registratiom) table 
      # Details  
      # 1. SQLdump  gets copied in ~/college-cloud-data/workshop-analytics-$DATE folder
-     # 2. filename will be feedbackdump-$DATE.sql 
-     
+     # 2. filename will be feedbackdump-$TAG-$DATE.sql 
+   
+     #Copy the config.json file into $LOCAL_WORKSHOP_DIR. This file will be used in post workshop tasks at VLEAD. 
+     #Using this file, VLEAD dev team will parse and pushes these logs into production.
+
+     echo "`cp $CONFIG_FILE  $LOCAL_WORKSHOP_DIR`"   
+
+
      # Compress the folder 
      
      echo "`date`: Start Compressing " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
+  
      echo "`tar -zvcf $TAG-DATEWISE-DUMP.tar.gz $LOCAL_WORKSHOP_DIR`"
      echo "`sudo mv  $TAG-DATEWISE-DUMP.tar.gz $DEST`"
      echo "`date`: File Compressed - Look for file - $TAG-DATEWISE-DUMP.tar.gz " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
-   }
+}
 
-   
-   if [ "$1" = "full" ]
-   then
-   full_dump
-   else 
-   datewise_dump
-   fi
-   
-   #+END_SRC
 
-* Infra                                                         :boilerplate:
+if [ "$1" = "full" ]
+then
+ full_dump
+else 
+datewise_dump
+fi
 
-** sources
-*** Imports 
-#+name: imports_for_sources
+#+END_SRC
+
+* Post processing of workshop data
+** App
+*** Config
+#+NAME: config
+#+BEGIN_SRC  python
+
+INTERFACE = "wlan0"
+PATH_TO_FOLDER = "/home/vlead/script/"
+
+#+END_SRC
+*** Get registration form
+   Rest API to render a college cloud registration form
+**** api
+#+NAME: get_reg_form
+#+BEGIN_SRC  python
+app = Flask(__name__)
+app.secret_key = 'djfjsdkjXXS7979dfdfd'
+
+@app.route('/', methods=['GET', 'POST'])
+def get_reg_template():
+    if request.method == 'GET':
+        try:
+            return render_template('index.html')
+        except Exception as e:
+            abort(404, "template not found")
+    elif request.method == 'POST':
+        clg_name = request.form.get("clg_name")
+        contact_num = request.form.get("clg_contact_no")
+        clg_pincode = request.form.get("clg_pincode")
+        clg_address = request.form.get("clg_addr")        
+        email_id = request.form.get("email")        
+        try:
+            mac_addr = open('/sys/class/net/'+INTERFACE+'/address').readline()[0:17]
+            clg_details = {
+                mac_addr : {
+                    'college_details': {
+                        'college_name' : clg_name,
+                        'contact_no' : contact_num,
+                        'college_address' : clg_address,
+                        'college_pincode' : clg_pincode,
+                        'email_id' : email_id                                
+                    }                
+                }
+            }
+        except Exception as e:
+            abort(404, "MAC File not found")
+        try:
+            with open(PATH_TO_FOLDER+'config.json', 'w') as outfile:
+                json.dump(clg_details, outfile, indent=4, sort_keys=True, separators=(',', ':'))
+                
+            return jsonify({"status" : "Succesfully saved records to '%s' directory " 
+                            %(PATH_TO_FOLDER), "data" : clg_details})
+        except Exception as e:
+            abort(500, "Could not write data to file %s" %(str(e)))
+
+#+END_SRC
+**** Test case
+ #+NAME: test_get_reg_form
+ #+BEGIN_SRC python
+class TestGetRegForm(TestCase):
+    TESTING = True
+
+    def setUp(self):
+        return app
+    def tearDown(self):
+        print "hello"
+
+    def test_get_generic_feedback_form_data(self):
+        print "test_get_generic_feedback_form_data"
+        headers = {'Content-Type': 'application/json'}
+        request_str = "/"
+        print "request-str = %s" % request_str
+        response = self.client.get(request_str)
+        self.assertEqual(response.status_code, 200)
+
+#+END_SRC
+
+*** Run Server
+#+NAME: run_server
+#+BEGIN_SRC python
+
+if __name__ == "__main__":
+    app.run(debug=True, host='0.0.0.0', threaded=True)
+
+#+END_SRC
+
+*** Imports 							:boilerplate:
+#+NAME: imports
 #+BEGIN_SRC python
 # -*- coding: utf-8 -*-
 import os
-import requests
 import json
-from flask_oauthlib.client import OAuth
-from runtime.config import google_oauth_config as oauth_config
-from flask import session, render_template, Blueprint, request, \
-     jsonify, abort, current_app, redirect, url_for, make_response
-from flask import Flask
-from runtime.utils.type_utils import jsonify_list
-from runtime.exceptions.custom_exceptions import *
-from runtime.system.system_interface import SystemInterface
-import yaml
-
-api = Blueprint('APIs', __name__)
-
-#+end_src
-
+from flask import Flask, jsonify, render_template, request, abort
+from config import INTERFACE, PATH_TO_FOLDER
+#+END_SRC
 
 ** tests
 *** Imports 
@@ -630,17 +730,7 @@ api = Blueprint('APIs', __name__)
 # -*- coding: utf-8 -*-
 import unittest
 from flask_testing import TestCase
-from sqlalchemy.exc import IntegrityError
-from runtime.utils.class_persistence_template import db
-from runtime.rest.app import create_app
-#from runtime.config.system_config import KEY
-from runtime.rest.api import *
-from runtime.system.system import System
-import datetime
-config = {
-         'SQLALCHEMY_DATABASE_URI': ''
-         }
-
+from runtime.implementation.app import app
 #+end_src
 
 *** Running tests
@@ -651,51 +741,407 @@ if __name__ == '__main__':
 
 #+END_SRC
 
-    
-* Tangle                                                        :boilerplate:
+** Header HTML
+   #+BEGIN_SRC html :tangle ./templates/base.html :eval no :noweb yes
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="http://vlabs.ac.in/images/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/main.css">
+  </head>
+  <body>
+    <div class="navbar navbar-default navbar-custom">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="https://vlabs.ac.in"
+             onclick="dashboard()" style="padding-top:0px">
+            <img width="100px" height="50px"  src="https://open-edx.vlabs.ac.in/static/edx-bootstrap-theme/images/logo.d4f9ba0ed44c.png" class="logo-img"></a>
+        </div><br>
+      </div>
+    </div>
+    {% block content %}
+    {% endblock %}
+  </body>
+</html>
 
-** sources
-#+BEGIN_SRC python :tangle api.py :eval no :noweb yes
+   #+END_SRC
+   
+** Footer HTML
+   #+BEGIN_SRC html :tangle ./templates/footer.html :eval no :noweb yes
+  <head>
+<script type="text/css">
+.text-h2-lightblue-small
+{
+	color: #2C99CE;
+	font-size: 1.5em;
+}
+.border-right-green-dotted
+{
+	border-right: 2px dotted;
+	 margin-top: 30px;
+	 border-right-color: #678f48;
+	 min-height: 115px;
+	line-height:1em;
+	height:15em;
 
-<<imports_for_sources>>
-<<serve_index_html>>
-<<google_oauth_configuration>>
-<<jsonify_list>>
-<<login_route>>
-<<logout_route>>
-<<callback_google_api>>
-<<google_oauth_token>>
-<<create_session>>
-<<add_user>>
-<<del_user>>
-<<show_users>>
-<<show_sessions>>
-<<show_user_details>>
-<<show_roles>>
-<<set_email_of_user>>
-<<set_name_of_user>>
-<<show_roles_of_user>>
-<<add_role_to_user>>
-<<del_role_of_user>>
+
+}
+.border-right-green-dotted a{
+	/*padding-left: 10px;*/
+	display: block;
+	/*margin-bottom: 10px;*/
+	line-height:1.2em;
+}
+a:focus
+{
+	color: #72AB44 !important;
+}
+
+.footer-div
+{
+margin-top:120px;
+}
+.text-normal-gray-small
+{
+	color: #888;
+	font-size: 16px;
+}
+.text-normal-gray-small:hover{
+color:green;
+}
+
+</script>
+</head>
+<div class="container-fluid footer-div" style="background: #404040; margin-top: 40px;  padding: 20px;">
+  <div class="col-md-4 border-right-green-dotted">
+    <h2 class="text-h2-lightblue-small" style="font-weight: bold;margin-top: 0px;">Updates</h2>
+    <a href="http://community.virtual-labs.ac.in/w/index.php/Download" class="text-normal-gray-small nounderline" style="color: white" target="_blank"> Lab Integration Kit Releases</a><br>
+    <a href="http://community.virtual-labs.ac.in/w/index.php/First_Integration_workshop" class="text-normal-gray-small nounderline" style="color: white" target="_blank">First Integration Workshop at IIIT Hyderabad</a><br>
+    <a href="http://community.virtual-labs.ac.in/w/index.php/Summer_Sprint_Integration_workshop" class="text-normal-gray-small nounderline" style="color: white" target="_blank"> Summer Integration Workshop at IIT Guwahati</a><br>
+    <a href="http://community.virtual-labs.ac.in/w/index.php/QA/Integration_workshop" class="text-normal-gray-small nounderline" style="color: white" target="_blank"> QA Integration
+      Workshop at IIIT Hyderabad</a><br>
+    <a href="http://community.virtual-labs.ac.in/w/index.php/A_new_set_of_25_Virtual_Labs_on_Portable_Media" class="text-normal-gray-small nounderline" style="color: white" target="_blank"> A new set of 25 Virtual Labs on Portable Media</a>
+  </div>
+  <div class="col-md-2 border-right-green-dotted" id="contact">
+    <h2 class="text-h2-lightblue-small" style="font-weight: bold;margin-top: 0px;"> Contact us</h2>
+    <a href="http://feedback.vlabs.ac.in/" class="text-normal-gray-small nounderline" style="color:white" target="_blank"> Feedback</a><br>
+    <a style="color:white" class="text-normal-gray-small nounderline" href="mailto:support@vlabs.ac.in" target="_blank">support@vlabs.ac.in</a><br>
+    <a href="http://118.102.191.38/labassessment/assessmentform.html" class="text-normal-gray-small nounderline" style="color:white; line-height:20px;" target="_blank"> Lab Assessment Form</a>
+  </div>
+  <div class="col-md-3 border-right-green-dotted">
+    <a href="http://vlabs.ac.in:5959/faq/" class="text-normal-gray-small nounderline" style="color: white" target="_blank"> FAQ</a><br>
+    <a href="http://community.virtual-labs.ac.in/w/index.php/Main_Page" class="text-normal-gray-small nounderline" style="color: white" target="_blank">Community</a><br>
+    <a href="http://www.sakshat.ac.in/" class="text-normal-gray-small nounderline" style="color: white" target="_blank"> Sakshat Portal</a><br>
+    <a href="http://outreach.vlabs.ac.in/" class="text-normal-gray-small nounderline" style="color: white" target="_blank"> Outreach Portal</a><br>
+    <a href="http://outreach.vlabs.ac.in/ncentres" class="text-normal-gray-small nounderline" style="color: white" target="_blank"> Nodal Centers</a><br>
+    <a href="http://118.102.191.38/vlabiitece/" class="text-normal-gray-small nounderline" style="color: white" target="_blank"> Labs Developed by Nodal Centers</a>
+  </div>
+  <div class="col-md-3">
+    <div class="social">
+      <ul class="social-share" style="margin-top:2em">
+	<ul>
+	  <li style="display:inline"><a href="https://www.facebook.com/pages/Virtual-Labs-IIT-Delhi/301510159983871"><img src="/static/img/fb.png"></a></li>
+	  <li style="display:inline "><a href="https://twitter.com/TheVirtualLabs"><img src="/static/img/twitter.png"></a></li>
+	  <li style="display:inline"><a href="http://linkedin.com"><img src="/static/img/linkedin.png"></a></li> 
+	  <li style="display:inline"><a href="https://www.youtube.com/watch?v=mVBYNXLaDdg"><img src="/static/img/youtube.png"></a></li>
+	</ul>
+      </ul>
+    </div>
+  </div>
+</div>
+
+   #+END_SRC
+
+
+#+NAME: header
+#+BEGIN_SRC 
+<form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">College Name</label>
+    <input type="text" class="form-control" id="JNTU" aria-describedby="emailHelp" placeholder="Enter College Name">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>  
+  <div class="form-group">
+    <label for="exampleTextarea">Example textarea</label>
+    <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+  </div>  
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+#+END_SRC
+** CSS 
+*** main.css
+#+BEGIN_SRC css :tangle ./static/css/main.css :eval no :noweb yes
+body {
+    font-family:'Raleway' !important;
+#    font-family:  sans-serif;
+    font-size: 14px;
+    color: #767676;
+}
+
+#feedback-form {
+    width: 80%;
+    margin-top: 30px;
+}
+
+.headInfo {
+    margin-left: 0px; 
+    margin-top: 20px;
+}
+
+.values {
+    margin-left: 0px;
+    text-align: left;
+}
+
+.rowCol {
+    border: 1px solid #ccc
+}
+
+.mainrow {
+    margin-top: 4px;
+}
+
+.navbar-default, .navbar-inverse {
+    border: 0;
+}
+
+.footer-div
+{
+    margin-top:120px;
+}
+
+.main-logo-a {
+    height: auto;
+    overflow: visible;
+    margin-left: 0px !important;
+    padding-bottom: 10px !important;
+    padding-top: 10px !important;
+}
+
+.menu-a {
+    font-size: 14px !important;
+    font-family: 'Raleway' !important;
+    color: #2C99CD !important;
+    padding-left: 10px !important;
+    padding-bottom: 5px !important;
+    padding-top: 5px !important;
+    padding-right: 10px !important;
+}
+
+.menu-a-active {
+    color: white !important;
+}
+
+.menu-li {
+    border-radius: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.menu-li:HOVER {
+    background-color: #77BB41 !important;
+}
+
+.menu-a:HOVER {
+    color: white !important;
+}
+
+.menu-li-active {
+    background-color: #77BB41;
+}
+
+.menu-ul {
+    margin-top: 45px;
+}
+
+.text-h2-lightblue-small
+{
+	color: #2C99CE;
+	font-size: 1.5em;
+}
+.text-a-lightgreen
+{
+	color: #72AB44;
+	font-size: 1.3em;
+	text-decoration: underline;
+}
+
+.text-a-lightgreen:HOVER
+{
+	color: #72AB44 !important;
+}
+
+.text-normal-gray-small
+{
+	color: #888;
+	font-size: 16px;
+}
+
+.border-right-green-dotted
+{
+	border-right: 2px dotted;
+	 margin-top: 30px;
+	 border-right-color: #678f48;
+	 min-height: 115px;
+}
+.footer-div
+{
+margin-top:120px;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 32em;
+}
+
+td {
+    border: 0px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
 
 #+END_SRC
 
+** Index HTML
+#+BEGIN_SRC html :tangle ./templates/index.html :eval no :noweb yes
+
+{% include "base.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>College Cloud Registration</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div class="container">
+  <h2>College Cloud Registration</h2><br>
+  <form action="/" method="POST">
+    <div class="container">
+      <div class="form-group col-md-5">
+	<label><font color="red">*</font></label>
+	<label>College-Name:</label>
+	<input type="text" class="form-control" name="clg_name" placeholder="Enter college name" required>
+      </div>
+    </div>
+    <div class="container">
+      <div class="form-group col-md-5">
+	<label><font color="red">*</font></label>
+	<label>College Address:</label>
+	<textarea class="form-control" name="clg_addr" placeholder="Enter college address" required></textarea>
+      </div>
+    </div>
+    <div class="container">
+      <div class="form-group col-md-3">
+	<label><font color="red">*</font></label>
+	<label>Pincode:</label>
+	<input type="number" class="form-control" min="0" size="6" name="clg_pincode" placeholder="Enter pincode" required>
+      </div>
+    </div>
+    <div class="container">
+      <div class="form-group col-md-3">
+	<label><font color="red"></font></label>
+	<label>Contact No:</label>
+	+91<input type="number" class="form-control"  name="clg_contact_no" placeholder="Enter Mobile Number">
+      </div>
+    </div>
+    <div class="container">
+        <div class="form-group col-md-5">
+            <label for="email">Email address:</label>
+            <input type="email" class="form-control" name="email" placeholder="Enter email id">
+        </div>
+    </div>
+    <br>
+    <div class="container">
+      <div class="form-group col-md-1">
+	<input class="btn btn-primary" type="submit" value="Save"/>
+      </div>
+      <div class="form-group col-md-1">
+	<input class="btn btn-primary" type="reset" value="reset"/>
+      </div>
+    </div>
+  </form>
+</div>
+</body>
+</html>
+
+{% endblock %}
+  
+#+END_SRC
+
+** Deployment
+*** Setup
+#+NAME: setup_file
+#+BEGIN_SRC python
+
+from setuptools import setup
+requires = [
+    'flask'
+]
+setup(
+    name='college-cloud',
+    version='1.0',
+    install_requires=requires
+)
+#+END_SRC
+#+END_SRC
+*** Apche Conf
+
+#+NAME: wsgi_conf
+#+BEGIN_SRC wsgi
+import sys
+sys.path.insert(0, '/var/www/html/')
+from app import app as application
+#+END_SRC
+* Tangle
+** sources
+#+BEGIN_SRC python :tangle config.py :eval no :noweb yes
+<<config>>
+#+END_SRC
+#+BEGIN_SRC python :tangle app.py :eval no :noweb yes
+<<imports>>
+<<get_reg_form>>
+<<run_server>>
+#+END_SRC
+#+BEGIN_SRC python :tangle setup.py :eval no :noweb yes
+<<setup_file>>
+#+END_SRC   
+#+BEGIN_SRC wsgi :tangle cc.wsgi :eval no :noweb yes
+<<wsgi_conf>>
+#+END_SRC   
+#+BEGIN_SRC shell :tangle log_collection/fetch_analytics.sh :eval no :noweb yes
+<<fetch_analytics>>  
+#+END_SRC
+#+BEGIN_SRC python :tangle log_collection/feedback-dump.py :eval no :noweb yes
+<<fetch_feedbacks>>  
+#+END_SRC
 
 ** tests
-#+BEGIN_SRC python :tangle test_api.py :eval no :noweb yes
-<<imports_for_tests>>
-<<run_test_cases>>
+#+BEGIN_SRC python :tangle test_app.py :eval no :noweb yes
+#<<imports_for_tests>>
+#<<test_get_reg_form>>
+#<<run_test_cases>>
 #+end_src
 
-
-
-* Tangling
-
-  #+BEGIN_SRC shell :tangle conf.sh
-  <<config_file>>
-  #+END_SRC
-
-  #+BEGIN_SRC shell :tangle fetch_analytics.sh 
-  <<fetch_analytics>>  
-  #+END_SRC
 

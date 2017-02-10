@@ -1,9 +1,11 @@
-#+TITLE: College Cloud Edition
-#+DATE: <2016-09-14 Wed>
-#+SETUPFILE: ../../org-templates/level-2.org
-#+TAGS: boilerplate(b)
-#+EXCLUDE_TAGS: boilerplate
-#+OPTIONS: ^:nil
+#+TITLE: Virtual Labs College Cloud Edition
+#+DATE: [2016-09-14 Wed]
+#+PROPERTY: results output
+#+PROPERTY: exports code
+#+SETUPFILE: ./org-templates/level-0.org
+#+options: ^:nil
+#+LATEX: Literal LaTeX code for export
+
 
 * Introduction
   The document describes building a *College Cloud Edition* for
@@ -25,19 +27,23 @@
 * Design
   [[./design/index.org][College Cloud design]]
 * Implementation 
-  [[./implementation/index.org][Implementation]]
+  [[./runtime/implementation/index.org][Implementation]]
 * List of labs hosted on cluster and on Open edX platform 
-  - [[https://docs.google.com/spreadsheets/d/10oarpSmBUYbd0szQU3q0KWO77IF58tSPFkq2e7JE0Mw/edit#gid%3D0][List of labs hosted on cluster and on Open edX platform ]]
-
+  - [[./labs-on-college-cloud/list-of-labs-in-college-cloud.org::#list-of-labs][Labs on College Cloud]]
+  - Google spreadsheet of
+    [[https://docs.google.com/spreadsheets/d/10oarpSmBUYbd0szQU3q0KWO77IF58tSPFkq2e7JE0Mw/edit#gid%3D0][List of labs hosted on cluster and on Open edX platform]]
+  
 * Performance Test Cases
   [[./Performance-Test][Performance Test cases]]
 * Proposed and changed designed plans
   [[https://github.com/openedx-vlead/portable-media/blob/master/src/meeting-minutes.org#proposed-and-changed-designed-plans][Design plans]]
 * SyncThing 
   [[./syncthing][SyncThing]]
-* Status of the college Cloud
+* Installation Manual
+  [[./installation-manual.org][Installation Manual]]
+* COMMENT Status of the college Cloud
   [[./cc-status/][Status of the College-Cloud]]
 * GitHub Issues
   - [[https://github.com/openedx-vlead/portable-media/issues/1][Cluster and Open edX Platform setup]]
-  - [[https://github.com/openedx-vlead/portable-media/issues/2][Analytics for the portable media]]
+  - [[https://github.com/openedx-vlead/portable-media/issues/2][Analytics for the College Cloud]]
 

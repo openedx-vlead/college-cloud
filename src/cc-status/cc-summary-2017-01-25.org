@@ -1,6 +1,12 @@
 #+Title: Summary of the College Cloud As of 2017-01-25
 #+Author: VLEAD
 
+#+PROPERTY: results output
+#+PROPERTY: exports code
+#+SETUPFILE: ../org-templates/level-1.org
+#+options: ^:nil
+#+LATEX: Literal LaTeX code for export
+
 * Status of the CC(College Cloud) as of 2017-01-25
   CC is ready with the following
   - 77 Labs

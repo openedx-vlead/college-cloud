@@ -1,6 +1,6 @@
 #+TITLE: Requirements of the  College Cloud Edition 
 #+AUTHOR: VLEAD
-#+SETUPFILE: ../../org-templates/level-2.org
+#+SETUPFILE: ../org-templates/level-1.org
 #+TAGS: boilerplate(b)
 #+EXCLUDE_TAGS: boilerplate
 #+OPTIONS: ^:nil
@@ -11,3 +11,5 @@
 * College Cloud Edition Requirements
   - Build a portable hard drive with X labs on it.
   - Create a facility for collecting logs and Collecting analytics.
+* Requirements for post processing of workshop data
+  - 

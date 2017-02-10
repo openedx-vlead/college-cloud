@@ -1,0 +1,130 @@
+#+Title: Labs available on Virtual Labs College Cloud Edition
+#+Author: VLEAD
+#+PROPERTY: results output
+#+PROPERTY: exports code
+#+SETUPFILE: ../org-templates/level-1.org
+#+options: ^:nil
+#+LATEX: Literal LaTeX code for export
+
+* Introduction
+  
+  This document lists the Virtual Labs which are available on Virtual Labs
+  College Cloud Edition. Currently there are 73 such labs which are detailed
+  below discipline wise. 
+* List of labs available on College Cloud Edition
+  :PROPERTIES:
+  :CUSTOM_ID: list-of-labs
+  :END:    
+** Electronics & Communications
+   + [[http://vlabs.ac.in/courses/course-v1:IIT-Delhi+ECE21+Anytime/about][Virtual Queuing Networks Modelling]]
+   + [[http://vlabs.ac.in/courses/course-v1:IIT-Delhi+ECE08+Anytime/about][Engineering Electromagnetic Lab]]
+   + [[http://vlabs.ac.in/courses/course-v1:IIT-Bombay+ECE40+Anytime/about][Electronic Devices and Circuits]]
+   + [[http://vlabs.ac.in/courses/course-v1:COE-Pune+EEE10+Anytime/about][Virtual Electrical Machine]]
+   + [[http://vlabs.ac.in/courses/course-v1:IIT-Guwahati+ECE10+Anytime/about][Signals and Systems Laboratory]]
+   + [[http://vlabs.ac.in/courses/course-v1:IIT-Guwahati+EIL-IITG+Anytime/about][Electronic Instrumentation Lab]] 
+   + [[http://vlabs.ac.in/courses/course-v1:IIT-Guwahati+VLSI-IITG+Anytime/about][Digital VLSI Design Virtual Lab]]
+   
+** Computer Science & Engineering
+   + [[http://vlabs.ac.in/courses/course-v1:IIIT-Hyderabad+CSE04+Anytime/about][Problem Solving]]
+   + [[http://vlabs.ac.in/courses/course-v1:IIIT-Hyderabad+CSE23+Anytime/about][Computation Linguistics]]
+   + [[http://vlabs.ac.in/courses/course-v1:IIIT-Hyderabad+CSE15+Anytime/about][Digital Logic Design]]
+   + [[http://vlabs.ac.in/courses/course-v1:IIIT-Hyderabad+CSE19+Anytime/about][Image Processing]]
+   + [[http://vlabs.ac.in/courses/course-v1:IIIT-Hyderabad+CSE18+Anytime/about][Computer Graphics]]
+   + [[http://vlabs.ac.in/courses/course-v1:IIIT-Hyderabad+CSE29+Anytime/about][Cryptography]]
+   + [[http://vlabs.ac.in/courses/course-v1:IIIT-Hyderabad+CSE22+Anytime/about][Artificial Neural Networks]]
+   + [[http://vlabs.ac.in/courses/course-v1:IIIT-Hyderabad+CSE14+Anytime/about][VLSI]]
+   + [[http://vlabs.ac.in/courses/course-v1:IIIT-Hyderabad+CSE24+Anytime/about][Natural Language Processing]] 
+   + [[http://vlabs.ac.in/courses/course-v1:IIIT-Hyderabad+CSE02+Anytime/about][Computer Programming]]
+   + [[http://vlabs.ac.in/courses/course-v1:IIIT-Hyderabad+CSE01+Anytime/about][Data Structures]] 
+   + [[http://vlabs.ac.in/courses/course-v1:IIIT-Hyderabad+CSE11+Anytime/about][Computer Organization]]
+   + [[http://vlabs.ac.in/courses/course-v1:IIIT-Hyderabad+CSE20+Anytime/about][Pattern Recognition]]
+
+** Electrical Engineering 
+   + [[http://vlabs.ac.in/courses/course-v1:DEI+EEE06+Anytime/about][Virtual Power Lab]]
+   + [[http://vlabs.ac.in/courses/course-v1:NIT-Surathkal+EE30+Anytime/about][Substation Automation]]
+   + [[http://vlabs.ac.in/courses/course-v1:NIT-Surathkal+EEE08+Anytime/about][Industrial Electric Drives]]
+   + [[https://vlabs.ac.in/courses/course-v1:COE-Pune+ECE19+Anytime/about][Hybrid Electronics]]
+   + [[https://vlabs.ac.in/courses/course-v1:COE-Pune+EEE05+Anytime/about][Sensors Modeling and Simulation]]
+   + [[https://vlabs.ac.in/courses/course-v1:COE-Pune+EEE09+Anytime/about][Industrial Automation Laboratory]]
+   + [[https://vlabs.ac.in/courses/course-v1:COE-Pune+EEE10+Anytime/about][Electrical Machines]]
+   + [[https://vlabs.ac.in/courses/course-v1:COE-Pune+EEE12+Anytime/about][PLC]]
+   
+** Mechanical Engineering
+   + [[https://vlabs.ac.in/courses/course-v1:CEO-Pune+MECH04+Anytime/about][Vibration and Acoustics Lab]]
+   + [[https://vlabs.ac.in/courses/course-v1:COE-PUNE+MECH17+Anytime/about][Micromachining Laboratory]]
+   + [[https://vlabs.ac.in/courses/course-v1:COE-Pune+MECH18+Anytime/about][Fab Laboratory]]
+   + [[https://vlabs.ac.in/courses/course-v1:DEI+MECH26+Anytime/about][Metal Forming Virtual Simulation Lab]]
+   + [[https://vlabs.ac.in/courses/course-v1:NIT-Surathkal+MECH21+Anytime/about][Machine Dynamics and Mechanical Vibrations]]
+   + [[https://vlabs.ac.in/courses/course-v1:IIT-Kanpur+MECH08+Anytime/about][Material Response to Microstructural, Mechanical, Thermal and Biological Stimuli]]
+   + [[https://vlabs.ac.in/courses/course-v1:IIT-Kanpur+MECH48+Anytime/about][Virtual Combustion and Atomization Laboratory]]
+   + [[https://vlabs.ac.in/courses/course-v1:IIT-Guwahati+MFTS-IITG+Anytime/about][Mechanical Laboratory Experience in Fluid and Thermal Sciences]]
+   + [[https://vlabs.ac.in/courses/course-v1:IIT-Guwahati+MV-IITG+Anytime/about][Mechanical Vibration]]
+   + [[https://vlabs.ac.in/courses/course-v1:IIT-Kharagpur+MECH27+Anytime/about][Mine automation and Virtual Reality]]
+   + [[https://vlabs.ac.in/courses/course-v1:NIT-Surathkal+MECH05+Anytime/about][Mechanics of Machine]]
+ 
+** Chemical Engineering
+   + [[https://vlabs.ac.in/courses/course-v1:DEI+CHS12+Anytime/about][Virtual Chemistry Lab]]
+   + [[https://vlabs.ac.in/courses/course-v1:IIT-Bombay+ML-IITB+Anytime/about][Magnetic Levitation Lab]]
+   + [[https://vlabs.ac.in/courses/course-v1:IIT-Bombay+CHEM01+Anytime/about][Chemical Engineering]]
+   + [[https://vlabs.ac.in/courses/course-v1:NIT-Surathkal+CHEM05+Anytime/about][Unit Operation, Reaction Engg. & Process Control]]
+   + [[https://vlabs.ac.in/courses/course-v1:IIT-Guwahati+VMT-IITG+Anytime/about][Mass Transfer]]
+
+** Biotechnology & Biomedical Engineering
+   + [[https://vlabs.ac.in/courses/course-v1:Amrita-University+BIOTECH01+Anytime/about][Biochemistry Virtual Lab I]]
+   + [[https://vlabs.ac.in/courses/course-v1:Amrita-University+CBI-AU+Anytime/about][Cell biology Virtual Lab I]]
+   + [[https://vlabs.ac.in/courses/course-v1:Amrita-University+BIOTECH18+Anytime/about][Population ecology Virtual Lab I]]
+   + [[https://vlabs.ac.in/courses/course-v1:Amrita-University+BIOTECH17+Anytime/about][Population ecology Virtual Lab II]]
+   + [[https://vlabs.ac.in/courses/course-v1:Amrita-University+CBII-AU+Anytime/about][Cell biology Virtual Lab II]] 
+   + [[https://vlabs.ac.in/courses/course-v1:Amrita-University+MBVII-AU+Anytime/about][Molecular Biology Virtual Lab II]]
+   + [[https://vlabs.ac.in/courses/course-v1:COE-Pune+BIO16+Anytime/about][Biomedical and Signal Processing Laboratory]]
+   + [[https://vlabs.ac.in/courses/course-v1:IIT-Bombay+BIOTECH25+Anytime/about][Virtual Proteomics Lab]]
+
+** Civil Engineering
+   + [[https://vlabs.ac.in/courses/course-v1:IIIT-Hyderabad+EERC01+Anytime/about][Basic Engineering Mechanics and Strength of Materials]]
+   + [[https://vlabs.ac.in/courses/course-v1:IIIT-Hyderabad+EERC03+Anytime/about][Hydraulics and Fluid Mechanics]]
+   + [[https://vlabs.ac.in/courses/course-v1:IIIT-Hyderabad+EERC04+Anytime/about][Basic Structural Analysis]]
+   + [[https://vlabs.ac.in/courses/course-v1:IIT-Bombay+TEL-IITB+Anytime/about][Traffic Engineering Laboratory]]
+   + [[https://vlabs.ac.in/courses/course-v1:IIT-Delhi+CIVIL16+Anytime/about][Virtual Smart Structures and Dynamics Laboratory]]
+   + [[https://vlabs.ac.in/courses/course-v1:NIT-Surathkal+CIVIL07+Anytime/about][Strength of Materials]]
+   + [[https://vlabs.ac.in/courses/course-v1:NIT-Surathkal+CIVIL20+Anytime/about][Fluid Mechanics]]
+** Physical Sciences
+   + [[https://vlabs.ac.in/courses/course-v1:Amrita-University+PHY-SC22-AU+Anytime/about][Mechanics Virtual Lab (Pilot)]]
+   + [[https://vlabs.ac.in/courses/course-v1:Amrita-University+HTV-AU+Anytime/about][Heat & Thermodynamics Virtual Lab]]
+   + [[https://vlabs.ac.in/courses/course-v1:Amrita-University+EMV-AU+Anytime/about][Electricity & Magnetism Virtual Lab]]
+   + [[https://vlabs.ac.in/courses/course-v1:Amrita-University+OV-AU+Anytime/about][Virtual Optics Lab]]
+   + [[https://vlabs.ac.in/courses/course-v1:IIT-Kanpur+PHY01+Anytime/about][Virtual Astrophysics Lab]]
+
+** Chemical Sciences
+   + [[http://vlabs.ac.in/courses/course-v1:Amrita-University+AACV-AU+Anytime/about][Advanced Analytical Chemistry Virtual Lab]]
+   + [[https://vlabs.ac.in/courses/course-v1:Amrita-University+ICV-AU+Anytime/about][Inorganic Chemistry Virtual Lab]]
+   + [[https://vlabs.ac.in/courses/course-v1:Amrita-University+OCV-AU+Anytime/about][Organic Chemistry Virtual Lab]]
+   + [[https://vlabs.ac.in/courses/course-v1:Amrita-University+PCV-AU+Anytime/about][Physical Chemistry Virtual Lab]]
+   + [[https://vlabs.ac.in/courses/course-v1:IIIT-Hyderabad+CCNSB07+Anytime/about][Molecular Interaction]]
+   + [[https://vlabs.ac.in/courses/course-v1:IIIT-Hyderabad+CCNSB01+Anytime/about][Molecular Florescence Spectroscopy]]
+   + [[https://vlabs.ac.in/courses/course-v1:IIIT-Hyderabad+CCNSB06+Anytime/about][Physical Chemistry]]
+   + [[https://vlabs.ac.in/courses/course-v1:IIIT-Hyderabad+CCNSB03+Anytime/about][Molecular Absorption Spectroscopy]]
+   + [[https://vlabs.ac.in/courses/course-v1:IIT-Kanpur+CHS13+Anytime/about][Ultrafast Laser Spectroscopy]]
+
+** Other Disciplines 
+*** Humanities
+   + [[https://vlabs.ac.in/courses/course-v1:IIT-Guwahati+HSS03+Anytime/about][Virtual Anthropology Lab]]
+   + [[https://vlabs.ac.in/courses/course-v1:IIT-Guwahati+HSS02+Anytime/about][Virtual English and Communication Lab]]
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
