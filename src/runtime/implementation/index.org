@@ -1106,6 +1106,14 @@ setup(
 )
 #+END_SRC
 #+END_SRC
+*** Apche Conf
+
+#+NAME: wsgi_conf
+#+BEGIN_SRC wsgi
+import sys
+sys.path.insert(0, '/var/www/html/')
+from app import app as application
+#+END_SRC
 * Tangle
 ** sources
 #+BEGIN_SRC python :tangle config.py :eval no :noweb yes
@@ -1119,6 +1127,9 @@ setup(
 #+BEGIN_SRC python :tangle setup.py :eval no :noweb yes
 <<setup_file>>
 #+END_SRC   
+#+BEGIN_SRC wsgi :tangle cc.wsgi :eval no :noweb yes
+<<wsgi_conf>>
+#+END_SRC   
 #+BEGIN_SRC shell :tangle log_collection/fetch_analytics.sh :eval no :noweb yes
 <<fetch_analytics>>  
 #+END_SRC
@@ -1128,9 +1139,9 @@ setup(
 
 ** tests
 #+BEGIN_SRC python :tangle test_app.py :eval no :noweb yes
-<<imports_for_tests>>
-<<test_get_reg_form>>
-<<run_test_cases>>
+#<<imports_for_tests>>
+#<<test_get_reg_form>>
+#<<run_test_cases>>
 #+end_src
 
 
