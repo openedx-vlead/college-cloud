@@ -1,2 +1,2 @@
-# portable-media
-Virtual Labs on Portable-Media (HDD)
+# College Cloud 
+Virtual Labs on Portable media  (HDD)
