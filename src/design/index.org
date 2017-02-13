@@ -103,6 +103,12 @@
    <p align="center"> Collect Logs in College Cloud </p>
    #+END_HTML
 
+    #+BEGIN_HTML
+  <img src="../images/college-cloud-collect-logs.jpg">
+  <p align="center"> Log collection diagram </p>
+  #+END_HTML
+  To edit the Portable Edition's Cluster diagram image click [[https://docs.google.com/drawings/d/1rTyHXCOGJzBwJfAT4m7-5D_eVZTC5v0SRLCqvHpFOy8/edit?ts%3D58a17466][here]]
+
    A shell script is written to fetch logs (feedback, usages,
    user-data) in college cloud and it does the following -
 
@@ -127,14 +133,6 @@
    - This service internally uses =Elastic Search= provided APIs to
      dump the data as show in above diagram.
 * Design of Collection of logs
-  :PROPERTIES:
-  :CUSTOM_ID: log_collection_design
-  :END:    
-    #+BEGIN_HTML
-  <img src="../images/college-cloud-collect-logs.jpg">
-  <p align="center"> Portable-media-diagram </p>
-  #+END_HTML
-  To edit the Portable Edition's Cluster diagram image click [[https://docs.google.com/drawings/d/1rTyHXCOGJzBwJfAT4m7-5D_eVZTC5v0SRLCqvHpFOy8/edit?ts%3D58a17466][here]]
 
 * Design of College Cloud post process data
   :PROPERTIES:
