@@ -11,22 +11,22 @@
   edition and post process workshop data
 * Design of College Cloud 
   :PROPERTIES:
-  :CUSTOM_ID: display_lab_generic_feedback_form
+  :CUSTOM_ID: cc_design
   :END:    
-#+BEGIN_HTML
-<img src="../images/Design-of-Portable-Edition-2016-09-26.jpg">
-<p align="center"> Portable-media-diagram </p>
-#+END_HTML
-
-
-  #+LABEL:  Portable-media-diagram
-
-  [[../images/Design-of-Portable-Edition-2016-09-26.jpg]]
+  #+BEGIN_HTML
+  <img src="../images/Design-of-Portable-Edition-2016-09-26.jpg">
+  <p align="center"> Portable-media-diagram </p>
+  #+END_HTML
   
-  #+CAPTION:  Portable Edition's Cluster diagram
-  #+LABEL:  Portable-media Cluster Design diagram
-  [[../images/Portable-media-cluster-design.jpg]]
-     
+  To edit the Portable-media-diagram image click [[https://docs.google.com/drawings/d/1JclZ3rZEktsJKVhDKr2DoKs1BBlRsc59NTX4Y9xKckI/edit][here]]
+
+  #+BEGIN_HTML
+  <img src="../images/Portable-media-cluster-design.jpg"> <p
+  align="center"> Portable Edition's Cluster diagram </p>
+  #+END_HTML
+  
+  To edit the Portable Edition's Cluster diagram image click [[https://docs.google.com/drawings/d/1UCEK7uTS01y4u_mo45G5kQW9WKa-QoPKoV0XyQxH_FI/edit][here]]
+
    
   - Wi-Fi Router :: Wi-Fi router resolves the domain name(FQDN) of the
               labs within the LAN network. And it allocates dhcp ips
@@ -126,7 +126,11 @@
    - API documentation can be found at  https://github.com/openedx-vlead/college-cloud/blob/cc-april-delhi/src/design/post-processing-api.org#introduction
    - This service internally uses =Elastic Search= provided APIs to
      dump the data as show in above diagram.
-* Desing of College Cloud post process data
+* Design of Collection of logs
+  :PROPERTIES:
+  :CUSTOM_ID: log_collection_design
+  :END:    
+* Design of College Cloud post process data
   :PROPERTIES:
   :CUSTOM_ID: post_process_design
   :END:    

@@ -4,7 +4,7 @@
 
 * Introduction
   This document describes the step by step process for setting up the
-  =syncthing= tool for collecting automatical logs.
+  =syncthing= tool for synchronizing files/folders.
 * Syncthing
  - Syncthing is a free, Open Source tool that can be used to sync files/folders between your networked computers. 
  - Syncthing transfers data directly from one system to another system, and It is completely open source, secure and private. 
