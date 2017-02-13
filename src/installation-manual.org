@@ -310,7 +310,7 @@
    Please ask System Administrator for =<college-cloud-server-ip>=.
    1. Open a web browser on a machine connected to college-cloud/
       machine form which college-cloud was accessible.
-   2. Access the URL - =http://<college-cloud-server-ip>/=
+   2. Access the URL - =http://<college-cloud-server-ip>/rc_registration=
       + Fill the details and click on =save= button to the details
    3. Access the URL -
       =http://<college-cloud-server-ip>/college-cloud-data/=
