@@ -21,8 +21,6 @@
    Build the Portable-Edition on HDD and make it portable. The
    portable media can be used for accessing the labs from local
    machine (no need of internet connection).
- 
-* Requirements
   [[./requirements/index.org][Requirements]]
 * Design
   [[./design/index.org][Design diagrams of college cloud]]
@@ -39,8 +37,7 @@
   [[https://github.com/openedx-vlead/portable-media/blob/master/src/meeting-minutes.org#proposed-and-changed-designed-plans][Design plans]]
 * SyncThing 
   [[./syncthing][SyncThing]]
-* Installation Manual
-  [[./installation-manual.org][Installation Manual]]
+[[./installation-manual.org][Installation Manual]]
 * COMMENT Status of the college Cloud
   [[./cc-status/][Status of the College-Cloud]]
 * GitHub Issues

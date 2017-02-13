@@ -130,6 +130,12 @@
   :PROPERTIES:
   :CUSTOM_ID: log_collection_design
   :END:    
+    #+BEGIN_HTML
+  <img src="../images/college-cloud-collect-logs.jpg">
+  <p align="center"> Portable-media-diagram </p>
+  #+END_HTML
+  To edit the Portable Edition's Cluster diagram image click [[https://docs.google.com/drawings/d/1rTyHXCOGJzBwJfAT4m7-5D_eVZTC5v0SRLCqvHpFOy8/edit?ts%3D58a17466][here]]
+
 * Design of College Cloud post process data
   :PROPERTIES:
   :CUSTOM_ID: post_process_design
