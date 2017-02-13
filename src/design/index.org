@@ -13,10 +13,16 @@
   :PROPERTIES:
   :CUSTOM_ID: display_lab_generic_feedback_form
   :END:    
+#+BEGIN_HTML
+<img src="../images/Design-of-Portable-Edition-2016-09-26.jpg">
+<p align="center"> Portable-media-diagram </p>
+#+END_HTML
+
 
   #+LABEL:  Portable-media-diagram
-  [[../images/Design-of-Portable-Edition-2016-09-26.jpg]]
 
+  [[../images/Design-of-Portable-Edition-2016-09-26.jpg]]
+  
   #+CAPTION:  Portable Edition's Cluster diagram
   #+LABEL:  Portable-media Cluster Design diagram
   [[../images/Portable-media-cluster-design.jpg]]

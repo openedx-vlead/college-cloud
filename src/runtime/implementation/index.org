@@ -1089,7 +1089,7 @@ tr:nth-child(even) {
 
 #+END_SRC
 ** Deployment
-*** Setup
+*** setup
 #+NAME: setup_file
 #+BEGIN_SRC python
 
@@ -1104,7 +1104,7 @@ setup(
 )
 #+END_SRC
 #+END_SRC
-*** Apche Conf
+*** wsgi conf
 
 #+NAME: wsgi_conf
 #+BEGIN_SRC wsgi
@@ -1113,6 +1113,18 @@ sys.path.insert(0, '/var/www/html/')
 from app import app as application
 #+END_SRC
 
+*** apache conf
+    - Append following lines to =/etc/httpd/conf/httpd.conf=
+#+BEGIN_EXAMPLE
+WSGIScriptAlias /cc_registration /var/www/html/cc.wsgi
+WSGIScriptReloading On
+
+<Directory /var/www/html/>
+    Order deny,allow
+    Allow from all
+</Directory>
+#+END_EXAMPLE
+    
 ** tests
 *** Imports 
 #+name: imports_for_tests
