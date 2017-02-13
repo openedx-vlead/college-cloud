@@ -25,7 +25,7 @@
 * Requirements
   [[./requirements/index.org][Requirements]]
 * Design
-  [[./design/index.org][College Cloud design]]
+  [[./design/index.org][Design diagrams of college cloud]]
 * Implementation 
   [[./runtime/implementation/index.org][Implementation]]
 * List of labs hosted on cluster and on Open edX platform 
