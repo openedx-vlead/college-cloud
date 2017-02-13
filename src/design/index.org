@@ -127,8 +127,6 @@
    - API documentation can be found at  https://github.com/openedx-vlead/college-cloud/blob/cc-april-delhi/src/design/post-processing-api.org#introduction
    - This service internally uses =Elastic Search= provided APIs to
      dump the data as show in above diagram.
-* Design of Collection of logs
-
 * Design of College Cloud post process data
   :PROPERTIES:
   :CUSTOM_ID: post_process_design
