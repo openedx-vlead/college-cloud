@@ -98,11 +98,6 @@
     :PROPERTIES:
     :CUSTOM_ID: cc_logs
     :END:    
-   #+BEGIN_HTML
-   <img src="https://docs.google.com/drawings/d/1rTyHXCOGJzBwJfAT4m7-5D_eVZTC5v0SRLCqvHpFOy8/pub?w=960&h=720">
-   <p align="center"> Collect Logs in College Cloud </p>
-   #+END_HTML
-
     #+BEGIN_HTML
   <img src="../images/college-cloud-collect-logs.jpg">
   <p align="center"> Log collection diagram </p>
