@@ -8,10 +8,15 @@
 * Introduction
   The documentation describes implementation of the College Cloud
 * Implementation of College Cloud 
-  Implementation is done based on the above design diagram.
-  We need internet connection for
-  - Setting up cluster
-  - Hosting the labs in the cluster using ADS service
+  -  [[../requirements/index.org::#portable_hard_drive][Requirement_satisfied]]
+  :PROPERTIES:
+  :CUSTOM_ID: implementation_of_cc
+  :END: 
+
+  - Implementation is done based on the above design diagram.
+    We need internet connection for
+    + Setting up cluster
+    + Hosting the labs in the cluster using ADS service
 ** Machine setup
    - Install CentOS-6.x Desktop
    - Update OS
@@ -464,7 +469,12 @@
       service named restart
       #+END_EXAMPLE
     + You are done configuring DNS service
-* Collecting logs from College Cloud
+* Collecting logs from College Cloud   
+  -  [[../requirements/index.org::#logg_collection][Requirement_satisfied]]
+  :PROPERTIES:
+  :CUSTOM_ID: logg_collection
+  :END: 
+
   A Shell script that collects logs ( analytics, feedbacks and Open
   edX user data).
 ** Date wise Feedback dump
@@ -627,8 +637,12 @@ fi
 
 #+END_SRC
 
-* Post processing of workshop data
-** App
+* College Cloud registration
+  :PROPERTIES:
+  :CUSTOM_ID: cc_registration
+  :END: 
+
+** app
 *** Config
 #+NAME: config
 #+BEGIN_SRC  python
@@ -722,25 +736,6 @@ import json
 from flask import Flask, jsonify, render_template, request, abort
 from config import INTERFACE, PATH_TO_FOLDER
 #+END_SRC
-
-** tests
-*** Imports 
-#+name: imports_for_tests
-#+BEGIN_SRC python
-# -*- coding: utf-8 -*-
-import unittest
-from flask_testing import TestCase
-from runtime.implementation.app import app
-#+end_src
-
-*** Running tests
-#+NAME: run_test_cases
-#+BEGIN_SRC python
-if __name__ == '__main__':
-    unittest.main()
-
-#+END_SRC
-
 ** Header HTML
    #+BEGIN_SRC html :tangle ./templates/base.html :eval no :noweb yes
 
@@ -880,6 +875,81 @@ color:green;
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 #+END_SRC
+
+** Index HTML
+#+BEGIN_SRC html :tangle ./templates/index.html :eval no :noweb yes
+
+{% include "base.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>College Cloud Registration</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div class="container">
+  <div class="form-group col-md-6">
+  </div>
+  <div class="container">
+    <h2>College Cloud Registration</h2><br>
+    <form action="/" method="POST">
+      <div class="container">
+	<div class="form-group col-md-5">
+	  <label><font color="red">*</font></label>
+	  <label>College-Name:</label>
+	  <input type="text" class="form-control" name="clg_name" placeholder="Enter college name" required>
+	</div>
+      </div>
+      <div class="container">
+	<div class="form-group col-md-5">
+	  <label><font color="red">*</font></label>
+	  <label>College Address:</label>
+	  <textarea class="form-control" name="clg_addr" placeholder="Enter college address" maxlength="160" required></textarea>
+	</div>
+      </div>
+      <div class="container">
+	<div class="form-group col-md-3">
+	  <label><font color="red">*</font></label>
+	  <label>Pincode:</label>
+	  <input type="text" class="form-control" name="clg_pincode" placeholder="Enter pincode" pattern="[0-9][0-9][0-9][0-9][0-9][0-9]" required>
+	</div>
+      </div>
+      <div class="container">
+	<div class="form-group col-md-3">
+	  <label><font color="red"></font></label>
+	  <label>Contact No:</label>
+	  +91<input type="text" class="form-control"  name="clg_contact_no" placeholder="Enter Mobile Number" pattern="[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]">
+	</div>
+      </div>
+      <div class="container">
+        <div class="form-group col-md-5">
+	  <label><font color="red">*</font></label>
+          <label for="email">Email address:</label>
+          <input type="email" class="form-control" name="email" placeholder="Enter email id" required>
+        </div>
+      </div>
+      <br>
+      <div class="container">
+	<div class="form-group col-md-1">
+	  <input class="btn btn-primary" type="submit" value="Save"/>
+	</div>
+	<div class="form-group col-md-1">
+	  <input class="btn btn-primary" type="reset" value="reset"/>
+	</div>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>
+
+{% endblock %}
+  
+#+END_SRC
 ** CSS 
 *** main.css
 #+BEGIN_SRC css :tangle ./static/css/main.css :eval no :noweb yes
@@ -1018,82 +1088,6 @@ tr:nth-child(even) {
 
 
 #+END_SRC
-
-** Index HTML
-#+BEGIN_SRC html :tangle ./templates/index.html :eval no :noweb yes
-
-{% include "base.html" %}
-
-{% block content %}
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>College Cloud Registration</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-<div class="container">
-  <div class="form-group col-md-6">
-  </div>
-  <div class="container">
-    <h2>College Cloud Registration</h2><br>
-    <form action="/" method="POST">
-      <div class="container">
-	<div class="form-group col-md-5">
-	  <label><font color="red">*</font></label>
-	  <label>College-Name:</label>
-	  <input type="text" class="form-control" name="clg_name" placeholder="Enter college name" required>
-	</div>
-      </div>
-      <div class="container">
-	<div class="form-group col-md-5">
-	  <label><font color="red">*</font></label>
-	  <label>College Address:</label>
-	  <textarea class="form-control" name="clg_addr" placeholder="Enter college address" maxlength="160" required></textarea>
-	</div>
-      </div>
-      <div class="container">
-	<div class="form-group col-md-3">
-	  <label><font color="red">*</font></label>
-	  <label>Pincode:</label>
-	  <input type="text" class="form-control" name="clg_pincode" placeholder="Enter pincode" pattern="[0-9][0-9][0-9][0-9][0-9][0-9]" required>
-	</div>
-      </div>
-      <div class="container">
-	<div class="form-group col-md-3">
-	  <label><font color="red"></font></label>
-	  <label>Contact No:</label>
-	  +91<input type="text" class="form-control"  name="clg_contact_no" placeholder="Enter Mobile Number" pattern="[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]">
-	</div>
-      </div>
-      <div class="container">
-        <div class="form-group col-md-5">
-	  <label><font color="red">*</font></label>
-          <label for="email">Email address:</label>
-          <input type="email" class="form-control" name="email" placeholder="Enter email id" required>
-        </div>
-      </div>
-      <br>
-      <div class="container">
-	<div class="form-group col-md-1">
-	  <input class="btn btn-primary" type="submit" value="Save"/>
-	</div>
-	<div class="form-group col-md-1">
-	  <input class="btn btn-primary" type="reset" value="reset"/>
-	</div>
-      </div>
-    </form>
-  </div>
-</div>
-</body>
-</html>
-
-{% endblock %}
-  
-#+END_SRC
-
 ** Deployment
 *** Setup
 #+NAME: setup_file
@@ -1117,6 +1111,24 @@ setup(
 import sys
 sys.path.insert(0, '/var/www/html/')
 from app import app as application
+#+END_SRC
+
+** tests
+*** Imports 
+#+name: imports_for_tests
+#+BEGIN_SRC python
+# -*- coding: utf-8 -*-
+import unittest
+from flask_testing import TestCase
+from runtime.implementation.app import app
+#+end_src
+
+*** Running tests
+#+NAME: run_test_cases
+#+BEGIN_SRC python
+if __name__ == '__main__':
+    unittest.main()
+
 #+END_SRC
 * Tangle
 ** sources

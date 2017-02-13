@@ -9,7 +9,19 @@
   The documentation describes the requirements of the College Cloud
 
 * College Cloud Edition Requirements
-  - Build a portable hard drive with X labs on it.
-  - Create a facility for collecting logs and Collecting analytics.
+** Build a portable hard drive with X labs on it.
+   :PROPERTIES:
+   :CUSTOM_ID: portable_hard_drive
+   :END:    
+   [[../runtime/implementation/index.org::#implementation_of_cc][Implementation]]
+** Create a facility for collecting logs and Collecting analytics.
+   :PROPERTIES:
+   :CUSTOM_ID: logg_collection
+   :END:    
+   [[../runtime/implementation/index.org::#logg_collection][Implementation]]
 * Requirements for post processing of workshop data
-  - 
+** A =.tar.= file wich contains =feedback.json= and =analytics.json= files
+   :PROPERTIES:
+   :CUSTOM_ID: post_process
+   :END:    
+
