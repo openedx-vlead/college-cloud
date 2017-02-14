@@ -120,7 +120,7 @@ respawn
 
   When you are finished, save and close the file.
 
-** Start =syncthig= service on =Ubuntu14.04=
+** Start =syncthing= service on =Ubuntu14.04=
   Start the =syncthing= service using below command
 #+BEGIN_EXAMPLE
 $ sudo initctl start syncthing
