@@ -666,8 +666,8 @@ if len(sys.argv) == 2 and sys.argv[1] == "full":
 #+NAME: config
 #+BEGIN_SRC  python
 
-INTERFACE = "wlan0"
-PATH_TO_FOLDER = "/home/vlead/script/"
+INTERFACE = "eth0"
+PATH_TO_FOLDER = "/var/www/html/"
 
 #+END_SRC
 *** Get registration form
