@@ -10,18 +10,34 @@
 * Requirements
 ** College Cloud Edition Requirements
 *** Req1
-   - Build a portable hard drive with *X* number of labs on it.
+   - Build a portable hard disk drive with *X* number of labs on it.
     :PROPERTIES:
     :CUSTOM_ID: portable_hard_drive
     :END:    
     [[../runtime/implementation/index.org::#implementation_of_cc][Implementation]]
 *** Req2
-    - Create a facility for collecting logs of College Cloud
+    - Create a facility for collecting analytics, feedback and edX
+      user data of College Cloud Edition
     :PROPERTIES:
     :CUSTOM_ID: logg_collection
     :END:    
     [[../runtime/implementation/index.org::#logg_collection][Implementation]]
-** Requirements for post processing of workshop data - In progress
+*** Req3 
+     - College Cloud Installation manual
+    :PROPERTIES:
+     :CUSTOM_ID: manual
+     :END:    
+     [[../installation-manual.org][Installation manual]]      
+*** Req4 
+    - College Cloud Registration form for submitting College/Institute
+      information.  This is needed for [[./index.org::#logg_collection][Req2]]
+    :PROPERTIES:
+    :CUSTOM_ID: req4
+    :END:    
+    [[../runtime/implementation/index.org::#cc_registration][Click here for registration form Implementation details]]
+      
+** Req5
+   - Requirements for post processing of workshop data - In progress
 *** A =.tar.= file which contains =feedback.json= and =analytics.json= files
     :PROPERTIES:
     :CUSTOM_ID: post_process

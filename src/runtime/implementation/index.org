@@ -475,169 +475,188 @@
   :CUSTOM_ID: logg_collection
   :END: 
 
-  A Shell script that collects logs ( analytics, feedbacks and Open
+  A python script that collects logs ( analytics, feedbacks and Open
   edX user data).
-** Date wise Feedback dump
-   A python program to fetch date wise feedback dump.   
-#+NAME: fetch_feedbacks
+** =variables.py= needed for =get_logs.py=
+   Following python file =varaibles.py= contains variables that are
+   required for =get_logs.py= file.
+#+NAME: variables
 #+BEGIN_SRC python
 #!/usr/bin/python
 
-import requests
 import datetime
+import json 
+import logging 
 
 now = datetime.datetime.now()
+date_for_feedback = now.strftime("%d-%m-%Y")
+date_for_usage = now.strftime("%Y-%m-%d")
+date_today = date_for_usage
 
-date = now.strftime("%d-%m-%Y")
 
-dump_file = "feedback-dump-"+date+".json"
+# Files and folders 
+config_file_name = "/var/www/html/config.json"
+with open(config_file_name) as config_data:
+	tag_data = json.load(config_data)
+	key = tag_data.keys()[0]
+	tag_name = str(tag_data[key]["college_details"]["college_name"])
+	config_data.close()
 
-url = "http://feedback.vlabs.ac.in/feedback_dump?date="+date+"&key=defaultkey"
-response=requests.get(url)
-fp=open(dump_file,"w")
-fp.write(response.content)
-fp.close()
-#print type(response.content)
+log_file_name = "/home/vlabs/log_collection/script.log"
+dir_str = "/home/vlabs/college-cloud-data/"
+workshop_folder = dir_str + "workshop-logs-datewise-" + tag_name + "-" + date_today 
+full_dump_location = dir_str + "workshop-logs-full-" + tag_name + "-" + date_today + "/"
+feedback_dump_file = workshop_folder + "/feedback-dump-" + tag_name + "-" + date_for_feedback + ".json"
+usage_dump_file = workshop_folder + "/vlabs-analytics-" + tag_name + "-" + date_for_usage + ".json"
+edx_auth_user_data = workshop_folder + "/edx-auth-user-data-" + tag_name + "-" + date_for_usage + ".sql"
+edx_auth_registration_data = workshop_folder + "/edx-auth-registration-data-" + tag_name + "-" + date_for_usage + ".sql"
+compression_file_name = tag_name + "-" + date_today + ".tar.gz"
+
+
+datewise_dumpfile = tag_name + "-date-wise-dump-" + date_today
+full_dumpfile = tag_name + "-full-dump-" + date_today 
+destination = "/var/www/html/college-cloud-data/"
+
+
+elastic_url = "http://vlabs-analytics.vlabs.ac.in:9200/vlabs/_search?size=10000"
+elastic_payload = {"query" : { "term" : { "DATE_OF_EXPERIMENT" : date_for_usage }}}
+vagrant_dir = "/home/vlabs/vagrant-boxes/"
+script_dir = "/home/vlabs/log_collection"
+feedback_api = "http://feedback.vlabs.ac.in/feedback_dump?date=" + date_for_feedback + "&key=defaultkey"
+logging.basicConfig(filename = log_file_name, level = logging.INFO)
+
+ctid_analytics = "280"
+ctid_feedback = "278"
 
 #+END_SRC
-
-** Fetch analytics and feedback
-   
-   A Shell script is given as utility which can get -
-
+** get_logs.py
+   Following python file =get_logs.py= does as follows:
    1. Full logs for feedback, analytics and user data
    2. Date wise logs for feedback and analytics and partial user data
       (default)
 
    Full logs will only be taken if requested. By default, date wise
    logs will be uploaded by user.
-#+NAME: fetch_analytics   
-#+BEGIN_SRC shell
-#!/bin/sh
+#+NAME: get_logs
+#+BEGIN_SRC python
+#!/usr/bin/python
+
+import requests
+import os
+import datetime
+import json 
+import os
+import sys 
+import logging
+import tarfile 
+from variables import *
+
+def set_dir_structure(dir_str):
+	try:
+		os.makedirs(dir_str)
+		logging.info("Directory structure with path  was created")
+	except Exception, err:
+		logging.debug("Directory structure already exists")
+
+def get_feedback(url, dump_file):
+	try:
+		res = requests.get(url)
+		print res.status_code
+		if res.status_code == 200:
+			fp = open(dump_file, "w")
+			fp.write(res.content)
+			logging.info("Datewise feedback was saved to ")
+			fp.close()
+		else:
+			logging.error("There was an error in communication with feedback service")
+	except Exception: 	
+		logging.error("Unable to take feedback dump of specific date " )
 
 
-DATE=`date +"%d-%m-%Y"`
-WORKSHOP_FOLDER=workshop-analytics-$DATE
-WORKSHOP_DIR=~/college-cloud-data
-INDEX_NAME=vlabs
-CTID_ANALYTICS=280
-CTID_FEEDBACK=278
-MYSQL_USER=root
-MYSQL_PASS=root
-VAGRANT_BOX_PATH=~/vagrant-boxes/
-MYSQL_FEEDBACK_DB=feedback
-CONFIG_FILE=/var/www/html/config.json
-TAG=`sudo cat $CONFIG_FILE | jq ".[].college_details.college_name"|sed -e 's/\"//g'`-$DATE
-#TAG=$COLLEGE_NAME-$DATE
-LOCAL_WORKSHOP_DIR=$WORKSHOP_DIR/$WORKSHOP_FOLDER
-EDX_AUTH_USER_DATA=edx-auth-user-data-$TAG-$DATE.sql
-EDX_AUTH_REGISTRATION_DATA=edx-auth-registration-data-$TAG-$DATE.sql
-DEST=/var/www/html/college-cloud-data/
-ELKDATE=`date +"%Y-%m-%d"`
-mkdir $WORKSHOP_DIR
-mkdir $LOCAL_WORKSHOP_DIR
-sudo mkdir $DEST;
-sudo chmod -R 755 $DEST 
-full_dump()
-{
+def get_usage(url, payload, dump_file):
+	try:
+		res = requests.get(url, data = json.dumps(payload))
+		if res.status_code == 200:
+			data_dict = json.loads(res.content)
+         		fp = open(dump_file, "w")
+			data_list = data_dict["hits"]["hits"]
+			json.dump(data_list, fp)
+			logging.info("Datewise usage was saved to " + dump_file)
+			fp.close()
+		else:
+			logging.error("There was an error in communication with elasticsearch database")
+	except Exception:
+		logging.error("Unable to take dump for elasticsearch ")
+	 
 
 
-     # Take elasticdump - the logs captured in ELK server
-     # Details 
-     # 1. Logs gets copied in localmachine in ~/college-cloud-data/workshop-analytics-$DATE folder
-     # 2. Two logs files - vlabs_mapping_$DATE.json and vlabs_data_$DATE.json files are generated.
-     # 3. Log files will not be generated in case they already exist.
- 
-    echo "----FULL DUMP----"
-    echo "`date`: Executing elasticdump command " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
-    echo "`sudo vzctl exec $CTID_ANALYTICS elasticdump --input=http://localhost:9200/$INDEX_NAME --output=/root/vlabs-mapping-$TAG-$DATE.json --type=mapping`"
-    echo "`sudo vzctl exec $CTID_ANALYTICS elasticdump --input=http://localhost:9200/$INDEX_NAME --output=/root/vlabs-data-$TAG-$DATE.json --type=data`"
-    echo "`date`: Finished Executing elasticdump command " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
-    
-    echo "`sudo cp /vz/private/280/root/vlabs_mapping_$DATE.json $LOCAL_WORKSHOP_DIR/`"
-    echo "`sudo cp /vz/private/280/root/vlabs_data_$DATE.json $LOCAL_WORKSHOP_DIR/`"
-    echo "`date`: Copied files in $LOCAL_WORKSHOP_DIR " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
-    
-
-     # Take mysqldump of feedback - only sql dump is captured and needed
-     # Details -
-     # 1. SQLdump  gets copied in ~/college-cloud-data/workshop-analytics-$DATE folder
-     # 2. filename will be feedbackdump-$DATE.sql 
-
-    echo "`date`: Start Mysql dump for feedback " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
-    echo "`sudo vzctl exec $CTID_FEEDBACK mysqldump -u $MYSQL_USER -p$MYSQL_PASS $MYSQL_FEEDBACK_DB`" > $LOCAL_WORKSHOP_DIR/feedbackdump-$TAG-$DATE.sql
-    echo "`date`: End Mysql dump for feedback " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
-    
-    
-     # Take mysql dump of open edx platform (auth_user and auth_registratiom) table 
-     # Details  
-     # 1. SQLdump  gets copied in ~/college-cloud-data/workshop-analytics-$DATE folder
-     # 2. filename will be feedbackdump-$TAG-$DATE.sql 
-    
-    cd $VAGRANT_BOX_PATH
-    echo " Mysqldump is in progress"
-    
-    echo "`date`: Start Mysql dump for Open edx platform " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
-    echo "`vagrant ssh -c 'mysqldump -uroot edxapp auth_user'`" > $LOCAL_WORKSHOP_DIR/$EDX_AUTH_USER_DATA
-    echo "`vagrant ssh -c 'mysqldump -uroot edxapp auth_user'`" > $LOCAL_WORKSHOP_DIR/$EDX_AUTH_REGISTRATION_DATA
-    echo "`date`: End Mysql dump for Open edX " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
-    cd -
-    
-    # Compress the folder 
-    
-    echo "`date`: Start Compressing " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
-    echo "` cp $CONFIG_FILE  $LOCAL_WORKSHOP_DIR`"
-    echo "`tar -zvcf $TAG-FULL-DUMP.tar.gz $LOCAL_WORKSHOP_DIR`"
-    #mv  $TAG.tar.gz  $WORKSHOP_DIR
-    sudo mv  $TAG-FULL-DUMP.tar.gz  $DEST
-    echo "`date`: File Compressed - Look for file - $TAG-FULL-DUMP.tar.gz " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
-}
-
-datewise_dump()
-{
-     echo "-----DATE-WISE-DUMP------"
-     echo "`date`: Start Mysql dump for feedback " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
-     echo "`python ~/log_collection/feedback-dump.py`"
-     echo "`mv feedback-dump-$DATE.json feedback-dump-TAG-$DATE.json `" 
-     echo "`mv feedback-dump-$TAG-$DATE.json  $LOCAL_WORKSHOP_DIR/`" 
-     echo "`date`: End Mysql dump for feedback " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
-    
-     echo "`date`: Start Vlabs analytics from ELK " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
-     curl -XGET 'http://vlabs-analytics.vlabs.ac.in:9200/vlabs/_search?pretty&size=1000' -d '{ "query" : { "term" : { "DATE_OF_EXPERIMENT": $ELKDATE }}}' > vlabs-data-$TAG-$DATE.json
-     echo "`mv vlabs-data-$TAG-$DATE.json  $LOCAL_WORKSHOP_DIR`" 
-     echo "`date`: End VLabs analytics dump  " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
-     
-     ## Take mysql dump of open edx platform (auth_user and auth_registratiom) table 
-     # Details  
-     # 1. SQLdump  gets copied in ~/college-cloud-data/workshop-analytics-$DATE folder
-     # 2. filename will be feedbackdump-$TAG-$DATE.sql 
-   
-     #Copy the config.json file into $LOCAL_WORKSHOP_DIR. This file will be used in post workshop tasks at VLEAD. 
-     #Using this file, VLEAD dev team will parse and pushes these logs into production.
-
-     echo "`cp $CONFIG_FILE  $LOCAL_WORKSHOP_DIR`"   
+def get_user_logs(vagrant_dir, script_dir):
+	try:
+		os.chdir(vagrant_dir)
+		status_auth_user = os.system("vagrant ssh -c 'mysqldump -uroot edxapp auth_user' >" + edx_auth_user_data)
+		status_auth_registration = os.system("vagrant ssh -c 'mysqldump -uroot edxapp auth_registration' > " + edx_auth_registration_data)
+		if status_auth_user == 0 and status_auth_registration == 0:
+			logging.info("User data was taken from edX database")
+		else:
+			logging.error("Unable to fetch user records from edX")
+                os.chdir(script_dir)
+	except Exception, err:
+		logging.error("Unable to take data from edX database")
 
 
-     # Compress the folder 
-     
-     echo "`date`: Start Compressing " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
-  
-     echo "`tar -zvcf $TAG-DATEWISE-DUMP.tar.gz $LOCAL_WORKSHOP_DIR`"
-     echo "`sudo mv  $TAG-DATEWISE-DUMP.tar.gz $DEST`"
-     echo "`date`: File Compressed - Look for file - $TAG-DATEWISE-DUMP.tar.gz " >> $LOCAL_WORKSHOP_DIR/exec-status-$DATE.txt
-}
+def date_wise_dump():
+	set_dir_structure(dir_str)
+	set_dir_structure(workshop_folder)
+	get_feedback(feedback_api, feedback_dump_file)
+	get_usage(elastic_url, elastic_payload, usage_dump_file)
+	get_user_logs(vagrant_dir, script_dir)
+	make_tarfile(datewise_dumpfile, workshop_folder)
 
 
-if [ "$1" = "full" ]
-then
- full_dump
-else 
-datewise_dump
-fi
+
+
+
+
+def full_dump():
+	set_dir_structure(dir_str)
+        set_dir_structure(workshop_folder)
+	set_dir_structure(full_dump_location)
+	os.system("sudo vzctl exec " + ctid_analytics + " elasticdump --input=http://localhost:9200/vlabs --output=/root/vlabs-mapping-full.json --type=mapping")
+	os.system("sudo vzctl exec " + ctid_analytics + " elasticdump --input=http://localhost:9200/vlabs --output=/root/vlabs-data-full.json --type=data")
+	os.system("sudo cp /vz/private/" + ctid_analytics + "/root/vlabs-mapping-full.json " + full_dump_location)
+	os.system("sudo cp /vz/private/" + ctid_analytics + "/root/vlabs-data-full.json " + full_dump_location)
+        os.system("sudo vzctl exec " + ctid_feedback + " mysqldump -uroot -proot feedback > " + full_dump_location + "feedback-dump-full.sql")
+	get_user_logs(vagrant_dir, script_dir)
+	make_tarfile(full_dumpfile, full_dump_location)
+
+
+
+def make_tarfile(output_filename, source_dir):
+        filename=output_filename + ".tar.gz"
+	tar= tarfile.open(filename, "w:gz")
+	tar.add(source_dir, arcname=output_filename)
+	os.system('sudo mkdir'+ " "  + destination )
+        os.system('sudo mv' + " "  + filename + " " + destination)
+
+
+
+if len(sys.argv) == 1:
+	date_wise_dump()
+if len(sys.argv) == 2 and sys.argv[1] == "full":
+	full_dump()
+	
+
 
 #+END_SRC
 
 * College Cloud registration
+  This form is required for collecting logs ( analytics, feedback and
+  user data). This form is a web form, should be able to access from a
+  browser.  Workshop coordinator, need to fill college information in
+  that form.   Once the Workshop coordinator submits form, college
+  details will be saves in =/var/www/html/config.json= file.
+
+  This config.json is being used by [[./index.org::#logg_collection][log collection script]]
   :PROPERTIES:
   :CUSTOM_ID: cc_registration
   :END: 
@@ -1158,11 +1177,11 @@ if __name__ == '__main__':
 #+BEGIN_SRC wsgi :tangle cc.wsgi :eval no :noweb yes
 <<wsgi_conf>>
 #+END_SRC   
-#+BEGIN_SRC shell :tangle log_collection/fetch_analytics.sh :eval no :noweb yes
-<<fetch_analytics>>  
+#+BEGIN_SRC python :tangle log_collection/variables.py :eval no :noweb yes
+<<variables>>  
 #+END_SRC
-#+BEGIN_SRC python :tangle log_collection/feedback-dump.py :eval no :noweb yes
-<<fetch_feedbacks>>  
+#+BEGIN_SRC python :tangle log_collection/get_logs.py :eval no :noweb yes
+<<get_logs>>  
 #+END_SRC
 
 ** tests

@@ -11,7 +11,13 @@
   followed for Virtual Labs College Cloud Edition. The College Cloud
   machine/server  will be running without GUI. GUI has been disabled for
   better performance results.
-
+  + College Cloud Edition :: Virtual Labs College Cloud Edition is the
+       Portable-Edition for Virtual Labs. It offers the offline
+       version of Virtual labs, experiments and theoretical
+       content. This edition addresses the lack of internet access or
+       poor internet connectivity across different
+       institutes/colleges. It results in a very cost-effective
+       Learning Management System.
 * Requirements
   :PROPERTIES:
   :CUSTOM_ID: requirements
@@ -78,44 +84,44 @@
   default password file located at =~/passwords.txt= on College Cloud
   server and it would be the responsibility of the System
   Administrator to manage these passwords.
+  
+*** Linux user Password
+    - Use =passwd= command to change the passwords of =vlabs= and
+      =root=
+      #+BEGIN_EXAMPLE
+      vlabs$passwd     # to change vlabs user 
 
-** Linux user Password
-   - Use =passwd= command to change the passwords of =vlabs= and
-     =root=
-     #+BEGIN_EXAMPLE
-     vlabs$passwd     # to change vlabs user 
-
-     root#passwd     # for change root user 
-     #+END_EXAMPLE
-** OpenVZ web panel user password
-  :PROPERTIES:
-  :CUSTOM_ID: OpenVZ
-  :END:    
-   
-   - Use the following command to change the OpenVZ web panel user
-     password
-   #+BEGIN_EXAMPLE
-   sudo ruby /opt/ovz-web-panel/script/runner -e production 'user = User.find_by_login("admin"); user.password = "admin"; user.save(false)'
-   #+END_EXAMPLE
-** Nagios user password
-  :PROPERTIES:
-  :CUSTOM_ID: nagios_password
-  :END:    
-
-   - Use the following command to change the Nagios user password
-     password
-   #+BEGIN_EXAMPLE
-   sudo htpasswd -C /etc/nagios/passwd nagiosadmin
-   #+END_EXAMPLE 
-** Open edX platform admin user password
+      root#passwd     # for change root user 
+      #+END_EXAMPLE
+*** OpenVZ web panel user password
    :PROPERTIES:
-   :CUSTOM_ID: platform_password
+   :CUSTOM_ID: OpenVZ
+   :END:    
+    
+    - Use the following command to change the OpenVZ web panel user
+      password
+    #+BEGIN_EXAMPLE
+    sudo ruby /opt/ovz-web-panel/script/runner -e production 'user = User.find_by_login("admin"); user.password = "admin"; user.save(false)'
+    #+END_EXAMPLE
+*** Nagios user password
+   :PROPERTIES:
+   :CUSTOM_ID: nagios_password
    :END:    
 
-   To change the Open edX platform  admin( default) user password
-    - Go to   =http://open-edx.vlabs.ac.in/admin.
-    - Login using default [[./inallation-manual.org::#passwords][admin user and password]].
-    - Follow the instructions detailed in [[https://openedx.atlassian.net/wiki/display/OpenOPS/Managing+OpenEdX+Tips+and+Tricks][Administration commands]].
+    - Use the following command to change the Nagios user password
+      password
+    #+BEGIN_EXAMPLE
+    sudo htpasswd -C /etc/nagios/passwd nagiosadmin
+    #+END_EXAMPLE 
+*** Open edX platform admin user password
+    :PROPERTIES:
+    :CUSTOM_ID: platform_password
+    :END:    
+
+    To change the Open edX platform  admin( default) user password
+     - Go to   =http://open-edx.vlabs.ac.in/admin.
+     - Login using default [[./inallation-manual.org::#passwords][admin user and password]].
+     - Follow the instructions detailed in [[https://openedx.atlassian.net/wiki/display/OpenOPS/Managing+OpenEdX+Tips+and+Tricks][Administration commands]].
 
 * Using College Cloud Edition
   :PROPERTIES:

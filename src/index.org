@@ -11,11 +11,12 @@
   The document describes building a *College Cloud Edition* for
   virtual-labs.
 
-  *College Cloud Edition* is a portable-media( Hard Disk Drive (HDD))
-  which will have Open edX platform installed and labs ported onto it.
-
-  Using the portable media, labs can be accessed directly from the
-  local machine itself (no need of internet connection).
+  Virtual Labs College Cloud Edition is the Portable-Edition for
+  Virtual Labs. It offers the offline version of Virtual labs,
+  experiments and theoretical content. This edition addresses the lack
+  of internet access or poor internet connectivity across different
+  institutes/colleges. It results in a very cost-effective Learning
+  Management System.
 
 ** Objective 
    Build the Portable-Edition on HDD and make it portable. The
