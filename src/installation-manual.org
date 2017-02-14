@@ -312,19 +312,39 @@
   :PROPERTIES:
   :CUSTOM_ID: analytics-feedbacks
   :END:    
+** Analytics and Feedback : System Administrator
+  :PROPERTIES:
+  :CUSTOM_ID: run_script
+  :END:    
+
+   These steps would be performed by System Administrator
+   - Login as =vlabs= user. 
+     + For =vlabs= user password please check [[./installation-manual.org::#passwords][this link]]
+   - Change directory to =log_collection=
+     #+BEGIN_SRC 
+     cd log_collection
+     #+END_SRC
+   - Run the python script =get_logs.py= to collect the logs
+     #+BEGIN_SRC 
+     python get_logs.py            #to get date wise dump
+     python get_logs.py full       #to get full dump
+     #+END_SRC
 ** Analytics and Feedback : Workshop Coordinator
    Please ask System Administrator for =<college-cloud-server-ip>=.
    1. Open a web browser on a machine connected to college-cloud/
       machine form which college-cloud was accessible.
    2. Access the URL - =http://<college-cloud-server-ip>/rc_registration=
-      + Fill the details and click on =save= button to the details
-   3. Access the URL -
+      + Fill the details and click on =save= button to save the
+        details
+   3. Once the workshop is over , please ask System Administrator to
+      run python script to get the logs. or [[./installation-manual.org::#run_script][check this]]
+   4. Access the URL -
       =http://<college-cloud-server-ip>/college-cloud-data/=
-   4. Download the tar.gz file in the format
+   5. Download the tar.gz file in the format
       =<College-name-Date>.tar.gz=
-   5. Take downloaded file in pendrive and take a machine with
+   6. Take downloaded file in pendrive and take a machine with
       internet connection.
-   6. Upload the file in your google drive and share it with
+   7. Upload the file in your google drive and share it with
       =engg@vlabs.ac.in=
 * Changing College Cloud Machine
   To change an already configured College Cloud server to a different
