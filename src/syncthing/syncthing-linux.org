@@ -13,25 +13,39 @@
 #+BEGIN_EXAMPLE
 $ sudo adduser <username>
 #+END_EXAMPLE
-** Install =syncthing= on system1 and system2
+** Install =syncthing= on Ubuntu14.04 OS
    Download =syncthing= using below command.
 #+BEGIN_EXAMPLE
-$ wget https://github.com/syncthing/syncthing/releases/download/v0.14.21/syncthing-linux-amd64-v0.14.21.tar.gz
+$ wget https://github.com/syncthing/syncthing/releases/download/v0.14.23/syncthing-linux-amd64-v0.14.23.tar.gz
 #+END_EXAMPLE
 ** Extract the download file
     Extract the dowload file using below command
 #+BEGIN_EXAMPLE
-$ tar xzvf syncthing-linux-amd64-v0.14.21.tar.gz
+$ tar xzvf syncthing-linux-amd64-v0.14.23.tar.gz
 #+END_EXAMPLE
    Change directory to the extracted folder
 #+BEGIN_EXAMPLE
-$ cd syncthing-linux-amd64-v0.14.21
+$ cd syncthing-linux-amd64-v0.14.23
 #+END_EXAMPLE
 ** Copy the excutable file =syncthing= to *$PATH*
   Do this with sudo privileges by typing
  #+BEGIN_EXAMPLE
  $ sudo cp syncthing /usr/local/bin
  #+END_EXAMPLE
+** Install =Syncthing= on Ubuntu16.04 OS
+*** Install package from PPA
+  Add the release PGP keys:
+#+BEGIN_EXAMPLE
+curl -s https://syncthing.net/release-key.txt | sudo apt-key add -
+#+END_EXAMPLE
+  Add the "release" channel to your APT sources:
+#+BEGIN_EXAMPLE
+echo "deb http://apt.syncthing.net/ syncthing release" | sudo tee /etc/apt/sources.list.d/syncthing.list
+#+END_EXAMPLE
+*** Update and install =syncthing=
+#+BEGIN_EXAMPLE
+sudo apt-get update && sudo apt-get install syncthing
+#+END_EXAMPLE
 ** Run =syncthing= client programme.
  - Complete all of the above steps on your system.
  - The application is now installed, but there are a few more things we need to do before it will be ready to use.
@@ -74,7 +88,7 @@ In the <address> field, change 127.0.0.1:8080 to 0.0.0.0:8080. So, your config.x
 #+END_EXAMPLE
 Save and close the file.
 
-** Create an Upstart Script to Handle Service States
+** Create an Upstart Script to Handle Service States on =Ubuntu14.04= Operating System
 Upstart script to manage our process. This will allow us to
 automatically start the Syncthing process when the server boots. It
 will also let us run it as a service, without taking control of our
@@ -106,12 +120,16 @@ respawn
 
   When you are finished, save and close the file.
 
-** Start =syncthig= service on system1 and system2
+** Start =syncthig= service on =Ubuntu14.04=
   Start the =syncthing= service using below command
 #+BEGIN_EXAMPLE
 $ sudo initctl start syncthing
 #+END_EXAMPLE
-
+** Enable and start with systemd on =Ubuntu16.04=
+#+BEGIN_EXAMPLE
+sudo systemctl enable syncthing@$USER.service
+sudo systemctl start syncthing@$USER.service
+#+END_EXAMPLE
 ** Access the WebGUI
  - Open your browser and log into each of your servers, Syncthing interfaces by visiting their public IP addresses and port 8080:
 #+BEGIN_EXAMPLE
