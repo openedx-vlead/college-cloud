@@ -8,7 +8,7 @@
 * Introduction 
   The documentation describes the requirements of the College Cloud
 * Requirements
-** College Cloud Edition Requirements
+  College Cloud Edition requirements are 
 *** Req1
    - Build a portable hard disk drive with *X* number of labs on it.
     :PROPERTIES:
@@ -36,10 +36,10 @@
     :END:    
     [[../runtime/implementation/index.org::#cc_registration][Click here for registration form Implementation details]]
       
-** Req5
-   - Requirements for post processing of workshop data - In progress
-*** A =.tar.= file which contains =feedback.json= and =analytics.json= files
-    :PROPERTIES:
-    :CUSTOM_ID: post_process
-    :END:    
-    [[../runtime/implementation/index.org::#logg_collection][Link to be updated]]
+*** Req5
+    - Requirements for post processing of workshop data - In progress
+**** A =.tar.= file which contains =feedback.json= and =analytics.json= files
+     :PROPERTIES:
+     :CUSTOM_ID: post_process
+     :END:    
+     [[../runtime/implementation/index.org::#logg_collection][Link to be updated]]
