@@ -689,20 +689,21 @@ def get_reg_template():
         clg_name = request.form.get("clg_name")
         contact_num = request.form.get("clg_contact_no")
         clg_pincode = request.form.get("clg_pincode")
-        clg_address = request.form.get("clg_addr")        
+        clg_address = request.form.get("clg_addr")
+        contact_name = request.form.get("name")                
         email_id = request.form.get("email")        
         try:
             mac_addr = open('/sys/class/net/'+INTERFACE+'/address').readline()[0:17]
             clg_details = {
-                mac_addr : {
-                    'college_details': {
+                "mac_addr" : mac_addr,
+                    college_details': {
                         'college_name' : clg_name,
                         'contact_no' : contact_num,
                         'college_address' : clg_address,
                         'college_pincode' : clg_pincode,
-                        'email_id' : email_id                                
+                        'email_id' : email_id,
+                        'contact_name' : contact_name
                     }                
-                }
             }
         except Exception as e:
             abort(404, "MAC File not found")
@@ -944,6 +945,14 @@ color:green;
 	  +91<input type="text" class="form-control"  name="clg_contact_no" placeholder="Enter Mobile Number" pattern="[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]">
 	</div>
       </div>
+      <div class="container">
+	<div class="form-group col-md-5">
+	  <label><font color="red">*</font></label>
+	  <label>Contact Name:</label>
+	  <input type="text" class="form-control" name="name" placeholder="Enter contact name" required>
+	</div>
+      </div>
+
       <div class="container">
         <div class="form-group col-md-5">
 	  <label><font color="red">*</font></label>
