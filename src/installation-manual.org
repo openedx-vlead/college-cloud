@@ -333,7 +333,7 @@
    Please ask System Administrator for =<college-cloud-server-ip>=.
    1. Open a web browser on a machine connected to college-cloud/
       machine form which college-cloud was accessible.
-   2. Access the URL - =http://<college-cloud-server-ip>/=
+   2. Access the URL - =http://<college-cloud-server-ip>/cc_registration=
       + Fill the details and click on =save= button to save the
         details
    3. Once the workshop is over , please ask System Administrator to
