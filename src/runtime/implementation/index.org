@@ -610,6 +610,7 @@ def date_wise_dump():
 	get_feedback(feedback_api, feedback_dump_file)
 	get_usage(elastic_url, elastic_payload, usage_dump_file)
 	get_user_logs(vagrant_dir, script_dir)
+        os.system('sudo cp'+ " " + config_file_name + " " + workshop_folder)
 	make_tarfile(datewise_dumpfile, workshop_folder)
 
 
@@ -626,6 +627,7 @@ def full_dump():
 	os.system("sudo cp /vz/private/" + ctid_analytics + "/root/vlabs-mapping-full.json " + full_dump_location)
 	os.system("sudo cp /vz/private/" + ctid_analytics + "/root/vlabs-data-full.json " + full_dump_location)
         os.system("sudo vzctl exec " + ctid_feedback + " mysqldump -uroot -proot feedback > " + full_dump_location + "feedback-dump-full.sql")
+        os.system('sudo cp'+ " " + config_file_name + " " + full_dump_location)
 	get_user_logs(vagrant_dir, script_dir)
 	make_tarfile(full_dumpfile, full_dump_location)
 
