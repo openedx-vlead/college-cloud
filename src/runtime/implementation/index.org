@@ -242,6 +242,63 @@
 	#+BEGIN_EXAMPLE
         sudo /edx/bin/supervisorctl restart all	
 	#+END_EXAMPLE
+*** Create a trigger in database to auto activate users on registration
+A user on registration with edx is given a verification link on
+mentioned email address. This is okay where internet is available. On
+college cloud with no internet facility, activation link is never sent
+to the user and hence user is never activated and cannot login into
+his account after first log-out.
+
+As a workaround to this problem, Sysadmin can activate users from
+django admin page of openedx.  This is not scalable solution and we
+dont want admin to touch django settings of site.
+
+In edxapp database, there is a table called , auth_user which is described as follows -
+
+
+
+| Field        | Type         | Null | Key | Default | Extra          |
+| id           | int(11)      | NO   | PRI | NULL    | auto_increment |
+| password     | varchar(128) | NO   |     | NULL    |                |
+| last_login   | datetime(6)  | YES  |     | NULL    |                |
+| is_superuser | tinyint(1)   | NO   |     | NULL    |                |
+| username     | varchar(30)  | NO   | UNI | NULL    |                |
+| first_name   | varchar(30)  | NO   |     | NULL    |                |
+| last_name    | varchar(30)  | NO   |     | NULL    |                |
+| email        | varchar(254) | NO   |     | NULL    |                |
+| is_staff     | tinyint(1)   | NO   |     | NULL    |                |
+| is_active    | tinyint(1)   | NO   |     | NULL    |                |
+| date_joined  | datetime(6)  | NO   |     | NULL    |                |
+
+#+BEGIN_SRC command
+if is_active = 1 then 
+    user is active 
+else not active
+
+#+END_SRC
+Setting is_active value to 1 will activate a user without clicking the
+verfication link.  Following mysql command can be used from shell to
+activate all users
+
+#+BEGIN_SRC command
+mysql -u<username> -p<password> -e "update auth_user set is_active=1 where is_active=0;"
+#+END_SRC
+
+The better alternative is to write a trigger to change the value if
+is_active column to 1, before insert.  Here is the trigger for the
+same -
+
+#+BEGIN_SRC command
+DELIMITER //
+CREATE TRIGGER auto_activate_user
+BEFORE INSERT
+   ON auth_user FOR EACH ROW
+BEGIN
+   SET NEW.is_active = 1;
+END; //
+DELIMITER ;
+#+END_SRC
+    
 ** One stop solution for setting up Open edX platform using vagrantbox
   - Get the Vagrantfile 
     #+BEGIN_EXAMPLE
