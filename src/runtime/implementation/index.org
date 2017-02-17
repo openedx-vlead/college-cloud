@@ -556,7 +556,7 @@ config_file_name = "/var/www/html/config.json"
 with open(config_file_name) as config_data:
 	tag_data = json.load(config_data)
 	key = tag_data.keys()[0]
-	tag_name = str(tag_data[key]["college_details"]["college_name"])
+	tag_name = str(tag_data["college_details"]["college_name"])
 	config_data.close()
 
 log_file_name = "/home/vlabs/log_collection/script.log"
