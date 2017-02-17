@@ -42,4 +42,7 @@
      :PROPERTIES:
      :CUSTOM_ID: post_process
      :END:    
-     [[../runtime/implementation/index.org::#logg_collection][Link to be updated]]
+     [[../runtime/implementation/index.org::#logg_collection][Link to
+     be updated]]
+*** Req6 
+    - Stream videos of labs from College Cloud 
