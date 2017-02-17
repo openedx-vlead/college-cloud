@@ -696,14 +696,14 @@ def get_reg_template():
             mac_addr = open('/sys/class/net/'+INTERFACE+'/address').readline()[0:17]
             clg_details = {
                 "mac_addr" : mac_addr,
-                    college_details': {
-                        'college_name' : clg_name,
-                        'contact_no' : contact_num,
-                        'college_address' : clg_address,
-                        'college_pincode' : clg_pincode,
-                        'email_id' : email_id,
-                        'contact_name' : contact_name
-                    }                
+                "college_details": {
+                    "college_name" : clg_name,
+                    "contact_no" : contact_num,
+                    "college_address" : clg_address,
+                    "college_pincode" : clg_pincode,
+                    "email_id" : email_id,
+                    "contact_name" : contact_name
+                }                
             }
         except Exception as e:
             abort(404, "MAC File not found")
