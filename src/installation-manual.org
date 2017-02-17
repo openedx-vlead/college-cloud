@@ -272,9 +272,11 @@
        fill in the registration form.
      - Use the labs selected by System Administrator/Workshop
        coordinator.
-     - Do not log out until the System Administrator/Workshop
-       coordinator.
+     - NOTE ::  [[./installation-manual.org::#admin][Forgot password!! contact your System administrator]]
 **** System Administrator/Workshop coordinator 
+    :PROPERTIES:
+    :CUSTOM_ID: admin
+    :END:         
      - Go to  http://open-edx.vlabs.ac.in/admin.
      - Log in using admin user credentials. Admin user credentials are
        at [[./installation-manual.org::#passwords][passwords]]
@@ -285,8 +287,8 @@
       registered users.
       + Select =Users= 
       + Click on =user name=
-      + Click on =Activate=
-      + Click on =Save= button at the bottom.
+      + Then change password of user 
+	- Very small link there in first section of the page
 
 * Workflow of College Cloud Edition
   :PROPERTIES:
