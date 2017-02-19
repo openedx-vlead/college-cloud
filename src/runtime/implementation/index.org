@@ -1229,6 +1229,99 @@ if __name__ == '__main__':
     unittest.main()
 
 #+END_SRC
+* Post Process script
+#+BEGIN_SRC python
+import os
+import sys
+import requests
+import json
+from pprint import pprint
+import glob
+
+ELASTIC_DB_URL = "http://url"
+def post_data_to_elastic_db(record, record_type, mac_id):
+    if record_type == "feedback":
+	data_dict = {
+	    "feedbacks" : record,
+	    "mac_id" : mac_id,
+	    "key" : "defaultkey"
+	}
+	ELASTIC_DB_URL = "http://feedback.vlabs.ac.in/dump_feedback_to_elk"
+    elif record_type == "analytics":
+	data_dict = {
+	    "usages" : record,
+	    "mac_id" : mac_id,
+	    "key" : "defaultkey"
+	}
+
+	ELASTIC_DB_URL = "http://feedback.vlabs.ac.in/dump_usages_to_elk"
+    else:
+	data_dict = {
+	    "college_details" : record,
+	    "key" : "defaultkey"
+	}
+	ELASTIC_DB_URL = "http://feedback.vlabs.ac.in/dump_cc_details_to_elk"
+
+    try:
+	resp = requests.post(ELASTIC_DB_URL, data=json.dumps(data_dict))
+	if not resp.status_code == 200:
+	    return False
+	else:
+	    return True
+    except Exception as e:
+	print str(e)
+	return False
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+	print "Please pass the backup file name file.tar.gz as first argument"
+	exit(0)
+    try:
+	log_collection_tar_file = sys.argv[1]
+	folder_name = log_collection_tar_file.split("/")[-1].split(".")[0]
+	extracted = os.system("tar -xvf" + log_collection_tar_file)
+	pwd = os.getcwd()+"/"+folder_name
+	feedback_file = glob.glob(pwd+"/feedbackdump*.json")
+	analytics_file = glob.glob(pwd+"/vlabs-data*.json")
+	config_file = glob.glob(pwd+"/config*.json")
+    except Exception as e:
+	print str(e)
+
+    try:
+	with open(config_file[0]) as data_file:    
+	    config = json.load(data_file)
+
+	if(post_data_to_elastic_db(config, "config" , "")):
+	    print "config : %s is added" % (config)
+	    mac_id = str(config['mac_id'])
+	else:
+	    print status_code
+    except Exception as e:
+	print str(e)
+
+    try:
+	with open(feedback_file[0]) as data_file:    
+	    feedbacks = json.load(data_file)
+	if(post_data_to_elastic_db(feedbacks, "feedback", str(config['mac_id']))):
+	    print ""
+	    #print "Feedback : %s is added" % (feedback)
+	else:
+	    print "Error"
+    except Exception as e:
+	print str(e)
+
+    try:
+	with open(analytics_file[0]) as data_file:    
+	    analytics_dump = json.load(data_file)
+	if(post_data_to_elastic_db(analytics_dump, "analytics", str(config['mac_id']))):
+	    print ""
+	    #print "analytics : %s is added" % (analytics)
+	else:
+	    print "Error"
+    except Exception as e:
+	print str(e)
+  
+#+END_SRC
 * Tangle
 ** sources
 #+BEGIN_SRC python :tangle config.py :eval no :noweb yes
