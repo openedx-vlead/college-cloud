@@ -192,3 +192,4 @@ http://server2_public_IP:8080
  - [[https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-syncthing-to-synchronize-directories-on-ubuntu-14-04]]
  - [[https://www.unixmen.com/syncthing-private-secure-tool-sync-filesfolders-computers/]]
  - [[http://drup.org/setting-syncthing-ubuntu-1604-server]]
+ - [[https://www.coretechnologies.com/products/AlwaysUp/Apps/RunSyncthingAsAWindowsService.html]]
