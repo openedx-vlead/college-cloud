@@ -13,7 +13,7 @@
 #+BEGIN_EXAMPLE
 $ sudo adduser <username>
 #+END_EXAMPLE
-** Install =syncthing= on Ubuntu14.04 OS and CentOS
+** Install =syncthing= on Ubuntu14.04 and CentOS6.X
    Download =syncthing= using below command.
 #+BEGIN_EXAMPLE
 $ wget https://github.com/syncthing/syncthing/releases/download/v0.14.23/syncthing-linux-amd64-v0.14.23.tar.gz
@@ -46,47 +46,6 @@ echo "deb http://apt.syncthing.net/ syncthing release" | sudo tee /etc/apt/sourc
 #+BEGIN_EXAMPLE
 sudo apt-get update && sudo apt-get install syncthing
 #+END_EXAMPLE
-** Run =syncthing= client programme.
- - Complete all of the above steps on your system.
- - The application is now installed, but there are a few more things we need to do before it will be ready to use.
- - Now, run the following command to run the syncthing for the first time.
-#+BEGIN_EXAMPLE
-$ syncthing
-#+END_EXAMPLE
-The syncthing process is not a daemon, which means that it runs in the
-current shell session (we will get around this by implementing an
-Upstart script momentarily). It will start the process and create some
-necessary files.
-
-After a moment, you will see an informational message about your Node
-ID that looks like this:
-#+BEGIN_EXAMPLE
-[2EQK3] 15:47:15 OK: Ready to synchronize default (read-write)
-[2EQK3] 15:47:15 INFO: Node 2EQK3ZR77PTBQGM44KE7VQIQG7ICXJDEOK34TO3SWOVMUL4QFBHA is "server1" at [dynamic]
-#+END_EXAMPLE
-When you see this, it means that the process has initialized correctly. We can now stop the process by typing
-#+BEGIN_EXAMPLE
-CTRL-C
-#+END_EXAMPLE
-This will stop the process and give us control over the terminal again.
-** Configure =syncthing=
-  Edit the following configuration file that was created. Open the file in your text editor
-#+BEGIN_EXAMPLE
-$ sudo vim ~/.config/syncthing/config.xml
-#+END_EXAMPLE
-Look for a section that deals with the GUI. It should look like this
-#+BEGIN_EXAMPLE
-<gui enabled="true" tls="false">
-    <address>127.0.0.1:8080</address>
-</gui>
-#+END_EXAMPLE
-In the <address> field, change 127.0.0.1:8080 to 0.0.0.0:8080. So, your config.xml will look like below
-#+BEGIN_EXAMPLE
-<gui enabled="true" tls="false">
-    <address>0.0.0.0:8080</address>
-</gui>
-#+END_EXAMPLE
-Save and close the file.
 
 ** Create an Upstart Script to Handle Service States on =Ubuntu14.04=
 Upstart script to manage our process. This will allow us to
@@ -119,12 +78,53 @@ respawn
   We use respawn to tell Upstart to automatically restart the process if it is stopped prematurely.
 
   When you are finished, save and close the file.
+** Run =syncthing= client programme.
+ - Complete all of the above steps on your system.
+ - The application is now installed, but there are a few more things we need to do before it will be ready to use.
+ - Now, run the following command to run the syncthing for the first time.
+#+BEGIN_EXAMPLE
+$ syncthing
+#+END_EXAMPLE
+The syncthing process is not a daemon, which means that it runs in the
+current shell session (we will get around this by implementing an
+Upstart script momentarily). It will start the process and create some
+necessary files.
+
+After a moment, you will see an informational message about your Node
+ID that looks like this:
+#+BEGIN_EXAMPLE
+[2EQK3] 15:47:15 OK: Ready to synchronize default (read-write)
+[2EQK3] 15:47:15 INFO: Node 2EQK3ZR77PTBQGM44KE7VQIQG7ICXJDEOK34TO3SWOVMUL4QFBHA is "server1" at [dynamic]
+#+END_EXAMPLE
+When you see this, it means that the process has initialized correctly. We can now stop the process by typing
+#+BEGIN_EXAMPLE
+CTRL-C
+#+END_EXAMPLE
+This will stop the process and give us control over the terminal again.
 
 ** Start =syncthing= service on =Ubuntu14.04=
   Start the =syncthing= service using below command
 #+BEGIN_EXAMPLE
 $ sudo initctl start syncthing
 #+END_EXAMPLE
+** Configure =syncthing= on Ubuntu14.04, Ubuntu16.04 and CentOS6.X
+  Edit the following configuration file that was created. Open the file in your text editor
+#+BEGIN_EXAMPLE
+$ sudo vim ~/.config/syncthing/config.xml
+#+END_EXAMPLE
+Look for a section that deals with the GUI. It should look like this
+#+BEGIN_EXAMPLE
+<gui enabled="true" tls="false">
+    <address>127.0.0.1:8080</address>
+</gui>
+#+END_EXAMPLE
+In the <address> field, change 127.0.0.1:8080 to 0.0.0.0:8080. So, your config.xml will look like below
+#+BEGIN_EXAMPLE
+<gui enabled="true" tls="false">
+    <address>0.0.0.0:8080</address>
+</gui>
+#+END_EXAMPLE
+Save and close the file.
 ** Enable and start with systemd on =Ubuntu16.04=
 #+BEGIN_EXAMPLE
 sudo systemctl enable syncthing@$USER.service
