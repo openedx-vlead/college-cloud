@@ -7,6 +7,7 @@
 
 * Introduction 
   The documentation describes the requirements of the College Cloud
+
 * Requirements
   College Cloud Edition requirements are 
 *** Req1
@@ -46,3 +47,5 @@
      be updated]]
 *** Req6 
     - Stream videos of labs from College Cloud 
+    - Visit github issue to [[https://github.com/openedx-vlead/college-cloud/issues/26][read the plan]]
+    - Check [[https://github.com/openedx-vlead/college-cloud/milestone/7][Milestone for more tasks]]
