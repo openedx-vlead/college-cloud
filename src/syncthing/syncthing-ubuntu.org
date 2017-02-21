@@ -13,7 +13,7 @@
 #+BEGIN_EXAMPLE
 $ sudo adduser <username>
 #+END_EXAMPLE
-** Install =syncthing= on Ubuntu14.04 OS
+** Install =syncthing= on Ubuntu14.04 OS and CentOS
    Download =syncthing= using below command.
 #+BEGIN_EXAMPLE
 $ wget https://github.com/syncthing/syncthing/releases/download/v0.14.23/syncthing-linux-amd64-v0.14.23.tar.gz
@@ -88,7 +88,7 @@ In the <address> field, change 127.0.0.1:8080 to 0.0.0.0:8080. So, your config.x
 #+END_EXAMPLE
 Save and close the file.
 
-** Create an Upstart Script to Handle Service States on =Ubuntu14.04= Operating System
+** Create an Upstart Script to Handle Service States on =Ubuntu14.04=
 Upstart script to manage our process. This will allow us to
 automatically start the Syncthing process when the server boots. It
 will also let us run it as a service, without taking control of our
@@ -130,6 +130,11 @@ $ sudo initctl start syncthing
 sudo systemctl enable syncthing@$USER.service
 sudo systemctl start syncthing@$USER.service
 #+END_EXAMPLE
+** Download and install =syncthing= on windows operating system.
+  Download =syncthing= tool follow the [[https://github.com/syncthing/syncthing/releases/download/v0.14.23/syncthing-windows-amd64-v0.14.23.zip][link]] and expand it to a new folder on your hard drive. 
+** Run =syncthing= on windows platform
+  Double-click on the installer (*syncthing.exe*) to start it. And automatically it open in your web-browser with [[http://127.0.0.1:8384/]].
+   
 ** Access the WebGUI
  - Open your browser and log into each of your servers, Syncthing interfaces by visiting their public IP addresses and port 8080:
 #+BEGIN_EXAMPLE
