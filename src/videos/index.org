@@ -10,7 +10,55 @@
 * Milstones 
   https://github.com/openedx-vlead/college-cloud/milestone/7
 
-*** Discussion to come to a conclusion of tasks
+* Discussion to come to a conclusion of tasks
+  
+  *Discussion on call , dated Fe 21, 2017*
+  
+  Attendees - Siva and Ashay
+  
+  *Discussion*
+
+  Need to identify and count the videos to be served from College
+  Cloud and get the source of videos. Videos can be served using HTML5
+  embed tag which can be a quick fix to the problem, without the need
+  to explore much of the new technologies and media server
+  available. Following are the suggestions
+  
+  *Use HTML5 to server videos locally*
+  Steps are -
+  
+  Identify the source of videos and download and save them in folder
+  Server videos using Apache webserver
+  Change the URL of videos to point to right location from where videos are to be served.
+  Use HTML 5 to embed video source locally
+  
+  *Benefits are* -
+  
+  Quick fix if it works
+  Need no new exploration and service to move ahead.
+  With a few number of videos (say below 50), this is a good option for now.
+  
+  *Use media servers*
+  
+  Use RED5 or Wowza can be used to stream videos
+  Disadvantage of exploring and running an external service to support these servers.
+  As recommended, these must not be running in containers, hence can result in extra load in college cloud host, or can ask for a separate server.
+  Will be time consuming and need some quality time applied to see desired results.
+  
+  *Use Physical Media server*
+  
+  Adds to the cost of College Cloud altogether.
+  Needs another Physical device to be added with the product.
+  Needs good amount of time to explore.
+  
+  Based on the discussion, following are the action items -
+  
+  Explore the option of HTML 5
+  Get the sources of videos and download and save them locally
+  Figure a way out to replace URLs (grep and replace should help)
+  
+** GitHub Issue
+   [[https://github.com/openedx-vlead/college-cloud/issues/20][Media server for Videos]]
 
 * Tasks, Effort Estimates and Assignees
 
