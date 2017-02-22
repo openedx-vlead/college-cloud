@@ -7,7 +7,7 @@
   This document lists all the issues falling under the [[https://github.com/openedx-vlead/college-cloud/milestone/7][milestone]] to serve
   videos from College Cloud edition.
 
-* Milstones 
+* Milestones 
   https://github.com/openedx-vlead/college-cloud/milestone/7
 
 * Discussion to come to a conclusion of tasks
