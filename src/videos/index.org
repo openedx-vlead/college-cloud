@@ -1,0 +1,32 @@
+#+Title: Plan for Serving Videos from College Cloud Edition 
+#+Author: VLEAD Systems 
+#+Date: Feb 22, 2017
+
+
+* Introudction 
+  This document lists all the issues falling under the [[https://github.com/openedx-vlead/college-cloud/milestone/7][milestone]] to serve
+  videos from College Cloud edition.
+
+* Milstones 
+  https://github.com/openedx-vlead/college-cloud/milestone/7
+
+*** Discussion to come to a conclusion of tasks
+
+* Tasks, Effort Estimates and Assignees
+
+  |------+-----------------------------+------------+---------------------------------------+--------|
+  | S.No | Issues                      | Assignee   | Effort Estimate                       | Status |
+  |------+-----------------------------+------------+---------------------------------------+--------|
+  |    1 | [[https://github.com/openedx-vlead/college-cloud/issues/29][Get youtube video links]]     | Siva       | 8 hr a person                         |        |
+  |------+-----------------------------+------------+---------------------------------------+--------|
+  |    2 | [[https://github.com/openedx-vlead/college-cloud/issues/28][Get NPTEL video links]]       | Ashay      | 16 hr a person                        |        |
+  |------+-----------------------------+------------+---------------------------------------+--------|
+  |    3 | [[https://github.com/openedx-vlead/college-cloud/issues/27][Plan to implement]]           | Siva/Ashay | Will be updated when 1 and 2 finsihes |        |
+  |------+-----------------------------+------------+---------------------------------------+--------|
+  |    4 | [[https://github.com/openedx-vlead/college-cloud/issues/25][Serve Videos using HTML5]]    | Siva/Ashay | -                                     | DONE   |
+  |------+-----------------------------+------------+---------------------------------------+--------|
+  |    5 | [[https://github.com/openedx-vlead/college-cloud/issues/24][list of videos to be served]] | Siva/Ashay | Will be updated when 1 and 2 finsihes |        |
+  |------+-----------------------------+------------+---------------------------------------+--------|
+  |    6 | [[https://github.com/openedx-vlead/college-cloud/issues/27][Download videos]]             | Siva/Ashay | Will be updated when 1 and 2 finsihes |        |
+  |------+-----------------------------+------------+---------------------------------------+--------|
+ 
