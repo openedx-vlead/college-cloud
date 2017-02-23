@@ -1230,6 +1230,9 @@ if __name__ == '__main__':
 
 #+END_SRC
 * Post Process script
+  - This script will accept =<name>.tar.gz= file as command line argument
+    and compute the =usage-analytics=, =feedback-analytics= and then
+    dumps them to vlead's central elastic search database
 #+BEGIN_SRC python
 import os
 import sys
@@ -1238,7 +1241,7 @@ import json
 from pprint import pprint
 import glob
 
-ELASTIC_DB_URL = "http://url"
+FEEDBACK_URL = "http://feedback-kebana.base4.vlabs.ac.in"
 def post_data_to_elastic_db(record, record_type, mac_id):
     if record_type == "feedback":
 	data_dict = {
@@ -1246,7 +1249,7 @@ def post_data_to_elastic_db(record, record_type, mac_id):
 	    "mac_id" : mac_id,
 	    "key" : "defaultkey"
 	}
-	ELASTIC_DB_URL = "http://feedback.vlabs.ac.in/dump_feedback_to_elk"
+	ELASTIC_DB_URL = "%s/dump_feedback_to_elastic_db" % (FEEDBACK_URL)
     elif record_type == "analytics":
 	data_dict = {
 	    "usages" : record,
@@ -1254,16 +1257,18 @@ def post_data_to_elastic_db(record, record_type, mac_id):
 	    "key" : "defaultkey"
 	}
 
-	ELASTIC_DB_URL = "http://feedback.vlabs.ac.in/dump_usages_to_elk"
+	ELASTIC_DB_URL = "%s/dump_usages_to_elastic_db" % (FEEDBACK_URL)
     else:
 	data_dict = {
 	    "college_details" : record,
 	    "key" : "defaultkey"
 	}
-	ELASTIC_DB_URL = "http://feedback.vlabs.ac.in/dump_cc_details_to_elk"
+	ELASTIC_DB_URL = "%s/dump_cc_details_to_elastic_db" % (FEEDBACK_URL)
 
     try:
-	resp = requests.post(ELASTIC_DB_URL, data=json.dumps(data_dict))
+        headers = {'content-type': 'application/json'}
+        
+	resp = requests.post(ELASTIC_DB_URL, data=json.dumps(data_dict), headers=headers)
 	if not resp.status_code == 200:
 	    return False
 	else:
@@ -1280,8 +1285,7 @@ if __name__ == "__main__":
 	log_collection_tar_file = sys.argv[1]
 	folder_name = log_collection_tar_file.split("/")[-1].split(".")[0]
 	extracted = os.system("tar -xvf" + log_collection_tar_file)
-	pwd = os.getcwd()+"/"+folder_name
-	feedback_file = glob.glob(pwd+"/feedbackdump*.json")
+	pwd = os.getcwd()+"/"+folder_name	
 	analytics_file = glob.glob(pwd+"/vlabs-data*.json")
 	config_file = glob.glob(pwd+"/config*.json")
     except Exception as e:
@@ -1300,6 +1304,9 @@ if __name__ == "__main__":
 	print str(e)
 
     try:
+        feedback_file = glob.glob(pwd+"/feedbackdump*.json")
+        sed_command = "sed -ie 's/"gateway_ip": "*"/"gateway_ip": "ab:cd:ef"/g'"+ feedback_file[0]
+        replace_ip_to_mac_id = os.system(sed_command)
 	with open(feedback_file[0]) as data_file:    
 	    feedbacks = json.load(data_file)
 	if(post_data_to_elastic_db(feedbacks, "feedback", str(config['mac_id']))):
