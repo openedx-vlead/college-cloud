@@ -65,7 +65,7 @@
   |------+-----------------------------+------------+---------------------------------------+--------|
   | S.No | Issues                      | Assignee   | Effort Estimate                       | Status |
   |------+-----------------------------+------------+---------------------------------------+--------|
-  |    1 | [[https://github.com/openedx-vlead/college-cloud/issues/29][Get youtube video links]]     | Siva       | 8 hr a person                         |        |
+  |    1 | [[https://github.com/openedx-vlead/college-cloud/issues/29][Get youtube video links]]     | Siva       | 8 hr a 3 person                       |        |
   |------+-----------------------------+------------+---------------------------------------+--------|
   |    2 | [[https://github.com/openedx-vlead/college-cloud/issues/28][Get NPTEL video links]]       | Ashay      | 16 hr a person                        |        |
   |------+-----------------------------+------------+---------------------------------------+--------|
