@@ -10,7 +10,7 @@
   
 * Plan and Discussion 
   + [[https://github.com/openedx-vlead/college-cloud/issues/20][Decision and Discussion]]
-  + [[../plan.org][Plan, Tasks and Assignees]]
+  + [[./plan.org][Plan, Tasks and Assignees]]
   
 
 * List of Videos and other meta information 
