@@ -1233,6 +1233,7 @@ if __name__ == '__main__':
   - This script will accept =<name>.tar.gz= file as command line argument
     and compute the =usage-analytics=, =feedback-analytics= and then
     dumps them to vlead's central elastic search database
+#+NAME: post_process_script
 #+BEGIN_SRC python
 import os
 import sys
@@ -1305,7 +1306,7 @@ if __name__ == "__main__":
 
     try:
         feedback_file = glob.glob(pwd+"/feedbackdump*.json")
-        sed_command = "sed -ie 's/"gateway_ip": "*"/"gateway_ip": "ab:cd:ef"/g'"+ feedback_file[0]
+        sed_command = '''sed -ie 's/\"gateway_ip": "10.100.1.7\"/\"gateway_ip": "%s\"/g' %s''' % (mac_id, feedback_file[0])
         replace_ip_to_mac_id = os.system(sed_command)
 	with open(feedback_file[0]) as data_file:    
 	    feedbacks = json.load(data_file)
@@ -1351,6 +1352,11 @@ if __name__ == "__main__":
 #+BEGIN_SRC python :tangle log_collection/get_logs.py :eval no :noweb yes
 <<get_logs>>  
 #+END_SRC
+
+#+BEGIN_SRC python :tangle post_process.py :eval no :noweb yes
+<<post_process_script>>
+#+END_SRC
+
 
 ** tests
 #+BEGIN_SRC python :tangle test_app.py :eval no :noweb yes
