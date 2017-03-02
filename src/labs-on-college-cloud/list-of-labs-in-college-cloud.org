@@ -59,7 +59,6 @@
    + [[https://vlabs.ac.in/courses/course-v1:IIT-Kanpur+MECH48+Anytime/about][Virtual Combustion and Atomization Laboratory]]
    + [[https://vlabs.ac.in/courses/course-v1:IIT-Guwahati+MFTS-IITG+Anytime/about][Mechanical Laboratory Experience in Fluid and Thermal Sciences]]
    + [[https://vlabs.ac.in/courses/course-v1:IIT-Guwahati+MV-IITG+Anytime/about][Mechanical Vibration]]
-   + [[https://vlabs.ac.in/courses/course-v1:IIT-Kharagpur+MECH27+Anytime/about][Mine automation and Virtual Reality]]
    + [[https://vlabs.ac.in/courses/course-v1:NIT-Surathkal+MECH05+Anytime/about][Mechanics of Machine]]
  
 ** Chemical Engineering
@@ -86,7 +85,6 @@
    + [[https://vlabs.ac.in/courses/course-v1:IIT-Bombay+TEL-IITB+Anytime/about][Traffic Engineering Laboratory]]
    + [[https://vlabs.ac.in/courses/course-v1:IIT-Delhi+CIVIL16+Anytime/about][Virtual Smart Structures and Dynamics Laboratory]]
    + [[https://vlabs.ac.in/courses/course-v1:NIT-Surathkal+CIVIL07+Anytime/about][Strength of Materials]]
-   + [[https://vlabs.ac.in/courses/course-v1:NIT-Surathkal+CIVIL20+Anytime/about][Fluid Mechanics]]
 ** Physical Sciences
    + [[https://vlabs.ac.in/courses/course-v1:Amrita-University+PHY-SC22-AU+Anytime/about][Mechanics Virtual Lab (Pilot)]]
    + [[https://vlabs.ac.in/courses/course-v1:Amrita-University+HTV-AU+Anytime/about][Heat & Thermodynamics Virtual Lab]]
