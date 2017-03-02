@@ -103,7 +103,7 @@ Save and close the file.
 * Access the WebGUI 
  - Open your browser and log into your system, Syncthing interfaces by visiting their public IP addresses and port 8080
 #+BEGIN_EXAMPLE
-http://clinet_public_IP:8080
+http://client_public_IP:8080
 http://server_public_IP:8080
 #+END_EXAMPLE
 * How to connect =syncthing= application between client and server?
