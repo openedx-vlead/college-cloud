@@ -730,8 +730,8 @@ PATH_TO_FOLDER = "/var/www/html/"
 
 #+END_SRC
 *** Get registration form
-   Rest API to render a college cloud registration form
-**** api
+    Rest API to render a college cloud registration form
+**** api to register cc details
 #+NAME: get_reg_form
 #+BEGIN_SRC  python
 app = Flask(__name__)
@@ -776,10 +776,28 @@ def get_reg_template():
             abort(500, "Could not write data to file %s" %(str(e)))
 
 #+END_SRC
+     
+*** Get CC mac id
+    Rest API to get the college cloud mac_id
+**** api to get cc mac_id
+
+#+NAME: get_cc_mac_id
+#+BEGIN_SRC  python
+
+@app.route('/get_cc_mac_id', methods=['GET', 'POST'])
+def get_cc_mac_id():
+    if request.method == 'GET':
+        try:
+            mac_addr = open('/sys/class/net/'+INTERFACE+'/address').readline()[0:17]
+            return jsonify({"cc_mac_id" : mac_addr})
+        except Exception as e:
+            abort(404, INTERFACE+" Configuration file not found")
+
+#+END_SRC
 **** Test case
- #+NAME: test_get_reg_form
+ #+NAME: test_get_cc_mac_id
  #+BEGIN_SRC python
-class TestGetRegForm(TestCase):
+class TestGetCCMacID(TestCase):
     TESTING = True
 
     def setUp(self):
@@ -787,10 +805,10 @@ class TestGetRegForm(TestCase):
     def tearDown(self):
         print "hello"
 
-    def test_get_generic_feedback_form_data(self):
-        print "test_get_generic_feedback_form_data"
+    def test_get_cc_mac_id(self):
+        print "test_get_cc_mac_id"
         headers = {'Content-Type': 'application/json'}
-        request_str = "/"
+        request_str = "/get_cc_mac_id"
         print "request-str = %s" % request_str
         response = self.client.get(request_str)
         self.assertEqual(response.status_code, 200)
@@ -1337,7 +1355,8 @@ if __name__ == "__main__":
 #+END_SRC
 #+BEGIN_SRC python :tangle app.py :eval no :noweb yes
 <<imports>>
-<<get_reg_form>>
+<<get_reg_form>
+<<get_cc_mac_id>>
 <<run_server>>
 #+END_SRC
 #+BEGIN_SRC python :tangle setup.py :eval no :noweb yes
@@ -1362,7 +1381,10 @@ if __name__ == "__main__":
 #+BEGIN_SRC python :tangle test_app.py :eval no :noweb yes
 #<<imports_for_tests>>
 #<<test_get_reg_form>>
+#<<test_get_cc_mac_id>>
 #<<run_test_cases>>
 #+end_src
+
+
 
 

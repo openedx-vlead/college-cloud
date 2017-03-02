@@ -133,7 +133,7 @@
   :END:    
 
 ** Get college registration form
-  - URL :: /get_cc_reg_form
+  - URL :: /cc_registration
   - Method :: GET
 
   - URL Params ::  None
@@ -168,56 +168,8 @@
     #+BEGIN_EXAMPLE
     http://localhost:5000/get_college_reg_form
     #+END_EXAMPLE
-** Store college registration form data to local =config.json= file
-
-   - URL :: /store_cc_reg_form_data
-
-   - Method :: POST
-
-   - Data Params ::
-     {
-      'MAC_ID' : {
-		   'college_details' : {
-           		   'name': '<value>',
-                           'location' : '<value>'
-	 	    }
-		 }
-     }
-
-   - Success Response ::
-     + Code: 200
-
-     + Content:
-       #+BEGIN_EXAMPLE
-       {
-       "status" : "Successfully saved records"
-       }
-       
-       #+END_EXAMPLE
-   
-  - Error Response ::
-    + Code: 401 UNAUTHORIZED
-
-    + Content: { error : "Not Authorized error: not Authorized to perform this action" }
-
-    OR
-
-    + Code: 400 Bad Request
-
-    + Content: { error : "Malformed arguments" }
-
-    OR
-
-    + Code: 500
-
-    + Content: { error : Exception String}
-
-  - Example ::
-    #+BEGIN_EXAMPLE
-    http://localhost:5000/add_user
-    #+END_EXAMPLE
-** Get college cloud ID
-  - URL :: /get_cc_id
+** Get college cloud MAC ID
+  - URL :: /get_cc_mac_id
   - Method :: GET
 
   - URL Params ::  None
@@ -228,7 +180,7 @@
     + Content :: 
       #+BEGIN_EXAMPLE
       {
-        'college_cloud_id' : '<value>'
+        'cc_mac_id' : '<value>'
       }
       #+END_EXAMPLE
 
@@ -252,28 +204,33 @@
 
   - Example ::
     #+BEGIN_EXAMPLE
-    http://localhost:5000/get_college_cloud_id
-	      #+END_EXAMPLE
+    http://localhost:5000/get_cc_mac_id
+    #+END_EXAMPLE
 
 ** Dump college cloud data to ELK
 
-   - URL :: /save_cc_data_to_elk
+   - URL :: /dump_cc_details_to_elastic_db
 
    - Method :: POST
 
    - Data Params ::
-     {
-      'MAC_ID' : '<value>',
-      'college_details' : {
-           	   'name': '<value>',
-                   'location' : '<value>'
-	 	   }
-     }
-
+    {
+	"college_details":{
+	    "college_address":"<addr>",
+	    "college_name":"<name>",
+	    "college_pincode":"<pincode>",
+	    "contact_name":"<name>",
+	    "contact_no":"<number>",
+	    "email_id":"<email>"
+	},
+	"mac_addr":"<mac_id>"
+    }		   
+ 
    - Success Response ::
      + Code: 200
 
      + Content:
+
        #+BEGIN_EXAMPLE
        {
        "status" : "Successfully saved records"
@@ -297,24 +254,25 @@
     + Code: 500
 
     + Content: { error : Exception String}
-
   - Example ::
     #+BEGIN_EXAMPLE
-    http://localhost:5000/add_user
+    http://localhost:5000/dump_cc_details_to_elastic_db
     #+END_EXAMPLE
+
 ** Dump feedback to ELK stack
   :PROPERTIES:
   :CUSTOM_ID: dump_feedback
   :END:    
 
-   - URL :: /dump_feedback_to_elk
+   - URL :: /dump_feedback_to_elastic_Db
 
    - Method :: POST
 
    - Payload ::
      {
-      'cc_reg_details' : [],	       
-      'feedbacks': ['list_of_feedbacks']
+      'key' : '<defaultkey>',	       
+      'feedbacks': ['list_of_feedbacks'],
+      'mac_id' : '<mac_id>'
      }
 
    - Success Response ::
@@ -336,6 +294,11 @@
      + Content: { error : "some of the parameters are not part of the
        request" }
 
+  - Example ::
+    #+BEGIN_EXAMPLE
+    http://localhost:5000/dump_feedback_to_elastic_db
+    #+END_EXAMPLE
+       
 ** Dump usage to ELK stack
   :PROPERTIES:
   :CUSTOM_ID: dump_usage
@@ -347,8 +310,9 @@
 
    - Payload ::
      {
-      'cc_reg_details': [],
-      'usages': ['list_of_usages']      
+      'key': '<key>',
+      'usages': ['list_of_usages'],
+      'mac_id' : '<mac_id>'
      }
 
    - Success Response ::
@@ -370,3 +334,7 @@
      + Content: { error : "some of the parameters are not part of the
        request" }
 
+  - Example ::
+    #+BEGIN_EXAMPLE
+    http://localhost:5000/dump_usage_to_elastic_db
+    #+END_EXAMPLE
