@@ -59,7 +59,7 @@ $ sudo apt-get update && sudo apt-get install syncthing
 $ sudo systemctl enable syncthing@$USER.service
 $ sudo systemctl start syncthing@$USER.service
 #+END_EXAMPLE
-* Run =syncthing= programme between client and server.
+* Run =syncthing= application on client (College-Cloud).
  - Complete all of the above steps on your system.
  - The application is now installed, but there are a few more things we need to do before it will be ready to use.
  - Now, run the following command to run the syncthing for the first time.
@@ -82,7 +82,7 @@ When you see this, it means that the process has initialized correctly. We can n
 CTRL-C
 #+END_EXAMPLE
 This will stop the process and give us control over the terminal again.
-* Configure =syncthing= programme between client and server.
+* Configure =syncthing= application on client (College-Cloud).
   Edit the following configuration file that was created. Open the file in your text editor
 #+BEGIN_EXAMPLE
 $ sudo vim ~/.config/syncthing/config.xml
@@ -103,16 +103,16 @@ Save and close the file.
 * Access the WebGUI 
  - Open your browser and log into your system, Syncthing interfaces by visiting their public IP addresses and port 8080
 #+BEGIN_EXAMPLE
-http://clinet_public_IP:8080
+http://client_public_IP:8080
 http://server_public_IP:8080
 #+END_EXAMPLE
-* How to connect =syncthing= application between client (college-cloud) and server (VLEAD-server)?
+* How to connect =syncthing= application between client and server?
  -  *Step1* On the *VLEAD-Server*, open the Syncthing GUI and click on the gear button and select Settings -> Show ID on the top right corner.
  -  *Step2* Copy the *VLEAD-Server ID* WebGUI, and go to the another system *(College-Cloud)* WebGUI window, click on the *Add Device* on the right side.
  -  *Step3* Paste the *system (VLEAD-Server)* in the Device section. Enter the Device name(optional). In the Addresses field, you can either enter the IP address of the other system or leave it as default.
  -  *Step4* Once you done, click on the save button. You'll be asked to restart the Syncthing. Click Restart button to activate the changes.
  -  *Step5* Now, go to the *VLEAD-Server* WebUI, you'll see a request has been sent from the *College-cloud* to connect.
-* How to share files/folders between college-cloud and VLEAD-Server?
+* How to share files/folders between client and server?
  - In order to share a folder you need to start by adding it to the Syncthing on one of the two machines. 
  - Click *Add Folder* button in the Folders section.
  - *Folder Lable* This is the name or label of the shared folder. 
