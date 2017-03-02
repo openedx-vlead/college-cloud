@@ -18,7 +18,7 @@
 
 * List of Videos and other meta information 
 ** NPTEL videos
-   [[Https://docs.google.com/spreadsheets/d/1JqfF2s-6fRXP6c4A_pR7m28abVQp6p2-WQiPSaYUPMo/edit#gid%3D1604873535][NPTEL Videos]]
+   [[https://docs.google.com/spreadsheets/d/1JqfF2s-6fRXP6c4A_pR7m28abVQp6p2-WQiPSaYUPMo/edit?ts%3D58b7c0f6#gid%3D1604873535][NPTEL Videos]]
 ** Lab youtube Video links
    [[https://docs.google.com/spreadsheets/d/1JqfF2s-6fRXP6c4A_pR7m28abVQp6p2-WQiPSaYUPMo/edit#gid%3D0][Lab videos serving from youtube.com]]
    
