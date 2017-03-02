@@ -1308,7 +1308,7 @@ if __name__ == "__main__":
 	analytics_file = glob.glob(pwd+"/vlabs-analytics*.json")
 	config_file = glob.glob(pwd+"/config*.json")
     except Exception as e:
-	print str(e)
+        print str(e)
 
     try:
 	with open(config_file[0]) as data_file:    
@@ -1320,7 +1320,7 @@ if __name__ == "__main__":
 	else:
 	    print status_code
     except Exception as e:
-	print str(e)
+        print str(e)
 
     try:
         feedback_file = glob.glob(pwd+"/feedback-dump*.json")
@@ -1328,24 +1328,22 @@ if __name__ == "__main__":
         replace_ip_to_mac_addr = os.system(sed_command)
 	with open(feedback_file[0]) as data_file:    
 	    feedbacks = json.load(data_file)
-	if(post_data_to_elastic_db(feedbacks, "feedback", str(config['mac_addr']))):
-	    print ""
-	    #print "Feedback : %s is added" % (feedback)
+	if(post_data_to_elastic_db(feedbacks, "feedback", str(config['mac_addr']))):	    
+	    print "Feedback : %s is added" % (feedbacks)
 	else:
 	    print "Error"
     except Exception as e:
-	print str(e)
+        print str(e)
 
     try:
 	with open(analytics_file[0]) as data_file:    
 	    analytics_dump = json.load(data_file)
-	if(post_data_to_elastic_db(analytics_dump, "analytics", str(config['mac_addr']))):
-	    print ""
-	    #print "analytics : %s is added" % (analytics)
+	if(post_data_to_elastic_db(analytics_dump, "analytics", str(config['mac_addr']))):	    
+	    print "analytics : %s is added" % (analytics_dump)
 	else:
 	    print "Error"
     except Exception as e:
-	print str(e)
+        print str(e)
   
 #+END_SRC
 * Tangle
@@ -1375,7 +1373,6 @@ if __name__ == "__main__":
 #+BEGIN_SRC python :tangle post_process.py :eval no :noweb yes
 <<post_process_script>>
 #+END_SRC
-
 
 ** tests
 #+BEGIN_SRC python :tangle test_app.py :eval no :noweb yes
