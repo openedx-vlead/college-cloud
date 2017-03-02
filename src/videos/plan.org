@@ -1,8 +1,9 @@
 #+Title: Plan for Serving Videos from College Cloud Edition 
 #+Author: VLEAD Systems 
-#+Date: Feb 22, 2017
-
-
+#+SETUPFILE: ../org-templates/level-1.org
+#+TAGS: boilerplate(b)
+#+EXCLUDE_TAGS: boilerplate
+#+OPTIONS: ^:nil
 * Introudction 
   This document lists all the issues falling under the [[https://github.com/openedx-vlead/college-cloud/milestone/7][milestone]] to serve
   videos from College Cloud edition.

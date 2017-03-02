@@ -1233,6 +1233,7 @@ if __name__ == '__main__':
   - This script will accept =<name>.tar.gz= file as command line argument
     and compute the =usage-analytics=, =feedback-analytics= and then
     dumps them to vlead's central elastic search database
+#+NAME: post_process_script
 #+BEGIN_SRC python
 import os
 import sys
@@ -1242,18 +1243,18 @@ from pprint import pprint
 import glob
 
 FEEDBACK_URL = "http://feedback-kebana.base4.vlabs.ac.in"
-def post_data_to_elastic_db(record, record_type, mac_id):
+def post_data_to_elastic_db(record, record_type, mac_addr):
     if record_type == "feedback":
 	data_dict = {
 	    "feedbacks" : record,
-	    "mac_id" : mac_id,
+	    "mac_addr" : mac_addr,
 	    "key" : "defaultkey"
 	}
 	ELASTIC_DB_URL = "%s/dump_feedback_to_elastic_db" % (FEEDBACK_URL)
     elif record_type == "analytics":
 	data_dict = {
 	    "usages" : record,
-	    "mac_id" : mac_id,
+	    "mac_addr" : mac_addr,
 	    "key" : "defaultkey"
 	}
 
@@ -1286,7 +1287,7 @@ if __name__ == "__main__":
 	folder_name = log_collection_tar_file.split("/")[-1].split(".")[0]
 	extracted = os.system("tar -xvf" + log_collection_tar_file)
 	pwd = os.getcwd()+"/"+folder_name	
-	analytics_file = glob.glob(pwd+"/vlabs-data*.json")
+	analytics_file = glob.glob(pwd+"/vlabs-analytics*.json")
 	config_file = glob.glob(pwd+"/config*.json")
     except Exception as e:
 	print str(e)
@@ -1297,19 +1298,19 @@ if __name__ == "__main__":
 
 	if(post_data_to_elastic_db(config, "config" , "")):
 	    print "config : %s is added" % (config)
-	    mac_id = str(config['mac_id'])
+	    mac_addr = str(config['mac_addr'])
 	else:
 	    print status_code
     except Exception as e:
 	print str(e)
 
     try:
-        feedback_file = glob.glob(pwd+"/feedbackdump*.json")
-        sed_command = "sed -ie 's/"gateway_ip": "*"/"gateway_ip": "ab:cd:ef"/g'"+ feedback_file[0]
-        replace_ip_to_mac_id = os.system(sed_command)
+        feedback_file = glob.glob(pwd+"/feedback-dump*.json")
+        sed_command = '''sed -ie 's/\"gateway_ip": "10.100.1.7\"/\"gateway_ip": "%s\"/g' %s''' % (mac_addr, feedback_file[0])
+        replace_ip_to_mac_addr = os.system(sed_command)
 	with open(feedback_file[0]) as data_file:    
 	    feedbacks = json.load(data_file)
-	if(post_data_to_elastic_db(feedbacks, "feedback", str(config['mac_id']))):
+	if(post_data_to_elastic_db(feedbacks, "feedback", str(config['mac_addr']))):
 	    print ""
 	    #print "Feedback : %s is added" % (feedback)
 	else:
@@ -1320,7 +1321,7 @@ if __name__ == "__main__":
     try:
 	with open(analytics_file[0]) as data_file:    
 	    analytics_dump = json.load(data_file)
-	if(post_data_to_elastic_db(analytics_dump, "analytics", str(config['mac_id']))):
+	if(post_data_to_elastic_db(analytics_dump, "analytics", str(config['mac_addr']))):
 	    print ""
 	    #print "analytics : %s is added" % (analytics)
 	else:
@@ -1351,6 +1352,11 @@ if __name__ == "__main__":
 #+BEGIN_SRC python :tangle log_collection/get_logs.py :eval no :noweb yes
 <<get_logs>>  
 #+END_SRC
+
+#+BEGIN_SRC python :tangle post_process.py :eval no :noweb yes
+<<post_process_script>>
+#+END_SRC
+
 
 ** tests
 #+BEGIN_SRC python :tangle test_app.py :eval no :noweb yes

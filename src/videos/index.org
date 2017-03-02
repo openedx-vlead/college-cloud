@@ -1,7 +1,10 @@
 #+Title: Serving Videos from College Cloud 
 #+Date: Feb 22, 2017
 #+Author: VLEAD Systems 
-
+#+SETUPFILE: ../org-templates/level-1.org
+#+TAGS: boilerplate(b)
+#+EXCLUDE_TAGS: boilerplate
+#+OPTIONS: ^:nil
 
 * Introduction 
   This document will have the information on the requirement of
