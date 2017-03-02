@@ -1,3 +1,9 @@
+#+TITLE: Videos on Youtube 
+#+AUTHOR: VLEAD systems
+#+SETUPFILE: ../org-templates/level-1.org
+#+TAGS: boilerplate(b)
+#+EXCLUDE_TAGS: boilerplate
+#+OPTIONS: ^:nil
 
 - Amrita-University: EMV-AU Electricity and Magnetism Virtual Lab
 - Amrita-University: PEVII-AU Population ecology Virtual Lab II
