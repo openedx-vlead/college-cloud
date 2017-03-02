@@ -4,22 +4,25 @@
 
 * Introduction
   This document describes the step by step process for setting up the
-  =syncthing= tool for synchronizing files/folders between two machines.
-* Syncthing
- - Syncthing is a free, Open Source tool that can be used to sync files/folders between your networked computers. 
- - Syncthing transfers data directly from one system to another system, and It is completely open source, secure and private. 
-** Create user for =syncthing= on system1 and system2
- Create user using below command
+  =syncthing= tool for synchronizing files/folders between client and server.
+* What is =syncthing=?
+It is a Client-Server File synchronization tool for cross platforms. A
+Client will upload new files in his advertised directory, which will
+automatically get synchronized to the central server.
+* Install =syncthing= on client (college-cloud) machine
+** Create user for =syncthing= on CentOS6.x
+ Follow the below command to create a user
 #+BEGIN_EXAMPLE
 $ sudo adduser <username>
 #+END_EXAMPLE
-** Install =syncthing= on Ubuntu14.04 and CentOS6.X
-   Download =syncthing= using below command.
+** Install =syncthing= on college cloud
+ * On CentOS6.x platform
+ * Download =syncthing= using below command.
 #+BEGIN_EXAMPLE
 $ wget https://github.com/syncthing/syncthing/releases/download/v0.14.23/syncthing-linux-amd64-v0.14.23.tar.gz
 #+END_EXAMPLE
 ** Extract the download file
-    Extract the dowload file using below command
+    Follow the below command to extract the dowload file.
 #+BEGIN_EXAMPLE
 $ tar xzvf syncthing-linux-amd64-v0.14.23.tar.gz
 #+END_EXAMPLE
@@ -30,55 +33,33 @@ $ cd syncthing-linux-amd64-v0.14.23
 ** Copy the excutable file =syncthing= to *$PATH*
   Do this with sudo privileges by typing
  #+BEGIN_EXAMPLE
- $ sudo cp syncthing /usr/local/bin
+ $ sudo cp syncthing /usr/local/bin/
  #+END_EXAMPLE
-
-** Create an Upstart Script to Handle Service States on =Ubuntu14.04=
-Upstart script to manage our process. This will allow us to
-automatically start the Syncthing process when the server boots. It
-will also let us run it as a service, without taking control of our
-session.
-
-Create and open the Upstart file with root privileges in your editor by typing
+* Install =Syncthing= on Ubuntu16.04 machine (VLEAD-Server)
+** Create user for =syncthing= on Ubuntu16.04 machine
+ Follow the below command to create a user
 #+BEGIN_EXAMPLE
-$ sudo vim /etc/init/syncthing.conf
+$ sudo adduser <username>
 #+END_EXAMPLE
-Inside, we will use the following lines to control our Upstart process
-#+BEGIN_EXAMPLE
-description "Syncthing P2P sync service"
-
-start on (local-filesystems and net-device-up IFACE!=lo)
-stop on runlevel [!2345]
-
-env STNORESTART=yes
-env HOME=/home/username
-setuid "username"
-setgid "username"
-
-exec /usr/local/bin/syncthing
-
-respawn
-#+END_EXAMPLE
-  Specify the user and group using the *setuid* and *setgid* parameters respectively. Modify all three of these values to point to your user's information.
-
-  We use respawn to tell Upstart to automatically restart the process if it is stopped prematurely.
-
-  When you are finished, save and close the file.
-** Install =Syncthing= on Ubuntu16.04 OS
-*** Install package from PPA
+** Install package from PPA
   Add the release PGP keys:
 #+BEGIN_EXAMPLE
-curl -s https://syncthing.net/release-key.txt | sudo apt-key add -
+$ curl -s https://syncthing.net/release-key.txt | sudo apt-key add -
 #+END_EXAMPLE
   Add the "release" channel to your APT sources:
 #+BEGIN_EXAMPLE
-echo "deb http://apt.syncthing.net/ syncthing release" | sudo tee /etc/apt/sources.list.d/syncthing.list
+$ echo "deb http://apt.syncthing.net/ syncthing release" | sudo tee /etc/apt/sources.list.d/syncthing.list
 #+END_EXAMPLE
-*** Update and install =syncthing=
+** Update and install =syncthing=
 #+BEGIN_EXAMPLE
-sudo apt-get update && sudo apt-get install syncthing
+$ sudo apt-get update && sudo apt-get install syncthing
 #+END_EXAMPLE
-** Run =syncthing= client programme on Ubuntu14.04, Ubuntu16.04 and CentOS6.X.
+** Enable and start with systemd on server =(VLEAD-Server)=
+#+BEGIN_EXAMPLE
+$ sudo systemctl enable syncthing@$USER.service
+$ sudo systemctl start syncthing@$USER.service
+#+END_EXAMPLE
+* Run =syncthing= programme between client and server.
  - Complete all of the above steps on your system.
  - The application is now installed, but there are a few more things we need to do before it will be ready to use.
  - Now, run the following command to run the syncthing for the first time.
@@ -101,7 +82,7 @@ When you see this, it means that the process has initialized correctly. We can n
 CTRL-C
 #+END_EXAMPLE
 This will stop the process and give us control over the terminal again.
-** Configure =syncthing= on Ubuntu14.04, Ubuntu16.04 and CentOS6.X
+* Configure =syncthing= programme between client and server.
   Edit the following configuration file that was created. Open the file in your text editor
 #+BEGIN_EXAMPLE
 $ sudo vim ~/.config/syncthing/config.xml
@@ -119,77 +100,36 @@ In the <address> field, change 127.0.0.1:8080 to 0.0.0.0:8080. So, your config.x
 </gui>
 #+END_EXAMPLE
 Save and close the file.
-
-** Start =syncthing= service on =Ubuntu14.04=
-  Start the =syncthing= service using below command
+* Access the WebGUI 
+ - Open your browser and log into your system, Syncthing interfaces by visiting their public IP addresses and port 8080
 #+BEGIN_EXAMPLE
-$ sudo initctl start syncthing
+http://clinet_public_IP:8080
+http://server_public_IP:8080
 #+END_EXAMPLE
-** Enable and start with systemd on =Ubuntu16.04=
-#+BEGIN_EXAMPLE
-sudo systemctl enable syncthing@$USER.service
-sudo systemctl start syncthing@$USER.service
-#+END_EXAMPLE
-** Download and install =syncthing= on windows operating system.
-  Download =syncthing= tool follow the [[https://github.com/syncthing/syncthing/releases/download/v0.14.23/syncthing-windows-amd64-v0.14.23.zip][link]] and expand it to a new folder on your hard drive. 
-** Run =syncthing= on windows platform
-  Double-click on the installer (*syncthing.exe*) to start it. And automatically it open in your web-browser with [[http://127.0.0.1:8384/]].
-   
-** Access the WebGUI
- - Open your browser and log into each of your servers, Syncthing interfaces by visiting their public IP addresses and port 8080:
-#+BEGIN_EXAMPLE
-http://server1_public_IP:8080
-http://server2_public_IP:8080
-#+END_EXAMPLE
-
-** Configure =Syncthing= Web GUI
- - For the security enhancement, let us enable TLS, and setup
-   administrative *user* and *password* to access the WebGUI. To od that,
-   click on the gear button and select *Settings* on the top right
-   corner.
- - Enter the admin *username/password*. In my case it is
-   admin/ubuntu. You should use some strong password. And, check the
-   box that says: Use *HTTPS for GUI*.
- - Click Save button. Now, you'll be asked to restart the Syncthing to
-   activate the changes. Click Restart.
- - Refresh you web browser. You'll see the SSL warning like
-   below. Click on the button that says: *I understand the Risks*. And,
-   click *Add Exception* button to add this page to the browser trusted
-   lists.
- - Enter the administrative user and password which we configured in
-  the previous steps. In my case it's *admin/ubuntu*.
- - We have secured the WebGUI now. Don't forget to do the same steps
-   on both server.
-
-** Connect Servers To Each Other
- - To sync folders between systems, you must told them about each
-   other. This is accomplished by exchanging =device IDs=. You can
-   find it in the web GUI by selecting the =gear menu= (top right) and
-   =ShowID=.
-
-*Ex* : system1 ID
-
- - Copy the ID, and go to the another system (system 2) WebGUI. From
-   the second system (system 2) WebGUI window, click on the *Add
-   Device* on the right side
- - Paste the *System 1 ID* in the Device section. Enter the Device
-   name(optional). In the Addresses field, you can either enter the IP
-   address of the other system or leave it as default. The default
-   value is *dynamic*. Finally, select the folder to be synced. In our
-   case, the sync folder is *default*.
- - Once you done, click on the save button. You'll be asked to restart
-   the Syncthing. Click Restart button to activate the changes.
- - Now, go to the *System 1* WebUI, you'll see a request has been sent
-   from the System 2 to connect and sync. Click *Add* button. Now, the
-   System 2 will ask the System 1 to share and sync the folder called
-   =default=. Click *Share* button.
- - Next restart the Syncthing service on the System 1 to activate the changes.
- - Wait for few seconds, approximately 60 seconds, and you'll see the two systems have been successfully connected and synced to each other.
- - Now, put any file or folder in any one of the systems *default* folder. You may see the file/folder will be synced to the other system automatically.
+* How to connect =syncthing= application between client (college-cloud) and server (VLEAD-server)?
+ -  *Step1* On the *VLEAD-Server*, open the Syncthing GUI and click on the gear button and select Settings -> Show ID on the top right corner.
+ -  *Step2* Copy the *VLEAD-Server ID* WebGUI, and go to the another system *(College-Cloud)* WebGUI window, click on the *Add Device* on the right side.
+ -  *Step3* Paste the *system (VLEAD-Server)* in the Device section. Enter the Device name(optional). In the Addresses field, you can either enter the IP address of the other system or leave it as default.
+ -  *Step4* Once you done, click on the save button. You'll be asked to restart the Syncthing. Click Restart button to activate the changes.
+ -  *Step5* Now, go to the *VLEAD-Server* WebUI, you'll see a request has been sent from the *College-cloud* to connect.
+* How to share files/folders between college-cloud and VLEAD-Server?
+ - In order to share a folder you need to start by adding it to the Syncthing on one of the two machines. 
+ - Click *Add Folder* button in the Folders section.
+ - *Folder Lable* This is the name or label of the shared folder. 
+ - *Folder ID* This is default ID of the folder.
+ - *Folder Path* This is where you want it to store the files on the local computer. For example on client machine I might want this to be ~/Sync/MyShare share.
+ - *Share With Devices* These are the computers you want to share this folder with.
+ - Once you done, click on the save button.
+ - Finally to share it with server. Once done you should see a new notification on server asking if you want to add the newly shared folder there as well.
+ - Once done the folder should be shared and anything you put into the folder on either computer will be automatically synchronized on the other.
+ 
+If you would like to add a more devices just follow the above steps again. 
 
 * References
  - [[https://syncthing.net/]]
- - [[https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-syncthing-to-synchronize-directories-on-ubuntu-14-04]]
  - [[https://www.unixmen.com/syncthing-private-secure-tool-sync-filesfolders-computers/]]
  - [[http://drup.org/setting-syncthing-ubuntu-1604-server]]
- - [[https://www.coretechnologies.com/products/AlwaysUp/Apps/RunSyncthingAsAWindowsService.html]]
+
+
+
+
