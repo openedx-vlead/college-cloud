@@ -214,18 +214,17 @@
    - Method :: POST
 
    - Data Params ::
-    {
-	"college_details":{
-	    "college_address":"<addr>",
-	    "college_name":"<name>",
-	    "college_pincode":"<pincode>",
-	    "contact_name":"<name>",
-	    "contact_no":"<number>",
-	    "email_id":"<email>"
-	},
-	"mac_addr":"<mac_id>"
-    }		   
- 
+   {
+"college_details":{ 
+"college_address":"<address>", 
+"college_name": "<college name>", 
+"college_pincode":"<pincode>", 
+"contact_name":"<name>", 
+"contact_no":"<mobile>", 
+"email_id":"<email>",
+"mac_addr":"<mac_addr>" },
+"key":"defaultkey"
+ }
    - Success Response ::
      + Code: 200
 
@@ -233,8 +232,8 @@
 
        #+BEGIN_EXAMPLE
        {
-       "status" : "Successfully saved records"
-       }
+  "status": "success"
+}
        
        #+END_EXAMPLE
    
