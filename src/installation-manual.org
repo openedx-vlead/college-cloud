@@ -268,16 +268,18 @@
 
 *** User registrations on [[https://open.edx.org/getting-started-open-edx][Open edX platform]]
 **** Lab users 
-     - Click on register button on http://open-edx.vlabs.ac.in and
+     - Click on register button on http://vlabs.ac.in and
        fill in the registration form.
      - Use the labs selected by System Administrator/Workshop
        coordinator.
      - NOTE ::  [[./installation-manual.org::#admin][Forgot password!! contact your System administrator]]
-**** System Administrator/Workshop coordinator 
+**** System Administrator
+     If registered users forgot their password, System Administrator
+     has to follow the below steps.
     :PROPERTIES:
     :CUSTOM_ID: admin
     :END:         
-     - Go to  http://open-edx.vlabs.ac.in/admin.
+     - Visit  http://vlabs.ac.in/admin.
      - Log in using admin user credentials. Admin user credentials are
        at [[./installation-manual.org::#passwords][passwords]]
       + NOTE :: It is advised that the password is changed after the
@@ -294,22 +296,28 @@
   :PROPERTIES:
   :CUSTOM_ID: cc-work-flow
   :END:      
-** Workshop conducted by Workshop Coordinator
-   + [[https://vlabs.ac.in:5959/college-cloud-edition][Organising workshops]]
-   + The Institute should be a Central/State University or
-     Institute/college approved by AICTE/UGC. Kindly follow the link
-     to get detailed requirements for Virtual Labs College Cloud
-     Edition.
-   + Add workshop on [[http://outreach.vlabs.ac.in][Outreach Portal]].
-   + Make sure the [[./installation-manual.org::#requirements][requirements]] are met by the college.
-   + [[./installation-manual.org::#cc-server][Configure College Cloud Server]]
-   + [[./installation-manual.org::#using-cc-server][Using College Cloud]]
-   + [[./installation-manual.org::#analytics-feedbacks][Collecting Analytics and Feedback]]
+** Workshop conducted by a Coordinator
+   Coordinators (Workshop coordinator/Nodal coordinator/Outreach
+   coordinator) who has account in =outreach.vlabs.ac.in= , only those
+   can conduct the workshop using College Cloud Edition.
+   1. Plan the Workshop
+      Visit the following link to plan any workshop.
+      [[https://github.com/vlabs-workshops/admin/blob/master/src/index.org]] 
+   2. Add workshop on [[http://outreach.vlabs.ac.in][Outreach Portal]].
+      - visit =http://outreach.vlabs.ac.in=
+      - Log on to outreach portal page.
+      - Then, add workshop in outreach portal page.
+   3. Make sure the [[./installation-manual.org::#requirements][requirements]] are met by the college.
+   4. [[./installation-manual.org::#cc-server][Configure College Cloud Server]]
+   5. [[./installation-manual.org::#using-cc-server][Use College Cloud Editon for workshop]]
+   6. [[./installation-manual.org::#analytics-feedbacks][Collect Analytics and Feedback]]
 ** Virtual Labs College Cloud Edition used by colleges as part of their curriculum
-   + [[https://docs.google.com/forms/d/e/1FAIpQLSfN0XH0GvuLRiEs_g5RB2npD3Y_5qsvrE0pCOn2C2lyUJNHjA/viewform?embedded=true][Procure College Cloud]]
-   + [[./installation-manual.org::#cc-server][Configure College Cloud Server]]
-   + [[./installation-manual.org::#using-cc-server][Using College Cloud]]
-   + [[./installation-manual.org::#analytics-feedbacks][Collecting Analytics and Feedback]]
+   System administrator has to follow the steps to conduct workshop as
+   part of their college curriculum.
+   1. [[https://docs.google.com/forms/d/e/1FAIpQLSfN0XH0GvuLRiEs_g5RB2npD3Y_5qsvrE0pCOn2C2lyUJNHjA/viewform?embedded=true][Procure College Cloud]]
+   2. [[./installation-manual.org::#cc-server][Configure College Cloud Server]]
+   3. [[./installation-manual.org::#using-cc-server][Use College Cloud Edition for workshop]]
+   4. [[./installation-manual.org::#analytics-feedbacks][Collect Analytics and Feedback]]
 * Analytics and Feedback
   :PROPERTIES:
   :CUSTOM_ID: analytics-feedbacks
