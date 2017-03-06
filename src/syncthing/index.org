@@ -10,14 +10,8 @@ It is a Client-Server File synchronization tool for cross platforms. A
 Client will upload new files in his advertised directory, which will
 automatically get synchronized to the central server.
 * Install =syncthing= on client (college-cloud) machine
-** Create user for =syncthing= on CentOS6.x
- Follow the below command to create a user
-#+BEGIN_EXAMPLE
-$ sudo adduser <username>
-#+END_EXAMPLE
-** Install =syncthing= on college cloud
- * On CentOS6.x platform
- * Download =syncthing= using below command.
+ * Install =syncthing= on CentOS6.x machine (college cloud).
+ * Download =syncthing= application using below command.
 #+BEGIN_EXAMPLE
 $ wget https://github.com/syncthing/syncthing/releases/download/v0.14.23/syncthing-linux-amd64-v0.14.23.tar.gz
 #+END_EXAMPLE
@@ -36,11 +30,6 @@ $ cd syncthing-linux-amd64-v0.14.23
  $ sudo cp syncthing /usr/local/bin/
  #+END_EXAMPLE
 * Install =Syncthing= on Ubuntu16.04 machine (VLEAD-Server)
-** Create user for =syncthing= on Ubuntu16.04 machine
- Follow the below command to create a user
-#+BEGIN_EXAMPLE
-$ sudo adduser <username>
-#+END_EXAMPLE
 ** Install package from PPA
   Add the release PGP keys:
 #+BEGIN_EXAMPLE
