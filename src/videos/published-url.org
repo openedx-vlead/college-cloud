@@ -1,0 +1,233 @@
+#+Title: URLs for youtube videos inside College Cloud Edition
+#+Author: VLEAD Systems 
+#+Date: Tuesday, March 7, 2017
+
+* Introduction
+  This document contains all the new URLs for videos in Collge Cloud version. 
+
+* Amrita 
+** aacv-au
+http://vlabs.ac.in:5959/videos/amrita/aacv-au/AACV-AU-E99256-Soil-Analysis-Determination-of-Available-Nitrogen-Content-Using-Kjeldahl-Method-pVF8a9STNjY.mp4
+http://vlabs.ac.in:5959/videos/amrita/aacv-au/AACV-AU-E99257-soil-analysis-determination-of-available-Phosphorus-content-in-the-Soil-by-Brays-method-lJr056ySOPA.mp4
+http://vlabs.ac.in:5959/videos/amrita/aacv-au/AACV-AU-E99258-soil-analysis-determination-of-available-organic-carbon-content-in-the-soil-F2pSyj-zNXE.mp4
+
+** biotech01
+http://vlabs.ac.in:5959/videos/amrita/biotech01/BIOTECH01-E99285-quantitative-estimation-of-amino-acids.mp4
+http://vlabs.ac.in:5959/videos/amrita/biotech01/BIOTECH01-E99287-Qualitative-analyisis-of-carbohydrates.mp4
+http://vlabs.ac.in:5959/videos/amrita/biotech01/BIOTECH01-E99292-Estimation-of-blood-glucose-oxidase-method-K6hkr1fUDjs.mp4
+
+
+** cbi-au 
+http://vlabs.ac.in:5959/videos/amrita/cbi-au/CBI-AU-E99992-Isolation-of-Endoplasmic-Racticulum-nGQd9TF6Isk.mp4
+http://vlabs.ac.in:5959/videos/amrita/cbi-au/CBI-AU-E99993-Glucose-Uptake-Assay-WAfwJOEo9uQ.mp4
+http://vlabs.ac.in:5959/videos/amrita/cbi-au/CBI-AU-E99994-basics-of-Plant-Tissue-Culture-nggKp10f6kA.mp4
+http://vlabs.ac.in:5959/videos/amrita/cbi-au/CBI-AU-E99995-Transfection-mSaRy6FNpok.mp4
+http://vlabs.ac.in:5959/videos/amrita/cbi-au/CBI-AU-E99996-isolation-of-mitochondria-50eEBGIJtv4.mp4
+http://vlabs.ac.in:5959/videos/amrita/cbi-au/CBI-AU-E99997-cell-organization-and-sub-cellular-structure-studies-qyuL7VbMP2E.mp4
+http://vlabs.ac.in:5959/videos/amrita/cbi-au/CBI-AU-E99998-light-microscope-ePoGUV7EFTU.mp4
+http://vlabs.ac.in:5959/videos/amrita/cbi-au/CBI-AU-E99999-isolation-of-chloroplast-rM6Wznh2KjE.mp4
+
+
+** cbii-au
+http://vlabs.ac.in:5959/videos/amrita/cbii-au/CBLL-AU-E99984-maintanence-of-mamalin.mp4
+http://vlabs.ac.in:5959/videos/amrita/cbii-au/CBLL-AU-E99985-lignin-staining.mp4
+http://vlabs.ac.in:5959/videos/amrita/cbii-au/CBLL-AU-E99986-cell-proliferation.mp4
+http://vlabs.ac.in:5959/videos/amrita/cbii-au/CBLL-AU-E99987-cell-migration.mp4
+http://vlabs.ac.in:5959/videos/amrita/cbii-au/CBLL-AU-E99988-cell-attachment.mp4
+http://vlabs.ac.in:5959/videos/amrita/cbii-au/CBLL-AU-E99989-actin-assembly.mp4
+http://vlabs.ac.in:5959/videos/amrita/cbii-au/CBLL-AU-E99990-hemocytometer-counting-of-cells.mp4
+http://vlabs.ac.in:5959/videos/amrita/cbii-au/CBLL-AU-E99991-Mitosis-in-onion-root-tips.mp4
+
+** htv-au
+http://vlabs.ac.in:5959/videos/amrita/htv-au/HTV-AU-E99983-the-study-of-phase-change-m3AkSZrpKJE.mp4
+
+** icv-au
+http://vlabs.ac.in:5959/videos/amrita/icv-au/ICV-AU-E99296-Soil_Analysis_pH-of-soil-ScY_LT5D0kQ.mp4
+http://vlabs.ac.in:5959/videos/amrita/icv-au/ICV-AU-E99297-Gravimetric-Estimation-of-Nickel-NfbM-LEMWto.mp4
+http://vlabs.ac.in:5959/videos/amrita/icv-au/ICV-AU-E99298-Gravimetric-Estimation-of-Barium-1NIapYIHaIs.mp4
+http://vlabs.ac.in:5959/videos/amrita/icv-au/ICV-AU-E99299-Alloy-Analysis-VDTbhLreiPY.mp4
+http://vlabs.ac.in:5959/videos/amrita/icv-au/ICV-AU-Determination-of-specific-conductivity-of-soil.mp4
+
+** mbvii-au
+http://vlabs.ac.in:5959/videos/amrita/mbvii-au/MBVII-AU-E99278-preparation-of-stocks-of-acteriophage-lambda-by-plate.mp4
+http://vlabs.ac.in:5959/videos/amrita/mbvii-au/MBVII-AU-E99279-polyacrylamide-gel-electrophoresis.mp4
+http://vlabs.ac.in:5959/videos/amrita/mbvii-au/MBVII-AU-E99280-plating-of-bacteriophage.mp4
+http://vlabs.ac.in:5959/videos/amrita/mbvii-au/MBVII-AU-E99281-Plasmid-curing.mp4
+http://vlabs.ac.in:5959/videos/amrita/mbvii-au/MBVII-AU-E99282-ligation-using-t4-dna-ligase.mp4
+http://vlabs.ac.in:5959/videos/amrita/mbvii-au/MBVII-AU-E99283-Extraction-of-bacteriophage-dna-from-large-scale-cultures.mp4
+http://vlabs.ac.in:5959/videos/amrita/mbvii-au/MBVII-AU-E99284-electrobolotting-jnjehx.mp4
+
+** ov-au
+http://vlabs.ac.in:5959/videos/amrita/ov-au/OV-AU-E99962-spectrometer-dispersive-power-of-a-prism-PFVK1wG_9bg.mp4
+http://vlabs.ac.in:5959/videos/amrita/ov-au/OV-AU-E99966-angle-of-the-prism-using-spectrometer-qd6Nfp8PLYU.mp4
+
+* COEP
+** eee05 
+http://vlabs.ac.in:5959/videos/coep/eee05/EEE05-E99317-characterise-the-temp-sensor.mp4
+http://vlabs.ac.in:5959/videos/coep/eee05/EEE05-E99318-strain-gauge-uRTgrhTfLRQ.mp4
+http://vlabs.ac.in:5959/videos/coep/eee05/EEE05-E99320-orifice-plate-Uyms3He09U8.mp4
+http://vlabs.ac.in:5959/videos/coep/eee05/EEE05-E99321-lvdt-2ZjqRTRTnrE.mp4
+http://vlabs.ac.in:5959/videos/coep/eee05/EEE05-E99323-Bio-sensor-gf3vpt.mp4
+http://vlabs.ac.in:5959/videos/coep/eee05/EEE05-E99324-chaaracterize-the-temp-sensor.mp4
+http://vlabs.ac.in:5959/videos/coep/eee05/EEE05-measurement-of-level-in-a-tank.mp4
+http://vlabs.ac.in:5959/videos/coep/eee05/EEE05-simulate-the-performance-of-sensor.mp4
+
+** mech17
+http://vlabs.ac.in:5959/videos/coep/mech17/MECH17-E99904-laser-hardening-ndyag.webm
+http://vlabs.ac.in:5959/videos/coep/mech17/MECH17-E99905-laser-spot-welding-using-ndyag.webm
+http://vlabs.ac.in:5959/videos/coep/mech17/MECH17-E99906-influence-of-process-parameters.webm
+http://vlabs.ac.in:5959/videos/coep/mech17/MECH17-E99907-Trail-on-wedm-dA3O27IDGVg.webm
+
+* IIT Bombay 
+** biotech25
+http://vlabs.ac.in:5959/videos/iitb/biotech25/biotech25-E99611-VPL-Module-2-video-Maldi-Tof-6vglPyXKxH0.mp4
+http://vlabs.ac.in:5959/videos/iitb/biotech25/biotech25-E99612-VPL-Module-2-video-Zip-Tip-3ZitmEYhBpQ.mp4
+http://vlabs.ac.in:5959/videos/iitb/biotech25/biotech25-E99613-VPL-Module-2-video-Ingel-digestion-UK7BiUIRnqU.mp4
+http://vlabs.ac.in:5959/videos/iitb/biotech25/biotech25-E99616-Module-1-Overall-Video_Part-1.mpg-kY6vIQ3T4Ak.mp4
+http://vlabs.ac.in:5959/videos/iitb/biotech25/biotech25-E99616-VPL-Module1-overall-video-part2-WsPi83B7BfA.mp4
+http://vlabs.ac.in:5959/videos/iitb/biotech25/biotech25-E99616-VPL-Module1-video-4-of-8-spF-9StpbWU.mp4
+http://vlabs.ac.in:5959/videos/iitb/biotech25/biotech25-E99616-VPL-Module1-video-7-of-8-J4mIHf-gUT4.mp4
+http://vlabs.ac.in:5959/videos/iitb/biotech25/biotech25-E99616-VPL-Module1-video-8-of-8-8fxVZ-ZKKaA.mp4
+http://vlabs.ac.in:5959/videos/iitb/biotech25/biotech25-Module-1-Overall-Video-Part-1.mpg-kY6vIQ3T4Ak.mp4
+http://vlabs.ac.in:5959/videos/iitb/biotech25/biotech25-VPL-Module1-video-5-of-8-t9h-82D1u-k.mp4
+http://vlabs.ac.in:5959/videos/iitb/biotech25/biotech25-VPL-Module1-video-6-of-8-B0oEtD0TBtc.mp4
+http://vlabs.ac.in:5959/videos/iitb/biotech25/biotech25-E99616-VPL-Module1-video-1-of-8-yWu-tNCZH-8.mp4
+
+** chem01
+http://vlabs.ac.in:5959/videos/iitb/chem01/chem01-Characterize-the-temperature-sensor-RTD-COEP-VLABS-c2bCO4EHguY.mp4
+
+** ml-iitb
+http://vlabs.ac.in:5959/videos/iitb/ml-iitb/ml-iitb-About-MagLev-Setup.mp4-TAIbyoRC9Oo.webm
+http://vlabs.ac.in:5959/videos/iitb/ml-iitb/ml-iitb-Various-Types-of-Responses-PD-Controller.mp4-mgIqDXeVXWc.webm
+
+
+* IIT Delhi 
+** civil16
+http://vlabs.ac.in:5959/videos/iitd/civil16/CIVIL16-E99576-EXP8.mp4
+http://vlabs.ac.in:5959/videos/iitd/civil16/CIVIL16-E99577-EXP7.mp4
+http://vlabs.ac.in:5959/videos/iitd/civil16/CIVIL16-E99578-EXP6.mp4
+http://vlabs.ac.in:5959/videos/iitd/civil16/CIVIL16-E99579-EXP5.mp4
+http://vlabs.ac.in:5959/videos/iitd/civil16/CIVIL16-E99580-EXP4.mp4
+http://vlabs.ac.in:5959/videos/iitd/civil16/CIVIL16-E99581-Exp03.mp4
+http://vlabs.ac.in:5959/videos/iitd/civil16/CIVIL16-E99582-EXP02.mp4
+http://vlabs.ac.in:5959/videos/iitd/civil16/CIVIL16-E99583-EXP01.mp4
+
+
+* IIT Guwahati
+** ece10
+http://vlabs.ac.in:5959/iitg/ece10/ECE10-demo-of-complex-signals.mp4
+http://vlabs.ac.in:5959/iitg/ece10/ECE10-demo-of-simple-sginals.mp4
+http://vlabs.ac.in:5959/iitg/ece10/ECE10-E99517-convolution-and-correlation-of-ct-signal.mp4
+http://vlabs.ac.in:5959/iitg/ece10/ECE10-E99517-convolution-and-correlation-of-dt-signal.mp4
+http://vlabs.ac.in:5959/iitg/ece10/ECE10-E99519-rel-between-ctfs-andctft-of-aperiodic-signal.mp4
+http://vlabs.ac.in:5959/iitg/ece10/ECE10-E99519-rel-between-ctfs-periodic-signal.mp4
+http://vlabs.ac.in:5959/iitg/ece10/ECE10-E99519-rel-between-dtfs-and-dtft-of-aperiodic-signal.mp4
+http://vlabs.ac.in:5959/iitg/ece10/ECE10-E99519-rel-between-dtfs-and-dtft-of-periodic-signal.mp4
+http://vlabs.ac.in:5959/iitg/ece10/ECE10-E99520-casuality-and-non-casuality-property.mp4
+http://vlabs.ac.in:5959/iitg/ece10/ECE10-E99520-linearity-and-non-linearity-property.mp4
+http://vlabs.ac.in:5959/iitg/ece10/ECE10-E99520-time-variant-and-time-invariant.mp4
+http://vlabs.ac.in:5959/iitg/ece10/ECE10-even-and-odd-parts-of-signals.mp4
+http://vlabs.ac.in:5959/iitg/ece10/ECE10-frequencey-domain-sampling.mp4
+http://vlabs.ac.in:5959/iitg/ece10/ECE10-sampling-of-bandlimited-signals.mp4
+http://vlabs.ac.in:5959/iitg/ece10/ECE10-sampling-of-non-band-limited-signals.mp4
+http://vlabs.ac.in:5959/iitg/ece10/ECE10-signal-reconstruction-from-its-samples.mp4
+http://vlabs.ac.in:5959/iitg/ece10/ECE10-signals-matching-using-transformation.mp4
+http://vlabs.ac.in:5959/iitg/ece10/ECE10-spectral-analysis-using-dft.mp4
+http://vlabs.ac.in:5959/iitg/ece10/ECE10-various-properties-of-impulse-signal.mp4
+
+** eee01
+** eil-iitg
+** hss02
+** hss03 
+** mfts-iitg
+http://vlabs.ac.in:5959/videos/iitg/mfts-iitg/MFTS-IITG-E99534-overall-heat-tranfer-coefficient-2.mp4
+http://vlabs.ac.in:5959/videos/iitg/mfts-iitg/MFTS-IITG-E99535-overall-heat-transfer-coefficient-1.mp4
+http://vlabs.ac.in:5959/videos/iitg/mfts-iitg/MFTS-IITG-E99537-double-material-cylinder.mp4
+http://vlabs.ac.in:5959/videos/iitg/mfts-iitg/MFTS-IITG-E99538-double-material-slab.mp4
+http://vlabs.ac.in:5959/videos/iitg/mfts-iitg/MFTS-IITG-E99538-double-material-sphere.mp4
+http://vlabs.ac.in:5959/videos/iitg/mfts-iitg/MFTS-IITG-E99539-single-material-cylinder.mp4
+http://vlabs.ac.in:5959/videos/iitg/mfts-iitg/MFTS-IITG-E99540-single-material-sphere.mp4
+http://vlabs.ac.in:5959/videos/iitg/mfts-iitg/MFTS-IITG-E99541-single-material-slab.mp4
+
+** mv-iitg
+** vlsi-iitg
+http://vlabs.ac.in:5959/videos/iitg/vlsi-iitg/VLSI-IITG-E99304-registers.mp4
+http://vlabs.ac.in:5959/videos/iitg/vlsi-iitg/VLSI-IITG-E99305-latches.mp4
+http://vlabs.ac.in:5959/videos/iitg/vlsi-iitg/VLSI-IITG-E99306-4x1-multiplexer.mp4
+http://vlabs.ac.in:5959/videos/iitg/vlsi-iitg/VLSI-IITG-E99307-logic-gates.mp4
+http://vlabs.ac.in:5959/videos/iitg/vlsi-iitg/VLSI-IITG-E99308-ring-oscillator.mp4
+http://vlabs.ac.in:5959/videos/iitg/vlsi-iitg/VLSI-IITG-E99309-cmos-inverter.mp4
+http://vlabs.ac.in:5959/videos/iitg/vlsi-iitg/VLSI-IITG-E99310-mosfet.mp4
+
+** vmt-iitg
+http://vlabs.ac.in:5959/videos/iitg/vmt-iitg/VMT-IITG-E99545-water-colling-tower-2.webm
+http://vlabs.ac.in:5959/videos/iitg/vmt-iitg/VMT-IITG-E99545-watrVMT-IITG-E99548-vapour-in-air-diffusion.webm-colling-tower-1.webm
+http://vlabs.ac.in:5959/videos/iitg/vmt-iitg/VMT-IITG-E99547-binary-liquid-vapour-equi-2.webm
+http://vlabs.ac.in:5959/videos/iitg/vmt-iitg/VMT-IITG-E99547-vapour-liquid-equi.webm
+http://vlabs.ac.in:5959/videos/iitg/vmt-iitg/VMT-IITG-E99548-masstransfer-1.webm
+http://vlabs.ac.in:5959/videos/iitg/vmt-iitg/VMT-IITG-E99548-masstransfer-2.webm
+http://vlabs.ac.in:5959/videos/iitg/vmt-iitg/VMT-IITG-E99549-vapour-diffusion-1.webm
+http://vlabs.ac.in:5959/videos/iitg/vmt-iitg/VMT-IITG-E99549-vapour-in-air-diffusion.webm
+http://vlabs.ac.in:5959/videos/iitg/vmt-iitg/VMT-IITG-E99550-forced-1.webm
+http://vlabs.ac.in:5959/videos/iitg/vmt-iitg/VMT-IITG-E99550-forced-draft-2.webm
+http://vlabs.ac.in:5959/videos/iitg/vmt-iitg/VMT-IITG-E99551-rotarydyer1.webm
+http://vlabs.ac.in:5959/videos/iitg/vmt-iitg/VMT-IITG-E99551-rotarydyer-2.webm
+http://vlabs.ac.in:5959/videos/iitg/vmt-iitg/VMT-IITG-E99552-flow-through-porous-media-1.webm
+http://vlabs.ac.in:5959/videos/iitg/vmt-iitg/VMT-IITG-E99552-flow-through-porous-media-2.webm
+http://vlabs.ac.in:5959/videos/iitg/vmt-iitg/VMT-IITG-E99554-flow-through-porous-media-1.webm
+http://vlabs.ac.in:5959/videos/iitg/vmt-iitg/VMT-IITG-E99554-flow-through-porous-media-2.webm
+http://vlabs.ac.in:5959/videos/iitg/vmt-iitg/VMT-IITG-E99555-astm-distillation-UVGA0BocAMw.webm
+http://vlabs.ac.in:5959/videos/iitg/vmt-iitg/VMT-IITG-E99555-astm-distillation.webm
+http://vlabs.ac.in:5959/videos/iitg/vmt-iitg/VMT-IITG-E99556-seperating-and-throttling-calorimeter.mp4
+http://vlabs.ac.in:5959/videos/iitg/vmt-iitg/VMT-IITG-E99556-seperating-and-throttling-calorimeter-procesdure.mp4
+
+* IIT Kanpur
+** phy01
+http://vlabs.ac.in:5959/videos/iit-kanpur/PHY01-E99447-retrogadate-motion-of-mars-xtuf-FShJM0.mp4
+http://vlabs.ac.in:5959/videos/iit-kanpur/PHY01-E99447-retrogadate-motion-of-mars-ZprrYdzrBhQ.mp4
+
+* NITK
+** chem05
+http://vlabs.ac.in:5959/videos/nitk/chem05/CHEM05-Flow-Through-Fittings-Online-Experimentation-H_SLQQNJJGg.mp4
+http://vlabs.ac.in:5959/videos/nitk/chem05/CHEM05-Flow-Through-Fluidized-Bed-Video-of-Experiment-n2fxJAlNiQM.webm
+http://vlabs.ac.in:5959/videos/nitk/chem05/CHEM05-Flow-Through-Packed-Bed-Video-of-Experiment-nTm1H_X5h4E.webm
+http://vlabs.ac.in:5959/videos/nitk/chem05/CHEM05-Flow-Through-Pipes-Online-Experimentation-3ZOLhA-2y2E.mp4
+http://vlabs.ac.in:5959/videos/nitk/chem05/CHEM05-Flow-Through-Venturimeter-Online-Experimentation-SWJaMiaGAx0.mp4
+http://vlabs.ac.in:5959/videos/nitk/chem05/CHEM05-Reaction-Kinetic-Studies-in-a-Batch-Reactor-hj7MdoAmTUA.webm
+http://vlabs.ac.in:5959/videos/nitk/chem05/CHEM05-Reaction-Kinetic-Studies-Mixed-Flow-Reacto-Video-of-Experiment-NiGnHCoNz44.webm
+http://vlabs.ac.in:5959/videos/nitk/chem05/CHEM05-Reaction-Kinetic-Studies-Plug-Flow-Reactor-reQLrR6JVAA.webm
+
+** ee30
+ttp://vlabs.ac.in:5959/videos/nitk/ee30/EE30-DCS-Yokogawa-CENTUM-CS-1000-ZuWFoKAfLUg.mp4
+http://vlabs.ac.in:5959/videos/nitk/ee30/EE30-E99343-Brief-explanation-of-our-experimental-setup-mep4-hLQ6Lw.mp4
+http://vlabs.ac.in:5959/videos/nitk/ee30/EE30-E99343-Overview of the hardware setup.-8Rjvz1H6re4.mp4
+http://vlabs.ac.in:5959/videos/nitk/ee30/EE30-E99344-Brief-explanation-of-our-experimental-setup-mep4-hLQ6Lw.mp4
+http://vlabs.ac.in:5959/videos/nitk/ee30/EE30-E99344-example video-56dBqJZ2kFU.mp4
+http://vlabs.ac.in:5959/videos/nitk/ee30/EE30-E99344-Overview of the hardware setup.-8Rjvz1H6re4.mp4
+http://vlabs.ac.in:5959/videos/nitk/ee30/EE30-E99345-Control-Of-Bus-Voltages-Through-Onload-Tap-Changes-kIG_rUunZaE.mp4
+http://vlabs.ac.in:5959/videos/nitk/ee30/EE30-E99346-Load-Transfer-from-one-Feeder-to-other-during-Transformer-Maintenance-WlBqnha5yk8.mp4
+http://vlabs.ac.in:5959/videos/nitk/ee30/EE30-E99347-Fault-scenario-simulation-in-a-Transformer-Bus-ZX5TuTwMjBg.mp4
+http://vlabs.ac.in:5959/videos/nitk/ee30/EE30-E99348-Fault-scenario-simulation-in-a-Feeder-4RZrGitajNU.mp4
+http://vlabs.ac.in:5959/videos/nitk/ee30/EE30-E99349-Monitoring-Feeder-parameter-from-workstation-dA0eJJVfswg.mp4
+http://vlabs.ac.in:5959/videos/nitk/ee30/EE30-E99350-Control-of-Group-Operated-Switches-GOS-from-workstation-08hIAh3apF0.mp4
+http://vlabs.ac.in:5959/videos/nitk/ee30/EE30-E99351-Circuit-Breaker-Status-Indication-from-Field-Input-8MJbG5ReYd0.mp4
+
+** eee08
+http://vlabs.ac.in:5959/videos/nitk/eee08/EEE08-AND-Logic-Implementation-using-PLC-OSi_lF6kCkc.mp4
+http://vlabs.ac.in:5959/videos/nitk/eee08/EEE08-E99387-Motor-forward-and-reverse-direction-control-using-PLC-BFBw6ul4aAw.mp4
+http://vlabs.ac.in:5959/videos/nitk/eee08/EEE08-E99388-Maximum-Simultaneous-Operations-Limiter-using-PLC-ASFCdYofQCU.mp4
+http://vlabs.ac.in:5959/videos/nitk/eee08/EEE08-E99389-Simultaneous-output-interlock-using-PLC-eSAu5sbIaGk.mp4
+http://vlabs.ac.in:5959/videos/nitk/eee08/EEE08-E99390-Container-Filling-Process-Using-PLC-KaP2NdxOX24.mp4
+http://vlabs.ac.in:5959/videos/nitk/eee08/EEE08-E99391-Garage-Shutter-Opening-and-Closing-Using-PLC-afmuh_3_zpM.mp4
+http://vlabs.ac.in:5959/videos/nitk/eee08/EEE08-E99392-PLC-COUNT-DOWN-INSTRUCTION-cqAcPRuFry8.mp4
+http://vlabs.ac.in:5959/videos/nitk/eee08/EEE08-E99393-PLC-COUNT-UP-INSTRUCTION-XAOkMtwxaek.mp4
+http://vlabs.ac.in:5959/videos/nitk/eee08/EEE08-E99394-PLC-RETENTIVE-TIMER-ON-INSTRUCTION-shcO2iMIczk.mp4
+http://vlabs.ac.in:5959/videos/nitk/eee08/EEE08-E99395-PLC-OFF-DELAY-TIMER-INSTRUCTION-uDIYEbND-24.mp4
+http://vlabs.ac.in:5959/videos/nitk/eee08/EEE08-E99396-PLC-ON-DELAY-TIMER-INSTRUCTION-QFph0sJodsY.mp4
+http://vlabs.ac.in:5959/videos/nitk/eee08/EEE08-INTRODUCTION-TO-PROGRAMMABLE-LOGIC-CONTROLLER-AND-INTRODUCTION-TO-DIGITAL-IO-INTERFACE-TO-PLC-808NUlqHad0.mp4
+
+** mech05
+http://vlabs.ac.in:5959/videos/nitk/mech05/MECH05-Module-1-Lecture-1-Kinematics-Of-Machines-MJeRFzs4oRU.webm
+** mech21
+http://vlabs.ac.in:5959/videos/nitk/mech21/MECH21-E99386-Mod-1-Lec-1-Overview-of-the-Course-Practical-and-Research-Trends-bX_m53Xexvk.webm
+
