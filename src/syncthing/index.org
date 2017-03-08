@@ -106,7 +106,7 @@ http://server_public_IP:8080
  - Click *Add Folder* button in the Folders section.
  - *Folder Lable* This is the name or label of the shared folder. 
  - *Folder ID* This is default ID of the folder.
- - *Folder Path* This is where you want it to store the files on the local computer. For example on client machine I might want this to be ~/Sync/MyShare share.
+ - *Folder Path* This is where you want it to store the files on the local computer. For example on client machine I might want this to be /var/www/html/ share.
  - *Share With Devices* These are the computers you want to share this folder with.
  - Once you done, click on the save button.
  - Finally to share it with server. Once done you should see a new notification on server asking if you want to add the newly shared folder there as well.
