@@ -13,16 +13,16 @@ automatically get synchronized to the central server.
  * Install =syncthing= on CentOS6.x machine (college cloud).
  * Download =syncthing= application using below command.
 #+BEGIN_EXAMPLE
-$ wget https://github.com/syncthing/syncthing/releases/download/v0.14.23/syncthing-linux-amd64-v0.14.23.tar.gz
+$ wget https://github.com/syncthing/syncthing/releases/download/v0.14.24/syncthing-linux-amd64-v0.14.24.tar.gz
 #+END_EXAMPLE
 ** Extract the download file
     Follow the below command to extract the dowload file.
 #+BEGIN_EXAMPLE
-$ tar xzvf syncthing-linux-amd64-v0.14.23.tar.gz
+$ tar xzvf syncthing-linux-amd64-v0.14.24.tar.gz
 #+END_EXAMPLE
    Change directory to the extracted folder
 #+BEGIN_EXAMPLE
-$ cd syncthing-linux-amd64-v0.14.23
+$ cd syncthing-linux-amd64-v0.14.24
 #+END_EXAMPLE
 ** Copy the excutable file =syncthing= to *$PATH*
   Do this with sudo privileges by typing
