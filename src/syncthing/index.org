@@ -85,14 +85,14 @@ Look for a section that deals with the GUI. It should look like this
 In the <address> field, change 127.0.0.1:8080 to 0.0.0.0:8080. So, your config.xml will look like below
 #+BEGIN_EXAMPLE
 <gui enabled="true" tls="false">
-    <address>0.0.0.0:8080</address>
+    <address>0.0.0.0:8384</address>
 </gui>
 #+END_EXAMPLE
 Save and close the file.
 * Access the WebGUI 
  - Open your browser and log into your system, Syncthing interfaces by visiting their public IP addresses and port 8080
 #+BEGIN_EXAMPLE
-http://client_public_IP:8080
+http://client_public_IP:8384
 http://server_public_IP:8080
 #+END_EXAMPLE
 * How to connect =syncthing= application between client and server?
