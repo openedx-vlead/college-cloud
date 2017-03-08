@@ -79,10 +79,10 @@ $ sudo vim ~/.config/syncthing/config.xml
 Look for a section that deals with the GUI. It should look like this
 #+BEGIN_EXAMPLE
 <gui enabled="true" tls="false">
-    <address>127.0.0.1:8080</address>
+    <address>127.0.0.1:8384</address>
 </gui>
 #+END_EXAMPLE
-In the <address> field, change 127.0.0.1:8080 to 0.0.0.0:8080. So, your config.xml will look like below
+In the <address> field, change 127.0.0.1:8384 to 0.0.0.0:8384. So, your config.xml will look like below
 #+BEGIN_EXAMPLE
 <gui enabled="true" tls="false">
     <address>0.0.0.0:8384</address>
