@@ -346,15 +346,18 @@
    2. Access the URL - =http://<college-cloud-server-ip>/cc_registration=
       + Fill the details and click on =save= button to save the
         details
-   3. Once the workshop is over , please ask System Administrator to
+   3. Visti the URL - =http://<college-cloud-server-ip>/get_cc_mac_id=
+      to know the =mac address= of the college cloud and please note this
+      for the future reference.
+   4. Once the workshop is over , please ask System Administrator to
       run python script to get the logs. or [[./installation-manual.org::#run_script][check this]]
-   4. Access the URL -
+   5. Access the URL -
       =http://<college-cloud-server-ip>/college-cloud-data/=
-   5. Download the tar.gz file in the format
+   6. Download the tar.gz file in the format
       =<College-name-Date>.tar.gz=
-   6. Take downloaded file in pendrive and take a machine with
+   7. Take downloaded file in pendrive and take a machine with
       internet connection.
-   7. Upload the file in your google drive and share it with
+   8. Upload the file in your google drive and share it with
       =engg@vlabs.ac.in=
 * Changing College Cloud Machine
   To change an already configured College Cloud server to a different
