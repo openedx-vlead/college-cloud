@@ -754,10 +754,10 @@ def get_reg_template():
         email_id = request.form.get("email")        
         try:
             mac_addr = open('/sys/class/net/'+INTERFACE+'/address').readline()[0:17]
-            clg_details = {
-                "mac_addr" : mac_addr,
+            clg_details = {                
                 "college_details": {
                     "college_name" : clg_name,
+                    "mac_addr" : mac_addr,
                     "contact_no" : contact_num,
                     "college_address" : clg_address,
                     "college_pincode" : clg_pincode,
