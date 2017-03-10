@@ -732,6 +732,7 @@ PATH_TO_FOLDER = "/var/www/html/"
 *** Get registration form
     Rest API to render a college cloud registration form
 **** api to register cc details
+
 #+NAME: get_reg_form
 #+BEGIN_SRC  python
 app = Flask(__name__)
@@ -1353,7 +1354,7 @@ if __name__ == "__main__":
 #+END_SRC
 #+BEGIN_SRC python :tangle app.py :eval no :noweb yes
 <<imports>>
-<<get_reg_form>
+<<get_reg_form>>
 <<get_cc_mac_id>>
 <<run_server>>
 #+END_SRC
