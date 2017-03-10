@@ -1,0 +1,28 @@
+#+AUTHOR: VLEAD 
+#+TITLE: User manual for Syncthing
+#+DATE: 07-March-2017
+
+* Introduction
+ This user manual details the workflow process to be followed for syncthing application. The syncthing will be running on client/server.
+* Requirements.
+** Client (College-Cloud) Details
+ - *OS* : CentOS_6.x
+ - *Hostname* : client-syncthing.ac.in:8384
+ - *System user* : client (You can use your own)
+ - *Sync Directory* : /home/Sync/ (Will be created by default by Syncthing)
+** Install and configure syncthing on college-cloud.
+ - Click [[https://github.com/openedx-vlead/college-cloud/blob/cc-april-delhi/src/syncthing/index.org][here]] to install and configure syncthing.
+** How to use syncthing on college cloud?
+ - *Step1* : Open your browser with http://client_public_IP:8384/ on college cloud.
+ - *Step2* : Click on the gear button and select *Settings* on the top
+   right corner. Enter the admin username/password. Click Save
+   button. Now, you'll be asked to restart the Syncthing to activate
+   the changes. Click Restart. Refresh you browser then Enter the
+   administrative user and password which we configured in the
+   previous steps.
+ - *Step3* : Connect VLEAD-Server to follow the [[https://github.com/openedx-vlead/college-cloud/blob/cc-april-delhi/src/syncthing/index.org#how-to-connect-syncthing-application-between-client-and-server][link]]
+ - *Step4* : Share files/folders between client and server to follow the [[https://github.com/openedx-vlead/college-cloud/blob/cc-april-delhi/src/syncthing/index.org#how-to-share-filesfolders-between-client-and-server][link]]
+ - *Step5* : If you would like to add a more devices just follow the =Step3=.
+
+ *Note* : Do not delete any file/folder on syncthing client WebGUI. In case you delete a file/folder in your local machine that file is deleted permanently.
+

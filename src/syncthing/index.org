@@ -10,25 +10,19 @@ It is a Client-Server File synchronization tool for cross platforms. A
 Client will upload new files in his advertised directory, which will
 automatically get synchronized to the central server.
 * Install =syncthing= on client (college-cloud) machine
-** Create user for =syncthing= on CentOS6.x
- Follow the below command to create a user
+ * Install =syncthing= on CentOS6.x machine (college cloud).
+ * Download =syncthing= application using below command.
 #+BEGIN_EXAMPLE
-$ sudo adduser <username>
-#+END_EXAMPLE
-** Install =syncthing= on college cloud
- * On CentOS6.x platform
- * Download =syncthing= using below command.
-#+BEGIN_EXAMPLE
-$ wget https://github.com/syncthing/syncthing/releases/download/v0.14.23/syncthing-linux-amd64-v0.14.23.tar.gz
+$ wget https://github.com/syncthing/syncthing/releases/download/v0.14.24/syncthing-linux-amd64-v0.14.24.tar.gz
 #+END_EXAMPLE
 ** Extract the download file
     Follow the below command to extract the dowload file.
 #+BEGIN_EXAMPLE
-$ tar xzvf syncthing-linux-amd64-v0.14.23.tar.gz
+$ tar xzvf syncthing-linux-amd64-v0.14.24.tar.gz
 #+END_EXAMPLE
    Change directory to the extracted folder
 #+BEGIN_EXAMPLE
-$ cd syncthing-linux-amd64-v0.14.23
+$ cd syncthing-linux-amd64-v0.14.24
 #+END_EXAMPLE
 ** Copy the excutable file =syncthing= to *$PATH*
   Do this with sudo privileges by typing
@@ -36,11 +30,6 @@ $ cd syncthing-linux-amd64-v0.14.23
  $ sudo cp syncthing /usr/local/bin/
  #+END_EXAMPLE
 * Install =Syncthing= on Ubuntu16.04 machine (VLEAD-Server)
-** Create user for =syncthing= on Ubuntu16.04 machine
- Follow the below command to create a user
-#+BEGIN_EXAMPLE
-$ sudo adduser <username>
-#+END_EXAMPLE
 ** Install package from PPA
   Add the release PGP keys:
 #+BEGIN_EXAMPLE
@@ -90,20 +79,20 @@ $ sudo vim ~/.config/syncthing/config.xml
 Look for a section that deals with the GUI. It should look like this
 #+BEGIN_EXAMPLE
 <gui enabled="true" tls="false">
-    <address>127.0.0.1:8080</address>
+    <address>127.0.0.1:8384</address>
 </gui>
 #+END_EXAMPLE
-In the <address> field, change 127.0.0.1:8080 to 0.0.0.0:8080. So, your config.xml will look like below
+In the <address> field, change 127.0.0.1:8384 to 0.0.0.0:8384. So, your config.xml will look like below
 #+BEGIN_EXAMPLE
 <gui enabled="true" tls="false">
-    <address>0.0.0.0:8080</address>
+    <address>0.0.0.0:8384</address>
 </gui>
 #+END_EXAMPLE
 Save and close the file.
 * Access the WebGUI 
  - Open your browser and log into your system, Syncthing interfaces by visiting their public IP addresses and port 8080
 #+BEGIN_EXAMPLE
-http://client_public_IP:8080
+http://client_public_IP:8384
 http://server_public_IP:8080
 #+END_EXAMPLE
 * How to connect =syncthing= application between client and server?
@@ -117,9 +106,11 @@ http://server_public_IP:8080
  - Click *Add Folder* button in the Folders section.
  - *Folder Lable* This is the name or label of the shared folder. 
  - *Folder ID* This is default ID of the folder.
- - *Folder Path* This is where you want it to store the files on the local computer. For example on client machine I might want this to be ~/Sync/MyShare share.
+ - *Folder Path* This is where you want it to store the files on the local computer. For example on client machine I might want this to be /var/www/html/ share.
  - *Share With Devices* These are the computers you want to share this folder with.
- - Once you done, click on the save button.
+ - Once you done, click on the save button. 
+ - *Advanced Settings* : Look for Ignore Permissions to 'Enable'. This option is File permission bits are ignored when looking for changes. 
+ - *Advanced Settings* : Look for 'File Versioning' to select 'Simple File Versioning' and set 'Keep Versions' is 10 (The number of old versions to keep, per file).
  - Finally to share it with server. Once done you should see a new notification on server asking if you want to add the newly shared folder there as well.
  - Once done the folder should be shared and anything you put into the folder on either computer will be automatically synchronized on the other.
  
