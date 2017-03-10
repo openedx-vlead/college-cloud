@@ -746,7 +746,7 @@ def get_reg_template():
         except Exception as e:
             abort(404, "template not found")
     elif request.method == 'POST':
-        clg_name = request.form.get("clg_name")
+        clg_name = str(request.form.get("clg_name")).replace(" ", "_")
         contact_num = request.form.get("clg_contact_no")
         clg_pincode = request.form.get("clg_pincode")
         clg_address = request.form.get("clg_addr")
