@@ -130,6 +130,19 @@
 
   College System Administrator/Workshop coordinator should follow the
   steps for enabling students to use labs from College Cloud.
+** First time registration in College Cloud 
+   We need your information to access and analyze logs. College has to
+   register with College Cloud Edition by giving very basic
+   information. Please follow the steps before starting to use College
+   Cloud Edition.  (Please note that this is one time process and need
+   not to be repeated after)
+   
+   + Open a web browser on a machine connected to college-cloud/
+     machine form which college-cloud was accessible.
+   + Access the URL - http://<college-cloud-server-ip>/cc_registration
+   + Fill the details and click on save button to save the details
+
+
 ** List of labs hosted on College Cloud Edition
    - [[./labs-on-college-cloud/list-of-labs-in-college-cloud.org::#list-of-labs][Labs on College Cloud]]
 ** Selecting labs
@@ -196,7 +209,8 @@
     8. Select =start= and wait for about 1-2 minutes. 
     9. Observe the change of color of the selected course/lab in green
        color and running state.
-
+** Enabling labs on College Cloud Edition
+   Text to be added 
 ** Enhancing Performance
     + If a server grade machine/system *(>=32 GB RAM,
       Intel Xenon processor)* is being used all lab containers that
@@ -300,9 +314,7 @@
    Coordinators (Workshop coordinator/Nodal coordinator/Outreach
    coordinator) who has account in =outreach.vlabs.ac.in= , only those
    can conduct the workshop using College Cloud Edition.
-   1. Plan the Workshop
-      Visit the following link to plan any workshop.
-      [[https://github.com/vlabs-workshops/admin/blob/master/src/index.org]] 
+   1. [[https://github.com/vlabs-workshops/admin/blob/master/src/index.org][Plan the workshop]]
    2. Add workshop on [[http://outreach.vlabs.ac.in][Outreach Portal]].
       - visit =http://outreach.vlabs.ac.in=
       - Log on to outreach portal page.
@@ -339,7 +351,11 @@
      python get_logs.py            #to get date wise dump
      python get_logs.py full       #to get full dump
      #+END_SRC
+
 ** Analytics and Feedback : Workshop Coordinator
+*** Having internet in College Cloud Edition
+    
+*** No internet in Collge Cloud Edition
    Please ask System Administrator for =<college-cloud-server-ip>=.
    1. Open a web browser on a machine connected to college-cloud/
       machine form which college-cloud was accessible.
@@ -390,6 +406,9 @@
     vagrant halt
     #+END_EXAMPLE
   - Shutdown the College Cloud server.
+    #+BEGIN_SRC 
+    shutdown -h now
+    #+END_SRC
   - Remove the Virtual Labs College Cloud Edition Hard Disk Drive.
 *** Setup new machine as College Cloud Server
     System Administrator should follow the below steps to configure
@@ -403,11 +422,29 @@
    smooth migration to the newly configured College Cloud server
    - Follow the link  [[./installation-manual.org::#dns-settings][Changing DNS settings]]
    
+* Proper shutdown of College Cloud Edition 
+  College Cloud contains a Vagrant box which on direct shutdown can crash. 
+  To avoid this problem, Sysadmin has to follow the steps given below -
+  - Log in as =vlabs= user 
+    #+BEGIN_EXAMPLE
+    su - vlabs   
+    #+END_EXAMPLE
+  - Stop the vagrant box.
+    #+BEGIN_EXAMPLE
+    cd ~/vagrant-boxes/
+    vagrant halt
+    #+END_EXAMPLE
+  - Shutdown the College Cloud server.  
+    #+BEGIN_SRC 
+    shutdown -h now
+    #+END_SRC
+
 * Support  
   - Get help with Virtual Labs College Cloud Edition by sending a mail
     to =support@vlabs.ac.in= or 
   - Posting queries on the IRC channel using =#VLEAD=.
   - Issues would be created on [[https://github.com/openedx-vlead/college-cloud/issues][GitHub Issues]] 
+
 * Contract Information
   1. For the above given System Configuration, one could work with 3-5
      labs at a time catering 20-30 users.
