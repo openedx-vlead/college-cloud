@@ -382,7 +382,7 @@
        IPADDR=10.2.57.61
        NETMASK=255.255.252.0
        GATEWAY=10.2.56.1
-       DNS1=10.2.57.61
+       DNS1=10.2.57.62
        DNS2=8.8.8.8
        #+END_EXAMPLE
        to 
@@ -395,7 +395,7 @@
        ##IPADDR=10.2.57.61
        ##NETMASK=255.255.252.0
        ##GATEWAY=10.2.56.1
-       ##DNS1=10.2.57.61
+       ##DNS1=10.2.57.62
        ##DNS2=8.8.8.8
        #+END_EXAMPLE
     3. Disconnect from Wi-Fi router.(Unplug LAN cable that is
