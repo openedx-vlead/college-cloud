@@ -398,9 +398,19 @@
        ##DNS1=10.2.57.61
        ##DNS2=8.8.8.8
        #+END_EXAMPLE
-    
-    3. Log in as =vlabs= user
-    4. Fire the following command on terminal
+    3. Disconnect from Wi-Fi router.(Unplug LAN cable that is
+       connected to Wi-Fi router).
+    4. Take Internet LAN cable and Connect this LAN cable to College
+       Cloud Server.
+    5. Restart =network= service
+       #+BEGIN_SRC 
+       service network restart
+       #+END_SRC
+    6. Log in as =vlabs= user
+       #+BEGIN_EXAMPLE
+       su - vlabs
+       #+END_EXAMPLE
+    7. Fire the following command on terminal
        #+BEGIN_SRC 
        $syncthing
        #+END_SRC
