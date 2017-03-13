@@ -32,7 +32,7 @@
      MotherBoard wattage: 77 W 
      500 GB SATA   ( Hard Disk Drive - HDD)
     #+END_EXAMPLE
-  + WiFi Router : WiFi router which could serve 30-50 users.
+  + WiFi Router
   + Computer Lab with at least 30-50 Systems/Desktops.
   + Network Switch Input, from where all the labs would obtain DHCP
     IP) to Computer Lab machines/Desktops. This would make College
@@ -370,47 +370,17 @@
     Internet is needed to College Cloud Edition to send the collected
     analytics to VLEAD central repo. To do this, follow the below
     steps.
-    1. Log in as  =root= user
-    2. Change network interface file
-       =/etc/sysconfig/network-scripts/ifcfg-br0= from
-       #+BEGIN_EXAMPLE
-       DEVICE=br0
-       BOOTPROTO=static
-       ONBOOT=yes
-       TYPE=Bridge
-       NM_CONTROLLED=no
-       IPADDR=10.2.57.61
-       NETMASK=255.255.252.0
-       GATEWAY=10.2.56.1
-       DNS1=10.2.57.62
-       DNS2=8.8.8.8
-       #+END_EXAMPLE
-       to 
-       #+BEGIN_EXAMPLE
-       DEVICE=br0
-       BOOTPROTO=dhcp
-       ONBOOT=yes
-       TYPE=Bridge
-       NM_CONTROLLED=no
-       ##IPADDR=10.2.57.61
-       ##NETMASK=255.255.252.0
-       ##GATEWAY=10.2.56.1
-       ##DNS1=10.2.57.62
-       ##DNS2=8.8.8.8
-       #+END_EXAMPLE
-    3. Disconnect from Wi-Fi router.(Unplug LAN cable that is
+ 
+    1. Disconnect from Wi-Fi router.(Unplug LAN cable that is
        connected to Wi-Fi router).
-    4. Take Internet LAN cable and Connect this LAN cable to College
+    2. Take Internet LAN cable and Connect this LAN cable to College
        Cloud Server.
-    5. Restart =network= service
+    3. Log in as =vlabs= user
+    4. Restart =network= service
        #+BEGIN_SRC 
-       service network restart
+       sudo service network restart
        #+END_SRC
-    6. Log in as =vlabs= user
-       #+BEGIN_EXAMPLE
-       su - vlabs
-       #+END_EXAMPLE
-    7. Fire the following command on terminal
+    5. Fire the following command on terminal
        #+BEGIN_SRC 
        $syncthing
        #+END_SRC
