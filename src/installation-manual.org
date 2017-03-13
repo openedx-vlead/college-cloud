@@ -65,6 +65,7 @@
     #+BEGIN_EXAMPLE
     cd vagrant-boxes
     vagrant-boxes$vagrant up     #Look for Vagrant file in "vlabs" account and run this command
+    vagrant-boxes$vagrant up --provision
     #+END_EXAMPLE
   - College Cloud edition of Virtual Labs is now ready for use.
 * Passwords
@@ -180,7 +181,7 @@
      |------+--------------------------------+------+---------|
      |    8 | ADS                            | 1009 | Stopped |
      |------+--------------------------------+------+---------|
-     |    9 | DNS service                    | 1010 | Running |
+     |    9 | DNS service                    | 1010 | Stopped |
      |------+--------------------------------+------+---------|
      |   10 | ELK service ( Vlabs-analytics) |  280 | Running |
      |------+--------------------------------+------+---------|
@@ -253,7 +254,7 @@
           #+END_EXAMPLE
        	- Delete existing entries and add the following line
           #+BEGIN_EXAMPLE
-          nameserver 10.2.57.64
+          nameserver 10.2.57.62
           #+END_EXAMPLE
       + *Windows*
          - Go to the Control Panel.
@@ -269,7 +270,7 @@
            following items=, select =Internet Protocol Version 4
            (TCP/IPv4)= or =Internet Protocol Version 6 (TCP/IPv6)= and
            then click Properties.
-         - =Select Use the following DNS server addresses= and add =10.2.57.64=
+         - =Select Use the following DNS server addresses= and add =10.2.57.62=
          - Disable wifi connection and enable wifi again.
        	
 *** Setting No Proxy on browsers
@@ -338,7 +339,14 @@
   :PROPERTIES:
   :CUSTOM_ID: run_script
   :END:    
+   There are two ways to get the analytics.
+   1. Using CronJob
+   2. By running the python script
 
+*** Using CronJob 
+    - Python scripts runs every day at 18:00 to get analytics of the
+      workshop.
+*** By running the python script
    These steps would be performed by System Administrator
    - Login as =vlabs= user. 
      + For =vlabs= user password please check [[./installation-manual.org::#passwords][this link]]
@@ -351,10 +359,52 @@
      python get_logs.py            #to get date wise dump
      python get_logs.py full       #to get full dump
      #+END_SRC
-
-** Analytics and Feedback : Workshop Coordinator
-*** Having internet in College Cloud Edition
     
+*** Run Syncthing
+    :PROPERTIES:
+    :CUSTOM_ID: syncthing
+    :END:      
+    =Syncthing= is a tool to send collected analytics to VLEAD central
+    repository.
+    
+    Internet is needed to College Cloud Edition to send the collected
+    analytics to VLEAD central repo. To do this, follow the below
+    steps.
+    1. Log in as  =root= user
+    2. Change network interface file
+       =/etc/sysconfig/network-scripts/ifcfg-br0= from
+       #+BEGIN_EXAMPLE
+       DEVICE=br0
+       BOOTPROTO=static
+       ONBOOT=yes
+       TYPE=Bridge
+       NM_CONTROLLED=no
+       IPADDR=10.2.57.61
+       NETMASK=255.255.252.0
+       GATEWAY=10.2.56.1
+       DNS1=10.2.57.61
+       DNS2=8.8.8.8
+       #+END_EXAMPLE
+       to 
+       #+BEGIN_EXAMPLE
+       DEVICE=br0
+       BOOTPROTO=dhcp
+       ONBOOT=yes
+       TYPE=Bridge
+       NM_CONTROLLED=no
+       ##IPADDR=10.2.57.61
+       ##NETMASK=255.255.252.0
+       ##GATEWAY=10.2.56.1
+       ##DNS1=10.2.57.61
+       ##DNS2=8.8.8.8
+       #+END_EXAMPLE
+    
+    3. Log in as =vlabs= user
+    4. Fire the following command on terminal
+       #+BEGIN_SRC 
+       $syncthing
+       #+END_SRC
+** Analytics and Feedback : Workshop Coordinator
 *** No internet in Collge Cloud Edition
    Please ask System Administrator for =<college-cloud-server-ip>=.
    1. Open a web browser on a machine connected to college-cloud/
@@ -379,6 +429,9 @@
       internet connection.
    8. Upload the file in your google drive and share it with
       =engg@vlabs.ac.in=
+*** Having internet in College Cloud Edition
+    Please ask system administrator to run [[./installation-manual.org::#syncthing][syncthing]] in College
+    Cloud Server.
 * Changing College Cloud Machine
   To change an already configured College Cloud server to a different
   machine, the below steps are to be followed by System Administrator
