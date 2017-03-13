@@ -32,8 +32,8 @@
      MotherBoard wattage: 77 W 
      500 GB SATA   ( Hard Disk Drive - HDD)
     #+END_EXAMPLE
-  + WiFi Router : WiFi router which could serve 30-80 users.
-  + Computer Lab with at least 30-80 Systems/Desktops.
+  + WiFi Router : WiFi router which could serve 30-50 users.
+  + Computer Lab with at least 30-50 Systems/Desktops.
   + Network Switch Input, from where all the labs would obtain DHCP
     IP) to Computer Lab machines/Desktops. This would make College
     Cloud accessible over the LAN network providing better results.
