@@ -746,7 +746,7 @@ def get_reg_template():
         except Exception as e:
             abort(404, "template not found")
     elif request.method == 'POST':
-        clg_name = str(request.form.get("clg_name")).replace(" ", "_")
+        clg_name = str(request.form.get("clg_name")).replace(" ", "_").lower()
         contact_num = request.form.get("clg_contact_no")
         clg_pincode = request.form.get("clg_pincode")
         clg_address = request.form.get("clg_addr")
@@ -1249,9 +1249,24 @@ if __name__ == '__main__':
 
 #+END_SRC
 * Post Process script
-  - This script will accept =<name>.tar.gz= file as command line argument
-    and compute the =usage-analytics=, =feedback-analytics= and then
-    dumps them to vlead's central elastic search database
+** configuration
+#+NAME: post_process_config
+#+BEGIN_SRC python
+FEEDBACK_URL = "http://feedback-kebana.base4.vlabs.ac.in"
+#+END_SRC
+** script
+   - This is a command line utility which will take
+     =<file_name>.tar.gz= file generated from the log collection
+     script [[#cc_logs][reference]] which contains feedbacks, usages and college
+     cloud details as json files.
+   - Every single feedback form is a single json record
+   - Every single usage is a single json record
+   - College cloud details is a json record
+   - This utility uses REST APIs documented at [[#post_process_design][link]] to push
+     the json records into the elastic search database
+   - Note :: To run this utility a machine with internet connection is
+             required to push the analytics into elastic search database.
+
 #+NAME: post_process_script
 #+BEGIN_SRC python
 import os
@@ -1260,8 +1275,11 @@ import requests
 import json
 from pprint import pprint
 import glob
+from post_process_config import FEEDBACK_URL
+import json
 
-FEEDBACK_URL = "http://feedback-kebana.base4.vlabs.ac.in"
+#FEEDBACK_URL = "http://feedback-kebana.base4.vlabs.ac.in"
+
 def post_data_to_elastic_db(record, record_type, mac_addr):
     if record_type == "feedback":
 	data_dict = {
@@ -1270,6 +1288,7 @@ def post_data_to_elastic_db(record, record_type, mac_addr):
 	    "key" : "defaultkey"
 	}
 	ELASTIC_DB_URL = "%s/dump_feedback_to_elastic_db" % (FEEDBACK_URL)
+
     elif record_type == "analytics":
 	data_dict = {
 	    "usages" : record,
@@ -1278,6 +1297,7 @@ def post_data_to_elastic_db(record, record_type, mac_addr):
 	}
 
 	ELASTIC_DB_URL = "%s/dump_usages_to_elastic_db" % (FEEDBACK_URL)
+
     else:
 	data_dict = {
 	    "college_details" : record,
@@ -1293,9 +1313,25 @@ def post_data_to_elastic_db(record, record_type, mac_addr):
 	    return False
 	else:
 	    return True
+
     except Exception as e:
 	print str(e)
 	return False
+
+def get_json(json_file_location):
+    try:
+        with open(json_file_location, "r") as data_file:    
+            json_data = json.load(data_file)
+        return json_data
+    except Exception as e:
+        print str(e)
+
+def write_json(json_file_location, data):
+    try:
+        with open(json_file_location, "w") as data_file:    
+            json.dumps(data, data_file)
+    except Exception as e:
+        print str(e)
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
@@ -1305,44 +1341,48 @@ if __name__ == "__main__":
 	log_collection_tar_file = sys.argv[1]
 	folder_name = log_collection_tar_file.split("/")[-1].split(".")[0]
 	extracted = os.system("tar -xvf" + log_collection_tar_file)
-	pwd = os.getcwd()+"/"+folder_name	
-	analytics_file = glob.glob(pwd+"/vlabs-analytics*.json")
-	config_file = glob.glob(pwd+"/config*.json")
+	pwd = os.getcwd() + "/" + folder_name	
+	analytics_file = glob.glob(pwd + "/vlabs-analytics*.json")
+	config_file = glob.glob(pwd + "/config*.json")
     except Exception as e:
         print str(e)
 
     try:
-	with open(config_file[0]) as data_file:    
-	    config = json.load(data_file)
+        config = get_json(config_file[0])
 
 	if(post_data_to_elastic_db(config, "config" , "")):
 	    print "config : %s is added" % (config)
 	    mac_addr = str(config['mac_addr'])
 	else:
 	    print status_code
+
     except Exception as e:
         print str(e)
 
     try:
         feedback_file = glob.glob(pwd+"/feedback-dump*.json")
-        sed_command = '''sed -ie 's/\"gateway_ip": "10.100.1.7\"/\"gateway_ip": "%s\"/g' %s''' % (mac_addr, feedback_file[0])
-        replace_ip_to_mac_addr = os.system(sed_command)
-	with open(feedback_file[0]) as data_file:    
-	    feedbacks = json.load(data_file)
+        feedbacks = get_json(feedback_file[0])
+        for feedback in feedbacks:
+            feedback['gateway_ip'] = mac_addr
+        write_json(feedback_file[0], feedbacks)
+
+
 	if(post_data_to_elastic_db(feedbacks, "feedback", str(config['mac_addr']))):	    
 	    print "Feedback : %s is added" % (feedbacks)
 	else:
 	    print "Error"
+
     except Exception as e:
         print str(e)
 
     try:
-	with open(analytics_file[0]) as data_file:    
-	    analytics_dump = json.load(data_file)
+        analytics_dump = get_json(analytics_file[0])
+
 	if(post_data_to_elastic_db(analytics_dump, "analytics", str(config['mac_addr']))):	    
 	    print "analytics : %s is added" % (analytics_dump)
 	else:
 	    print "Error"
+
     except Exception as e:
         print str(e)
   
@@ -1369,6 +1409,10 @@ if __name__ == "__main__":
 #+END_SRC
 #+BEGIN_SRC python :tangle log_collection/get_logs.py :eval no :noweb yes
 <<get_logs>>  
+#+END_SRC
+
+#+BEGIN_SRC python :tangle post_process_config.py :eval no :noweb yes
+<<post_process_config>>
 #+END_SRC
 
 #+BEGIN_SRC python :tangle post_process.py :eval no :noweb yes

@@ -14,8 +14,9 @@ init:
 
 build: init
 	make -f tangle-make -k all
-	#cp -r src/runtime/implementation/static ${CODE_DIR}/runtime/implementation
-	#cp -r src/images ${DOC_DIR}/images
+	cp -r src/runtime/implementation/static ${CODE_DIR}/runtime/implementation
+	cp -r src/images ${DOC_DIR}/images
+	cp -r ${CODE_DIR}/runtime/implementation/log_collection ~/log_collection/
 install-pep:
 	sudo pip install pep8
 
