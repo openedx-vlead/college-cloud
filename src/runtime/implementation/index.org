@@ -994,7 +994,7 @@ color:green;
   </div>
   <div class="container">
     <h2>College Cloud Registration</h2><br>
-    <form action="/" method="POST">
+    <form action="/cc_registration/" method="POST">
       <div class="container">
 	<div class="form-group col-md-5">
 	  <label><font color="red">*</font></label>
