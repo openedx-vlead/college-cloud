@@ -442,8 +442,10 @@
    
    1. [[./installation-manual.org::#registration][Register]] to College Cloud Edition (if not already done)
       Note :: 
-      1. Visit the URL - =http://<college-cloud-server-ip>/get_cc_mac_id= to know the MAC
-         address of the college cloud and save this for the future reference.   
+      1. Visit the URL -
+         =http://<college-cloud-server-ip>/cc_registration/get_cc_mac_id=
+         to know the MAC address of the college cloud and save this
+         for the future reference.
       2. The MAC address is useful for computing usage for offline
          workshops from Outreach Portal.
    2. Collect and share logs [[./installation-manual.org::#manual_sharing][manually]] if internet connection is not
