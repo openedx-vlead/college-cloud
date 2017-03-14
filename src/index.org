@@ -37,12 +37,8 @@
   [[./installation-manual.org][Installation Manual]]
 * Proposed and changed designed plans
   [[https://github.com/openedx-vlead/portable-media/blob/master/src/meeting-minutes.org#proposed-and-changed-designed-plans][Design plans]]
-* Performance Test Cases
-  [[./Performance-Test][Performance Test cases]]
 * SyncThing 
   [[./syncthing][SyncThing]]
-* COMMENT Status of the college Cloud
-  [[./cc-status/][Status of the College-Cloud]]
 * GitHub Issues
   - [[https://github.com/openedx-vlead/portable-media/issues/1][Cluster and Open edX Platform setup]]
   - [[https://github.com/openedx-vlead/portable-media/issues/2][Analytics for the College Cloud]]
