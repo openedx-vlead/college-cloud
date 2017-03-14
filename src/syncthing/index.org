@@ -1,6 +1,10 @@
 #+AUTHOR: VLEAD 
 #+TITLE: Set up Syncthing Tool
 #+DATE: 03-Feb-2017
+#+SETUPFILE: ../org-templates/level-1.org
+#+TAGS: boilerplate(b)
+#+EXCLUDE_TAGS: boilerplate
+#+OPTIONS: ^:nil
 
 * Introduction
   This document describes the step by step process for setting up the
@@ -90,10 +94,12 @@ In the <address> field, change 127.0.0.1:8384 to 0.0.0.0:8384. So, your config.x
 #+END_EXAMPLE
 Save and close the file.
 * Access the WebGUI 
+    :PROPERTIES:
+    :CUSTOM_ID: webgui
+    :END:      
  - Open your browser and log into your system, Syncthing interfaces by visiting their public IP addresses and port 8080
 #+BEGIN_EXAMPLE
-http://client_public_IP:8384
-http://server_public_IP:8080
+http://<College-cloud-server-IP>:8384
 #+END_EXAMPLE
 * How to connect =syncthing= application between client and server?
  -  *Step1* On the *VLEAD-Server*, open the Syncthing GUI and click on the gear button and select Settings -> Show ID on the top right corner.
@@ -101,8 +107,11 @@ http://server_public_IP:8080
  -  *Step3* Paste the *system (VLEAD-Server)* in the Device section. Enter the Device name(optional). In the Addresses field, you can either enter the IP address of the other system or leave it as default.
  -  *Step4* Once you done, click on the save button. You'll be asked to restart the Syncthing. Click Restart button to activate the changes.
  -  *Step5* Now, go to the *VLEAD-Server* WebUI, you'll see a request has been sent from the *College-cloud* to connect.
-* How to share files/folders between client and server?
- - In order to share a folder you need to start by adding it to the Syncthing on one of the two machines. 
+* How to share files/folders between College Cloud server and VLEAD central repository.
+    :PROPERTIES:
+    :CUSTOM_ID: share_files
+    :END:      
+ - In order to share a folder, you need to start by adding it to the Syncthing on one of the two machines. 
  - Click *Add Folder* button in the Folders section.
  - *Folder Lable* This is the name or label of the shared folder. 
  - *Folder ID* This is default ID of the folder.

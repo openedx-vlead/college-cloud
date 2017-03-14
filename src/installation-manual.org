@@ -413,7 +413,9 @@
        #+BEGIN_SRC 
        $syncthing
        #+END_SRC
-
+    6. Then follow the below steps
+       - [[./syncthing/index.org::#webgui][Access the webGUI]]
+       - [[./syncthing/index.org::#share_files][Share Logs/analytics to VLEAD team]]
 **** Manual Sharing
     :PROPERTIES:
     :CUSTOM_ID: manual_sharing
