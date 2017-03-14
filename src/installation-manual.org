@@ -24,22 +24,22 @@
   :CUSTOM_ID: requirements
   :END:    
 
-  + College Cloud System Configuration (recommended) 
-    #+BEGIN_EXAMPLE
-     Processor : Intel(R) Core(TM) i7-3770 , CPU with 3.40GHz (Model : intel-db75en) 
-     RAM : 16 GB 
-     SMPS : 600 W 
-     CPUs: 8
-     MotherBoard wattage: 77 W 
-     500 GB SATA   ( Hard Disk Drive - HDD)
-    #+END_EXAMPLE
-  + WiFi Router
-  + Computer Lab with at least 30-50 Systems/Desktops.
-  + Network Switch Input, from where all the labs would obtain DHCP
-    IP) to Computer Lab machines/Desktops. This would make College
-    Cloud accessible over the LAN network providing better results.
-  + System Administrator with basic knowledge of CentOS operating systems and
-    networking.
+  1. College Cloud System Configuration (recommended) 
+     #+BEGIN_EXAMPLE
+      Processor : Intel(R) Core(TM) i7-3770 , CPU with 3.40GHz (Model : intel-db75en) 
+      RAM : 16 GB 
+      SMPS : 600 W 
+      CPUs: 8
+      MotherBoard wattage: 77 W 
+      500 GB SATA   ( Hard Disk Drive - HDD)
+     #+END_EXAMPLE
+  2. WiFi Router
+  3. Computer Lab with at least 30-50 Systems/Desktops.
+  4. Network Switch Input, from where all the labs would obtain DHCP
+     IP) to Computer Lab machines/Desktops. This would make College
+     Cloud accessible over the LAN network providing better results.
+  5. System Administrator with basic knowledge of CentOS operating systems and
+     networking.
     
 * Configuring College Cloud Server
   :PROPERTIES:
@@ -60,15 +60,14 @@
      + NOTE :: It is advised that the password is changed after the
                first login . To change the password, follow the [[./installation-manual.org::#passwords][link]]
 ** Launch Virtual Labs (Open edX) platform
- - Run the following command on terminal to run Virtual Labs on
-    Open edX platform. This may take a few minutes to launch the
-    platform.
-    #+BEGIN_EXAMPLE
-    cd vagrant-boxes
-    vagrant-boxes$vagrant up     #Look for Vagrant file in "vlabs" account and run this command
-    vagrant-boxes$vagrant up --provision
-    #+END_EXAMPLE
-  - College Cloud edition of Virtual Labs is now ready for use.
+   1. Run the following command on terminal to run Virtual Labs on Open
+      edX platform. This may take a few minutes to launch the platform.
+       #+BEGIN_EXAMPLE
+       cd vagrant-boxes
+       vagrant-boxes$vagrant up     #Look for Vagrant file in "vlabs" account and run this command
+       vagrant-boxes$vagrant up --provision
+       #+END_EXAMPLE
+   2. College Cloud edition of Virtual Labs is now ready for use.
 * Passwords
   :PROPERTIES:
   :CUSTOM_ID: passwords
@@ -118,8 +117,8 @@
     :CUSTOM_ID: platform_password
     :END:    
     Use the followingsteps to change the Open edX platform  admin( default) user password
-     - Go to   =http://open-edx.vlabs.ac.in/admin.
-     - Login using default [[./inallation-manual.org::#passwords][admin user and password]].
+     - Go to   =http://vlabs.ac.in/admin.
+     - Login using default [[./installation-manual.org::#passwords][admin user and password]].
      - Follow the instructions detailed in [[https://openedx.atlassian.net/wiki/display/OpenOPS/Managing+OpenEdX+Tips+and+Tricks][Administration commands]].
 
 * Using College Cloud Edition
@@ -195,7 +194,7 @@
                 setup settings.*
 
 ** Starting Lab containers
-    1. Go to the platform http://open-edx.vlabs.ac.in
+    1. Go to the platform http://vlabs.ac.in
     2. Select the course/lab to be included in the workshop. Please
        make a note of the course/lab name.
     3. Go to =http://<College-Cloud-Machine-IP>:3000= 
@@ -439,15 +438,15 @@
    The workshop coordinator should follow the following steps to
    collect and share analytics logs with Virtual Central Repository.
    
-   + [[./installation-manual.org::#registration][Register]] to College Cloud Edition (if not already done)
-     Note :: 
+   1. [[./installation-manual.org::#registration][Register]] to College Cloud Edition (if not already done)
+      Note :: 
       1. Visit the URL - =http://<college-cloud-server-ip>/get_cc_mac_id= to know the MAC
          address of the college cloud and save this for the future reference.   
       2. The MAC address is useful for computing usage for offline
          workshops from Outreach Portal.
-   + Collect and share logs [[./installation-manual::#manual_sharing][manually]] if internet connection is not
-     available in the college.
-   + OR Collect and share logs automatically using [[./installation-manual.org::#syncthing][Syncthing]] if internet connection is available in the college.
+   2. Collect and share logs [[./installation-manual.org::#manual_sharing][manually]] if internet connection is not
+      available in the college.
+   3. OR Collect and share logs automatically using [[./installation-manual.org::#syncthing][Syncthing]] if internet connection is available in the college.
 
 
 * Changing College Cloud Machine
@@ -456,31 +455,31 @@
   and existing lab users.
 ** Instructions for the systems adminstrator  
 *** On existing College Cloud Server
-  - Log in to the existing *College Cloud Server (old)* as a super user
-    using [[./installation-manual.org::#passwords][default user credentials]]
-    #+BEGIN_EXAMPLE
-    su -
-    password :        # For password please check passwords.txt file on College Cloud server
-    #+END_EXAMPLE
-  - Open the file =/etc/udev/rules.d/70-persistent-net.rules=
-    #+BEGIN_EXAMPLE
-    vim /etc/udev/rules.d/70-persistent-net.rules    
-    #+END_EXAMPLE
-  - Delete all the lines and save the file.
-  - Log in as =vlabs= user 
-    #+BEGIN_EXAMPLE
-    su - vlabs   
-    #+END_EXAMPLE
-  - Stop the vagrant box.
-    #+BEGIN_EXAMPLE
-    cd ~/vagrant-boxes/
-    vagrant halt
-    #+END_EXAMPLE
-  - Shutdown the College Cloud server.
-    #+BEGIN_SRC 
-    shutdown -h now
-    #+END_SRC
-  - Remove the Virtual Labs College Cloud Edition Hard Disk Drive.
+  1. Log in to the existing *College Cloud Server (old)* as a super user
+     using [[./installation-manual.org::#passwords][default user credentials]]
+     #+BEGIN_EXAMPLE
+     su -
+     password :        # For password please check passwords.txt file on College Cloud server
+     #+END_EXAMPLE
+  2. Open the file =/etc/udev/rules.d/70-persistent-net.rules=
+     #+BEGIN_EXAMPLE
+     vim /etc/udev/rules.d/70-persistent-net.rules    
+     #+END_EXAMPLE
+  3. Delete all the lines and save the file.
+  4. Log in as =vlabs= user 
+     #+BEGIN_EXAMPLE
+     su - vlabs   
+     #+END_EXAMPLE
+  5. Stop the vagrant box.
+     #+BEGIN_EXAMPLE
+     cd ~/vagrant-boxes/
+     vagrant halt
+     #+END_EXAMPLE
+  6. Shutdown the College Cloud server.
+     #+BEGIN_SRC 
+     shutdown -h now
+     #+END_SRC
+  7. Remove the Virtual Labs College Cloud Edition Hard Disk Drive.
 *** Setup new machine as College Cloud Server
     System Administrator should follow the below steps to configure
     the new machine as College Cloud Server.
@@ -496,25 +495,25 @@
 * Proper shutdown of College Cloud Server
   College Cloud contains a Vagrant box which on direct shutdown can crash. 
   To avoid crashing of College Cloud server follow the steps given below : 
-  - Log in as [[./installation-manual.org::#passwords][vlabs]] user
-    #+BEGIN_EXAMPLE
-    su - vlabs   
-    #+END_EXAMPLE
-  - Stop the vagrant box.
-    #+BEGIN_SRC
-    cd ~/vagrant-boxes/
-    vagrant halt
-    #+END_SRC
-  - Shutdown the College Cloud server.  
-    #+BEGIN_SRC 
-    shutdown -h now
-    #+END_SRC
+  1. Log in as [[./installation-manual.org::#passwords][vlabs]] user
+     #+BEGIN_EXAMPLE
+     su - vlabs   
+     #+END_EXAMPLE
+  2. Stop the vagrant box.
+     #+BEGIN_SRC
+     cd ~/vagrant-boxes/
+     vagrant halt
+     #+END_SRC
+  3. Shutdown the College Cloud server.  
+     #+BEGIN_SRC 
+     shutdown -h now
+     #+END_SRC
 
 * Support  
   - Get help with Virtual Labs College Cloud Edition by 
-    + Sending an email to =support@vlabs.ac.in= 
-    + Posting queries on the IRC channel using =#VLEAD=.
-    + Creating issues Issues on [[https://github.com/openedx-vlead/college-cloud/issues][Github repository of College Cloud]] 
+    1. Sending an email to =support@vlabs.ac.in= 
+    2. Posting queries on the IRC channel using =#VLEAD=.
+    3. Creating issues Issues on [[https://github.com/openedx-vlead/college-cloud/issues][Github repository of College Cloud]] 
 
 * Contract Information
   1. For the above given System Configuration, one could work with 3-5
