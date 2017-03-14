@@ -1,0 +1,532 @@
+#+TITLE: Installation Manual for Virtual Labs College Cloud Edition
+#+AUTHOR: VLEAD
+#+PROPERTY: results output
+#+PROPERTY: exports code
+#+SETUPFILE: ./org-templates/level-0.org
+#+options: ^:nil
+#+LATEX: Literal LaTeX code for export
+
+* Introduction
+  This manual details the configuration/workflow process to be
+  followed for Virtual Labs College Cloud Edition. The College Cloud
+  machine/server will be running without GUI. GUI has been disabled
+  for better performance results.  
+
+  Virtual Labs College Cloud Edition
+  is the Portable-Edition for Virtual Labs. It offers the offline
+  version of Virtual labs, experiments and theoretical content. This
+  edition addresses the lack of internet access or poor internet
+  connectivity across different institutes/colleges. It results in a
+  very cost-effective Learning Management System.
+
+* Requirements
+  :PROPERTIES:
+  :CUSTOM_ID: requirements
+  :END:    
+
+  1. College Cloud System Configuration (recommended) 
+     #+BEGIN_EXAMPLE
+      Processor : Intel(R) Core(TM) i7-3770 , CPU with 3.40GHz (Model : intel-db75en) 
+      RAM : 16 GB 
+      SMPS : 600 W 
+      CPUs: 8
+      MotherBoard wattage: 77 W 
+      500 GB SATA   ( Hard Disk Drive - HDD)
+     #+END_EXAMPLE
+  2. WiFi Router
+  3. Computer Lab with at least 30-50 Systems/Desktops.
+  4. Network Switch Input, from where all the labs would obtain DHCP
+     IP) to Computer Lab machines/Desktops. This would make College
+     Cloud accessible over the LAN network providing better results.
+  5. System Administrator with basic knowledge of CentOS operating systems and
+     networking.
+    
+* Configuring College Cloud Server
+  :PROPERTIES:
+  :CUSTOM_ID: cc-server
+  :END:    
+
+  1. Configure WiFi-Router ::  Router would need to serve 10.2.57.0/24
+       to its clients. This would need configuration of LAN settings
+       in the router such that router's dhcp server would serve IPs
+       from the above IP range to its clients.
+  2. Connect the identified College Cloud machine to the configured
+     Wi-Fi router through a LAN cable. *Please do not touch the WAN
+     port*.
+  3. Connect the College Cloud Edition Hard Disk Drive to the
+     identified College Cloud machine.
+  4. Boot the machine from College Cloud Edition Hard Disk Drive.
+  5. Please use [[./installation-manual.org::#passwords][default linux user credentials]] to login.
+     + NOTE :: It is advised that the password is changed after the
+               first login . To change the password, follow the [[./installation-manual.org::#passwords][link]]
+** Launch Virtual Labs (Open edX) platform
+   1. Run the following command on terminal to run Virtual Labs on Open
+      edX platform. This may take a few minutes to launch the platform.
+       #+BEGIN_EXAMPLE
+       cd vagrant-boxes
+       vagrant-boxes$vagrant up     #Look for Vagrant file in "vlabs" account and run this command
+       vagrant-boxes$vagrant up --provision
+       #+END_EXAMPLE
+   2. College Cloud edition of Virtual Labs is now ready for use.
+* Passwords
+  :PROPERTIES:
+  :CUSTOM_ID: passwords
+  :END:    
+   The first login password for =vlabs= user account would be
+   supplied along with Virtual Labs College Cloud Edition Hard Disk
+   Drive. 
+
+   Other default user credentials could be accessed at =passwords.txt=
+   in College Cloud server at =~/passwords.txt= when logged in as
+   =vlabs= user.
+
+** Changing Passwords
+  Please note that change of passwords will not be reflected in the
+  default password file located at =~/passwords.txt= on College Cloud
+  server and it would be the responsibility of the System
+  Administrator to manage these passwords.
+  
+*** Changing Linux user Password
+    - Use =passwd= command to change the passwords of =vlabs= and
+      =root=
+      #+BEGIN_EXAMPLE
+      vlabs$passwd     # to change vlabs user 
+
+      root#passwd     # for change root user 
+      #+END_EXAMPLE
+*** Changing OpenVZ web panel user password
+   :PROPERTIES:
+   :CUSTOM_ID: OpenVZ
+   :END:   
+    - Use the following command to change the OpenVZ web panel user
+      password
+    #+BEGIN_EXAMPLE
+    sudo ruby /opt/ovz-web-panel/script/runner -e production 'user = User.find_by_login("admin"); user.password = "admin"; user.save(false)'
+    #+END_EXAMPLE
+*** Changing Nagios user password
+   :PROPERTIES:
+   :CUSTOM_ID: nagios_password
+   :END:    
+    - Use the following command to change the Nagios user password
+      password
+    #+BEGIN_EXAMPLE
+    sudo htpasswd -C /etc/nagios/passwd nagiosadmin
+    #+END_EXAMPLE 
+*** Changing Open edX platform admin user password
+    :PROPERTIES:
+    :CUSTOM_ID: platform_password
+    :END:    
+    Use the followingsteps to change the Open edX platform  admin( default) user password
+     - Go to   =http://vlabs.ac.in/admin.
+     - Login using default [[./installation-manual.org::#passwords][admin user and password]].
+     - Follow the instructions detailed in [[https://openedx.atlassian.net/wiki/display/OpenOPS/Managing+OpenEdX+Tips+and+Tricks][Administration commands]].
+
+* Using College Cloud Edition
+  :PROPERTIES:
+  :CUSTOM_ID: using-cc-server
+  :END:    
+
+  College System Administrator/Workshop coordinator should follow the
+  steps for enabling students to use labs from College Cloud.
+** Registration (first time only) 
+   College would need to register with College Cloud Edition before
+   the first use. For registration please follow the below steps  -
+   
+   1. Open a web browser on a machine connected to college-cloud
+      server.
+   2. Access the URL - http://<college-cloud-server-ip>/cc_registration.
+   3. Fill the details and click on Save button.
+
+  :PROPERTIES:
+  :CUSTOM_ID: registration
+  :END:
+** Selecting Labs
+   For selecting labs from the [[./labs-on-college-cloud/list-of-labs-in-college-cloud.org::#list-of-labs][total available labs]] on College Cloud
+   Edition, follow the steps  listed below : 
+   - Use the link =http://<College-Cloud-Machine-IP>:3000=
+   - This would prompt for the user name and password. Please provide
+     [[./installation-manual.org::#passwords][default user credentials]]. 
+    + NOTE :: 
+      + It is advised that the password is changed after the first
+        login . For the steps for changing the password, follow the
+        [[./installation-manual.org::#OpenVZ][link]].
+      + Please visit the [[Enhancing Performance][Enhance Performance]] Section for ensuring
+        consistent performance.
+
+   [[https://openvz.org/Control_panels#OVZ_Web_Panel][OpenVZ web panel]] is for managing Virtual Labs running on localhost
+   (College Cloud). Each lab has one OpenVZ container. *By default,
+   all lab containers would be in stopped state*. Please ensure that
+   the status of the server nodes is always 'Running'.
+
+   - Server nodes are 
+     |------+--------------------------------+------+---------|
+     | S.No | Container Name                 | CTID | Status  |
+     |------+--------------------------------+------+---------|
+     |    1 | Router                         | 1001 | Running |
+     |------+--------------------------------+------+---------|
+     |    2 | Ansible or Config-server       | 1002 | Stopped |
+     |------+--------------------------------+------+---------|
+     |    3 | Private DNS                    | 1005 | Running |
+     |------+--------------------------------+------+---------|
+     |    4 | Public DNS                     | 1006 | Running |
+     |------+--------------------------------+------+---------|
+     |    5 | Reverse proxy                  | 1007 | Running |
+     |------+--------------------------------+------+---------|
+     |    6 | Feedback                       |  278 | Running |
+     |------+--------------------------------+------+---------|
+     |    7 | Analytics-api                  |  279 | Running |
+     |------+--------------------------------+------+---------|
+     |    8 | ADS                            | 1009 | Stopped |
+     |------+--------------------------------+------+---------|
+     |    9 | DNS service                    | 1010 | Stopped |
+     |------+--------------------------------+------+---------|
+     |   10 | ELK service ( Vlabs-analytics) |  280 | Running |
+     |------+--------------------------------+------+---------|
+
+   - Once logged into the web panel: 
+
+     1. Look for =localhost= on left side of the panel.
+     2. Click on =localhost=.
+     3. A list all labs with their respective OpenVZ container
+	status(stopped/running) would be visible.
+
+   - WARNING :: *Please do not tamper  with the college cloud
+                setup settings.*
+
+** Starting Lab containers
+    1. Go to the platform http://vlabs.ac.in
+    2. Select the course/lab to be included in the workshop. Please
+       make a note of the course/lab name.
+    3. Go to =http://<College-Cloud-Machine-IP>:3000= 
+    4. Sign into =OpenVZ web panel=. For credentials, please follow
+       the [[./installation-manual.org::#passwords][link]] .
+    5. Click on =localhost= located at left side of the panel.
+    6. Search for the lab name that has been selected in step 2.
+    7. Choose the selected lab by clicking on CTID (example.213) and
+       look for =change state= button on the panel.
+    8. Select =start= and wait for about 1-2 minutes. 
+    9. Observe the change of color of the selected course/lab in green
+       color and running state.
+
+** Enabling Labs
+   College Cloud Edition has 71 labs available across various
+   disciplines and domains. It is adviced to have upto a maximum of 5
+   Labs running at any given time. All other labs will be visible on
+   Lab Catalogue.  To allow the students to use the Labs that were
+   [[Starting Lab containers][started]] on the OpenVZ web panel, follow the steps given below -
+  
+   1. Visit  http://vlabs.ac.in:18010/ to open Studio of College Cloud Edition.
+   2. Login using [[Passwords][admin credentials]] .
+          + NOTE :: It is advised that the password is changed after the
+              first login . For the steps for changing the password,
+              follow the [[./installation-manual.org::#nagios_password][link]] .
+   3. Select the Lab you want to allow the students to use.
+   4. In the Settings option at the top, Click =Advanced Settings=. A
+      list of parameters will be displayed.
+   5. Look for =Invitation Only= option and set it to =false= .
+   6. Click on =Save= button.
+   
+** Enhancing Performance
+   1. If an *Intel i7 processor and 16GB RAM machine/system* is being used a maximum of 50-100 simultaneous users can access one lab at a time.
+   2. It is adviced to have upto a maximum of 5 Labs running at any given time.
+   3. The best choice would be start one lab at a time and have maximum of 10 labs running at any given instance.
+	
+** Monitoring system resources
+   [[https://www.nagios.org/][Nagios]] is used for monitoring systems resources such as load on the
+   machine, RAM usage, Processes, etc.
+   1. Use the link =http://<College-Cloud-Machine-IP>/nagios= .
+   2. Use the Nagios [[./installation-manual.org::#passwords][default user credentials]] .
+
+      + NOTE :: It is advised that the password is changed after the
+		first login . For the steps for changing the password,
+		follow the [[./installation-manual.org::#nagios_password][link]] .
+** Instructions for Lab users		   
+   College System Administrator/Workshop Coordinator should issue the
+   following instructions -
+   1. Changing DNS settings
+      :PROPERTIES:
+      :CUSTOM_ID: dns-settings
+      :END:    
+      - Lab users can access the labs through LAN cable and also over
+        wireless.
+      - LAN cable should be connected to the WiFi-router.
+      - Once connected to the wireless or LAN, lab user should modify
+	the change DNS settings.
+
+	+ *Users with Linux Systems*  
+	  - Open the file.
+            #+BEGIN_EXAMPLE
+            sudo vim /etc/resolv.conf
+            #+END_EXAMPLE
+	  - Delete existing entries and add the following line.
+            #+BEGIN_EXAMPLE
+            nameserver 10.2.57.62
+            #+END_EXAMPLE
+	+ *Users with Windows Systems*
+	  - Go to the Control Panel.
+	  - Click Network and Internet > Network and Sharing Center >
+            Change adapter settings.
+	  - Select the connection for which you want to configure Public
+            DNS. For example:
+	    + To change the settings for an Ethernet connection,
+              right-click Local Area Connection > Properties.
+	    + To change the settings for a wireless connection,
+              right-click Wireless Network Connection > Properties.    
+	  - Select the Networking tab. Under =This connection uses the
+            following items=, select =Internet Protocol Version 4
+            (TCP/IPv4)= or =Internet Protocol Version 6 (TCP/IPv6)= and
+            then click Properties.
+	  - =Select Use the following DNS server addresses= and add =10.2.57.62= .
+	  - Disable wifi connection and enable wifi again.
+   2. Setting No Proxy on browsers
+      - Once the lab users got connected to wifi, lab user has to unset
+	proxy if any proxies used previously( Set =No Proxy=) in their
+        browsers . For example, In firefox,
+	#+BEGIN_EXAMPLE
+	Firefox --> Preferences --> Advanced --> Network --> Settings 
+	#+END_EXAMPLE
+
+** User registrations on [[https://open.edx.org/getting-started-open-edx][Open edX platform]]
+**** Lab users 
+     - Click on register button on http://vlabs.ac.in and
+       fill in the registration form.
+     - Use the labs selected by System Administrator/Workshop
+       coordinator.
+     - NOTE ::  [[./installation-manual.org::#admin][Forgot password!! contact your System administrator]]
+**** System Administrator
+     If registered users forgt their password, System Administrator
+     can reset the password by following the below listed steps - has
+
+    :PROPERTIES:
+    :CUSTOM_ID: admin
+    :END:         
+     1. Visit  http://vlabs.ac.in/admin.
+     2. Login using [[./installation-manual.org::#passwords][admin user credentials]].
+	- NOTE :: It is advised that the password is changed after the
+                 first login . For the steps for changing the password,
+                 follow the [[./installation-manual.org::#platform_password][link]].
+     3. Go to =Authentication and Authorization= section to activate
+	registered users.
+	- Select =Users= 
+	- Click on =user name=
+	- Change the password and share it with users. 
+	
+
+* Workflow of College Cloud Edition
+  :PROPERTIES:
+  :CUSTOM_ID: cc-work-flow
+  :END:      
+** Workshop conducted by a Coordinator
+   Coordinators (Workshop coordinator/Nodal coordinator/Outreach
+   coordinator) who have account in =outreach.vlabs.ac.in=  only, can 
+    conduct the workshop using College Cloud Edition.
+   1. [[http://community.vlabs.ac.in/docs/workshop-plan/][Plan the workshop]] .
+   2. Add workshop on [[http://outreach.vlabs.ac.in][Outreach Portal]].
+      - Visit =http://outreach.vlabs.ac.in= .
+      - [[http://community.vlabs.ac.in/docs/user-manuals/outreach-portal/#login_scenarios][Log on]] to Outreach Portal page.
+      - Then, [[http://community.vlabs.ac.in/docs/user-manuals/outreach-portal/#sec-3-2][add workshop]] in Outreach Portal page.
+   3. Make sure that the [[./installation-manual.org::#requirements][requirements]] are met by the college.
+   4. [[./installation-manual.org::#cc-server][Configure College Cloud Server]] .
+   5. [[./installation-manual.org::#using-cc-server][Use College Cloud Editon for workshop]] .
+   6. [[./installation-manual.org::#analytics-feedbacks][Collect Analytics and Feedback]] .
+** Virtual Labs College Cloud Edition used by colleges as part of their curriculum
+   System administrator has to follow the steps to conduct workshop as
+   part of their college curriculum.
+   1. [[https://docs.google.com/forms/d/e/1FAIpQLSfN0XH0GvuLRiEs_g5RB2npD3Y_5qsvrE0pCOn2C2lyUJNHjA/viewform?embedded=true][Procure College Cloud]] .
+   2. [[./installation-manual.org::#cc-server][Configure College Cloud Server]] .
+   3. [[./installation-manual.org::#using-cc-server][Use College Cloud Edition for workshop]] .
+   4. [[./installation-manual.org::#analytics-feedbacks][Collect Analytics and Feedback]] .
+* Analytics and Feedback
+  :PROPERTIES:
+  :CUSTOM_ID: analytics-feedbacks
+  :END:    
+** Analytics and Feedback : System Administrator
+  :PROPERTIES:
+  :CUSTOM_ID: run_script
+  :END:   
+   
+  Analytics (workshop usages, feedback information, user records) can
+  be obtained post College Cloud Edition workshop by collecting logs
+  and sharing them with Virtual Labs Central Repository. 
+  
+*** Collecting Analytics logs  
+    Analytics logs can be collected using one of the following ways :
+    1. Using CronJob.
+    2. Running the python script.
+
+**** Using CronJob 
+    - Python scripts has been programmed to run eveyday at 04:00
+      PM. This will collect analytics automatically.
+      
+**** Running the python script
+    The System Administrator should perform the following steps to
+    collect the analytics as and when requried. 
+   1. Login as [[./installation-manual.org::#passwords][vlabs user]] .
+          + NOTE :: It is advised that the password is changed after the
+              first login . For the steps for changing the password,
+              follow the [[./installation-manual.org::#nagios_password][link]] .
+    
+   2. Change directory to =log_collection=
+      #+BEGIN_SRC 
+      cd log_collection
+      #+END_SRC
+   3. Run the python script =get_logs.py= to collect the logs
+      #+BEGIN_SRC 
+      python get_logs.py            #to get date wise dump
+      python get_logs.py full       #to get full dump
+      #+END_SRC
+    
+
+*** Sharing Analytics logs with Virtual Labs Central Engineering Division
+    Analytics logs can be shared with Virtual Labs Central Repository
+    by one of the following ways :
+    1. Syncthing 
+    2. Manual Sharing 
+**** Syncthing
+    :PROPERTIES:
+    :CUSTOM_ID: syncthing
+    :END:      
+    [[https://syncthing.net/][Syncthing]] is a file synchronization tool which would be used to
+    send the collected analytics logs automatically to VLEAD Central
+    Repository. \\
+
+    Internet would be needed for using Syncthing to share the
+    collected analytics logs. Syncthing is already packaged and
+    configured as part of the Virtual Labs College Cloud Edition.  \\
+
+    The following steps should be used for collecting and sharing the logs using
+    Syncthing :
+   
+    1. [[./installation-manual.org::#run_script][Run python script]] to collect analytics logs. 
+    2. Disconnect from Wi-Fi router.(Unplug LAN cable that is
+       connected to Wi-Fi router).
+    3. Connect a Internet LAN cable to College Cloud Server.
+    4. Login as [[./installation-manual.org::#passwords][vlabs user]] .
+          + NOTE :: It is advised that the password is changed after the
+              first login . For the steps for changing the password,
+              follow the [[./installation-manual.org::#nagios_password][link]] .
+    5. Restart =network= service
+       #+BEGIN_SRC 
+       sudo service network restart
+       #+END_SRC
+    5. Fire the following command on terminal
+       #+BEGIN_SRC 
+       $syncthing
+       #+END_SRC
+
+**** Manual Sharing
+    :PROPERTIES:
+    :CUSTOM_ID: manual_sharing
+    :END:      
+    If the college does not have internet connection, the collected
+    analytics logs can be manuall shared with Virtual Labs Central
+    Repository by following the below steps :
+    
+   +  Open a web browser on a machine connected to college-cloud
+      server. 
+   +  [[./installation-manual.org::#run_script][Run python script]] to collect analytics logs. 
+   +  Access the URL -
+      =http://<college-cloud-server-ip>/college-cloud-data/=
+   6. Download the tar.gz file which would be in the format 
+      =<College-name-Date>.tar.gz=
+   7. Copy the downloaded file to a pendrive 
+   8. Plugin your pendrive to a machine having internet connection. 
+   8. Upload the file in your google drive and share it with
+      =engg@vlabs.ac.in=   
+
+** Analytics and Feedback : Workshop Coordinator
+   The workshop coordinator should follow the following steps to
+   collect and share analytics logs with Virtual Central Repository.
+   
+   1. [[./installation-manual.org::#registration][Register]] to College Cloud Edition (if not already done)
+      Note :: 
+      1. Visit the URL - =http://<college-cloud-server-ip>/get_cc_mac_id= to know the MAC
+         address of the college cloud and save this for the future reference.   
+      2. The MAC address is useful for computing usage for offline
+         workshops from Outreach Portal.
+   2. Collect and share logs [[./installation-manual.org::#manual_sharing][manually]] if internet connection is not
+      available in the college.
+   3. OR Collect and share logs automatically using [[./installation-manual.org::#syncthing][Syncthing]] if internet connection is available in the college.
+
+
+* Changing College Cloud Machine
+  To change an already configured College Cloud server to a different
+  machine, the below steps are to be followed by System Administrator
+  and existing lab users.
+** Instructions for the systems adminstrator  
+*** On existing College Cloud Server
+  1. Log in to the existing *College Cloud Server (old)* as a super user
+     using [[./installation-manual.org::#passwords][default user credentials]]
+     #+BEGIN_EXAMPLE
+     su -
+     password :        # For password please check passwords.txt file on College Cloud server
+     #+END_EXAMPLE
+  2. Open the file =/etc/udev/rules.d/70-persistent-net.rules=
+     #+BEGIN_EXAMPLE
+     vim /etc/udev/rules.d/70-persistent-net.rules    
+     #+END_EXAMPLE
+  3. Delete all the lines and save the file.
+  4. Log in as =vlabs= user 
+     #+BEGIN_EXAMPLE
+     su - vlabs   
+     #+END_EXAMPLE
+  5. Stop the vagrant box.
+     #+BEGIN_EXAMPLE
+     cd ~/vagrant-boxes/
+     vagrant halt
+     #+END_EXAMPLE
+  6. Shutdown the College Cloud server.
+     #+BEGIN_SRC 
+     shutdown -h now
+     #+END_SRC
+  7. Remove the Virtual Labs College Cloud Edition Hard Disk Drive.
+*** Setup new machine as College Cloud Server
+    System Administrator should follow the below steps to configure
+    the new machine as College Cloud Server.
+    1. Make sure that the machine meets the [[./installation-manual.org::#requirements][requirements]] .
+    2. [[./installation-manual.org::#cc-server][Configure College Cloud Server]] .
+    3. [[./installation-manual.org::#using-cc-server][Using College Cloud]] .
+    4. [[./installation-manual.org::#analytics-feedbacks][Collecting Analytics and Feedback]] .
+** Instructions for the  existing lab users 
+   All lab users would need to follow the below steps to ensure
+   smooth migration to the newly configured College Cloud server
+   - Follow the link  [[./installation-manual.org::#dns-settings][Changing DNS settings]] .
+   
+* Proper shutdown of College Cloud Server
+  College Cloud contains a Vagrant box which on direct shutdown can crash. 
+  To avoid crashing of College Cloud server follow the steps given below : 
+  1. Log in as [[./installation-manual.org::#passwords][vlabs]] user
+     #+BEGIN_EXAMPLE
+     su - vlabs   
+     #+END_EXAMPLE
+  2. Stop the vagrant box.
+     #+BEGIN_SRC
+     cd ~/vagrant-boxes/
+     vagrant halt
+     #+END_SRC
+  3. Shutdown the College Cloud server.  
+     #+BEGIN_SRC 
+     shutdown -h now
+     #+END_SRC
+
+* Support  
+  - Get help with Virtual Labs College Cloud Edition by 
+    1. Sending an email to =support@vlabs.ac.in= 
+    2. Posting queries on the IRC channel using =#VLEAD=.
+    3. Creating issues Issues on [[https://github.com/openedx-vlead/college-cloud/issues][Github repository of College Cloud]] 
+
+* Contract Information
+  1. For the above given System Configuration, one could work with 3-5
+     labs at a time catering 20-30 users.
+  2. Virtual Labs College Cloud server would not be connected to the
+     internet while labs are being accessed over the College Cloud.
+  3. College Cloud server should be connected to the internet on a
+     regular basis to facilitate log collection.
+ 
+
+
+
+
+
+
+

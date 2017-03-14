@@ -3,7 +3,7 @@
 #+DATE: [2017-01-17]
 #+PROPERTY: results output
 #+PROPERTY: exports code
-#+SETUPFILE: ./org-templates/level-0.org
+#+SETUPFILE: ../org-templates/level-1.org
 #+options: ^:nil
 
 * Introduction 
@@ -49,6 +49,7 @@
   + Take downloaded file in pendrive and take a machine with internet connection.
   + Upload the file in your google drive and share it with engg@vlabs.ac.in (Can be decided)
   
+
 * How VLEAD team will process logs ?
   This has to be decided. 
 

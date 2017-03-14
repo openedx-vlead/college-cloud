@@ -1,0 +1,1432 @@
+#+TITLE: Implementation of  College Cloud Edition 
+#+AUTHOR: VLEAD
+#+SETUPFILE: ../../org-templates/level-2.org
+#+TAGS: boilerplate(b)
+#+EXCLUDE_TAGS: boilerplate
+#+OPTIONS: ^:nil
+
+* Introduction
+  The documentation describes implementation of the College Cloud
+* Implementation of College Cloud 
+  -  [[../requirements/index.org::#portable_hard_drive][Requirement_satisfied]]
+  :PROPERTIES:
+  :CUSTOM_ID: implementation_of_cc
+  :END: 
+
+  - Implementation is done based on the above design diagram.
+    We need internet connection for
+    + Setting up cluster
+    + Hosting the labs in the cluster using ADS service
+** Machine setup
+   - Install CentOS-6.x Desktop
+   - Update OS
+     #+BEGIN_EXAMPLE
+     yum update -y
+     #+END_EXAMPLE
+
+** Cluster setup
+   - All server nodes are not needed for portable-media cluster setup
+     . So comment =nagios_server=, =nagios_client=,
+     =rsnapshot_server=, =rsnapshot_client=, =ossec_server= and
+     =ossec_client= roles in following playbooks before running them.
+   
+   - In this cluster setup, we need only following server nodes.
+     + Config-Server
+     + Router
+     + Public DNS
+     + Private DNS 
+     + Reverse proxy
+     + ADS service
+
+   - Use [[https://bitbucket.org/vlead/systems-model/src/97cc25543f8032cb84c1372c4c9ca170945f79a6/src/bootstrapping.org?at%3Ddevelop&fileviewer%3Dfile-view-default][bootstrapping steps]] till ADS server configuration for setting
+     up cluster.  Cluster will have OpenVZ containers. Each server
+     node will have a separate container and also for each lab.
+
+   - Once you reach running =site.yaml= in bootstrapping steps, perform
+     the following steps.     
+     + Comment following servers in =site.yaml= file.
+       #+BEGIN_EXAMPLE
+       rsnapshot_server.yaml
+       ossec_server.yaml
+       nagios_server.yaml
+       rsyslog_server.yaml
+       lab_rsnapshot_server.yaml
+       #- include: ads_server.yaml
+       #+END_EXAMPLE
+     + Comment all other nodes if there are any which are not needed
+       for the portable media.
+     + Set private dns ips and private-dns-zone as follows, and
+       comment =private-dns-ips: none=, =private-dns-zone: none= in
+       common_vars role.
+       #+BEGIN_EXAMPLE
+       private_dns_ips: 
+          - 10.100.1.5
+       private_dns_zone: "{{prefix}}virtual-labs.ac.in {{prefix}}vlabs.ac.in"
+       #+END_EXAMPLE
+     + Run site.yaml
+       #+BEGIN_EXAMPLE
+       ansible-playbook -i hosts --list-tasks --syntax-check site.yaml
+       ansible-playbook -i hosts site.yaml
+       #+END_EXAMPLE
+
+** Open edX platform in a Vagrant Box 
+*** Perform the below steps on host machine .
+   - NOTE :: 
+     + Minimum 1 Mbps download speed is needed.
+     + Need stable internet and network proxies if there are any.
+  
+   - Install vzkernel-devel
+     #+BEGIN_EXAMPLE
+     yum install vzkernel-devel
+     #+END_EXAMPLE
+   - Install [[http://www.vagrantup.com/downloads.html][Vagrant]] 1.6.5 or later 
+     #+BEGIN_EXAMPLE
+     wget https://releases.hashicorp.com/vagrant/1.8.6/vagrant_1.8.6_x86_64.rpm
+     sudo rpm -i vagrant_1.8.6_x86_64.rpm
+     #+END_EXAMPLE
+   - Install [[https://www.virtualbox.org/wiki/Downloads][VirtualBox]] 4.3.12 (i386) or later
+     #+BEGIN_EXAMPLE
+     wget http://download.virtualbox.org/virtualbox/5.1.6/VirtualBox-5.1-5.1.6_110634_el6-1.x86_64.rpm
+     sudo rpm -i VirtualBox-5.1-5.1.6_110634_el6-1.x86_64.rpm
+     #+END_EXAMPLE
+   - (OPTIONAL) You may have to run 
+     #+BEGIN_EXAMPLE
+      /sbin/vboxconfig # from root account
+     #+END_EXAMPLE
+   - Add/Get a ubuntu 14.04 LTS box to vagrant box list from normal
+     user account
+     #+BEGIN_EXAMPLE
+     vagrant box add ubuntu/trusyt64
+     #+END_EXAMPLE
+   - Create a Vagrant box with the Ubutnu-14.04 LTS
+     #+BEGIN_EXAMPLE
+     mkdir ~/vagrant-boxes
+     cd ~/vagrant-boxes
+     vagrant init
+     #+END_EXAMPLE
+   - The above command generates basic Vagrantfile and modify the file
+     with the following info
+     #+BEGIN_EXAMPLE
+     base = "ubuntu/trusty64"
+     #+END_EXAMPLE
+     And also you can change the other required parameters in
+     Vagrantfile ( as per your requirement) 
+
+*** Install Open edX platform
+     - SSH to Vagrant box 
+       #+BEGIN_EXAMPLE
+       cd ~/vagrant-boxes/
+       vagrant up
+       vagrant ssh
+       #+END_EXAMPLE
+     - Update and upgrade 
+       #+BEGIN_EXAMPLE
+       sudo apt-get update -y
+       sudo apt-get upgrade -y
+       #+END_EXAMPLE
+     - Install Packages
+       #+BEGIN_EXAMPLE 
+       sudo apt-get install -y build-essential software-properties-common python-software-properties curl git-core libxml2-dev libxslt1-dev libfreetype6-dev python-pip python-apt python-dev libxmlsec1-dev swig libmysqlclient-dev
+       sudo pip install --upgrade pip
+       sudo pip install paramiko==1.10
+       #+END_EXAMPLE
+
+     - Clone configuration repository
+       #+BEGIN_EXAMPLE 
+       cd /var/tmp
+       git clone https://github.com/edx/configuration
+       #+END_EXAMPLE
+
+     - Choose the release
+       - Choose the required Open edX release version
+         #+BEGIN_EXAMPLE
+ 	 export OPENEDX_RELEASE=named-release/dogwood.3 
+	  
+         OR
+	
+        #Checkout to the release verion of configuration repository
+
+         cd /var/tmp/configuration
+         git checkout <version>
+         git checkout  named-release/dogwood.3 #example
+
+         #+END_EXAMPLE
+
+     - Configure password based SSH authentication
+
+       Edit the =main.yaml= to and set =COMMON_SSH_PASSWORD_AUTH= to =yes= 
+       #+BEGIN_EXAMPLE
+       sudo vim =configuration/playbooks/roles/common_vars/defaults/main.yml
+       COMMON_SSH_PASSWORD_AUTH = yes
+       #+END_EXAMPLE
+
+     - Install the ansible requirements 
+       
+       #+BEGIN_EXAMPLE 
+       cd /var/tmp/configuration
+       sudo pip install -r requirements.txt
+       sudo pip install setuptools --upgrade
+       #+END_EXAMPLE
+
+     - Run the playbook
+       #+BEGIN_EXAMPLE 
+       cd /var/tmp/configuration/playbooks && sudo ansible-playbook -c local ./edx_sandbox.yml -i "localhost,"
+       #+END_EXAMPLE
+
+     - The above command will copy the platform files and runs various ansible
+       playbooks to setup the platform.  When there are zero failures displayed
+       in the status, the installation is successful.
+  
+     - Platform is ready, 
+       + LMS is accessible on port 80
+         #+BEGIN_EXAMPLE
+         http://<public-ip> # courses dashboard
+         #+END_EXAMPLE
+
+       + CMS is accessible on port 18010
+         #+BEGIN_EXAMPLE
+         http://<public_ip>:18010    # Studio
+         #+END_EXAMPLE
+
+     - Login
+       A default user =staff@example.com= comes with the installation.  This
+       login is used to quickly test the instalaltion.  The password is =edx=
+ 
+     - Reference
+       + [[https://github.com/openedx-vlead/port-labs-to-openedx/tree/develop/src/platform-install-configure][Open edX platform installation using Manual steps provided
+         by VLEAD]]  
+       +
+         [[https://openedx.atlassian.net/wiki/display/OpenOPS/Native+Open+edX+Ubuntu+12.04+64+bit+Installation][Native Open edX installation on Ubuntu 12.04 64-bit]]
+*** Apply Theme on edX platform
+    To apply comprehensive theme on dogwood3 follow the steps -
+    - Once the Vagrant box is ready 
+    - SSH to vagrant box from host machine 
+      #+BEGIN_EXAMPLE
+      cd ~/vagrant-boxes
+      vagrant up  ; if not up already
+      vagrant ssh
+      #+END_EXAMPLE
+    - Once you are entered into vagrant box perform the below steps
+      #+BEGIN_EXAMPLE
+      cd edx/app/edxapp/themes
+      #+END_EXAMPLE
+      + Clone repository
+        https://github.com/openedx-vlead/vlabs-theme-for-portable-media
+	#+BEGIN_EXAMPLE
+	git clone https://github.com/openedx-vlead/vlabs-theme-for-portable-media starter-theme	
+	#+END_EXAMPLE
+      + Give proper permissions,
+	#+BEGIN_EXAMPLE
+	chmod -R 755 starter-theme
+	#+END_EXAMPLE
+      + Open /edx/app/edxapp/lms.env.json, Then change the following
+        keys -
+       #+BEGIN_EXAMPLE
+       "COMPREHENSIVE_THEME_DIRS": ["/edx/app/edxapp/themes"]
+       "ENABLE_COMPREHENSIVE_THEMING": true
+       "DEFAULT_SITE_THEME": "starter-theme"
+       "USE_CUSTOM_THEME": false
+       "THEME_NAME": ""
+       #+END_EXAMPLE
+
+      + Save changes
+      + Compile changes using the commands below -
+        #+BEGIN_EXAMPLE
+	sudo -H -u edxapp bash 
+	cd /edx/app/edxapp/edx-platform
+	source ../edxapp_env
+	paver update_assets lms --setting=aws
+        #+END_EXAMPLE
+
+      + Once done, restart services using 
+	#+BEGIN_EXAMPLE
+        sudo /edx/bin/supervisorctl restart all	
+	#+END_EXAMPLE
+*** Create a trigger in database to auto activate users on registration
+A user on registration with edx is given a verification link on
+mentioned email address. This is okay where internet is available. On
+college cloud with no internet facility, activation link is never sent
+to the user and hence user is never activated and cannot login into
+his account after first log-out.
+
+As a workaround to this problem, Sysadmin can activate users from
+django admin page of openedx.  This is not scalable solution and we
+dont want admin to touch django settings of site.
+
+In edxapp database, there is a table called , auth_user which is described as follows -
+
+
+
+| Field        | Type         | Null | Key | Default | Extra          |
+| id           | int(11)      | NO   | PRI | NULL    | auto_increment |
+| password     | varchar(128) | NO   |     | NULL    |                |
+| last_login   | datetime(6)  | YES  |     | NULL    |                |
+| is_superuser | tinyint(1)   | NO   |     | NULL    |                |
+| username     | varchar(30)  | NO   | UNI | NULL    |                |
+| first_name   | varchar(30)  | NO   |     | NULL    |                |
+| last_name    | varchar(30)  | NO   |     | NULL    |                |
+| email        | varchar(254) | NO   |     | NULL    |                |
+| is_staff     | tinyint(1)   | NO   |     | NULL    |                |
+| is_active    | tinyint(1)   | NO   |     | NULL    |                |
+| date_joined  | datetime(6)  | NO   |     | NULL    |                |
+
+#+BEGIN_SRC command
+if is_active = 1 then 
+    user is active 
+else not active
+
+#+END_SRC
+Setting is_active value to 1 will activate a user without clicking the
+verfication link.  Following mysql command can be used from shell to
+activate all users
+
+#+BEGIN_SRC command
+mysql -u<username> -p<password> -e "update auth_user set is_active=1 where is_active=0;"
+#+END_SRC
+
+The better alternative is to write a trigger to change the value if
+is_active column to 1, before insert.  Here is the trigger for the
+same -
+
+#+BEGIN_SRC command
+DELIMITER //
+CREATE TRIGGER auto_activate_user
+BEFORE INSERT
+   ON auth_user FOR EACH ROW
+BEGIN
+   SET NEW.is_active = 1;
+END; //
+DELIMITER ;
+#+END_SRC
+    
+** One stop solution for setting up Open edX platform using vagrantbox
+  - Get the Vagrantfile 
+    #+BEGIN_EXAMPLE
+    mkdir vagrant-boxes
+    cd vagrant-boxes/
+    wget http://files.virtual-labs.ac.in/downloads/open-edx-vagrant-boxes/Vagrantfile
+    #+END_EXAMPLE
+  - Get the vagrant box 
+    #+BEGIN_EXAMPLE
+    #For plain OpenedX platform
+    wget http://files.virtual-labs.ac.in/downloads/open-edx-vagrant-boxes/open-edx-platform-installed-2016-09-19.box
+
+
+    #For 68 labs ported onto OpenedX platform
+    wget http://files.vlabs.ac.in/downloads/open-edx-vagrant-boxes/openedx-platform-wtih-68-labs.box
+
+    #+END_EXAMPLE
+  - Add downloaded box to vagrant box list 
+    #+BEGIN_EXAMPLE
+    #For plain edX platform
+    vagrant box add plain-edx-platform open-edx-platform-installed-2016-09-19.box
+
+    #For edX platform with 68 labs
+    vagrant box add edX-platform-with-68-labs openedx-platform-wtih-68-labs.box
+
+    #+END_EXAMPLE
+  - Modify the Vagrantfile.  Search for =config.vm.box= and replace
+    with the following
+    #+BEGIN_EXAMPLE
+    config.vm.box = "plain-edx-platform"  # For plain edX platform
+    
+    or 
+
+    config.vm.box = "edX-platform-with-68-labs"  # For edX platform with 68 labs
+    
+    #+END_EXAMPLE
+  - Run Open edX platform 
+    #+BEGIN_EXAMPLE
+    vagrant up
+    #+END_EXAMPLE
+  - That's all, you are ready to use Open edX platform.
+*** Once you have Vagrant box is ready apply Comprehensive Theme
+    [[Apply Theme on edX platform][Steps are here]]
+** Install Nagios on host machine
+   #+BEGIN_EXAMPLE
+   yum install nagios nagios-plugins-all.x86_64 nagios-plugins-nrpe nrpe
+   
+
+   vim /etc/nagios/nrpe.cfg # Change the allowed_hosts values to 127.0.0.1,10.2.57.61
+   service nrpe resstart
+   service nrpe restart
+   service nagios restart
+
+   chkconfig nagios on
+   chkconfig nrpe on
+   #+END_EXAMPLE
+*** Set nagiosadmin user passowrd
+    #+BEGIN_EXAMPLE
+    htpasswd -C /etc/nagios/passwd nagiosadmin
+    #+END_EXAMPLE
+    and access the nagios web console using =localhost/nagios= and
+    provide user name and password.
+** Install OpenVZ web console
+   #+BEGIN_EXAMPLE
+   git clone https://github.com/sibprogrammer/owp.git
+   cd owp/build
+   sh build.sh
+   
+   cd ..
+   cd installer
+   vim owp/installer/ai.sh
+   update DOWNLOAD variable value to https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/ovz-web-panel/ovz-web-panel-2.4.tgz
+   sh ai.sh
+   
+   #+END_EXAMPLE
+   Then access the web console using =localhost:3000= by providing
+   credentials
+   user name: admin  password:admin.   Change the password if you want
+
+** Steps for hosting labs
+  - Once you are done with all the above steps, you are ready to host
+    labs into portable media. Follow the steps  
+  - Use working dns servers( e.g 10.4.12.160, 8.8.8.8 ) for hosting
+    labs with the domain names =lab-id.{{cluster-name}}.vlabs.ac.in=
+  - Open http://ads.{cluster-name}.vlabs.ac.in:8080
+  - Provide the necessary details and deploy the lab await for the
+    domain of the lab that will be displayed on the browser
+** Feedback service integration 
+   Deploy feedback service using ADS service in the cluster.
+
+   GitHub link is https://github.com/vlead/feedback-portal.git
+   
+   While deploying feedback service using ADS, Lab-ID should be
+   *feedback*
+
+** Analytics-api service integration
+   Deploy analytics-api service using ADS service in the cluster.
+
+   GitHub link is https://github.com/openedx-vlead/vlabs-analytics-api-for-portable-media.git
+   
+   While deploying analytics-api service using ADS, Lab-ID should be
+   *analytics-api*
+
+** ELK service integration 
+   Deploy vlabs-analytics service using ADS service in the cluster.
+
+   GitHub link is https://github.com/openedx-vlead/elk-stack-for-analytics.git
+   
+   While deploying vlabs-analytics service using ADS, Lab-ID should be
+   *analytics-api*
+
+** Steps for accessing the labs using Wi-Fi router
+   - Check the [[./user-manual-for-portablemedia.org][User Manual]] for Wifi router configuration
+   - Modify the =is_amazon= variable in
+     =systems-model/build/{{cluster}}/roles/common_vars/vars/main.yml=
+    #+BEGIN_EXAMPLE
+    is_amazon: no 
+    to
+    is_amazon: yes
+    #+END_EXAMPLE
+     Then run =site.yaml= file on config-server
+     #+BEGIN_EXAMPLE
+     cd systems-model/build/{{cluster}}/
+     ansible-playbook -i hosts site.yaml
+
+     or 
+     You can run individual files 
+     ansible-playbook -i hosts public_dns.yaml
+     ansible-playbook -i hosts private_dns.yaml
+     ansible-playbook -i hosts reverseproxy_server.yaml
+     #+END_EXAMPLE
+   - Configure the [[DNS service configuration][DNS service]]
+   - Then see the [[./user-manual-for-portablemedia.org][User manual]] for other steps to access the labs over
+     Wifi. 
+   - Then Labs will be accessible using ={{lab-id}}.vlabs.ac.in= format
+
+** DNS service configuration
+   - Create a separate OpenVZ container for dns service 
+     #+BEGIN_EXAMPLE
+     vzctl create 1010 --ostemplate centos-6-x86_64  --hostname dns.vlabs.ac.in
+     vzctl set 1010 --netif_add eth0,,,,br0  --save 
+     vzctl set 1010 --onboot yes --save
+     vzctl start 1010
+     #+END_EXAMPLE
+   - Configure network in dns container
+     + Enter into the container
+       #+BEGIN_EXAMPLE
+       vzctl enter 1010
+       #+END_EXAMPLE
+     + Open/create the file 
+       #+BEGIN_EXAMPLE
+       vim /etc/sysconfig/network-scripts/ifcfg-eth0
+       #+END_EXAMPLE
+     + Update above file with 
+       #+BEGIN_EXAMPLE
+       DEVICE=eth0
+       TYPE=Ethernet
+       HWADDR=<MAC address of the eth0 interface>
+       BOOTPROTO=static
+       ONBOOT=yes
+       NM_CONTROLLED=no
+       IPADDR=<ip-address>
+       NETMASK=<netmask>
+       GATEWAY=<gateway>
+       DNS1=<external-dns1>
+       DNS2=<external-dns2>
+       #+END_EXAMPLE
+
+    + Enable SSH access to root account from config-server 
+      - Set root password for DNS server node and remember or note it
+        down somewhere
+      - From config-server, perform the following steps
+	#+BEGIN_EXAMPLE
+	ssh-copy-id root@10.2.57.65 
+	#+END_EXAMPLE
+      - Provide the password when prompted for root password.
+
+    + Since we are setting up a separate DNS server which is not a
+      part of the cluster, but we are using =public_dns.yaml= playbook
+      for running the ansible playbook for this server as well. It
+      will try to set up the gateway as 10.100.1.1 which would throw
+      error as our DNS is not a part of the cluster. To solve this
+      problem, we need to comment the default gateway lines in
+      =roles/common/tasks/main.yml= file in the ansible sever. Below
+      lines should be commented
+      #+BEGIN_EXAMPLE
+      #- name: setting the default gw, skips if router or ansible server
+      #  shell: route del default; route add default gw {{router_internal_ip}}
+      #  when: not ( i_ans is defined or i_router is defined )
+      #  ignore_errors: yes
+      #
+      #- name: make this route persistent after reboot
+      #  lineinfile: line="route del default; route add default gw {{router_internal_ip}}" destfile=/etc/rc.local state=present regexp="route *"
+      #  when: not ( i_ans is defined or i_router is defined )
+      #+END_EXAMPLE
+    + Run =public_dns.yml= playbook from config-server to configure
+      dns service which is outside the cluster.
+      #+BEGIN_EXAMPLE
+      vlead$cd systems-model/build/edx/
+      vlead$vim dns.txt     # inventory file for DNS service node
+      #+END_EXAMPLE
+      - Add the following lines to the file =dns.txt=
+	#+BEGIN_EXAMPLE
+	[public_dns]
+	10.2.57.64        # DNS service node ip address
+	#+END_EXAMPLE
+      - Run =public_dns.yml=
+	#+BEGIN_EXAMPLE
+	vlead$ansible-playbook -i dns.txt public_dns.yml
+	#+END_EXAMPLE
+    + Change =/etc/resolv.conf= file 
+      #+BEGIN_EXAMPLE
+      vim /etc/resolv.conf
+      and add
+      nameserver 127.0.0.1    # as localhost has become name server 
+      #+END_EXAMPLE
+    + Add these entries in =/var/named/{cluster}.virtual-labs.ac.in.forward= and
+      =/var/named/{cluster}.vlabs.ac.in.forward=
+      #+BEGIN_EXAMPLE
+      open-edx         IN    A     10.2.57.65
+      labs             IN    A     10.2.57.65
+      #+END_EXAMPLE
+    + Restart DNS service =named=
+      #+BEGIN_EXAMPLE
+      service named restart
+      #+END_EXAMPLE
+    + You are done configuring DNS service
+* Collecting logs from College Cloud   
+  -  [[../requirements/index.org::#logg_collection][Requirement_satisfied]]
+  :PROPERTIES:
+  :CUSTOM_ID: logg_collection
+  :END: 
+
+  A python script that collects logs ( analytics, feedbacks and Open
+  edX user data).
+** =variables.py= needed for =get_logs.py=
+   Following python file =varaibles.py= contains variables that are
+   required for =get_logs.py= file.
+#+NAME: variables
+#+BEGIN_SRC python
+#!/usr/bin/python
+
+import datetime
+import json 
+import logging 
+
+now = datetime.datetime.now()
+date_for_feedback = now.strftime("%d-%m-%Y")
+date_for_usage = now.strftime("%Y-%m-%d")
+date_today = date_for_usage
+
+
+# Files and folders 
+config_file_name = "/var/www/html/config.json"
+with open(config_file_name) as config_data:
+	tag_data = json.load(config_data)
+	key = tag_data.keys()[0]
+	tag_name = str(tag_data["college_details"]["college_name"])
+	config_data.close()
+
+log_file_name = "/home/vlabs/log_collection/script.log"
+dir_str = "/home/vlabs/college-cloud-data/"
+workshop_folder = dir_str + "workshop-logs-datewise-" + tag_name + "-" + date_today 
+full_dump_location = dir_str + "workshop-logs-full-" + tag_name + "-" + date_today + "/"
+feedback_dump_file = workshop_folder + "/feedback-dump-" + tag_name + "-" + date_for_feedback + ".json"
+usage_dump_file = workshop_folder + "/vlabs-analytics-" + tag_name + "-" + date_for_usage + ".json"
+edx_auth_user_data = workshop_folder + "/edx-auth-user-data-" + tag_name + "-" + date_for_usage + ".sql"
+edx_auth_registration_data = workshop_folder + "/edx-auth-registration-data-" + tag_name + "-" + date_for_usage + ".sql"
+compression_file_name = tag_name + "-" + date_today + ".tar.gz"
+
+
+datewise_dumpfile = tag_name + "-date-wise-dump-" + date_today
+full_dumpfile = tag_name + "-full-dump-" + date_today 
+destination = "/var/www/html/college-cloud-data/"
+
+
+elastic_url = "http://vlabs-analytics.vlabs.ac.in:9200/vlabs/_search?size=10000"
+elastic_payload = {"query" : { "term" : { "DATE_OF_EXPERIMENT" : date_for_usage }}}
+vagrant_dir = "/home/vlabs/vagrant-boxes/"
+script_dir = "/home/vlabs/log_collection"
+feedback_api = "http://feedback.vlabs.ac.in/feedback_dump?date=" + date_for_feedback + "&key=defaultkey"
+logging.basicConfig(filename = log_file_name, level = logging.INFO)
+
+ctid_analytics = "280"
+ctid_feedback = "278"
+
+#+END_SRC
+** get_logs.py
+   Following python file =get_logs.py= does as follows:
+   1. Full logs for feedback, analytics and user data
+   2. Date wise logs for feedback and analytics and partial user data
+      (default)
+
+   Full logs will only be taken if requested. By default, date wise
+   logs will be uploaded by user.
+#+NAME: get_logs
+#+BEGIN_SRC python
+#!/usr/bin/python
+
+import requests
+import os
+import datetime
+import json 
+import os
+import sys 
+import logging
+import tarfile 
+from variables import *
+
+def set_dir_structure(dir_str):
+	try:
+		os.makedirs(dir_str)
+		logging.info("Directory structure with path  was created")
+	except Exception, err:
+		logging.debug("Directory structure already exists")
+
+def get_feedback(url, dump_file):
+	try:
+		res = requests.get(url)
+		print res.status_code
+		if res.status_code == 200:
+			fp = open(dump_file, "w")
+			fp.write(res.content)
+			logging.info("Datewise feedback was saved to ")
+			fp.close()
+		else:
+			logging.error("There was an error in communication with feedback service")
+	except Exception: 	
+		logging.error("Unable to take feedback dump of specific date " )
+
+
+def get_usage(url, payload, dump_file):
+	try:
+		res = requests.get(url, data = json.dumps(payload))
+		if res.status_code == 200:
+			data_dict = json.loads(res.content)
+         		fp = open(dump_file, "w")
+			data_list = data_dict["hits"]["hits"]
+			json.dump(data_list, fp)
+			logging.info("Datewise usage was saved to " + dump_file)
+			fp.close()
+		else:
+			logging.error("There was an error in communication with elasticsearch database")
+	except Exception:
+		logging.error("Unable to take dump for elasticsearch ")
+	 
+
+
+def get_user_logs(vagrant_dir, script_dir):
+	try:
+		os.chdir(vagrant_dir)
+		status_auth_user = os.system("vagrant ssh -c 'mysqldump -uroot edxapp auth_user' >" + edx_auth_user_data)
+		status_auth_registration = os.system("vagrant ssh -c 'mysqldump -uroot edxapp auth_registration' > " + edx_auth_registration_data)
+		if status_auth_user == 0 and status_auth_registration == 0:
+			logging.info("User data was taken from edX database")
+		else:
+			logging.error("Unable to fetch user records from edX")
+                os.chdir(script_dir)
+	except Exception, err:
+		logging.error("Unable to take data from edX database")
+
+
+def date_wise_dump():
+	set_dir_structure(dir_str)
+	set_dir_structure(workshop_folder)
+	get_feedback(feedback_api, feedback_dump_file)
+	get_usage(elastic_url, elastic_payload, usage_dump_file)
+	get_user_logs(vagrant_dir, script_dir)
+        os.system('sudo cp'+ " " + config_file_name + " " + workshop_folder)
+	make_tarfile(datewise_dumpfile, workshop_folder)
+
+
+
+
+
+
+def full_dump():
+	set_dir_structure(dir_str)
+        set_dir_structure(workshop_folder)
+	set_dir_structure(full_dump_location)
+	os.system("sudo vzctl exec " + ctid_analytics + " elasticdump --input=http://localhost:9200/vlabs --output=/root/vlabs-mapping-full.json --type=mapping")
+	os.system("sudo vzctl exec " + ctid_analytics + " elasticdump --input=http://localhost:9200/vlabs --output=/root/vlabs-data-full.json --type=data")
+	os.system("sudo cp /vz/private/" + ctid_analytics + "/root/vlabs-mapping-full.json " + full_dump_location)
+	os.system("sudo cp /vz/private/" + ctid_analytics + "/root/vlabs-data-full.json " + full_dump_location)
+        os.system("sudo vzctl exec " + ctid_feedback + " mysqldump -uroot -proot feedback > " + full_dump_location + "feedback-dump-full.sql")
+        os.system('sudo cp'+ " " + config_file_name + " " + full_dump_location)
+	get_user_logs(vagrant_dir, script_dir)
+	make_tarfile(full_dumpfile, full_dump_location)
+
+
+
+def make_tarfile(output_filename, source_dir):
+        filename=output_filename + ".tar.gz"
+	tar= tarfile.open(filename, "w:gz")
+	tar.add(source_dir, arcname=output_filename)
+	os.system('sudo mkdir'+ " "  + destination )
+        os.system('sudo mv' + " "  + filename + " " + destination)
+
+
+
+if len(sys.argv) == 1:
+	date_wise_dump()
+if len(sys.argv) == 2 and sys.argv[1] == "full":
+	full_dump()
+	
+
+
+#+END_SRC
+
+* College Cloud registration
+  This form is required for collecting logs ( analytics, feedback and
+  user data). This form is a web form, should be able to access from a
+  browser.  Workshop coordinator, need to fill college information in
+  that form.   Once the Workshop coordinator submits form, college
+  details will be saves in =/var/www/html/config.json= file.
+
+  This config.json is being used by [[./index.org::#logg_collection][log collection script]]
+  :PROPERTIES:
+  :CUSTOM_ID: cc_registration
+  :END: 
+
+** app
+*** Config
+#+NAME: config
+#+BEGIN_SRC  python
+
+INTERFACE = "eth0"
+PATH_TO_FOLDER = "/var/www/html/"
+
+#+END_SRC
+*** Get registration form
+    Rest API to render a college cloud registration form
+**** api to register cc details
+
+#+NAME: get_reg_form
+#+BEGIN_SRC  python
+app = Flask(__name__)
+app.secret_key = 'djfjsdkjXXS7979dfdfd'
+
+@app.route('/', methods=['GET', 'POST'])
+def get_reg_template():
+    if request.method == 'GET':
+        try:
+            return render_template('index.html')
+        except Exception as e:
+            abort(404, "template not found")
+    elif request.method == 'POST':
+        clg_name = str(request.form.get("clg_name")).replace(" ", "_").lower()
+        contact_num = request.form.get("clg_contact_no")
+        clg_pincode = request.form.get("clg_pincode")
+        clg_address = request.form.get("clg_addr")
+        contact_name = request.form.get("name")                
+        email_id = request.form.get("email")        
+        try:
+            mac_addr = open('/sys/class/net/'+INTERFACE+'/address').readline()[0:17]
+            clg_details = {                
+                "college_details": {
+                    "college_name" : clg_name,
+                    "mac_addr" : mac_addr,
+                    "contact_no" : contact_num,
+                    "college_address" : clg_address,
+                    "college_pincode" : clg_pincode,
+                    "email_id" : email_id,
+                    "contact_name" : contact_name
+                }                
+            }
+        except Exception as e:
+            abort(404, "MAC File not found")
+        try:
+            with open(PATH_TO_FOLDER+'config.json', 'w') as outfile:
+                json.dump(clg_details, outfile, indent=4, sort_keys=True, separators=(',', ':'))
+                
+            return jsonify({"status" : "Succesfully saved records to '%s' directory " 
+                            %(PATH_TO_FOLDER), "data" : clg_details})
+        except Exception as e:
+            abort(500, "Could not write data to file %s" %(str(e)))
+
+#+END_SRC
+     
+*** Get CC mac id
+    Rest API to get the college cloud mac_id
+**** api to get cc mac_id
+
+#+NAME: get_cc_mac_id
+#+BEGIN_SRC  python
+
+@app.route('/get_cc_mac_id', methods=['GET', 'POST'])
+def get_cc_mac_id():
+    if request.method == 'GET':
+        try:
+            mac_addr = open('/sys/class/net/'+INTERFACE+'/address').readline()[0:17]
+            return jsonify({"cc_mac_id" : mac_addr})
+        except Exception as e:
+            abort(404, INTERFACE+" Configuration file not found")
+
+#+END_SRC
+**** Test case
+ #+NAME: test_get_cc_mac_id
+ #+BEGIN_SRC python
+class TestGetCCMacID(TestCase):
+    TESTING = True
+
+    def setUp(self):
+        return app
+    def tearDown(self):
+        print "hello"
+
+    def test_get_cc_mac_id(self):
+        print "test_get_cc_mac_id"
+        headers = {'Content-Type': 'application/json'}
+        request_str = "/get_cc_mac_id"
+        print "request-str = %s" % request_str
+        response = self.client.get(request_str)
+        self.assertEqual(response.status_code, 200)
+
+#+END_SRC
+
+*** Run Server
+#+NAME: run_server
+#+BEGIN_SRC python
+
+if __name__ == "__main__":
+    app.run(debug=True, host='0.0.0.0', threaded=True)
+
+#+END_SRC
+
+*** Imports 							:boilerplate:
+#+NAME: imports
+#+BEGIN_SRC python
+# -*- coding: utf-8 -*-
+import os
+import json
+from flask import Flask, jsonify, render_template, request, abort
+from config import INTERFACE, PATH_TO_FOLDER
+#+END_SRC
+** Header HTML
+   #+BEGIN_SRC html :tangle ./templates/base.html :eval no :noweb yes
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="http://vlabs.ac.in/images/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/main.css">
+  </head>
+  <body>
+    <div class="navbar navbar-default navbar-custom">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="static/images/logo.png"
+             onclick="dashboard()" style="padding-top:0px">
+            <img width="100px" height="50px"  src="https://open-edx.vlabs.ac.in/static/edx-bootstrap-theme/images/logo.d4f9ba0ed44c.png" class="logo-img"></a>
+        </div><br>
+      </div>
+    </div>
+    {% block content %}
+    {% endblock %}
+  </body>
+</html>
+   #+END_SRC
+   
+** Footer HTML
+   #+BEGIN_SRC html :tangle ./templates/footer.html :eval no :noweb yes
+  <head>
+<script type="text/css">
+.text-h2-lightblue-small
+{
+	color: #2C99CE;
+	font-size: 1.5em;
+}
+.border-right-green-dotted
+{
+	border-right: 2px dotted;
+	 margin-top: 30px;
+	 border-right-color: #678f48;
+	 min-height: 115px;
+	line-height:1em;
+	height:15em;
+
+
+}
+.border-right-green-dotted a{
+	/*padding-left: 10px;*/
+	display: block;
+	/*margin-bottom: 10px;*/
+	line-height:1.2em;
+}
+a:focus
+{
+	color: #72AB44 !important;
+}
+
+.footer-div
+{
+margin-top:120px;
+}
+.text-normal-gray-small
+{
+	color: #888;
+	font-size: 16px;
+}
+.text-normal-gray-small:hover{
+color:green;
+}
+
+</script>
+</head>
+<div class="container-fluid footer-div" style="background: #404040; margin-top: 40px;  padding: 20px;">
+  <div class="col-md-4 border-right-green-dotted">
+    <h2 class="text-h2-lightblue-small" style="font-weight: bold;margin-top: 0px;">Updates</h2>
+    <a href="http://community.virtual-labs.ac.in/w/index.php/Download" class="text-normal-gray-small nounderline" style="color: white" target="_blank"> Lab Integration Kit Releases</a><br>
+    <a href="http://community.virtual-labs.ac.in/w/index.php/First_Integration_workshop" class="text-normal-gray-small nounderline" style="color: white" target="_blank">First Integration Workshop at IIIT Hyderabad</a><br>
+    <a href="http://community.virtual-labs.ac.in/w/index.php/Summer_Sprint_Integration_workshop" class="text-normal-gray-small nounderline" style="color: white" target="_blank"> Summer Integration Workshop at IIT Guwahati</a><br>
+    <a href="http://community.virtual-labs.ac.in/w/index.php/QA/Integration_workshop" class="text-normal-gray-small nounderline" style="color: white" target="_blank"> QA Integration
+      Workshop at IIIT Hyderabad</a><br>
+    <a href="http://community.virtual-labs.ac.in/w/index.php/A_new_set_of_25_Virtual_Labs_on_Portable_Media" class="text-normal-gray-small nounderline" style="color: white" target="_blank"> A new set of 25 Virtual Labs on Portable Media</a>
+  </div>
+  <div class="col-md-2 border-right-green-dotted" id="contact">
+    <h2 class="text-h2-lightblue-small" style="font-weight: bold;margin-top: 0px;"> Contact us</h2>
+    <a href="http://feedback.vlabs.ac.in/" class="text-normal-gray-small nounderline" style="color:white" target="_blank"> Feedback</a><br>
+    <a style="color:white" class="text-normal-gray-small nounderline" href="mailto:support@vlabs.ac.in" target="_blank">support@vlabs.ac.in</a><br>
+    <a href="http://118.102.191.38/labassessment/assessmentform.html" class="text-normal-gray-small nounderline" style="color:white; line-height:20px;" target="_blank"> Lab Assessment Form</a>
+  </div>
+  <div class="col-md-3 border-right-green-dotted">
+    <a href="http://vlabs.ac.in:5959/faq/" class="text-normal-gray-small nounderline" style="color: white" target="_blank"> FAQ</a><br>
+    <a href="http://community.virtual-labs.ac.in/w/index.php/Main_Page" class="text-normal-gray-small nounderline" style="color: white" target="_blank">Community</a><br>
+    <a href="http://www.sakshat.ac.in/" class="text-normal-gray-small nounderline" style="color: white" target="_blank"> Sakshat Portal</a><br>
+    <a href="http://outreach.vlabs.ac.in/" class="text-normal-gray-small nounderline" style="color: white" target="_blank"> Outreach Portal</a><br>
+    <a href="http://outreach.vlabs.ac.in/ncentres" class="text-normal-gray-small nounderline" style="color: white" target="_blank"> Nodal Centers</a><br>
+    <a href="http://118.102.191.38/vlabiitece/" class="text-normal-gray-small nounderline" style="color: white" target="_blank"> Labs Developed by Nodal Centers</a>
+  </div>
+  <div class="col-md-3">
+    <div class="social">
+      <ul class="social-share" style="margin-top:2em">
+	<ul>
+	  <li style="display:inline"><a href="https://www.facebook.com/pages/Virtual-Labs-IIT-Delhi/301510159983871"><img src="/static/img/fb.png"></a></li>
+	  <li style="display:inline "><a href="https://twitter.com/TheVirtualLabs"><img src="/static/img/twitter.png"></a></li>
+	  <li style="display:inline"><a href="http://linkedin.com"><img src="/static/img/linkedin.png"></a></li> 
+	  <li style="display:inline"><a href="https://www.youtube.com/watch?v=mVBYNXLaDdg"><img src="/static/img/youtube.png"></a></li>
+	</ul>
+      </ul>
+    </div>
+  </div>
+</div>
+
+   #+END_SRC
+
+
+#+NAME: header
+#+BEGIN_SRC 
+<form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">College Name</label>
+    <input type="text" class="form-control" id="JNTU" aria-describedby="emailHelp" placeholder="Enter College Name">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>  
+  <div class="form-group">
+    <label for="exampleTextarea">Example textarea</label>
+    <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+  </div>  
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+#+END_SRC
+
+** Index HTML
+#+BEGIN_SRC html :tangle ./templates/index.html :eval no :noweb yes
+
+{% include "base.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>College Cloud Registration</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div class="container">
+  <div class="form-group col-md-6">
+  </div>
+  <div class="container">
+    <h2>College Cloud Registration</h2><br>
+    <form action="/" method="POST">
+      <div class="container">
+	<div class="form-group col-md-5">
+	  <label><font color="red">*</font></label>
+	  <label>College-Name:</label>
+	  <input type="text" class="form-control" name="clg_name" placeholder="Enter college name" required>
+	</div>
+      </div>
+      <div class="container">
+	<div class="form-group col-md-5">
+	  <label><font color="red">*</font></label>
+	  <label>College Address:</label>
+	  <textarea class="form-control" name="clg_addr" placeholder="Enter college address" maxlength="160" required></textarea>
+	</div>
+      </div>
+      <div class="container">
+	<div class="form-group col-md-3">
+	  <label><font color="red">*</font></label>
+	  <label>Pincode:</label>
+	  <input type="text" class="form-control" name="clg_pincode" placeholder="Enter pincode" pattern="[0-9][0-9][0-9][0-9][0-9][0-9]" required>
+	</div>
+      </div>
+      <div class="container">
+	<div class="form-group col-md-3">
+	  <label><font color="red"></font></label>
+	  <label>Contact No:</label>
+	  +91<input type="text" class="form-control"  name="clg_contact_no" placeholder="Enter Mobile Number" pattern="[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]">
+	</div>
+      </div>
+      <div class="container">
+	<div class="form-group col-md-5">
+	  <label><font color="red">*</font></label>
+	  <label>Contact Name:</label>
+	  <input type="text" class="form-control" name="name" placeholder="Enter contact name" required>
+	</div>
+      </div>
+
+      <div class="container">
+        <div class="form-group col-md-5">
+	  <label><font color="red">*</font></label>
+          <label for="email">Email address:</label>
+          <input type="email" class="form-control" name="email" placeholder="Enter email id" required>
+        </div>
+      </div>
+      <br>
+      <div class="container">
+	<div class="form-group col-md-1">
+	  <input class="btn btn-primary" type="submit" value="Save"/>
+	</div>
+	<div class="form-group col-md-1">
+	  <input class="btn btn-primary" type="reset" value="reset"/>
+	</div>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>
+
+{% endblock %}
+  
+#+END_SRC
+** CSS 
+*** main.css
+#+BEGIN_SRC css :tangle ./static/css/main.css :eval no :noweb yes
+body {
+    font-family:'Raleway' !important;
+#    font-family:  sans-serif;
+    font-size: 14px;
+    color: #767676;
+}
+
+#feedback-form {
+    width: 80%;
+    margin-top: 30px;
+}
+
+.headInfo {
+    margin-left: 0px; 
+    margin-top: 20px;
+}
+
+.values {
+    margin-left: 0px;
+    text-align: left;
+}
+
+.rowCol {
+    border: 1px solid #ccc
+}
+
+.mainrow {
+    margin-top: 4px;
+}
+
+.navbar-default, .navbar-inverse {
+    border: 0;
+}
+
+.footer-div
+{
+    margin-top:120px;
+}
+
+.main-logo-a {
+    height: auto;
+    overflow: visible;
+    margin-left: 0px !important;
+    padding-bottom: 10px !important;
+    padding-top: 10px !important;
+}
+
+.menu-a {
+    font-size: 14px !important;
+    font-family: 'Raleway' !important;
+    color: #2C99CD !important;
+    padding-left: 10px !important;
+    padding-bottom: 5px !important;
+    padding-top: 5px !important;
+    padding-right: 10px !important;
+}
+
+.menu-a-active {
+    color: white !important;
+}
+
+.menu-li {
+    border-radius: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.menu-li:HOVER {
+    background-color: #77BB41 !important;
+}
+
+.menu-a:HOVER {
+    color: white !important;
+}
+
+.menu-li-active {
+    background-color: #77BB41;
+}
+
+.menu-ul {
+    margin-top: 45px;
+}
+
+.text-h2-lightblue-small
+{
+	color: #2C99CE;
+	font-size: 1.5em;
+}
+.text-a-lightgreen
+{
+	color: #72AB44;
+	font-size: 1.3em;
+	text-decoration: underline;
+}
+
+.text-a-lightgreen:HOVER
+{
+	color: #72AB44 !important;
+}
+
+.text-normal-gray-small
+{
+	color: #888;
+	font-size: 16px;
+}
+
+.border-right-green-dotted
+{
+	border-right: 2px dotted;
+	 margin-top: 30px;
+	 border-right-color: #678f48;
+	 min-height: 115px;
+}
+.footer-div
+{
+margin-top:120px;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 32em;
+}
+
+td {
+    border: 0px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+
+#+END_SRC
+** Deployment
+*** setup
+#+NAME: setup_file
+#+BEGIN_SRC python
+
+from setuptools import setup
+requires = [
+    'flask'
+]
+setup(
+    name='college-cloud',
+    version='1.0',
+    install_requires=requires
+)
+#+END_SRC
+#+END_SRC
+*** wsgi conf
+
+#+NAME: wsgi_conf
+#+BEGIN_SRC wsgi
+import sys
+sys.path.insert(0, '/var/www/html/')
+from app import app as application
+#+END_SRC
+
+*** apache conf
+    - Append following lines to =/etc/httpd/conf/httpd.conf=
+#+BEGIN_EXAMPLE
+WSGIScriptAlias /cc_registration /var/www/html/cc.wsgi
+WSGIScriptReloading On
+
+<Directory /var/www/html/>
+    Order deny,allow
+    Allow from all
+</Directory>
+#+END_EXAMPLE
+    
+** tests
+*** Imports 
+#+name: imports_for_tests
+#+BEGIN_SRC python
+# -*- coding: utf-8 -*-
+import unittest
+from flask_testing import TestCase
+from runtime.implementation.app import app
+#+end_src
+
+*** Running tests
+#+NAME: run_test_cases
+#+BEGIN_SRC python
+if __name__ == '__main__':
+    unittest.main()
+
+#+END_SRC
+* Post Process script
+** configuration
+#+NAME: post_process_config
+#+BEGIN_SRC python
+FEEDBACK_URL = "http://feedback-kebana.base4.vlabs.ac.in"
+#+END_SRC
+** script
+   - This is a command line utility which will take
+     =<file_name>.tar.gz= file generated from the log collection
+     script [[./index.org::#logg_collection][reference]] which contains feedbacks, usages and college
+     cloud details as json files.
+   - Every single feedback form is a single json record
+   - Every single usage is a single json record
+   - College cloud details is a json record
+   - This utility uses REST APIs documented at [[../../design/index.org::#post_process_design][link]] to push
+     the json records into the elastic search database
+   - Note :: To run this utility a machine with internet connection is
+             required to push the analytics into elastic search database.
+
+#+NAME: post_process_script
+#+BEGIN_SRC python
+import os
+import sys
+import requests
+import json
+from pprint import pprint
+import glob
+from post_process_config import FEEDBACK_URL
+import json
+
+#FEEDBACK_URL = "http://feedback-kebana.base4.vlabs.ac.in"
+
+def post_data_to_elastic_db(record, record_type, mac_addr):
+    if record_type == "feedback":
+	data_dict = {
+	    "feedbacks" : record,
+	    "mac_addr" : mac_addr,
+	    "key" : "defaultkey"
+	}
+	ELASTIC_DB_URL = "%s/dump_feedback_to_elastic_db" % (FEEDBACK_URL)
+
+    elif record_type == "analytics":
+	data_dict = {
+	    "usages" : record,
+	    "mac_addr" : mac_addr,
+	    "key" : "defaultkey"
+	}
+
+	ELASTIC_DB_URL = "%s/dump_usages_to_elastic_db" % (FEEDBACK_URL)
+
+    else:
+	data_dict = {
+	    "college_details" : record,
+	    "key" : "defaultkey"
+	}
+	ELASTIC_DB_URL = "%s/dump_cc_details_to_elastic_db" % (FEEDBACK_URL)
+
+    try:
+        headers = {'content-type': 'application/json'}
+        
+	resp = requests.post(ELASTIC_DB_URL, data=json.dumps(data_dict), headers=headers)
+	if not resp.status_code == 200:
+	    return False
+	else:
+	    return True
+
+    except Exception as e:
+	print str(e)
+	return False
+
+def get_json(json_file_location):
+    try:
+        with open(json_file_location, "r") as data_file:    
+            json_data = json.load(data_file)
+        return json_data
+    except Exception as e:
+        print str(e)
+
+def write_json(json_file_location, data):
+    try:
+        with open(json_file_location, "w") as data_file:    
+            json.dumps(data, data_file)
+    except Exception as e:
+        print str(e)
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+	print "Please pass the backup file name file.tar.gz as first argument"
+	exit(0)
+    try:
+	log_collection_tar_file = sys.argv[1]
+	folder_name = log_collection_tar_file.split("/")[-1].split(".")[0]
+	extracted = os.system("tar -xvf" + log_collection_tar_file)
+	pwd = os.getcwd() + "/" + folder_name	
+	analytics_file = glob.glob(pwd + "/vlabs-analytics*.json")
+	config_file = glob.glob(pwd + "/config*.json")
+    except Exception as e:
+        print str(e)
+
+    try:
+        config = get_json(config_file[0])
+
+	if(post_data_to_elastic_db(config, "config" , "")):
+	    print "config : %s is added" % (config)
+	    mac_addr = str(config['mac_addr'])
+	else:
+	    print status_code
+
+    except Exception as e:
+        print str(e)
+
+    try:
+        feedback_file = glob.glob(pwd+"/feedback-dump*.json")
+        feedbacks = get_json(feedback_file[0])
+        for feedback in feedbacks:
+            feedback['gateway_ip'] = mac_addr
+        write_json(feedback_file[0], feedbacks)
+
+
+	if(post_data_to_elastic_db(feedbacks, "feedback", str(config['mac_addr']))):	    
+	    print "Feedback : %s is added" % (feedbacks)
+	else:
+	    print "Error"
+
+    except Exception as e:
+        print str(e)
+
+    try:
+        analytics_dump = get_json(analytics_file[0])
+
+	if(post_data_to_elastic_db(analytics_dump, "analytics", str(config['mac_addr']))):	    
+	    print "analytics : %s is added" % (analytics_dump)
+	else:
+	    print "Error"
+
+    except Exception as e:
+        print str(e)
+  
+#+END_SRC
+* Tangle
+** sources
+#+BEGIN_SRC python :tangle config.py :eval no :noweb yes
+<<config>>
+#+END_SRC
+#+BEGIN_SRC python :tangle app.py :eval no :noweb yes
+<<imports>>
+<<get_reg_form>>
+<<get_cc_mac_id>>
+<<run_server>>
+#+END_SRC
+#+BEGIN_SRC python :tangle setup.py :eval no :noweb yes
+<<setup_file>>
+#+END_SRC   
+#+BEGIN_SRC wsgi :tangle cc.wsgi :eval no :noweb yes
+<<wsgi_conf>>
+#+END_SRC   
+#+BEGIN_SRC python :tangle log_collection/variables.py :eval no :noweb yes
+<<variables>>  
+#+END_SRC
+#+BEGIN_SRC python :tangle log_collection/get_logs.py :eval no :noweb yes
+<<get_logs>>  
+#+END_SRC
+
+#+BEGIN_SRC python :tangle post_process_config.py :eval no :noweb yes
+<<post_process_config>>
+#+END_SRC
+
+#+BEGIN_SRC python :tangle post_process.py :eval no :noweb yes
+<<post_process_script>>
+#+END_SRC
+
+** tests
+#+BEGIN_SRC python :tangle test_app.py :eval no :noweb yes
+#<<imports_for_tests>>
+#<<test_get_reg_form>>
+#<<test_get_cc_mac_id>>
+#<<run_test_cases>>
+#+end_src
+
+
+
+

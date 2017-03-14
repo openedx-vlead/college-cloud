@@ -1,0 +1,43 @@
+#+TITLE: Requirements of the  College Cloud Edition 
+#+AUTHOR: VLEAD
+#+SETUPFILE: ../org-templates/level-1.org
+#+TAGS: boilerplate(b)
+#+EXCLUDE_TAGS: boilerplate
+#+OPTIONS: ^:nil
+
+* Introduction 
+  The documentation describes the requirements of the College Cloud.
+
+* Requirements
+  College Cloud Edition requirements
+*** Req1
+   - Build a portable hard disk drive with *X* number of labs on it.
+    :PROPERTIES:
+    :CUSTOM_ID: portable_hard_drive
+    :END:    
+    [[../runtime/implementation/index.org::#implementation_of_cc][Implementation]]
+*** Req2
+    - Facilitate collection of logs and analytics on colllege cloud.
+    :PROPERTIES:
+    :CUSTOM_ID: logg_collection
+    :END:    
+    [[../runtime/implementation/index.org::#logg_collection][Implementation]]
+*** Req3 
+     - Create a manual for provisioning and configuring college cloud.
+    :PROPERTIES:
+     :CUSTOM_ID: manual
+     :END:    
+     [[../installation-manual.org][Installation manual]]      
+*** Req4 
+    - Facilitate college cloud registration. This is pre-requisite for [[./index.org::#logg_collection][Req2]]
+    :PROPERTIES:
+    :CUSTOM_ID: req4
+    :END:    
+    [[../runtime/implementation/index.org::#cc_registration][Click here for registration form Implementation details]]
+      
+*** Req5
+    - Facilitate post process of college cloud workshop data.
+*** Req6 
+    - Stream videos of labs from College Cloud 
+    - Visit github issue to [[https://github.com/openedx-vlead/college-cloud/issues/26][read the plan]]
+    - Check [[https://github.com/openedx-vlead/college-cloud/milestone/7][Milestone for more tasks]]
