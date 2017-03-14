@@ -498,28 +498,28 @@
    smooth migration to the newly configured College Cloud server
    - Follow the link  [[./installation-manual.org::#dns-settings][Changing DNS settings]] .
    
-* Proper shutdown of College Cloud Edition 
+* Proper shutdown of College Cloud Server
   College Cloud contains a Vagrant box which on direct shutdown can crash. 
-  To avoid this problem, Sysadmin has to follow the steps given below -
-  - Log in as =vlabs= user 
+  To avoid crashing of College Cloud server follow the steps given below : 
+  - Log in as [[./installation-manual.org::#passwords][vlabs]] user
     #+BEGIN_EXAMPLE
     su - vlabs   
     #+END_EXAMPLE
   - Stop the vagrant box.
-    #+BEGIN_EXAMPLE
+    #+BEGIN_SRC
     cd ~/vagrant-boxes/
     vagrant halt
-    #+END_EXAMPLE
+    #+END_SRC
   - Shutdown the College Cloud server.  
     #+BEGIN_SRC 
     shutdown -h now
     #+END_SRC
 
 * Support  
-  - Get help with Virtual Labs College Cloud Edition by sending a mail
-    to =support@vlabs.ac.in= or 
-  - Posting queries on the IRC channel using =#VLEAD=.
-  - Issues would be created on [[https://github.com/openedx-vlead/college-cloud/issues][GitHub Issues]] 
+  - Get help with Virtual Labs College Cloud Edition by 
+    + Sending an email to =support@vlabs.ac.in= 
+    + Posting queries on the IRC channel using =#VLEAD=.
+    + Creating issues Issues on [[https://github.com/openedx-vlead/college-cloud/issues][Github repository of College Cloud]] 
 
 * Contract Information
   1. For the above given System Configuration, one could work with 3-5
@@ -528,8 +528,7 @@
      internet while labs are being accessed over the College Cloud.
   3. College Cloud server should be connected to the internet on a
      regular basis to facilitate log collection.
-  4. No videos of the labs would be accessible from the College Cloud
-     Edition.
+ 
 
 
 
