@@ -58,7 +58,7 @@
   4. Boot the machine from College Cloud Edition Hard Disk Drive.
   5. Please use [[./installation-manual.org::#passwords][default linux user credentials]] to login.
      + NOTE :: It is advised that the password is changed after the
-               first login . To change the password, follow the [[./installation-manual.org::#Passwords][link]]
+               first login . To change the password, follow the [[./installation-manual.org::#passwords][link]]
 ** Launch Virtual Labs (Open edX) platform
  - Run the following command on terminal to run Virtual Labs on
     Open edX platform. This may take a few minutes to launch the
@@ -131,25 +131,23 @@
   steps for enabling students to use labs from College Cloud.
 ** Registration (first time only) 
    College would need to register with College Cloud Edition before
-   the first use For registration please follow the steps follwing
-   steps -
-
+   the first use. For registration please follow the below steps  -
    
-   + Open a web browser on a machine connected to college-cloud/
-     machine form which college-cloud was accessible.
-   + Access the URL - http://<college-cloud-server-ip>/cc_registration
-   + Fill the details and click on save button to save the details
+   1. Open a web browser on a machine connected to college-cloud
+      server.
+   2. Access the URL - http://<college-cloud-server-ip>/cc_registration.
+   3. Fill the details and click on Save button.
 
 ** Selecting Labs
    For selecting labs from the [[./labs-on-college-cloud/list-of-labs-in-college-cloud.org::#list-of-labs][total available labs]] on College Cloud
-   Edition, follow the steps 
+   Edition, follow the steps  listed below : 
    - Use the link =http://<College-Cloud-Machine-IP>:3000=
    - This would prompt for the user name and password. Please provide
      [[./installation-manual.org::#passwords][default user credentials]]. 
     + NOTE :: 
       + It is advised that the password is changed after the first
         login . For the steps for changing the password, follow the
-        [[./installation-manual.org::#OpenVZ][link]]
+        [[./installation-manual.org::#OpenVZ][link]].
       + Please visit the [[Enhancing Performance][Enhance Performance]] Section for ensuring
         consistent performance.
 
@@ -185,28 +183,28 @@
 
    - Once logged into the web panel: 
 
-     + Look for =localhost= on left side of the panel.
-     + Click on =localhost=.
-     + A list all labs with their respective OpenVZ container
-       status(stopped/running) would be visible.
+     1. Look for =localhost= on left side of the panel.
+     2. Click on =localhost=.
+     3. A list all labs with their respective OpenVZ container
+	status(stopped/running) would be visible.
 
    - WARNING :: *Please do not tamper  with the college cloud
                 setup settings.*
 
 ** Starting Lab containers
-    Step 1. Go to the platform http://open-edx.vlabs.ac.in
-    Step 2. Select the course/lab to be included in the workshop. Please
-       make a note of the course/lab name.
-    Step 3. Go to =http://<College-Cloud-Machine-IP>:3000= 
-    Step 4. Sign into =OpenVZ web panel=. For credentials, please follow
-       the [[./installation-manual.org::#passwords][passwords]]
-    Step 5. Click on =localhost= located at left side of the panel.
-    Step 6. Search for the lab name that has been selected in step 2.
-    Step 7. Choose the selected lab by clicking on CTID (example.213) and
-       look for =change state= button on the panel.
-    Step 8. Select =start= and wait for about 1-2 minutes. 
-    Step 9. Observe the change of color of the selected course/lab in green
-       color and running state.
+    1. Go to the platform http://open-edx.vlabs.ac.in
+    2. Select the course/lab to be included in the workshop. Please
+	make a note of the course/lab name.
+    3. Go to =http://<College-Cloud-Machine-IP>:3000= 
+    4. Sign into =OpenVZ web panel=. For credentials, please follow
+	the [[./installation-manual.org::#passwords][passwords]]
+    5. Click on =localhost= located at left side of the panel.
+    6. Search for the lab name that has been selected in step 2.
+    7. Choose the selected lab by clicking on CTID (example.213) and
+	look for =change state= button on the panel.
+    8. Select =start= and wait for about 1-2 minutes. 
+    9. Observe the change of color of the selected course/lab in green
+	color and running state.
 
 ** Enabling Labs
    College Cloud Edition has 73 labs available across various
@@ -215,79 +213,80 @@
    Lab Catalogue.  To allow the students to use the Labs that were
    [[Starting Lab containers][started]] on the OpenVZ web panel, follow the steps given below -
   
-   + Step 1. Visit  http://vlabs.ac.in:18010/ to open Studio of College Cloud Edition.
-   + Step 2. Login usin [[Passwords][admin credentials]]
-   + Step 3. Select the course you want to enable for students to Enrol to.
-   + Step 4. In Settings option, Click =Advanced Settings=. A list of parameters will be displayed 
-   + Step 5. Look for =Invitation Only= option and set it to =false=
-   + Step 6. Click on =Save= button.
+   1. Visit  http://vlabs.ac.in:18010/ to open Studio of College Cloud Edition.
+   2. Login using [[Passwords][admin credentials]] .
+   3. Select the Lab you want to allow the students to use.
+   4. In the Settings option at the top, Click =Advanced Settings=. A
+      list of parameters will be displayed.
+   5. Look for =Invitation Only= option and set it to =false= .
+   6. Click on =Save= button.
    
 ** Enhancing Performance
-     + If an *Intel i7 processor and 16GB RAM machine/system* is being
-      used a maximum of 50-100 simultaneous users can access one lab at a time.
-
-      - It is advised to only start labs that are needed for the
-        workshop.
-      - The best choice would be start one lab at a time and have a
-        maximum of 10 labs running at any given instance.
-       
+     1. If an *Intel i7 processor and 16GB RAM machine/system* is being
+	used a maximum of 50-100 simultaneous users can access one lab
+	at a time.
+     2. It is adviced to have upto a maximum of 5 Labs running at any
+	given time.
+     3. The best choice would be start one lab at a time and have a
+	maximum of 10 labs running at any given instance.
+	
 ** Monitoring system resources
    [[https://www.nagios.org/][Nagios]] is used for monitoring systems resources such as load on the
    machine, RAM usage, Processes, etc.
-   - Use the link =http://<College-Cloud-Machine-IP>/nagios=
-   - Use the Nagios [[./installation-manual.org::#passwords][default user credentials]]
+   - Use the link =http://<College-Cloud-Machine-IP>/nagios= .
+   - Use the Nagios [[./installation-manual.org::#passwords][default user credentials]] .
 
     + NOTE :: It is advised that the password is changed after the
               first login . For the steps for changing the password,
-              follow the [[./installation-manual.org::#nagios_password][link]]
+              follow the [[./installation-manual.org::#nagios_password][link]] .
 ** Instructions for Lab users		   
-   College System Administrator/Workshop Coordinator to issue the
-   following instructions to all lab users:
-*** Changing DNS settings
-    :PROPERTIES:
-    :CUSTOM_ID: dns-settings
-    :END:    
-    - Lab users can access the labs through LAN cable and also over
-      wireless. 
-    - LAN cable should be connected to the WiFi-router.
-    - Once connected to the wireless or LAN, lab user should modify
-      the change DNS settings.
+   College System Administrator/Workshop Coordinator should issue the
+   following instructions -
+   1. Changing DNS settings
+     :PROPERTIES:
+     :CUSTOM_ID: dns-settings
+     :END:    
+      - Lab users can access the labs through LAN cable and also over
+	wireless. 
+      - LAN cable should be connected to the WiFi-router.
+      - Once connected to the wireless or LAN, lab user should modify
+	the change DNS settings.
 
-      + *Linux*  
-       	- Open the file
-          #+BEGIN_EXAMPLE
-          sudo vim /etc/resolv.conf
-          #+END_EXAMPLE
-       	- Delete existing entries and add the following line
-          #+BEGIN_EXAMPLE
-          nameserver 10.2.57.62
-          #+END_EXAMPLE
-      + *Windows*
-         - Go to the Control Panel.
-         - Click Network and Internet > Network and Sharing Center >
-           Change adapter settings.
-         - Select the connection for which you want to configure Public
-           DNS. For example:
-           + To change the settings for an Ethernet connection,
-             right-click Local Area Connection > Properties.
-           + To change the settings for a wireless connection,
-             right-click Wireless Network Connection > Properties.    
-         - Select the Networking tab. Under =This connection uses the
-           following items=, select =Internet Protocol Version 4
-           (TCP/IPv4)= or =Internet Protocol Version 6 (TCP/IPv6)= and
-           then click Properties.
-         - =Select Use the following DNS server addresses= and add =10.2.57.62=
-         - Disable wifi connection and enable wifi again.
+	+ *Users with Linux Systems*  
+	  - Open the file.
+            #+BEGIN_EXAMPLE
+            sudo vim /etc/resolv.conf
+            #+END_EXAMPLE
+	  - Delete existing entries and add the following line.
+            #+BEGIN_EXAMPLE
+            nameserver 10.2.57.62
+            #+END_EXAMPLE
+	+ *Users with Windows Systems*
+	  - Go to the Control Panel.
+	  - Click Network and Internet > Network and Sharing Center >
+            Change adapter settings.
+	  - Select the connection for which you want to configure Public
+            DNS. For example:
+	    + To change the settings for an Ethernet connection,
+              right-click Local Area Connection > Properties.
+	    + To change the settings for a wireless connection,
+              right-click Wireless Network Connection > Properties.    
+	  - Select the Networking tab. Under =This connection uses the
+            following items=, select =Internet Protocol Version 4
+            (TCP/IPv4)= or =Internet Protocol Version 6 (TCP/IPv6)= and
+            then click Properties.
+	  - =Select Use the following DNS server addresses= and add =10.2.57.62= .
+	  - Disable wifi connection and enable wifi again.
        	
-*** Setting No Proxy on browsers
-    - Once the lab users got connected to wifi, lab user has to unset
-      proxy if any proxies used previously( Set =No Proxy=) in their
-      browsers . For example, In firefox, 
-      #+BEGIN_EXAMPLE
-      Firefox --> Preferences --> Advanced --> Network --> Settings 
-      #+END_EXAMPLE
+   2. Setting No Proxy on browsers
+      - Once the lab users got connected to wifi, lab user has to unset
+	proxy if any proxies used previously( Set =No Proxy=) in their
+	browsers . For example, In firefox, 
+	#+BEGIN_EXAMPLE
+	Firefox --> Preferences --> Advanced --> Network --> Settings 
+	#+END_EXAMPLE
 
-*** User registrations on [[https://open.edx.org/getting-started-open-edx][Open edX platform]]
+** User registrations on [[https://open.edx.org/getting-started-open-edx][Open edX platform]]
 **** Lab users 
      - Click on register button on http://vlabs.ac.in and
        fill in the registration form.
@@ -295,23 +294,23 @@
        coordinator.
      - NOTE ::  [[./installation-manual.org::#admin][Forgot password!! contact your System administrator]]
 **** System Administrator
-     If registered users forgot their password, System Administrator
-     has to follow the below steps.
+     If registered users forgt their password, System Administrator
+     can reset the password by following the below listed steps - has
+
     :PROPERTIES:
     :CUSTOM_ID: admin
     :END:         
-     - Visit  http://vlabs.ac.in/admin.
-     - Log in using admin user credentials. Admin user credentials are
-       at [[./installation-manual.org::#passwords][passwords]]
-      + NOTE :: It is advised that the password is changed after the
-                first login . For the steps for changing the password,
-                follow the [[./installation-manual.org::#platform_password][link]].
-    - Go to =Authentication and Authorization= section to activate
-      registered users.
-      + Select =Users= 
-      + Click on =user name=
-      + Then change password of user 
-	- Very small link there in first section of the page
+     1. Visit  http://vlabs.ac.in/admin.
+     2. Login using [[./installation-manual.org::#passwords][admin user credentials]].
+	- NOTE :: It is advised that the password is changed after the
+                 first login . For the steps for changing the password,
+                 follow the [[./installation-manual.org::#platform_password][link]].
+     3. Go to =Authentication and Authorization= section to activate
+	registered users.
+	- Select =Users= 
+	- Click on =user name=
+	- Change the password and share it with users. 
+	
 
 
 * Workflow of College Cloud Edition
