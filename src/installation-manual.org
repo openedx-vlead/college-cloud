@@ -219,7 +219,7 @@
    2. Login using [[Passwords][admin credentials]] .
           + NOTE :: It is advised that the password is changed after the
               first login . For the steps for changing the password,
-              follow the [[./installation-manual.org::#nagios_password][link]] .
+              follow the [[./installation-manual.org::#platform_password][link]] .
    3. Select the Lab you want to allow the students to use.
    4. In the Settings option at the top, Click =Advanced Settings=. A
       list of parameters will be displayed.
