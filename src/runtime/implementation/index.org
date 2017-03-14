@@ -1257,12 +1257,12 @@ FEEDBACK_URL = "http://feedback-kebana.base4.vlabs.ac.in"
 ** script
    - This is a command line utility which will take
      =<file_name>.tar.gz= file generated from the log collection
-     script [[#cc_logs][reference]] which contains feedbacks, usages and college
+     script [[./index.org::#logg_collection][reference]] which contains feedbacks, usages and college
      cloud details as json files.
    - Every single feedback form is a single json record
    - Every single usage is a single json record
    - College cloud details is a json record
-   - This utility uses REST APIs documented at [[#post_process_design][link]] to push
+   - This utility uses REST APIs documented at [[../../design/index.org::#post_process_design][link]] to push
      the json records into the elastic search database
    - Note :: To run this utility a machine with internet connection is
              required to push the analytics into elastic search database.
