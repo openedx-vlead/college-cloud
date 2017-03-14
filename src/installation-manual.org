@@ -86,7 +86,7 @@
   server and it would be the responsibility of the System
   Administrator to manage these passwords.
   
-*** Linux user Password
+*** Changing Linux user Password
     - Use =passwd= command to change the passwords of =vlabs= and
       =root=
       #+BEGIN_EXAMPLE
@@ -94,32 +94,29 @@
 
       root#passwd     # for change root user 
       #+END_EXAMPLE
-*** OpenVZ web panel user password
+*** Changing OpenVZ web panel user password
    :PROPERTIES:
    :CUSTOM_ID: OpenVZ
-   :END:    
-    
+   :END:   
     - Use the following command to change the OpenVZ web panel user
       password
     #+BEGIN_EXAMPLE
     sudo ruby /opt/ovz-web-panel/script/runner -e production 'user = User.find_by_login("admin"); user.password = "admin"; user.save(false)'
     #+END_EXAMPLE
-*** Nagios user password
+*** Changing Nagios user password
    :PROPERTIES:
    :CUSTOM_ID: nagios_password
    :END:    
-
     - Use the following command to change the Nagios user password
       password
     #+BEGIN_EXAMPLE
     sudo htpasswd -C /etc/nagios/passwd nagiosadmin
     #+END_EXAMPLE 
-*** Open edX platform admin user password
+*** Changing Open edX platform admin user password
     :PROPERTIES:
     :CUSTOM_ID: platform_password
     :END:    
-
-    To change the Open edX platform  admin( default) user password
+    Use the followingsteps to change the Open edX platform  admin( default) user password
      - Go to   =http://open-edx.vlabs.ac.in/admin.
      - Login using default [[./inallation-manual.org::#passwords][admin user and password]].
      - Follow the instructions detailed in [[https://openedx.atlassian.net/wiki/display/OpenOPS/Managing+OpenEdX+Tips+and+Tricks][Administration commands]].
