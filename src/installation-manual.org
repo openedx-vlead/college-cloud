@@ -228,23 +228,19 @@
    6. Click on =Save= button.
    
 ** Enhancing Performance
-     1. If an *Intel i7 processor and 16GB RAM machine/system* is being
-	used a maximum of 50-100 simultaneous users can access one lab
-	at a time.
-     2. It is adviced to have upto a maximum of 5 Labs running at any
-	given time.
-     3. The best choice would be start one lab at a time and have a
-	maximum of 10 labs running at any given instance.
+   1. If an *Intel i7 processor and 16GB RAM machine/system* is being used a maximum of 50-100 simultaneous users can access one lab at a time.
+   2. It is adviced to have upto a maximum of 5 Labs running at any given time.
+   3. The best choice would be start one lab at a time and have maximum of 10 labs running at any given instance.
 	
 ** Monitoring system resources
    [[https://www.nagios.org/][Nagios]] is used for monitoring systems resources such as load on the
    machine, RAM usage, Processes, etc.
-   - Use the link =http://<College-Cloud-Machine-IP>/nagios= .
-   - Use the Nagios [[./installation-manual.org::#passwords][default user credentials]] .
+   1. Use the link =http://<College-Cloud-Machine-IP>/nagios= .
+   2. Use the Nagios [[./installation-manual.org::#passwords][default user credentials]] .
 
-    + NOTE :: It is advised that the password is changed after the
-              first login . For the steps for changing the password,
-              follow the [[./installation-manual.org::#nagios_password][link]] .
+      + NOTE :: It is advised that the password is changed after the
+		first login . For the steps for changing the password,
+		follow the [[./installation-manual.org::#nagios_password][link]] .
 ** Instructions for Lab users		   
    College System Administrator/Workshop Coordinator should issue the
    following instructions -
@@ -253,7 +249,7 @@
       :CUSTOM_ID: dns-settings
       :END:    
       - Lab users can access the labs through LAN cable and also over
-	wireless. 
+        wireless.
       - LAN cable should be connected to the WiFi-router.
       - Once connected to the wireless or LAN, lab user should modify
 	the change DNS settings.
@@ -325,7 +321,7 @@
    Coordinators (Workshop coordinator/Nodal coordinator/Outreach
    coordinator) who have account in =outreach.vlabs.ac.in=  only, can 
     conduct the workshop using College Cloud Edition.
-   1. [[https://github.com/vlabs-workshops/admin/blob/master/src/index.org][Plan the workshop]] .
+   1. [[http://community.vlabs.ac.in/docs/workshop-plan/][Plan the workshop]] .
    2. Add workshop on [[http://outreach.vlabs.ac.in][Outreach Portal]].
       - Visit =http://outreach.vlabs.ac.in= .
       - [[http://community.vlabs.ac.in/docs/user-manuals/outreach-portal/#login_scenarios][Log on]] to Outreach Portal page.
