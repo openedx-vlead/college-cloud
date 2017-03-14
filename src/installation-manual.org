@@ -58,7 +58,7 @@
   4. Boot the machine from College Cloud Edition Hard Disk Drive.
   5. Please use [[./installation-manual.org::#passwords][default linux user credentials]] to login.
      + NOTE :: It is advised that the password is changed after the
-               first login . To change the password, follow the [[./installation-manual.org::#passwords][link]]
+               first login . To change the password, follow the [[./installation-manual.org::#Passwords][]]
 ** Launch Virtual Labs (Open edX) platform
  - Run the following command on terminal to run Virtual Labs on
     Open edX platform. This may take a few minutes to launch the
