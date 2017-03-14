@@ -229,12 +229,12 @@
    
 ** Enhancing Performance
      1. If an *Intel i7 processor and 16GB RAM machine/system* is being
-	 used a maximum of 50-100 simultaneous users can access one lab
-	 at a time.
+	used a maximum of 50-100 simultaneous users can access one lab
+	at a time.
      2. It is adviced to have upto a maximum of 5 Labs running at any
-	 given time.
+	given time.
      3. The best choice would be start one lab at a time and have a
-	 maximum of 10 labs running at any given instance.
+	maximum of 10 labs running at any given instance.
 	
 ** Monitoring system resources
    [[https://www.nagios.org/][Nagios]] is used for monitoring systems resources such as load on the
