@@ -400,11 +400,10 @@
         details
 	- Note :: Please note that registration of college cloud
                   specified in the above step(2) is one time job only.
-   3. Visti the URL - =http://<college-cloud-server-ip>/get_cc_mac_id=
-      to know the =mac address= of the college cloud and also please note this
+   3. Visit the URL - =http://<college-cloud-server-ip>/get_cc_mac_id=
+      to know the =mac address= of the college cloud and also please save this
       for the future reference.
-      - Note :: Obtained =Mac address= is useful when creating a offline workshop in
-                outreach portal for reference pelase visit link [[http://community.vlabs.ac.in/docs/user-manuals/outreach-portal/#sec-3-3-1][Link]]
+      - Note :: Obtained =Mac address= is useful for [[http://community.vlabs.ac.in/docs/user-manuals/outreach-portal/#sec-3-3-1][obtaining usage]] for offline workshops from outreach portal.
    4. Once the workshop is over , please ask System Administrator to
       run python script to get the logs. or [[./installation-manual.org::#run_script][check this]]
    5. Access the URL -
