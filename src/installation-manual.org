@@ -451,7 +451,7 @@
          workshops from Outreach Portal.
    + Collect and share logs [[./installation-manual::#manual_sharing][manually]] if internet connection is not
      available in the college.
-   + Use [[./installation-manual.org::#syncthing][Syncthing]] if internet connection is available in the college.
+   + OR Collect and share logs automatically using [[./installation-manual.org::#syncthing][Syncthing]] if internet connection is available in the college.
 
 
 * Changing College Cloud Machine
