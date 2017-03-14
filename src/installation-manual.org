@@ -311,6 +311,14 @@
 	- Click on =user name=
 	- Change the password and share it with users. 
 	
+** College Cloud UI 
+   College UI have the following -
+   + =Disciplines and Domains=  lists Labs Discipline wise.
+   + =Participating Institutes= lists Labs Institute wise.
+   + =All Labs= display the Lab Catalogue
+   + =FAQs=
+   + =Licensing=
+   + =Contact Us=
 
 * Workflow of College Cloud Edition
   :PROPERTIES:
