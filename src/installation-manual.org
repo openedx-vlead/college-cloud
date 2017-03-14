@@ -210,7 +210,7 @@
        color and running state.
 
 ** Enabling Labs
-   College Cloud Edition has 73 labs available across various
+   College Cloud Edition has 71 labs available across various
    disciplines and domains. It is adviced to have upto a maximum of 5
    Labs running at any given time. All other labs will be visible on
    Lab Catalogue.  To allow the students to use the Labs that were
