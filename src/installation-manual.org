@@ -138,6 +138,9 @@
    2. Access the URL - http://<college-cloud-server-ip>/cc_registration.
    3. Fill the details and click on Save button.
 
+  :PROPERTIES:
+  :CUSTOM_ID: registration
+  :END:
 ** Selecting Labs
    For selecting labs from the [[./labs-on-college-cloud/list-of-labs-in-college-cloud.org::#list-of-labs][total available labs]] on College Cloud
    Edition, follow the steps  listed below : 
@@ -389,18 +392,24 @@
     :PROPERTIES:
     :CUSTOM_ID: syncthing
     :END:      
-    =Syncthing= is a tool to send collected analytics to VLEAD central
-    repository.
-    
-    Internet is needed to College Cloud Edition to send the collected
-    analytics to VLEAD central repo. To do this, follow the below
-    steps.
+    [[https://syncthing.net/][Syncthing]] is a file synchronization tool which would be used to
+    send the collected analytics logs automatically to VLEAD Central
+    Repository. \\
+
+    Internet would be needed for using Syncthing to share the
+    collected analytics logs. Syncthing is already packaged and
+    configured as part of the Virtual Labs College Cloud Edition.  \\
+
+    The following steps should be used for sharing the logs using
+    Syncthing :
  
     1. Disconnect from Wi-Fi router.(Unplug LAN cable that is
        connected to Wi-Fi router).
-    2. Take Internet LAN cable and Connect this LAN cable to College
-       Cloud Server.
-    3. Log in as =vlabs= user
+    2. Connect a Internet LAN cable to College Cloud Server.
+    3. Login as [[./installation-manual.org::#passwords][vlabs user]] .
+          + NOTE :: It is advised that the password is changed after the
+              first login . For the steps for changing the password,
+              follow the [[./installation-manual.org::#nagios_password][link]] .
     4. Restart =network= service
        #+BEGIN_SRC 
        sudo service network restart
@@ -409,33 +418,43 @@
        #+BEGIN_SRC 
        $syncthing
        #+END_SRC
-** Analytics and Feedback : Workshop Coordinator
-*** No internet in Collge Cloud Edition
-   Please ask System Administrator for =<college-cloud-server-ip>=.
-   1. Open a web browser on a machine connected to college-cloud/
-      machine form which college-cloud was accessible.
-   2. Access the URL - =http://<college-cloud-server-ip>/cc_registration=
-      + Fill the details and click on =save= button to save the
-        details
-	- Note :: Please note that registration of college cloud
-                  specified in the above step(2) is one time job only.
-   3. Visit the URL - =http://<college-cloud-server-ip>/get_cc_mac_id=
-      to know the =mac address= of the college cloud and also please save this
-      for the future reference.
-      - Note :: Obtained =Mac address= is useful for [[http://community.vlabs.ac.in/docs/user-manuals/outreach-portal/#sec-3-3-1][obtaining usage]] for offline workshops from outreach portal.
-   4. Once the workshop is over , please ask System Administrator to
-      run python script to get the logs. or [[./installation-manual.org::#run_script][check this]]
-   5. Access the URL -
+
+    
+**** Manual Sharing
+    :PROPERTIES:
+    :CUSTOM_ID: manual_sharing
+    :END:      
+    If the college does not have internet connection, the collected
+    analytics logs can be manuall shared with Virtual Labs Central
+    Repository by following the below steps :
+    
+   +  Open a web browser on a machine connected to college-cloud
+      server. 
+   +  [[./installation-manual.org::#run_script][Run python script]] to collect analytics logs. 
+   +  Access the URL -
       =http://<college-cloud-server-ip>/college-cloud-data/=
-   6. Download the tar.gz file in the format
+   6. Download the tar.gz file which would be in the format 
       =<College-name-Date>.tar.gz=
-   7. Take downloaded file in pendrive and take a machine with
-      internet connection.
+   7. Copy the downloaded file to a pendrive 
+   8. Plugin your pendrive to a machine having internet connection. 
    8. Upload the file in your google drive and share it with
-      =engg@vlabs.ac.in=
-*** Having internet in College Cloud Edition
-    Please ask system administrator to run [[./installation-manual.org::#syncthing][syncthing]] in College
-    Cloud Server.
+      =engg@vlabs.ac.in=   
+
+** Analytics and Feedback : Workshop Coordinator
+   The workshop coordinator should follow the following steps to
+   collect and share analytics logs with Virtual Central Repository.
+   
+   + [[./installation-manual.org::#registration][Register]] to College Cloud Edition (if not already done)
+     Note :: 
+      1. Visit the URL - =http://<college-cloud-server-ip>/get_cc_mac_id= to know the MAC
+         address of the college cloud and save this for the future reference.   
+      2. The MAC address is useful for computing usage for offline
+         workshops from Outreach Portal.
+   + Collect and share logs [[./installation-manual::#manual_sharing][manually]] if internet connection is not
+     available in the College.
+   + Use [[./installation-manual.org::#syncthing][Syncthing]] if internet connection is available in the college.
+
+
 * Changing College Cloud Machine
   To change an already configured College Cloud server to a different
   machine, the below steps are to be followed by System Administrator
@@ -470,14 +489,14 @@
 *** Setup new machine as College Cloud Server
     System Administrator should follow the below steps to configure
     the new machine as College Cloud Server.
-    + Make sure that the machine meets the [[./installation-manual.org::#requirements][requirements]]
-    + [[./installation-manual.org::#cc-server][Configure College Cloud Server]]
-    + [[./installation-manual.org::#using-cc-server][Using College Cloud]]
-    + [[./installation-manual.org::#analytics-feedbacks][Collecting Analytics and Feedback]]
+    1. Make sure that the machine meets the [[./installation-manual.org::#requirements][requirements]] .
+    2. [[./installation-manual.org::#cc-server][Configure College Cloud Server]] .
+    3. [[./installation-manual.org::#using-cc-server][Using College Cloud]] .
+    4. [[./installation-manual.org::#analytics-feedbacks][Collecting Analytics and Feedback]] .
 ** Instructions for the  existing lab users 
    All lab users would need to follow the below steps to ensure
    smooth migration to the newly configured College Cloud server
-   - Follow the link  [[./installation-manual.org::#dns-settings][Changing DNS settings]]
+   - Follow the link  [[./installation-manual.org::#dns-settings][Changing DNS settings]] .
    
 * Proper shutdown of College Cloud Edition 
   College Cloud contains a Vagrant box which on direct shutdown can crash. 
