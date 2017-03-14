@@ -399,17 +399,18 @@
     collected analytics logs. Syncthing is already packaged and
     configured as part of the Virtual Labs College Cloud Edition.  \\
 
-    The following steps should be used for sharing the logs using
+    The following steps should be used for collecting and sharing the logs using
     Syncthing :
- 
-    1. Disconnect from Wi-Fi router.(Unplug LAN cable that is
+   
+    1. [[./installation-manual.org::#run_script][Run python script]] to collect analytics logs. 
+    2. Disconnect from Wi-Fi router.(Unplug LAN cable that is
        connected to Wi-Fi router).
-    2. Connect a Internet LAN cable to College Cloud Server.
-    3. Login as [[./installation-manual.org::#passwords][vlabs user]] .
+    3. Connect a Internet LAN cable to College Cloud Server.
+    4. Login as [[./installation-manual.org::#passwords][vlabs user]] .
           + NOTE :: It is advised that the password is changed after the
               first login . For the steps for changing the password,
               follow the [[./installation-manual.org::#nagios_password][link]] .
-    4. Restart =network= service
+    5. Restart =network= service
        #+BEGIN_SRC 
        sudo service network restart
        #+END_SRC
