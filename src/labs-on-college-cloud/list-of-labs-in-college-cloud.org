@@ -22,7 +22,6 @@
    + [[http://vlabs.ac.in/courses/course-v1:COE-Pune+EEE10+Anytime/about][Virtual Electrical Machine]]
    + [[http://vlabs.ac.in/courses/course-v1:IIT-Guwahati+ECE10+Anytime/about][Signals and Systems Laboratory]]
    + [[http://vlabs.ac.in/courses/course-v1:IIT-Guwahati+EIL-IITG+Anytime/about][Electronic Instrumentation Lab]] 
-   + [[http://vlabs.ac.in/courses/course-v1:IIT-Guwahati+VLSI-IITG+Anytime/about][Digital VLSI Design Virtual Lab]]
    
 ** Computer Science & Engineering
    + [[http://vlabs.ac.in/courses/course-v1:IIIT-Hyderabad+CSE04+Anytime/about][Problem Solving]]
@@ -76,8 +75,6 @@
    + [[https://vlabs.ac.in/courses/course-v1:Amrita-University+CBII-AU+Anytime/about][Cell biology Virtual Lab II]] 
    + [[https://vlabs.ac.in/courses/course-v1:Amrita-University+MBVII-AU+Anytime/about][Molecular Biology Virtual Lab II]]
    + [[https://vlabs.ac.in/courses/course-v1:COE-Pune+BIO16+Anytime/about][Biomedical and Signal Processing Laboratory]]
-   + [[https://vlabs.ac.in/courses/course-v1:IIT-Bombay+BIOTECH25+Anytime/about][Virtual Proteomics Lab]]
-
 ** Civil Engineering
    + [[https://vlabs.ac.in/courses/course-v1:IIIT-Hyderabad+EERC01+Anytime/about][Basic Engineering Mechanics and Strength of Materials]]
    + [[https://vlabs.ac.in/courses/course-v1:IIIT-Hyderabad+EERC03+Anytime/about][Hydraulics and Fluid Mechanics]]
