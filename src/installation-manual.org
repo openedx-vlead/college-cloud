@@ -215,6 +215,9 @@
   
    1. Visit  http://vlabs.ac.in:18010/ to open Studio of College Cloud Edition.
    2. Login using [[Passwords][admin credentials]] .
+          + NOTE :: It is advised that the password is changed after the
+              first login . For the steps for changing the password,
+              follow the [[./installation-manual.org::#nagios_password][link]] .
    3. Select the Lab you want to allow the students to use.
    4. In the Settings option at the top, Click =Advanced Settings=. A
       list of parameters will be displayed.
@@ -312,31 +315,30 @@
 	- Change the password and share it with users. 
 	
 
-
 * Workflow of College Cloud Edition
   :PROPERTIES:
   :CUSTOM_ID: cc-work-flow
   :END:      
 ** Workshop conducted by a Coordinator
    Coordinators (Workshop coordinator/Nodal coordinator/Outreach
-   coordinator) who has account in =outreach.vlabs.ac.in= , only those
-   can conduct the workshop using College Cloud Edition.
-   1. [[https://github.com/vlabs-workshops/admin/blob/master/src/index.org][Plan the workshop]]
+   coordinator) who have account in =outreach.vlabs.ac.in=  only, can 
+    conduct the workshop using College Cloud Edition.
+   1. [[https://github.com/vlabs-workshops/admin/blob/master/src/index.org][Plan the workshop]] .
    2. Add workshop on [[http://outreach.vlabs.ac.in][Outreach Portal]].
-      - visit =http://outreach.vlabs.ac.in=
-      - Log on to outreach portal page.
-      - Then, add workshop in outreach portal page.
-   3. Make sure the [[./installation-manual.org::#requirements][requirements]] are met by the college.
-   4. [[./installation-manual.org::#cc-server][Configure College Cloud Server]]
-   5. [[./installation-manual.org::#using-cc-server][Use College Cloud Editon for workshop]]
-   6. [[./installation-manual.org::#analytics-feedbacks][Collect Analytics and Feedback]]
+      - Visit =http://outreach.vlabs.ac.in= .
+      - [[http://community.vlabs.ac.in/docs/user-manuals/outreach-portal/#login_scenarios][Log on]] to Outreach Portal page.
+      - Then, [[http://community.vlabs.ac.in/docs/user-manuals/outreach-portal/#sec-3-2][add workshop]] in Outreach Portal page.
+   3. Make sure that the [[./installation-manual.org::#requirements][requirements]] are met by the college.
+   4. [[./installation-manual.org::#cc-server][Configure College Cloud Server]] .
+   5. [[./installation-manual.org::#using-cc-server][Use College Cloud Editon for workshop]] .
+   6. [[./installation-manual.org::#analytics-feedbacks][Collect Analytics and Feedback]] .
 ** Virtual Labs College Cloud Edition used by colleges as part of their curriculum
    System administrator has to follow the steps to conduct workshop as
    part of their college curriculum.
-   1. [[https://docs.google.com/forms/d/e/1FAIpQLSfN0XH0GvuLRiEs_g5RB2npD3Y_5qsvrE0pCOn2C2lyUJNHjA/viewform?embedded=true][Procure College Cloud]]
-   2. [[./installation-manual.org::#cc-server][Configure College Cloud Server]]
-   3. [[./installation-manual.org::#using-cc-server][Use College Cloud Edition for workshop]]
-   4. [[./installation-manual.org::#analytics-feedbacks][Collect Analytics and Feedback]]
+   1. [[https://docs.google.com/forms/d/e/1FAIpQLSfN0XH0GvuLRiEs_g5RB2npD3Y_5qsvrE0pCOn2C2lyUJNHjA/viewform?embedded=true][Procure College Cloud]] .
+   2. [[./installation-manual.org::#cc-server][Configure College Cloud Server]] .
+   3. [[./installation-manual.org::#using-cc-server][Use College Cloud Edition for workshop]] .
+   4. [[./installation-manual.org::#analytics-feedbacks][Collect Analytics and Feedback]] .
 * Analytics and Feedback
   :PROPERTIES:
   :CUSTOM_ID: analytics-feedbacks
@@ -344,29 +346,46 @@
 ** Analytics and Feedback : System Administrator
   :PROPERTIES:
   :CUSTOM_ID: run_script
-  :END:    
-   There are two ways to get the analytics.
-   1. Using CronJob
-   2. By running the python script
+  :END:   
+   
+  Analytics (workshop usages, feedback information, user records) can
+  be obtained post College Cloud Edition workshop by collecting logs
+  and sharing them with Virtual Labs Central Repository. 
+  
+*** Collecting Analytics logs  
+    Analytics logs can be collected using one of the following ways :
+    1. Using CronJob.
+    2. Running the python script.
 
-*** Using CronJob 
-    - Python scripts runs every day at 18:00 to get analytics of the
-      workshop.
-*** By running the python script
-   These steps would be performed by System Administrator
-   - Login as =vlabs= user. 
-     + For =vlabs= user password please check [[./installation-manual.org::#passwords][this link]]
-   - Change directory to =log_collection=
-     #+BEGIN_SRC 
-     cd log_collection
-     #+END_SRC
-   - Run the python script =get_logs.py= to collect the logs
-     #+BEGIN_SRC 
-     python get_logs.py            #to get date wise dump
-     python get_logs.py full       #to get full dump
-     #+END_SRC
+**** Using CronJob 
+    - Python scripts has been programmed to run eveyday at 04:00
+      PM. This will collect analytics automatically.
+      
+**** Running the python script
+    The System Administrator should perform the following steps to
+    collect the analytics as and when requried. 
+   1. Login as [[./installation-manual.org::#passwords][vlabs user]] .
+          + NOTE :: It is advised that the password is changed after the
+              first login . For the steps for changing the password,
+              follow the [[./installation-manual.org::#nagios_password][link]] .
     
-*** Run Syncthing
+   2. Change directory to =log_collection=
+      #+BEGIN_SRC 
+      cd log_collection
+      #+END_SRC
+   3. Run the python script =get_logs.py= to collect the logs
+      #+BEGIN_SRC 
+      python get_logs.py            #to get date wise dump
+      python get_logs.py full       #to get full dump
+      #+END_SRC
+    
+
+*** Sharing Analytics logs with Virtual Labs Central Engineering Division
+    Analytics logs can be shared with Virtual Labs Central Repository
+    by one of the following ways :
+    1. Syncthing 
+    2. Manual Sharing 
+**** Syncthing
     :PROPERTIES:
     :CUSTOM_ID: syncthing
     :END:      
