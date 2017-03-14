@@ -9,15 +9,16 @@
 * Introduction
   This manual details the configuration/workflow process to be
   followed for Virtual Labs College Cloud Edition. The College Cloud
-  machine/server  will be running without GUI. GUI has been disabled for
-  better performance results.
-  + College Cloud Edition :: Virtual Labs College Cloud Edition is the
-       Portable-Edition for Virtual Labs. It offers the offline
-       version of Virtual labs, experiments and theoretical
-       content. This edition addresses the lack of internet access or
-       poor internet connectivity across different
-       institutes/colleges. It results in a very cost-effective
-       Learning Management System.
+  machine/server will be running without GUI. GUI has been disabled
+  for better performance results.  
+
+  Virtual Labs College Cloud Edition
+  is the Portable-Edition for Virtual Labs. It offers the offline
+  version of Virtual labs, experiments and theoretical content. This
+  edition addresses the lack of internet access or poor internet
+  connectivity across different institutes/colleges. It results in a
+  very cost-effective Learning Management System.
+
 * Requirements
   :PROPERTIES:
   :CUSTOM_ID: requirements
@@ -131,35 +132,34 @@
 
   College System Administrator/Workshop coordinator should follow the
   steps for enabling students to use labs from College Cloud.
-** First time registration in College Cloud 
-   We need your information to access and analyze logs. College has to
-   register with College Cloud Edition by giving very basic
-   information. Please follow the steps before starting to use College
-   Cloud Edition.  (Please note that this is one time process and need
-   not to be repeated after)
+** Registration (first time only) 
+   College would need to register with College Cloud Edition before
+   the first use For registration please follow the steps follwing
+   steps -
+
    
    + Open a web browser on a machine connected to college-cloud/
      machine form which college-cloud was accessible.
    + Access the URL - http://<college-cloud-server-ip>/cc_registration
    + Fill the details and click on save button to save the details
 
-
-** List of labs hosted on College Cloud Edition
-   - [[./labs-on-college-cloud/list-of-labs-in-college-cloud.org::#list-of-labs][Labs on College Cloud]]
-** Selecting labs
+** Selecting Labs
+   For selecting labs from the [[./labs-on-college-cloud/list-of-labs-in-college-cloud.org::#list-of-labs][total available labs]] on College Cloud
+   Edition, follow the steps 
    - Use the link =http://<College-Cloud-Machine-IP>:3000=
    - This would prompt for the user name and password. Please provide
      [[./installation-manual.org::#passwords][default user credentials]]. 
-    + NOTE :: It is advised that the password is changed after the
-              first login . For the steps for changing the password,
-              follow the [[./installation-manual.org::#OpenVZ][link]]
-
+    + NOTE :: 
+      + It is advised that the password is changed after the first
+        login . For the steps for changing the password, follow the
+        [[./installation-manual.org::#OpenVZ][link]]
+      + Please visit the [[Enhancing Performance][Enhance Performance]] Section for ensuring
+        consistent performance.
 
    [[https://openvz.org/Control_panels#OVZ_Web_Panel][OpenVZ web panel]] is for managing Virtual Labs running on localhost
    (College Cloud). Each lab has one OpenVZ container. *By default,
-   all lab containers would be in stopped state*. However, the server
-   nodes would be in running state( This needs to be kept in the
-   running state).
+   all lab containers would be in stopped state*. Please ensure that
+   the status of the server nodes is always 'Running'.
 
    - Server nodes are 
      |------+--------------------------------+------+---------|
@@ -189,35 +189,44 @@
    - Once logged into the web panel: 
 
      + Look for =localhost= on left side of the panel.
-     +  Click on =localhost=.
+     + Click on =localhost=.
      + A list all labs with their respective OpenVZ container
        status(stopped/running) would be visible.
 
-   - WARNING :: *Please do not tampered with with the college cloud
+   - WARNING :: *Please do not tamper  with the college cloud
                 setup settings.*
 
 ** Starting Lab containers
-    1. Go to the platform http://open-edx.vlabs.ac.in
-    2. Select the course/lab to be included in the workshop. Please
+    Step 1. Go to the platform http://open-edx.vlabs.ac.in
+    Step 2. Select the course/lab to be included in the workshop. Please
        make a note of the course/lab name.
-    3. Go to =http://<College-Cloud-Machine-IP>:3000= 
-    4. Sign into =OpenVZ web panel=. For credentials, please follow
+    Step 3. Go to =http://<College-Cloud-Machine-IP>:3000= 
+    Step 4. Sign into =OpenVZ web panel=. For credentials, please follow
        the [[./installation-manual.org::#passwords][passwords]]
-    5. Click on =localhost= located at left side of the panel.
-    6. Search for the lab name that has been selected in step 2.
-    7. Choose the selected lab by clicking on CTID (example.213) and
+    Step 5. Click on =localhost= located at left side of the panel.
+    Step 6. Search for the lab name that has been selected in step 2.
+    Step 7. Choose the selected lab by clicking on CTID (example.213) and
        look for =change state= button on the panel.
-    8. Select =start= and wait for about 1-2 minutes. 
-    9. Observe the change of color of the selected course/lab in green
+    Step 8. Select =start= and wait for about 1-2 minutes. 
+    Step 9. Observe the change of color of the selected course/lab in green
        color and running state.
-** Enabling labs on College Cloud Edition
-   Text to be added 
-** Enhancing Performance
-    + If a server grade machine/system *(>=32 GB RAM,
-      Intel Xenon processor)* is being used all lab containers that
-      are stopped cane be started.
 
-    + If an *Intel i7 processor and 16GB RAM machine/system* is being
+** Enabling Labs
+   College Cloud Edition has 73 labs available across various
+   disciplines and domains. It is adviced to have upto a maximum of 5
+   Labs running at any given time. All other labs will be visible on
+   Lab Catalogue.  To allow the students to use the Labs that were
+   [[Starting Lab containers][started]] on the OpenVZ web panel, follow the steps given below -
+  
+   + Step 1. Visit  http://vlabs.ac.in:18010/ to open Studio of College Cloud Edition.
+   + Step 2. Login usin [[Passwords][admin credentials]]
+   + Step 3. Select the course you want to enable for students to Enrol to.
+   + Step 4. In Settings option, Click =Advanced Settings=. A list of parameters will be displayed 
+   + Step 5. Look for =Invitation Only= option and set it to =false=
+   + Step 6. Click on =Save= button.
+   
+** Enhancing Performance
+     + If an *Intel i7 processor and 16GB RAM machine/system* is being
       used a maximum of 50-100 simultaneous users can access one lab at a time.
 
       - It is advised to only start labs that are needed for the
@@ -306,6 +315,7 @@
       + Click on =user name=
       + Then change password of user 
 	- Very small link there in first section of the page
+
 
 * Workflow of College Cloud Edition
   :PROPERTIES:
