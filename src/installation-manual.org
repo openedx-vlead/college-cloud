@@ -31,14 +31,14 @@
       SMPS : 600 W 
       CPUs: 8
       MotherBoard wattage: 77 W 
-      500 GB SATA   ( Hard Disk Drive - HDD)
      #+END_EXAMPLE
-  2. WiFi Router
-  3. Computer Lab with at least 30-50 Systems/Desktops.
-  4. Network Switch Input, from where all the labs would obtain DHCP
+  2. 500 GB SATA  ( Hard Disk Drive - HDD)- College Cloud Edition
+  3. WiFi Router
+  4. Computer Lab with at least 30-50 Systems/Desktops.
+  5. Network Switch Input, from where all the labs would obtain DHCP
      IP) to Computer Lab machines/Desktops. This would make College
      Cloud accessible over the LAN network providing better results.
-  5. System Administrator with basic knowledge of CentOS operating systems and
+  6. System Administrator with basic knowledge of CentOS operating systems and
      networking.
     
 * Configuring College Cloud Server
@@ -134,7 +134,13 @@
    
    1. Open a web browser on a machine connected to college-cloud
       server.
-   2. Access the URL - http://<college-cloud-server-ip>/cc_registration.
+   2. Access the URL -
+      http://<college-cloud-server-ip>/cc_registration.
+      + For *College Cloud server ip*, Run the following command on
+        terminal of College Cloud server
+	#+BEGIN_SRC 
+	ifconfig br0
+	#+END_SRC
    3. Fill the details and click on Save button.
 
   :PROPERTIES:
@@ -215,11 +221,12 @@
    Lab Catalogue.  To allow the students to use the Labs that were
    [[Starting Lab containers][started]] on the OpenVZ web panel, follow the steps given below -
   
-   1. Visit  http://vlabs.ac.in:18010/ to open Studio of College Cloud Edition.
+   1. Visit http://vlabs.ac.in:18010/ to open Studio of College Cloud
+      Edition.
    2. Login using [[Passwords][admin credentials]] .
-          + NOTE :: It is advised that the password is changed after the
-              first login . For the steps for changing the password,
-              follow the [[./installation-manual.org::#platform_password][link]] .
+          + NOTE :: It is advised that the password is changed after
+                    the first login . For the steps for changing the
+                    password, follow the [[./installation-manual.org::#platform_password][link]] .
    3. Select the Lab you want to allow the students to use.
    4. In the Settings option at the top, Click =Advanced Settings=. A
       list of parameters will be displayed.
@@ -227,9 +234,13 @@
    6. Click on =Save= button.
    
 ** Enhancing Performance
-   1. If an *Intel i7 processor and 16GB RAM machine/system* is being used a maximum of 50-100 simultaneous users can access one lab at a time.
-   2. It is adviced to have upto a maximum of 5 Labs running at any given time.
-   3. The best choice would be start one lab at a time and have maximum of 10 labs running at any given instance.
+   1. If an *Intel i7 processor and 16GB RAM machine/system* is being
+      used a maximum of 50-100 simultaneous users can access one lab
+      at a time.
+   2. It is adviced to have upto a maximum of 5 Labs running at any
+      given time.
+   3. The best choice would be start one lab at a time and have
+      maximum of 10 labs running at any given instance.
 	
 ** Monitoring system resources
    [[https://www.nagios.org/][Nagios]] is used for monitoring systems resources such as load on the
@@ -363,67 +374,44 @@
     2. Running the python script.
 
 **** Using CronJob 
-    - Python scripts has been programmed to run eveyday at 04:00
+    - Python scripts has been programmed to run everyday at 06:00
       PM. This will collect analytics automatically.
       
 **** Running the python script
     The System Administrator should perform the following steps to
     collect the analytics as and when requried. 
    1. Login as [[./installation-manual.org::#passwords][vlabs user]] .
-          + NOTE :: It is advised that the password is changed after the
-              first login . For the steps for changing the password,
-              follow the [[./installation-manual.org::#nagios_password][link]] .
+      + NOTE :: It is advised that the password is changed after the
+          first login . For the steps for changing the password,
+          follow the [[./installation-manual.org::#nagios_password][link]] .
     
    2. Change directory to =log_collection=
       #+BEGIN_SRC 
       cd log_collection
       #+END_SRC
-   3. Run the python script =get_logs.py= to collect the logs
+   3. If there is any network proxies in the network,then do the
+      following steps
+      #+BEGIN_EXAMPLE
+      unset http_proxy
+      unset https_proxy      
+      #+END_EXAMPLE
+      
+   4. Run the python script =get_logs.py= to collect the logs
       #+BEGIN_SRC 
       python get_logs.py            #to get date wise dump
       python get_logs.py full       #to get full dump
       #+END_SRC
-    
-
+   5. Logs(Collected logs will be saved in
+      =/var/www/college-cloud-data/=
+   6. Once the logs are connected, [[#share][share]] that logs to VLEAD team   
 *** Sharing Analytics logs with Virtual Labs Central Engineering Division
+    :PROPERTIES:
+    :CUSTOM_ID: share
+    :END:      
     Analytics logs can be shared with Virtual Labs Central Repository
     by one of the following ways :
-    1. Syncthing 
-    2. Manual Sharing 
-**** Syncthing
-    :PROPERTIES:
-    :CUSTOM_ID: syncthing
-    :END:      
-    [[https://syncthing.net/][Syncthing]] is a file synchronization tool which would be used to
-    send the collected analytics logs automatically to VLEAD Central
-    Repository. \\
-
-    Internet would be needed for using Syncthing to share the
-    collected analytics logs. Syncthing is already packaged and
-    configured as part of the Virtual Labs College Cloud Edition.  \\
-
-    The following steps should be used for collecting and sharing the logs using
-    Syncthing :
-   
-    1. [[./installation-manual.org::#run_script][Run python script]] to collect analytics logs. 
-    2. Disconnect from Wi-Fi router.(Unplug LAN cable that is
-       connected to Wi-Fi router).
-    3. Connect a Internet LAN cable to College Cloud Server.
-    4. Login as [[./installation-manual.org::#passwords][vlabs user]] .
-          + NOTE :: It is advised that the password is changed after the
-              first login . For the steps for changing the password,
-              follow the [[./installation-manual.org::#nagios_password][link]] .
-    5. Restart =network= service
-       #+BEGIN_SRC 
-       sudo service network restart
-       #+END_SRC
-    5. Fire the following command on terminal
-       #+BEGIN_SRC 
-       $syncthing
-       #+END_SRC
-    6. Then follow the below steps
-       - [[./syncthing/index.org::#webgui][Access the webGUI]]
-       - [[./syncthing/index.org::#share_files][Share Logs/analytics to VLEAD team]]
+    1. [[#manual_sharing][Manual Sharing]] 
+    2. [[#syncthing][Syncthing]]
 **** Manual Sharing
     :PROPERTIES:
     :CUSTOM_ID: manual_sharing
@@ -432,17 +420,93 @@
     analytics logs can be manuall shared with Virtual Labs Central
     Repository by following the below steps :
     
-   +  Open a web browser on a machine connected to college-cloud
+   1. Open a web browser on a machine connected to college-cloud
       server. 
-   +  [[./installation-manual.org::#run_script][Run python script]] to collect analytics logs. 
-   +  Access the URL -
+   2. [[./installation-manual.org::#run_script][Run python script]] to collect analytics logs. 
+   3. Access the URL -
       =http://<college-cloud-server-ip>/college-cloud-data/=
-   6. Download the tar.gz file which would be in the format 
+      + For *College Cloud server ip*, Run the following command on
+         terminal of College Cloud server
+	 #+BEGIN_SRC 
+	 ifconfig br0
+	 #+END_SRC
+   4. Download the tar.gz file which would be in the format 
       =<College-name-Date>.tar.gz=
-   7. Copy the downloaded file to a pendrive 
-   8. Plugin your pendrive to a machine having internet connection. 
-   8. Upload the file in your google drive and share it with
+   5. Copy the downloaded file to a pendrive 
+   6. Plugin your pendrive to a machine having internet connection. 
+   7. Upload the file in your google drive and share it with
       =engg@vlabs.ac.in=   
+**** Syncthing
+    :PROPERTIES:
+    :CUSTOM_ID: syncthing
+    :END:      
+    [[https://syncthing.net/][Syncthing]] is a file synchronization tool which would be used to
+    send the collected analytics logs automatically to VLEAD Central
+    Repository.
+
+    Internet would be needed for using Syncthing to share the
+    collected analytics logs. Syncthing is already packaged and
+    configured as part of the Virtual Labs College Cloud Edition. 
+
+    The following steps should be used for collecting and sharing the
+    logs using Syncthing :
+   
+    1. [[./installation-manual.org::#run_script][Run python script]] to collect analytics logs. 
+    2. Disconnect from Wi-Fi router.(Unplug LAN cable that is
+       connected to Wi-Fi router).
+    3. Connect a Internet LAN cable to College Cloud Server.
+    4. Login as [[./installation-manual.org::#passwords][vlabs user]] .
+       + NOTE :: It is advised that the password is changed after the
+           first login . For the steps for changing the password,
+           follow the [[./installation-manual.org::#nagios_password][link]] .
+    5. Restart =network= service
+       #+BEGIN_SRC 
+       sudo service network restart
+       #+END_SRC
+    6. Note down the <college-cloud-server-ip> by using the following
+       command
+       :PROPERTIES:
+       :CUSTOM_ID: br0
+       :END:             
+       #+BEGIN_SRC 
+       ifconfig br0
+       #+END_SRC
+       Note down ip address
+    7. Set Proxy in =~/.bashrc= if network uses any proxy
+       + Open the file
+         #+BEGIN_SRC 
+         nano ~/.bashrc
+         #+END_SRC
+       + Comment following lines
+	 #+BEGIN_EXAMPLE
+	 #export http_proxy="http://proxy.iiit.ac.in:8080" 
+	 #export https_proxy="http://proxy.iiit.ac.in:8080" 
+	 #+END_EXAMPLE
+       + Add network proxy lines at the end of the file =~/.bashrc=.
+	 #+BEGIN_EXAMPLE
+	 export http_proxy="http://your.proxy.domain.ac.in:8080/"
+	 export https_proxy="http://your.proxy.domain.ac.in:8080/"
+	 #+END_EXAMPLE
+       + Run source
+	 #+BEGIN_SRC 
+	 source ~/.bashrc
+	 #+END_SRC
+    8. Fire the following command on terminal
+       #+BEGIN_SRC 
+       $syncthing
+       #+END_SRC
+    9. Then follow the below steps
+       + Open a browser
+       + Access the http://<college-cloud-server-ip>:8384 
+	 [[#br0][Click here]] to know the college-cloud-server-ip
+       + Login with following credentials
+	 + User Name :: vlabs
+	 + Password :: vlabs123
+    10. Delete all folders that are not related to your workshop
+    11. Share the =/var/www/html/college-cloud-data= directory by
+        adding folder with *VLEAD-server*.
+	[[./syncthing/index.org::#share_files][Check this link]] for sharing collected logs to VLEAD-server
+        using syncthing.
 
 ** Analytics and Feedback : Workshop Coordinator
    The workshop coordinator should follow the following steps to
@@ -458,7 +522,8 @@
          workshops from Outreach Portal.
    2. Collect and share logs [[./installation-manual.org::#manual_sharing][manually]] if internet connection is not
       available in the college.
-   3. OR Collect and share logs automatically using [[./installation-manual.org::#syncthing][Syncthing]] if internet connection is available in the college.
+   3. OR Collect and share logs automatically using [[./installation-manual.org::#syncthing][Syncthing]] if
+      internet connection is available in the college.
 
 
 * Changing College Cloud Machine
@@ -489,7 +554,7 @@
      #+END_EXAMPLE
   6. Shutdown the College Cloud server.
      #+BEGIN_SRC 
-     shutdown -h now
+     sudo shutdown -h now
      #+END_SRC
   7. Remove the Virtual Labs College Cloud Edition Hard Disk Drive.
 *** Setup new machine as College Cloud Server
@@ -518,9 +583,11 @@
      #+END_SRC
   3. Shutdown the College Cloud server.  
      #+BEGIN_SRC 
-     shutdown -h now
+     sudo shutdown -h now
      #+END_SRC
-
+* Clone Hard Disk( College Cloud Edition)
+  To create multiple copies of College Cloud Edition, Follow the steps
+  at [[./clone/index.org][this link]]
 * Support  
   - Get help with Virtual Labs College Cloud Edition by 
     1. Sending an email to =support@vlabs.ac.in= 

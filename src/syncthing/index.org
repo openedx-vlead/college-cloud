@@ -97,10 +97,12 @@ Save and close the file.
     :PROPERTIES:
     :CUSTOM_ID: webgui
     :END:      
- - Open your browser and log into your system, Syncthing interfaces by visiting their public IP addresses and port 8080
+ - Open your browser and log into your system, Syncthing interfaces by
+   visiting their public IP addresses and port 8080
 #+BEGIN_EXAMPLE
 http://<College-cloud-server-IP>:8384
 #+END_EXAMPLE
+
 * How to connect =syncthing= application between client and server?
  -  *Step1* On the *VLEAD-Server*, open the Syncthing GUI and click on the gear button and select Settings -> Show ID on the top right corner.
  -  *Step2* Copy the *VLEAD-Server ID* WebGUI, and go to the another system *(College-Cloud)* WebGUI window, click on the *Add Device* on the right side.
