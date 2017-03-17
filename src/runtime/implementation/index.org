@@ -1496,8 +1496,39 @@ if __name__ == "__main__":
 #+END_SRC
 
 #+BEGIN_SRC python :tangle log_collection/get_logs.py :eval no :noweb yes
-<<get_logs>>  
+<<import_get_logs>>  
 #+END_SRC
+
+#+BEGIN_SRC python :tangle log_collection/get_logs.py :eval no :noweb yes
+<<set_dir_structure>>  
+#+END_SRC
+
+#+BEGIN_SRC python :tangle log_collection/get_logs.py :eval no :noweb yes
+<<get_feedback>>  
+#+END_SRC
+
+#+BEGIN_SRC python :tangle log_collection/get_logs.py :eval no :noweb yes
+<<get_usage>>  
+#+END_SRC
+
+#+BEGIN_SRC python :tangle log_collection/get_logs.py :eval no :noweb yes
+<<get_user_logs>>  
+#+END_SRC
+
+
+#+BEGIN_SRC python :tangle log_collection/get_logs.py :eval no :noweb yes
+<<date_wise_dump>>  
+#+END_SRC
+
+
+#+BEGIN_SRC python :tangle log_collection/get_logs.py :eval no :noweb yes
+<<full_dump>>  
+#+END_SRC
+
+#+BEGIN_SRC python :tangle log_collection/get_logs.py :eval no :noweb yes
+<<make_tarfile>>  
+#+END_SRC
+
 
 #+BEGIN_SRC python :tangle post_process_config.py :eval no :noweb yes
 <<post_process_config>>
