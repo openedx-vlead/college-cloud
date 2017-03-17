@@ -81,16 +81,6 @@
 
 		 Static IP(10.2.57.63) is to be assigned to
                  Config-server container.
-
-  - DNS service :: Runs in separate container on localhost. This
-                   service will be used by Wi-Fi router for name
-                   resolution( To map IP with FQDN).
-		   
-		   DNS service will be configured using ansible
-                   playbooks from config-server. Use =public_dns.yml=
-                   playbook to configure DNS service
-		   
-		   Static IP :: 10.2.57.64
   - Nagios :: Nagios is a monitoring tool. Job of the nagios in this
               setup is to monitor system resources such as RAM,
               Processes,etc.

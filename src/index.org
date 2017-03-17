@@ -36,7 +36,7 @@
 * Installation manual 
   [[./installation-manual.org][Installation Manual]]
 * Steps for Cloning College Cloud Edition
-  [[./clone][Steps to clone College Cloud Edition]]
+  [[./clone/index.org][Steps to clone College Cloud Edition]]
 * Proposed and changed designed plans
   [[https://github.com/openedx-vlead/portable-media/blob/master/src/meeting-minutes.org#proposed-and-changed-designed-plans][Design plans]]
 * SyncThing 
