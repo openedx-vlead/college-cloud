@@ -1,0 +1,77 @@
+#+TITLE: Steps for Cloning College Cloud Edition
+#+AUTHOR: VLEAD
+#+PROPERTY: results output
+#+PROPERTY: exports code
+#+SETUPFILE: ../org-templates/level-1.org
+#+options: ^:nil
+#+LATEX: Literal LaTeX code for export
+
+* Introduction
+  This document provides steps to create a copy of original College
+  Cloud Edition ( Hard Disk).
+
+* Requirements
+  1. A machine should have 
+     + Any Linux based Operating system running on it
+     + Good RAM ( At least 8GB RAM)
+     + Good Processor ( At least i5 )
+     + 3 SATA ports on mother board
+  2. College Cloud Edition( Master copy that VLEAD-Hyderabad provided).
+  3. A new Hard Disk Drive (HDD At least 500 GB).
+* Steps 
+  1. Note down the *Serial numbers* of both the HDDs( master and New).
+  2. Attach the master copy and new HDD to the machine using SATA and
+     Power cables.
+  3. Boot the machine from the HDD which has linux based Operating
+     Systems( Not from Master copy).
+
+** Steps for CentOS Operating System 
+   1. Login to the machine 
+   2. Go to *Applications*
+   3. Select *System tools*
+   4. Select *Disk utility*
+   5. Disk utility window will open
+   6. On Disk utility window, see the available disk on the left
+      side.
+   7. Navigate and understand the HDD details on the right side.
+   8. Based on serial numbers,care fully note down device names
+      (such as =/dev/sdb=, =/dev/sdd=,etc of the master copy and new
+      HDD.
+   9. Open a terminal
+   10. Login as root account
+   11. Run the following command.
+       Let say, master HDD device name is =/dev/sdc/= and new HDD
+       device name is =/dev/sdd/=
+	 
+       #+BEGIN_EXAMPLE
+       dd if=/dev/sdc of=/dev/sdd
+       #+END_EXAMPLE
+   12. This copying may take several hours ( may be 4-9 hours depends
+       on System Configuration). So, run the above command while
+       leaving from office/college in the evening. Come back in the
+       morning, Cloned HDD would be ready for you.
+
+** Debian/Ubuntu Operating System
+   1. Login to the machine 
+   2. Press Window button(left to left Alt key)
+   3. Type *disks* in search space
+   4. Click on *Disks* icon
+   5. On Disks window, see the available disk on the left
+      side.
+   6. Navigate and understand the HDD details on the right side.
+   7. Based on serial numbers,care fully note down device names
+      (such as =/dev/sdb=, =/dev/sdd=,etc of the master copy and new
+      HDD.
+   8. Open a terminal
+   9. Login as root account
+   10. Run the following command.
+       Let say, master HDD device name is =/dev/sdc/= and new HDD
+       device name is =/dev/sdd/=
+	 
+       #+BEGIN_EXAMPLE
+       dd if=/dev/sdc of=/dev/sdd
+       #+END_EXAMPLE
+   12. This copying may take several hours ( may be 4-9 hours depends
+       on System Configuration). So, run the above command while
+       leaving from office/college in the evening. Come back in the
+       morning, Cloned HDD would be ready for you.

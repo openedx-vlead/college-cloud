@@ -498,7 +498,7 @@
     9. Then follow the below steps
        + Open a browser
        + Access the http://<college-cloud-server-ip>:8384 
-	 [[#br0][Click here]] to know the college-cloud-server-ip
+	 [[./installation-manual.org::#br0][Click here]] to know the college-cloud-server-ip
        + Login with following credentials
 	 + User Name :: vlabs
 	 + Password :: vlabs123
@@ -524,7 +524,6 @@
       available in the college.
    3. OR Collect and share logs automatically using [[./installation-manual.org::#syncthing][Syncthing]] if
       internet connection is available in the college.
-
 
 * Changing College Cloud Machine
   To change an already configured College Cloud server to a different
