@@ -594,10 +594,21 @@ ctid_feedback = "278"
 
    Full logs will only be taken if requested. By default, date wise
    logs will be uploaded by user.
-#+NAME: get_logs
-#+BEGIN_SRC python
-#!/usr/bin/python
 
+** Import libraries 
+    Following libraries are used in the program. 
+    + requests :: to make HTTP request call and response handling
+    + os :: to fire system commands 
+    + datetime :: to fetch date and time
+    + json :: to operate on json files and data
+    + logging :: to log events 
+    + tarfile :: to work on tarfiles compression
+    + variables :: a user defined custom file to have all variables
+                   defined and used.
+#+NAME: import_get_logs
+#+BEGIN_SRC python
+
+#!/usr/bin/python
 import requests
 import os
 import datetime
@@ -608,12 +619,34 @@ import logging
 import tarfile 
 from variables import *
 
+#+END_SRC
+
+** set_dir_strucutre(<directory strucutre in string format>)
+   + Function creates the directory structure requried to save logs collected. 
+   + A common directory strucutre is ensured using this function.
+   + Logs a DEBUG message "Directory structure already exists" in
+     case structure exists.
+   + Creates a strucutre if not found.
+
+#+NAME: set_dir_structure
+#+BEGIN_SRC python
 def set_dir_structure(dir_str):
 	try:
 		os.makedirs(dir_str)
 		logging.info("Directory structure with path  was created")
 	except Exception, err:
 		logging.debug("Directory structure already exists")
+
+#+END_SRC
+
+
+** get_feedback(<url_string>, <filename in which the dump is to be saved>)
+   + This function talks to the feedback service and dumps the reponse records inside the file.
+   + Param 1 = url of feedback service to fetch records
+   + Param 2 = name of the file in which the dump is to be saved.
+   
+#+NAME: get_feedback 
+#+BEGIN_SRC python
 
 def get_feedback(url, dump_file):
 	try:
@@ -629,7 +662,17 @@ def get_feedback(url, dump_file):
 	except Exception: 	
 		logging.error("Unable to take feedback dump of specific date " )
 
+#+END_SRC
 
+** get_usage(<url_string>, <filename in which the dump is to be saved>)
+   + This function will communicate with elasticsearch database and
+     returns the usage records for specific date.
+   + Param 1 :: url of elasticsearch server.
+   + Param 2 :: Query to be passed as payload.
+   + Param 2 :: the file in which the obtained dump is to be saved.
+
+#+NAME: get_usage
+#+BEGIN_SRC python
 def get_usage(url, payload, dump_file):
 	try:
 		res = requests.get(url, data = json.dumps(payload))
@@ -646,7 +689,18 @@ def get_usage(url, payload, dump_file):
 		logging.error("Unable to take dump for elasticsearch ")
 	 
 
+#+END_SRC
 
+** get_user_logs(<vagrant_dir_path>, <script directory path>)
+   + This function talks to Open edX database sitting inside the vagrant box using 
+   + It fetches the records of user profiles and saves it in .sql file 
+   + Param 1 :: the path of vagrant box directory to change the
+                current directory to vagrant box directory.
+   + Param 2 :: the path of script directory to change location back
+                to the home of script.
+
+#+NAME: get_user_logs
+#+BEGIN_SRC python
 def get_user_logs(vagrant_dir, script_dir):
 	try:
 		os.chdir(vagrant_dir)
@@ -660,7 +714,18 @@ def get_user_logs(vagrant_dir, script_dir):
 	except Exception, err:
 		logging.error("Unable to take data from edX database")
 
+#+END_SRC
 
+
+** date_wise_dump()
+   + This function will get all logs date wise, i.e the date on which
+     the script is executed.
+   + Parameters :: Does not expect any parameter
+   + It call all other supporting functions required to collect user
+     logs, feedback logs, and usage logs.
+
+#+NAME: date_wise_dump
+#+BEGIN_SRC python
 def date_wise_dump():
 	set_dir_structure(dir_str)
 	set_dir_structure(workshop_folder)
@@ -670,11 +735,16 @@ def date_wise_dump():
         os.system('sudo cp'+ " " + config_file_name + " " + workshop_folder)
 	make_tarfile(datewise_dumpfile, workshop_folder)
 
+#+END_SRC
 
+** full_dump()
+   + This function will fetch all records (usages, feedbacks, and user logs)
+   + Parameters :: Does not expect any paramters
+   + Must be called when you need complete dump set from the day
+     college cloud was installed.
 
-
-
-
+#+NAME: full_dump
+#+BEGIN_SRC python
 def full_dump():
 	set_dir_structure(dir_str)
         set_dir_structure(workshop_folder)
@@ -689,7 +759,16 @@ def full_dump():
 	make_tarfile(full_dumpfile, full_dump_location)
 
 
+#+END_SRC
 
+** make_tarfile(<output filename>, <source directory>)
+   + This function will take the directory and using the tarball
+     library of python converts and compress into .tar.gz format. 
+   + Param 1 :: Expects the output file name of compressed files
+   + Param 2 :: The directory path for all the files which are to be
+                compressed.
+#+NAME: make_tarfile
+#+BEGIN_SRC python
 def make_tarfile(output_filename, source_dir):
         filename=output_filename + ".tar.gz"
 	tar= tarfile.open(filename, "w:gz")
@@ -704,8 +783,6 @@ if len(sys.argv) == 1:
 if len(sys.argv) == 2 and sys.argv[1] == "full":
 	full_dump()
 	
-
-
 #+END_SRC
 
 * College Cloud registration
@@ -1417,6 +1494,7 @@ if __name__ == "__main__":
 #+BEGIN_SRC python :tangle log_collection/variables.py :eval no :noweb yes
 <<variables>>  
 #+END_SRC
+
 #+BEGIN_SRC python :tangle log_collection/get_logs.py :eval no :noweb yes
 <<get_logs>>  
 #+END_SRC
