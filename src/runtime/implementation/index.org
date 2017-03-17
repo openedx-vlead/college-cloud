@@ -1264,9 +1264,13 @@ FEEDBACK_URL = "http://feedback-kebana.base4.vlabs.ac.in"
    - College cloud details is a json record
    - This utility uses REST APIs documented at [[../../design/index.org::#post_process_design][link]] to push
      the json records into the elastic search database
+
    - Note :: To run this utility a machine with internet connection is
              required to push the analytics into elastic search database.
-
+   - Command to run utility
+#+BEGIN_EXAMPLE
+python post_process.py <college_cloud_dump_file>.tar.gz
+#+END_EXAMPLE
 #+NAME: post_process_script
 #+BEGIN_SRC python
 import os
@@ -1277,8 +1281,6 @@ from pprint import pprint
 import glob
 from post_process_config import FEEDBACK_URL
 import json
-
-#FEEDBACK_URL = "http://feedback-kebana.base4.vlabs.ac.in"
 
 def post_data_to_elastic_db(record, record_type, mac_addr):
     if record_type == "feedback":
@@ -1296,19 +1298,23 @@ def post_data_to_elastic_db(record, record_type, mac_addr):
 	    "key" : "defaultkey"
 	}
 
-	ELASTIC_DB_URL = "%s/dump_usages_to_elastic_db" % (FEEDBACK_URL)
+	ELASTIC_DB_URL = "%s/dump_usage_to_elastic_db" % (FEEDBACK_URL)
 
     else:
 	data_dict = {
 	    "college_details" : record,
 	    "key" : "defaultkey"
 	}
+        print "sdddddddddd"
+        print data_dict
+        print "jsdjfskjd"
 	ELASTIC_DB_URL = "%s/dump_cc_details_to_elastic_db" % (FEEDBACK_URL)
 
     try:
         headers = {'content-type': 'application/json'}
-        
+        print ELASTIC_DB_URL
 	resp = requests.post(ELASTIC_DB_URL, data=json.dumps(data_dict), headers=headers)
+        print resp
 	if not resp.status_code == 200:
 	    return False
 	else:
@@ -1348,26 +1354,27 @@ if __name__ == "__main__":
         print str(e)
 
     try:
-        config = get_json(config_file[0])
-
-	if(post_data_to_elastic_db(config, "config" , "")):
+        config = get_json(config_file[0])        
+        print config['college_details']['mac_addr']
+        
+	if(post_data_to_elastic_db(config['college_details'], "config" , "")):
 	    print "config : %s is added" % (config)
-	    mac_addr = str(config['mac_addr'])
+	    mac_addr = str(config['college_details']['mac_addr'])
 	else:
 	    print status_code
-
+        
     except Exception as e:
         print str(e)
 
     try:
         feedback_file = glob.glob(pwd+"/feedback-dump*.json")
         feedbacks = get_json(feedback_file[0])
+        print feedbacks
         for feedback in feedbacks:
             feedback['gateway_ip'] = mac_addr
         write_json(feedback_file[0], feedbacks)
-
-
-	if(post_data_to_elastic_db(feedbacks, "feedback", str(config['mac_addr']))):	    
+        print feedbacks
+	if(post_data_to_elastic_db(feedbacks, "feedback", str(config['college_details']['mac_addr']))):	    
 	    print "Feedback : %s is added" % (feedbacks)
 	else:
 	    print "Error"
@@ -1377,8 +1384,11 @@ if __name__ == "__main__":
 
     try:
         analytics_dump = get_json(analytics_file[0])
+        #print "**** analytics data before adding config data begin****"
+        #print analytics_dump
+        #print "**** analytics data before adding config data end****"
 
-	if(post_data_to_elastic_db(analytics_dump, "analytics", str(config['mac_addr']))):	    
+	if(post_data_to_elastic_db(analytics_dump, "analytics", str(config['college_details']['mac_addr']))):	    
 	    print "analytics : %s is added" % (analytics_dump)
 	else:
 	    print "Error"
