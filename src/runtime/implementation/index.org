@@ -8,11 +8,11 @@
 * Introduction
   The documentation describes implementation of the College Cloud
 * Implementation of College Cloud 
-  - [[../requirements/index.org::#portable_hard_drive][Requirement]] satisfied in this implementation 
+  - [[../../requirements/index.org::#portable_hard_drive][Requirement]] satisfied in this implementation 
   :PROPERTIES:
   :CUSTOM_ID: implementation_of_cc
   :END: 
-  - Implementation is done based on the [[../requirements/index.org::#cc_design][design diagram]]
+  - Implementation is done based on the [[../../design/index.org::#cc_design][design diagram]]
     We need internet connection for
     + Setting up cluster
     + Hosting the labs in the cluster using ADS service
@@ -453,9 +453,9 @@ DELIMITER ;
      service named restart
      #+END_EXAMPLE
 * Collecting logs from College Cloud   
-  - [[../requirements/index.org::#logg_collection][Requirement]] satisfied in this implementation
+  - [[../../requirements/index.org::#req2][Requirement]] satisfied in this implementation
    :PROPERTIES:
-   :CUSTOM_ID: logg_collection
+   :CUSTOM_ID: log_collection
    :END: 
   A python script that collects logs ( analytics, feedbacks and Open
   edX user data).
@@ -712,14 +712,15 @@ if len(sys.argv) == 2 and sys.argv[1] == "full":
 #+END_SRC
 
 * College Cloud registration
-  [[../../requirements/index.org::#req4][Requirement]] satisfied in this implementation
-  This form is required for collecting logs ( analytics, feedback and
-  user data). This form is a web form, should be able to access from a
-  browser.  Workshop coordinator, need to fill college information in
-  that form.   Once the Workshop coordinator submits form, college
-  details will be saves in =/var/www/html/config.json= file.
+  - [[../../requirements/index.org::#req4][Requirement]] satisfied in this implementation
+  - This form is required for collecting logs ( analytics, feedback
+    and user data).
+  - This form is a web form, should be able to access from a browser.
+  - Workshop coordinator, need to fill college information in that
+    form.  Once the Workshop coordinator submits form, college details
+    will be saved in =/var/www/html/config.json= file.
 
-  This config.json is being used by [[./index.org::#logg_collection][log collection script]]
+  -  This config.json is being used by [[./index.org::#log_collection][log collection script]]
   :PROPERTIES:
   :CUSTOM_ID: cc_registration
   :END: 
@@ -1471,6 +1472,7 @@ if __name__ == "__main__":
 #<<test_get_cc_mac_id>>
 #<<run_test_cases>>
 #+end_src
+
 
 
 

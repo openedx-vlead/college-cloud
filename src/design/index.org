@@ -1,4 +1,4 @@
-#+TITLE: Design of the  College Cloud Edition 
+#+TITLE: Design of the College Cloud Edition 
 #+AUTHOR: VLEAD
 #+PROPERTY: results output
 #+PROPERTY: exports code
@@ -165,7 +165,7 @@
     #+END_EXAMPLE
 ** Get college cloud MAC ID
    This REST API is serves college cloud's machine MAC Address.
-  - URL :: /get_cc_mac_id
+  - URL :: /cc_registration/get_cc_mac_id
   - Method :: GET
 
   - URL Params ::  None

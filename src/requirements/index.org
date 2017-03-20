@@ -9,27 +9,29 @@
   The documentation describes the requirements of the College Cloud.
 
 * Requirements
-  College Cloud Edition requirements
+    :PROPERTIES:
+    :CUSTOM_ID: requriements
+    :END:    
 *** Req1
     :PROPERTIES:
     :CUSTOM_ID: portable_hard_drive
     :END:    
    - Build a portable hard disk drive with *X* number of labs on it.
-    [[../runtime/implementation/index.org::#implementation_of_cc][Implementation]]
+     [[../runtime/implementation/index.org::#implementation_of_cc][Implementation]]
 *** Req2
-    - Facilitate collection of logs and analytics on colllege cloud.
+    - Facilitate collection of logs and analytics on colllege cloud edition.
     :PROPERTIES:
-    :CUSTOM_ID: logg_collection
+    :CUSTOM_ID: req2
     :END:    
-    [[../runtime/implementation/index.org::#logg_collection][Implementation]]
+    [[../runtime/implementation/index.org::#log_collection][Implementation]]
 *** Req3 
-    - Create a manual for provisioning and configuring college cloud.
+    - Create a manual for provisioning and configuring the college cloud.
     :PROPERTIES:
-     :CUSTOM_ID: manual
-     :END:    
+    :CUSTOM_ID: req3
+    :END:    
     [[../installation-manual.org][Installation manual]]      
 *** Req4 
-    - Facilitate college cloud registration. This is pre-requisite for [[./index.org::#logg_collection][Req2]]
+    - Facilitate college cloud registration. This is pre-requisite for [[./index.org::#req2][Req2]]
     :PROPERTIES:
     :CUSTOM_ID: req4
     :END:    
@@ -48,10 +50,9 @@
     - Stream videos of labs from College Cloud 
     - Visit github issue to [[https://github.com/openedx-vlead/college-cloud/issues/26][read the plan]]
     - Check [[https://github.com/openedx-vlead/college-cloud/milestone/7][Milestone for more tasks]]
-*** Req 7
+*** Req7
     :PROPERTIES:
     :CUSTOM_ID: req7
     :END:    
-    - Prepare the steps for creating copy/clone of College Cloud
-      Edition.
+    - Create the steps for copy/clone of College Cloud Edition.
     [[../clone/index.org][Steps for cloning College Cloud Edition]]
