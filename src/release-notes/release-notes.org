@@ -1,0 +1,36 @@
+#+TITLE: Release notes of College Cloud Edition
+#+AUTHOR: VLEAD
+#+PROPERTY: results output
+#+PROPERTY: exports code
+#+SETUPFILE: ../org-templates/level-1.org
+#+options: ^:nil
+#+LATEX: Literal LaTeX code for export
+
+* Introduction
+  This document contains release notes of College Cloud Edition
+* Releases
+
+** Version v1.0.0  
+   + GitHub link : https://github.com/openedx-vlead/college-cloud
+
+   + Features of this(v1.0.0) release
+     1. 70 labs/courses
+     2. Python script for collecting logs
+     3. College Cloud Edition registration form ( One time registartion
+	form) with two APIs ( cc-registration and get_cc_mac_id)
+     4. College Cloud Edition installation/user manual
+     5. Sharing collected logs manually
+     6. Sharing collected automatically using Syncthing
+     7. Cloning College Cloud Edition
+     8. Steps for cloning/Copying College Cloud Edition 
+  
+   + Issues related this project at : https://github.com/openedx-vlead/college-cloud/issues
+
+   + Documentation link : http://community.vlabs.ac.in/docs/user-manuals/college-cloud/index.html
+   + Known Issues
+     - Documentation is reviewed by anyone, so there could be some
+       grammatical mistakes.
+     - This setup is not automated.
+     - All NPTEL videos are not added to platform. Only one NPTEL
+       video is added to platform for proof of concept(POC).
+ 
