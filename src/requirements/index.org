@@ -40,7 +40,15 @@
     :CUSTOM_ID: req5
     :END:    
     - Facilitate post process of college cloud workshop data.
+      [[../runtime/implementation/index.org::#post_workshop][Post workshop process]]
 *** Req6 
     - Stream videos of labs from College Cloud 
     - Visit github issue to [[https://github.com/openedx-vlead/college-cloud/issues/26][read the plan]]
     - Check [[https://github.com/openedx-vlead/college-cloud/milestone/7][Milestone for more tasks]]
+*** Req 7
+    :PROPERTIES:
+    :CUSTOM_ID: req7
+    :END:    
+    - Prepare the steps for creating copy/clone of College Cloud
+      Edition.
+    [[../clone/index.org][Steps for cloning College Cloud Edition]]

@@ -1254,7 +1254,11 @@ if __name__ == '__main__':
 
 #+END_SRC
 * Post Process script
+
   [[../../requirements/index.org::#req5][Requirement satisfied]]
+  :PROPERTIES:
+  :CUSTOM_ID: post_workshop
+  :END: 
 ** configuration
 #+NAME: post_process_config
 #+BEGIN_SRC python
