@@ -8,11 +8,10 @@
 * Introduction
   The documentation describes implementation of the College Cloud
 * Implementation of College Cloud 
-  -  [[../requirements/index.org::#portable_hard_drive][Requirement_satisfied]]
+  - [[../requirements/index.org::#portable_hard_drive][Requirement]] satisfied in this implementation 
   :PROPERTIES:
   :CUSTOM_ID: implementation_of_cc
   :END: 
-
   - Implementation is done based on the above design diagram.
     We need internet connection for
     + Setting up cluster
@@ -456,18 +455,20 @@ DELIMITER ;
      service named restart
      #+END_EXAMPLE
 * Collecting logs from College Cloud   
-  -  [[../requirements/index.org::#logg_collection][Requirement_satisfied]]
-  :PROPERTIES:
-  :CUSTOM_ID: logg_collection
-  :END: 
+  - [[../requirements/index.org::#logg_collection][Requirement]] satisfied in this implementation
+   :PROPERTIES:
+   :CUSTOM_ID: logg_collection
+   :END: 
 
   A python script that collects logs ( analytics, feedbacks and Open
   edX user data).
 ** =variables.py= needed for =get_logs.py=
    Following python file =varaibles.py= contains variables that are
    required for =get_logs.py= file.
+
 #+NAME: variables
 #+BEGIN_SRC python
+
 #!/usr/bin/python
 
 import datetime
@@ -515,6 +516,7 @@ ctid_analytics = "280"
 ctid_feedback = "278"
 
 #+END_SRC
+
 ** get_logs.py
    Following python file =get_logs.py= does as follows:
    1. Full logs for feedback, analytics and user data
@@ -523,7 +525,7 @@ ctid_feedback = "278"
 
    Full logs will only be taken if requested. By default, date wise
    logs will be uploaded by user.
-
+   
 ** Import libraries 
     Following libraries are used in the program. 
     + requests :: to make HTTP request call and response handling
@@ -1255,6 +1257,9 @@ if __name__ == '__main__':
 
 #+END_SRC
 * Post Process script
+  :PROPERTIES:
+  :CUSTOM_ID: post_process
+  :END: 
 ** configuration
 #+NAME: post_process_config
 #+BEGIN_SRC python
@@ -1274,6 +1279,7 @@ FEEDBACK_URL = "http://feedback-kebana.base4.vlabs.ac.in"
    - Note :: To run this utility a machine with internet connection is
              required to push the analytics into elastic search database.
    - Command to run utility
+
 #+BEGIN_EXAMPLE
 python post_process.py <college_cloud_dump_file>.tar.gz
 #+END_EXAMPLE
@@ -1390,10 +1396,6 @@ if __name__ == "__main__":
 
     try:
         analytics_dump = get_json(analytics_file[0])
-        #print "**** analytics data before adding config data begin****"
-        #print analytics_dump
-        #print "**** analytics data before adding config data end****"
-
 	if(post_data_to_elastic_db(analytics_dump, "analytics", str(config['college_details']['mac_addr']))):	    
 	    print "analytics : %s is added" % (analytics_dump)
 	else:
@@ -1457,7 +1459,6 @@ if __name__ == "__main__":
 #+BEGIN_SRC python :tangle log_collection/get_logs.py :eval no :noweb yes
 <<make_tarfile>>  
 #+END_SRC
-
 
 #+BEGIN_SRC python :tangle post_process_config.py :eval no :noweb yes
 <<post_process_config>>

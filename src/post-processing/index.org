@@ -10,7 +10,7 @@
   This document lists the requirements, use-cases for post-processing
   the logs (analytics, feedbacks, user-data) from college cloud.
 
-
+  
 * Requirements 
   + A mechanism to allow sys-admin of college to collect logs
   + A mechanism to allow sys-admin of college to upload logs 

@@ -93,17 +93,16 @@
   <img src="../images/college-cloud-collect-logs.jpg">
   <p align="center"> Log collection diagram </p>
   #+END_HTML
-  To edit the Portable Edition's Cluster diagram image click [[https://docs.google.com/drawings/d/1rTyHXCOGJzBwJfAT4m7-5D_eVZTC5v0SRLCqvHpFOy8/edit?ts%3D58a17466][here]]
-
+   To edit the Portable Edition's Cluster diagram image click [[https://docs.google.com/drawings/d/1rTyHXCOGJzBwJfAT4m7-5D_eVZTC5v0SRLCqvHpFOy8/edit?ts%3D58a17466][here]]
    A shell script is written to fetch logs (feedback, usages,
    user-data) in college cloud and it does the following -
-
+   
    + Calls feedback-dump API to get feedbacks on mentioned date.
    + GET usages from Elasticsearch index /vlabs/usages for a given date.
    + Take edx user database dump.
    + Creates a =compressed file= containing all the logs, to be shared with Central team.
    + Compressed file will be named as =COLLEGE-NAME-DATE-datewise.tar.gz=
-
+     
 ** Post Process of College Cloud workshop data
     :PROPERTIES:
     :CUSTOM_ID: cc_post_process
@@ -212,17 +211,19 @@
    - Method :: POST
 
    - Data Params ::
-   {
-   "college_details":{ 
-   "college_address":"<address>", 
-   "college_name": "<college name>", 
-   "college_pincode":"<pincode>", 
-   "contact_name":"<name>", 
-   "contact_no":"<mobile>", 
-   "email_id":"<email>",
-   "mac_addr":"<mac_addr>" },
-   "key":"defaultkey"
-   }
+     #+BEGIN_EXAMPLE
+     {
+     "college_details":{ 
+     "college_address":"<address>", 
+     "college_name": "<college name>", 
+     "college_pincode":"<pincode>", 
+     "contact_name":"<name>", 
+     "contact_no":"<mobile>", 
+     "email_id":"<email>",
+     "mac_addr":"<mac_addr>" },
+     "key":"defaultkey"
+     }     
+     #+END_EXAMPLE
    - Success Response ::
      + Code: 200
 
@@ -265,13 +266,15 @@
    - URL :: /dump_feedback_to_elastic_db
 
    - Method :: POST
-
+	       
    - Payload ::
+     #+BEGIN_EXAMPLE
      {
       'key' : '<defaultkey>',	       
       'feedbacks': ['list_of_feedbacks'],
       'mac_id' : '<mac_id>'
      }
+     #+END_EXAMPLE
 
    - Success Response ::
      + Code: 200
@@ -285,8 +288,8 @@
 
      + Content: { error : "Wrong Key configured" }
 
-     OR
-
+       OR
+       
      + Code: 400 Bad Request
 
      + Content: { error : "some of the parameters are not part of the
@@ -304,16 +307,17 @@
    This REST API is implemented as part of feedback-portal service for more
    information refer to [[https://github.com/vlead/feedback-portal/blob/master/src/runtime/rest/api.org#dump-usage-to-elk][link]]
    - URL :: /dump_usage_to_elastic_db
-
+	    
    - Method :: POST
-
+	       
    - Payload ::
+     #+BEGIN_EXAMPLE
      {
       'key': '<key>',
       'usages': ['list_of_usages'],
       'mac_id' : '<mac_id>'
      }
-
+     #+END_EXAMPLE
    - Success Response ::
      + Code: 200
      + Content:
