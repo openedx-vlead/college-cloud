@@ -18,7 +18,9 @@
      + 3 SATA ports on mother board
   2. College Cloud Edition( Master copy that VLEAD-Hyderabad provided).
   3. A new Hard Disk Drive (HDD At least 500 GB).
-* Steps 
+* Steps
+  [[../requirements/index.org::#req7][Requirement satisfied]]
+
   1. Note down the *Serial numbers* of both the HDDs( master and New).
   2. Attach the master copy and new HDD to the machine using SATA and
      Power cables.

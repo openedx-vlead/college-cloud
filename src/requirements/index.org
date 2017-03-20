@@ -11,10 +11,10 @@
 * Requirements
   College Cloud Edition requirements
 *** Req1
-    - Build a portable hard disk drive with *X* number of labs on it.
     :PROPERTIES:
     :CUSTOM_ID: portable_hard_drive
     :END:    
+   - Build a portable hard disk drive with *X* number of labs on it.
     [[../runtime/implementation/index.org::#implementation_of_cc][Implementation]]
 *** Req2
     - Facilitate collection of logs and analytics on colllege cloud.
@@ -38,7 +38,6 @@
     :PROPERTIES:
     :CUSTOM_ID: req5
     :END:    
-
     - Facilitate post process of college cloud workshop data.
     [[../runtime/implementation/index.org::#post_process][Implementation]]
 *** Req6 
@@ -49,3 +48,10 @@
     - Stream videos of labs from College Cloud 
     - Visit github issue to [[https://github.com/openedx-vlead/college-cloud/issues/26][read the plan]]
     - Check [[https://github.com/openedx-vlead/college-cloud/milestone/7][Milestone for more tasks]]
+*** Req 7
+    :PROPERTIES:
+    :CUSTOM_ID: req7
+    :END:    
+    - Prepare the steps for creating copy/clone of College Cloud
+      Edition.
+    [[../clone/index.org][Steps for cloning College Cloud Edition]]
