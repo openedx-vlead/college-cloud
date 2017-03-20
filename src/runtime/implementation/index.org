@@ -12,7 +12,7 @@
   :PROPERTIES:
   :CUSTOM_ID: implementation_of_cc
   :END: 
-  - Implementation is done based on the above design diagram.
+  - Implementation is done based on the [[../requirements/index.org::#cc_design][design diagram]]
     We need internet connection for
     + Setting up cluster
     + Hosting the labs in the cluster using ADS service
@@ -567,7 +567,6 @@ def set_dir_structure(dir_str):
 
 #+END_SRC
 
-
 ** get_feedback(<url_string>, <filename in which the dump is to be saved>)
    + This function talks to the feedback service and dumps the reponse records inside the file.
    + Param 1 = url of feedback service to fetch records
@@ -644,7 +643,6 @@ def get_user_logs(vagrant_dir, script_dir):
 
 #+END_SRC
 
-
 ** date_wise_dump()
    + This function will get all logs date wise, i.e the date on which
      the script is executed.
@@ -714,7 +712,7 @@ if len(sys.argv) == 2 and sys.argv[1] == "full":
 #+END_SRC
 
 * College Cloud registration
-  [[../../requirements/index.org::#req4][Requirement satisfied]] 
+  [[../../requirements/index.org::#req4][Requirement]] satisfied in this implementation
   This form is required for collecting logs ( analytics, feedback and
   user data). This form is a web form, should be able to access from a
   browser.  Workshop coordinator, need to fill college information in
