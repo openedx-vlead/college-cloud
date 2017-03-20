@@ -11,10 +11,10 @@
 * Requirements
   College Cloud Edition requirements
 *** Req1
-   - Build a portable hard disk drive with *X* number of labs on it.
     :PROPERTIES:
     :CUSTOM_ID: portable_hard_drive
     :END:    
+   - Build a portable hard disk drive with *X* number of labs on it.
     [[../runtime/implementation/index.org::#implementation_of_cc][Implementation]]
 *** Req2
     - Facilitate collection of logs and analytics on colllege cloud.
@@ -36,6 +36,9 @@
     [[../runtime/implementation/index.org::#cc_registration][Click here for registration form Implementation details]]
       
 *** Req5
+    :PROPERTIES:
+    :CUSTOM_ID: req5
+    :END:    
     - Facilitate post process of college cloud workshop data.
 *** Req6 
     - Stream videos of labs from College Cloud 

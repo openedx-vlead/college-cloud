@@ -8,7 +8,7 @@
 * Introduction
   The documentation describes implementation of the College Cloud
 * Implementation of College Cloud 
-  -  [[../requirements/index.org::#portable_hard_drive][Requirement_satisfied]]
+  -  [[../../requirements/index.org::#portable_hard_drive][Requirement_satisfied]]
   :PROPERTIES:
   :CUSTOM_ID: implementation_of_cc
   :END: 
@@ -71,131 +71,129 @@
 
 ** Open edX platform in a Vagrant Box 
 *** Perform the below steps on host machine .
-   - NOTE :: 
-     + Minimum 1 Mbps download speed is needed.
-     + Need stable internet and network proxies if there are any.
-  
-   - Install vzkernel-devel
-     #+BEGIN_EXAMPLE
-     yum install vzkernel-devel
-     #+END_EXAMPLE
-   - Install [[http://www.vagrantup.com/downloads.html][Vagrant]] 1.6.5 or later 
-     #+BEGIN_EXAMPLE
-     wget https://releases.hashicorp.com/vagrant/1.8.6/vagrant_1.8.6_x86_64.rpm
-     sudo rpm -i vagrant_1.8.6_x86_64.rpm
-     #+END_EXAMPLE
-   - Install [[https://www.virtualbox.org/wiki/Downloads][VirtualBox]] 4.3.12 (i386) or later
-     #+BEGIN_EXAMPLE
-     wget http://download.virtualbox.org/virtualbox/5.1.6/VirtualBox-5.1-5.1.6_110634_el6-1.x86_64.rpm
-     sudo rpm -i VirtualBox-5.1-5.1.6_110634_el6-1.x86_64.rpm
-     #+END_EXAMPLE
-   - (OPTIONAL) You may have to run 
-     #+BEGIN_EXAMPLE
-      /sbin/vboxconfig # from root account
-     #+END_EXAMPLE
-   - Add/Get a ubuntu 14.04 LTS box to vagrant box list from normal
-     user account
-     #+BEGIN_EXAMPLE
-     vagrant box add ubuntu/trusyt64
-     #+END_EXAMPLE
-   - Create a Vagrant box with the Ubutnu-14.04 LTS
-     #+BEGIN_EXAMPLE
-     mkdir ~/vagrant-boxes
-     cd ~/vagrant-boxes
-     vagrant init
-     #+END_EXAMPLE
-   - The above command generates basic Vagrantfile and modify the file
-     with the following info
-     #+BEGIN_EXAMPLE
-     base = "ubuntu/trusty64"
-     #+END_EXAMPLE
-     And also you can change the other required parameters in
-     Vagrantfile ( as per your requirement) 
+    *Minimum 1 Mbps download speed is needed. Need stable internet and
+    network proxies if there are any.*
+    - Install vzkernel-devel
+      #+BEGIN_EXAMPLE
+      yum install vzkernel-devel
+      #+END_EXAMPLE
+    - Install [[http://www.vagrantup.com/downloads.html][Vagrant]] 1.6.5 or later 
+      #+BEGIN_EXAMPLE
+      wget https://releases.hashicorp.com/vagrant/1.8.6/vagrant_1.8.6_x86_64.rpm
+      sudo rpm -i vagrant_1.8.6_x86_64.rpm
+      #+END_EXAMPLE
+    - Install [[https://www.virtualbox.org/wiki/Downloads][VirtualBox]] 4.3.12 (i386) or later
+      #+BEGIN_EXAMPLE
+      wget http://download.virtualbox.org/virtualbox/5.1.6/VirtualBox-5.1-5.1.6_110634_el6-1.x86_64.rpm
+      sudo rpm -i VirtualBox-5.1-5.1.6_110634_el6-1.x86_64.rpm
+      #+END_EXAMPLE
+    - (OPTIONAL) You may have to run 
+      #+BEGIN_EXAMPLE
+       /sbin/vboxconfig # from root account
+      #+END_EXAMPLE
+    - Add/Get a ubuntu 14.04 LTS box to vagrant box list from normal
+      user account
+      #+BEGIN_EXAMPLE
+      vagrant box add ubuntu/trusyt64
+      #+END_EXAMPLE
+    - Create a Vagrant box with the Ubutnu-14.04 LTS
+      #+BEGIN_EXAMPLE
+      mkdir ~/vagrant-boxes
+      cd ~/vagrant-boxes
+      vagrant init
+      #+END_EXAMPLE
+    - The above command generates basic Vagrantfile and modify the file
+      with the following info
+      #+BEGIN_EXAMPLE
+      base = "ubuntu/trusty64"
+      #+END_EXAMPLE
+      And also you can change the other required parameters in
+      Vagrantfile ( as per your requirement) 
 
 *** Install Open edX platform
-     - SSH to Vagrant box 
-       #+BEGIN_EXAMPLE
-       cd ~/vagrant-boxes/
-       vagrant up
-       vagrant ssh
-       #+END_EXAMPLE
-     - Update and upgrade 
-       #+BEGIN_EXAMPLE
-       sudo apt-get update -y
-       sudo apt-get upgrade -y
-       #+END_EXAMPLE
-     - Install Packages
-       #+BEGIN_EXAMPLE 
-       sudo apt-get install -y build-essential software-properties-common python-software-properties curl git-core libxml2-dev libxslt1-dev libfreetype6-dev python-pip python-apt python-dev libxmlsec1-dev swig libmysqlclient-dev
-       sudo pip install --upgrade pip
-       sudo pip install paramiko==1.10
-       #+END_EXAMPLE
+    - SSH to Vagrant box 
+      #+BEGIN_EXAMPLE
+      cd ~/vagrant-boxes/
+      vagrant up
+      vagrant ssh
+      #+END_EXAMPLE
+    - Update and upgrade 
+      #+BEGIN_EXAMPLE
+      sudo apt-get update -y
+      sudo apt-get upgrade -y
+      #+END_EXAMPLE
+    - Install Packages
+      #+BEGIN_EXAMPLE 
+      sudo apt-get install -y build-essential software-properties-common python-software-properties curl git-core libxml2-dev libxslt1-dev libfreetype6-dev python-pip python-apt python-dev libxmlsec1-dev swig libmysqlclient-dev
+      sudo pip install --upgrade pip
+      sudo pip install paramiko==1.10
+      #+END_EXAMPLE
 
-     - Clone configuration repository
-       #+BEGIN_EXAMPLE 
-       cd /var/tmp
-       git clone https://github.com/edx/configuration
-       #+END_EXAMPLE
+    - Clone configuration repository
+      #+BEGIN_EXAMPLE 
+      cd /var/tmp
+      git clone https://github.com/edx/configuration
+      #+END_EXAMPLE
 
-     - Choose the release
-       - Choose the required Open edX release version
-         #+BEGIN_EXAMPLE
- 	 export OPENEDX_RELEASE=named-release/dogwood.3 
+    - Choose the release
+      - Choose the required Open edX release version
+        #+BEGIN_EXAMPLE
+ 	export OPENEDX_RELEASE=named-release/dogwood.3 
 	  
-         OR
+        OR
 	
-        #Checkout to the release verion of configuration repository
+       #Checkout to the release verion of configuration repository
 
-         cd /var/tmp/configuration
-         git checkout <version>
-         git checkout  named-release/dogwood.3 #example
+        cd /var/tmp/configuration
+        git checkout <version>
+        git checkout  named-release/dogwood.3 #example
 
-         #+END_EXAMPLE
+        #+END_EXAMPLE
 
-     - Configure password based SSH authentication
+    - Configure password based SSH authentication
 
-       Edit the =main.yaml= to and set =COMMON_SSH_PASSWORD_AUTH= to =yes= 
-       #+BEGIN_EXAMPLE
-       sudo vim =configuration/playbooks/roles/common_vars/defaults/main.yml
-       COMMON_SSH_PASSWORD_AUTH = yes
-       #+END_EXAMPLE
+      Edit the =main.yaml= to and set =COMMON_SSH_PASSWORD_AUTH= to =yes= 
+      #+BEGIN_EXAMPLE
+      sudo vim =configuration/playbooks/roles/common_vars/defaults/main.yml
+      COMMON_SSH_PASSWORD_AUTH = yes
+      #+END_EXAMPLE
 
-     - Install the ansible requirements 
+    - Install the ansible requirements 
        
-       #+BEGIN_EXAMPLE 
-       cd /var/tmp/configuration
-       sudo pip install -r requirements.txt
-       sudo pip install setuptools --upgrade
-       #+END_EXAMPLE
+      #+BEGIN_EXAMPLE 
+      cd /var/tmp/configuration
+      sudo pip install -r requirements.txt
+      sudo pip install setuptools --upgrade
+      #+END_EXAMPLE
 
-     - Run the playbook
-       #+BEGIN_EXAMPLE 
-       cd /var/tmp/configuration/playbooks && sudo ansible-playbook -c local ./edx_sandbox.yml -i "localhost,"
-       #+END_EXAMPLE
+    - Run the playbook
+      #+BEGIN_EXAMPLE 
+      cd /var/tmp/configuration/playbooks && sudo ansible-playbook -c local ./edx_sandbox.yml -i "localhost,"
+      #+END_EXAMPLE
 
-     - The above command will copy the platform files and runs various ansible
-       playbooks to setup the platform.  When there are zero failures displayed
-       in the status, the installation is successful.
+    - The above command will copy the platform files and runs various ansible
+      playbooks to setup the platform.  When there are zero failures displayed
+      in the status, the installation is successful.
   
-     - Platform is ready, 
-       + LMS is accessible on port 80
-         #+BEGIN_EXAMPLE
-         http://<public-ip> # courses dashboard
-         #+END_EXAMPLE
+    - Platform is ready, 
+      + LMS is accessible on port 80
+        #+BEGIN_EXAMPLE
+        http://<public-ip> # courses dashboard
+        #+END_EXAMPLE
 
-       + CMS is accessible on port 18010
-         #+BEGIN_EXAMPLE
-         http://<public_ip>:18010    # Studio
-         #+END_EXAMPLE
+      + CMS is accessible on port 18010
+        #+BEGIN_EXAMPLE
+        http://<public_ip>:18010    # Studio
+        #+END_EXAMPLE
 
-     - Login
-       A default user =staff@example.com= comes with the installation.  This
-       login is used to quickly test the instalaltion.  The password is =edx=
+    - Login
+      A default user =staff@example.com= comes with the installation.  This
+      login is used to quickly test the instalaltion.  The password is =edx=
  
-     - Reference
-       + [[https://github.com/openedx-vlead/port-labs-to-openedx/tree/develop/src/platform-install-configure][Open edX platform installation using Manual steps provided
-         by VLEAD]]  
-       +
+    - Reference
+      + [[https://github.com/openedx-vlead/port-labs-to-openedx/tree/develop/src/platform-install-configure][Open edX platform installation using Manual steps provided
+        by VLEAD]]  
+      + 
          [[https://openedx.atlassian.net/wiki/display/OpenOPS/Native+Open+edX+Ubuntu+12.04+64+bit+Installation][Native Open edX installation on Ubuntu 12.04 64-bit]]
 *** Apply Theme on edX platform
     To apply comprehensive theme on dogwood3 follow the steps -
@@ -340,7 +338,7 @@ DELIMITER ;
     vagrant up
     #+END_EXAMPLE
   - That's all, you are ready to use Open edX platform.
-*** Once you have Vagrant box is ready apply Comprehensive Theme
+*** Once you have Vagrant box ready apply Comprehensive Theme
     [[Apply Theme on edX platform][Steps are here]]
 ** Install Nagios on host machine
    #+BEGIN_EXAMPLE
@@ -456,7 +454,7 @@ DELIMITER ;
      service named restart
      #+END_EXAMPLE
 * Collecting logs from College Cloud   
-  -  [[../requirements/index.org::#logg_collection][Requirement_satisfied]]
+  -  [[../../requirements/index.org::#logg_collection][Requirement_satisfied]]
   :PROPERTIES:
   :CUSTOM_ID: logg_collection
   :END: 
@@ -715,6 +713,7 @@ if len(sys.argv) == 2 and sys.argv[1] == "full":
 #+END_SRC
 
 * College Cloud registration
+  [[../../requirements/index.org::#req4][Requirement satisfied]] 
   This form is required for collecting logs ( analytics, feedback and
   user data). This form is a web form, should be able to access from a
   browser.  Workshop coordinator, need to fill college information in
@@ -1255,6 +1254,7 @@ if __name__ == '__main__':
 
 #+END_SRC
 * Post Process script
+  [[../../requirements/index.org::#req5][Requirement satisfied]]
 ** configuration
 #+NAME: post_process_config
 #+BEGIN_SRC python
