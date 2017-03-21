@@ -19,6 +19,7 @@
   connectivity across different institutes/colleges. It results in a
   very cost-effective Learning Management System.
 
+
 * Requirements
   :PROPERTIES:
   :CUSTOM_ID: requirements
@@ -41,6 +42,7 @@
   6. System Administrator with basic knowledge of CentOS operating systems and
      networking.
     
+
 * Configuring College Cloud Server
   :PROPERTIES:
   :CUSTOM_ID: cc-server
@@ -68,58 +70,7 @@
        vagrant-boxes$vagrant up --provision
        #+END_EXAMPLE
    2. College Cloud edition of Virtual Labs is now ready for use.
-* Passwords
-  :PROPERTIES:
-  :CUSTOM_ID: passwords
-  :END:    
-   The first login password for =vlabs= user account would be
-   supplied along with Virtual Labs College Cloud Edition Hard Disk
-   Drive. 
 
-   Other default user credentials could be accessed at =passwords.txt=
-   in College Cloud server at =~/passwords.txt= when logged in as
-   =vlabs= user.
-
-** Changing Passwords
-  Please note that change of passwords will not be reflected in the
-  default password file located at =~/passwords.txt= on College Cloud
-  server and it would be the responsibility of the System
-  Administrator to manage these passwords.
-  
-*** Changing Linux user Password
-    - Use =passwd= command to change the passwords of =vlabs= and
-      =root=
-      #+BEGIN_EXAMPLE
-      vlabs$passwd     # to change vlabs user 
-
-      root#passwd     # for change root user 
-      #+END_EXAMPLE
-*** Changing OpenVZ web panel user password
-   :PROPERTIES:
-   :CUSTOM_ID: OpenVZ
-   :END:   
-    - Use the following command to change the OpenVZ web panel user
-      password
-    #+BEGIN_EXAMPLE
-    sudo ruby /opt/ovz-web-panel/script/runner -e production 'user = User.find_by_login("admin"); user.password = "admin"; user.save(false)'
-    #+END_EXAMPLE
-*** Changing Nagios user password
-   :PROPERTIES:
-   :CUSTOM_ID: nagios_password
-   :END:    
-    - Use the following command to change the Nagios user password
-      password
-    #+BEGIN_EXAMPLE
-    sudo htpasswd -C /etc/nagios/passwd nagiosadmin
-    #+END_EXAMPLE 
-*** Changing Open edX platform admin user password
-    :PROPERTIES:
-    :CUSTOM_ID: platform_password
-    :END:    
-    Use the followingsteps to change the Open edX platform  admin( default) user password
-     - Go to   =http://vlabs.ac.in/admin.
-     - Login using default [[./installation-manual.org::#passwords][admin user and password]].
-     - Follow the instructions detailed in [[https://openedx.atlassian.net/wiki/display/OpenOPS/Managing+OpenEdX+Tips+and+Tricks][Administration commands]].
 
 * Using College Cloud Edition
   :PROPERTIES:
@@ -253,7 +204,7 @@
 		follow the [[./installation-manual.org::#nagios_password][link]] .
 ** Instructions for Lab users		   
    College System Administrator/Workshop Coordinator should issue the
-   following instructions -
+   following instructions to the labs users
    1. Changing DNS settings
       :PROPERTIES:
       :CUSTOM_ID: dns-settings
@@ -292,7 +243,7 @@
    2. Setting No Proxy on browsers
       - Once the lab users got connected to wifi, lab user has to unset
 	proxy if any proxies used previously( Set =No Proxy=) in their
-        browsers . For example, In firefox,
+        browsers . For example, in Firefox browser,
 	#+BEGIN_EXAMPLE
 	Firefox --> Preferences --> Advanced --> Network --> Settings 
 	#+END_EXAMPLE
@@ -305,8 +256,8 @@
        coordinator.
      - NOTE ::  [[./installation-manual.org::#admin][Forgot password!! contact your System administrator]]
 **** System Administrator
-     If registered users forgt their password, System Administrator
-     can reset the password by following the below listed steps - has
+     If registered users forget their password, System Administrator
+     can reset the password by following the below listed steps.
 
     :PROPERTIES:
     :CUSTOM_ID: admin
@@ -322,14 +273,18 @@
 	- Click on =user name=
 	- Change the password and share it with users. 
 	
-** College Cloud UI 
-   College UI have the following -
-   + =Disciplines and Domains=  lists Labs Discipline wise.
-   + =Participating Institutes= lists Labs Institute wise.
-   + =All Labs= display the Lab Catalogue
-   + =FAQs=
-   + =Licensing=
-   + =Contact Us=
+**  User Interface
+    The Virtual Labs College Cloud Edition user interface provides the
+    following features for easy navigation and usability.
+   + =Disciplines and Domains=  :: Lists all the labs discipline wise.
+   + =Participating Institutes= :: Lists all labs Institute wise.
+   + =All Labs= :: Displays the list of all labs in the College Cloud
+                   Edition.
+   + =FAQs= :: This page displays the Frequently Asked Questions and
+               Answers on Virtual-Labs/Virtual-Labs workshops/College
+               Cloud Edition.
+   + =Licensing= :: Provides the Licensing details of Virtual-Labs.
+   + =Contact Us= :: Provides Virtual-Labs contact information.
 
 * Workflow of College Cloud Edition
   :PROPERTIES:
@@ -347,15 +302,17 @@
    3. Make sure that the [[./installation-manual.org::#requirements][requirements]] are met by the college.
    4. [[./installation-manual.org::#cc-server][Configure College Cloud Server]] .
    5. [[./installation-manual.org::#using-cc-server][Use College Cloud Editon for workshop]] .
-   6. [[./installation-manual.org::#analytics-feedbacks][Collect Analytics and Feedback]] .
+   6. [[./installation-manual.org::#analytics-feedbacks][Collect and Share Analytics and Feedback]].
 ** Virtual Labs College Cloud Edition used by colleges as part of their curriculum
    System administrator has to follow the steps to conduct workshop as
    part of their college curriculum.
    1. [[https://docs.google.com/forms/d/e/1FAIpQLSfN0XH0GvuLRiEs_g5RB2npD3Y_5qsvrE0pCOn2C2lyUJNHjA/viewform?embedded=true][Procure College Cloud]] .
    2. [[./installation-manual.org::#cc-server][Configure College Cloud Server]] .
    3. [[./installation-manual.org::#using-cc-server][Use College Cloud Edition for workshop]] .
-   4. [[./installation-manual.org::#analytics-feedbacks][Collect Analytics and Feedback]] .
-* Analytics and Feedback
+   4. [[./installation-manual.org::#analytics-feedbacks][Collect and Share Analytics and Feedback]] .
+
+
+* Collecting/Sharing Analytics and Feedback
   :PROPERTIES:
   :CUSTOM_ID: analytics-feedbacks
   :END:    
@@ -567,10 +524,10 @@
    All lab users would need to follow the below steps to ensure
    smooth migration to the newly configured College Cloud server
    - Follow the link  [[./installation-manual.org::#dns-settings][Changing DNS settings]] .
-   
-* Proper shutdown of College Cloud Server
-  College Cloud contains a Vagrant box which on direct shutdown can crash. 
-  To avoid crashing of College Cloud server follow the steps given below : 
+
+* Shutting down of College Cloud Server
+  College Cloud contains a Vagrant box which on direct shutdown would crash. 
+  To ensure proper shut down College Cloud Edition,follow the steps given below : 
   1. Log in as [[./installation-manual.org::#passwords][vlabs]] user
      #+BEGIN_EXAMPLE
      su - vlabs   
@@ -584,14 +541,69 @@
      #+BEGIN_SRC 
      sudo shutdown -h now
      #+END_SRC
+
 * Clone Hard Disk( College Cloud Edition)
-  To create multiple copies of College Cloud Edition, Follow the steps
-  at [[./clone/index.org][this link]]
+  To create multiple copies of College Cloud Edition, follow the [[./clone/index.org][link]]
+
+* Passwords
+  :PROPERTIES:
+  :CUSTOM_ID: passwords
+  :END:    
+   The first login password for =vlabs= user account would be
+   supplied along with Virtual Labs College Cloud Edition Hard Disk
+   Drive. 
+
+   Other default user credentials could be accessed at =passwords.txt=
+   in College Cloud server at =~/passwords.txt= when logged in as
+   =vlabs= user.
+
+** Changing Passwords
+  Please note that change of passwords will not be reflected in the
+  default password file located at =~/passwords.txt= on College Cloud
+  server and it would be the responsibility of the System
+  Administrator to manage these passwords.
+  
+*** Changing Linux user Password
+    - Use =passwd= command to change the passwords of =vlabs= and
+      =root=
+      #+BEGIN_EXAMPLE
+      vlabs$passwd     # to change vlabs user 
+
+      root#passwd     # for change root user 
+      #+END_EXAMPLE
+*** Changing OpenVZ web panel user password
+   :PROPERTIES:
+   :CUSTOM_ID: OpenVZ
+   :END:   
+    - Use the following command to change the OpenVZ web panel user
+      password
+    #+BEGIN_EXAMPLE
+    sudo ruby /opt/ovz-web-panel/script/runner -e production 'user = User.find_by_login("admin"); user.password = "admin"; user.save(false)'
+    #+END_EXAMPLE
+*** Changing Nagios user password
+   :PROPERTIES:
+   :CUSTOM_ID: nagios_password
+   :END:    
+    - Use the following command to change the Nagios user password
+      password
+    #+BEGIN_EXAMPLE
+    sudo htpasswd -C /etc/nagios/passwd nagiosadmin
+    #+END_EXAMPLE 
+*** Changing Open edX platform admin user password
+    :PROPERTIES:
+    :CUSTOM_ID: platform_password
+    :END:    
+    Use the followingsteps to change the Open edX platform  admin( default) user password
+     - Go to   =http://vlabs.ac.in/admin.
+     - Login using default [[./installation-manual.org::#passwords][admin user and password]].
+     - Follow the instructions detailed in [[https://openedx.atlassian.net/wiki/display/OpenOPS/Managing+OpenEdX+Tips+and+Tricks][Administration commands]].
+
 * Support  
   - Get help with Virtual Labs College Cloud Edition by 
     1. Sending an email to =support@vlabs.ac.in= 
     2. Posting queries on the IRC channel using =#VLEAD=.
     3. Creating issues Issues on [[https://github.com/openedx-vlead/college-cloud/issues][Github repository of College Cloud]] 
+
 
 * Contract Information
   1. For the above given System Configuration, one could work with 3-5
