@@ -70,7 +70,10 @@
        vagrant-boxes$vagrant up --provision
        #+END_EXAMPLE
    2. College Cloud edition of Virtual Labs is now ready for use.
-
+   3. [[./installation-manual.org::#instructions][Follow the instructions]] to access vlabs.ac.in page
+   4. Access the vlabs.ac.in page, at this time no lab simulations
+      would be accessible. To access the simulations of the labs,
+      first understand [[./installation-manual.org::#using-cc-server][Using College Cloud Edition]]
 
 * Using College Cloud Edition
   :PROPERTIES:
@@ -203,6 +206,9 @@
 		first login . For the steps for changing the password,
 		follow the [[./installation-manual.org::#nagios_password][link]] .
 ** Instructions for Lab users		   
+   :PROPERTIES:
+   :CUSTOM_ID: instructions
+   :END:       
    College System Administrator/Workshop Coordinator should issue the
    following instructions to the labs users
    1. Changing DNS settings
@@ -285,6 +291,7 @@
                Cloud Edition.
    + =Licensing= :: Provides the Licensing details of Virtual-Labs.
    + =Contact Us= :: Provides Virtual-Labs contact information.
+
 
 * Workflow of College Cloud Edition
   :PROPERTIES:
@@ -482,6 +489,7 @@
    3. OR Collect and share logs automatically using [[./installation-manual.org::#syncthing][Syncthing]] if
       internet connection is available in the college.
 
+
 * Changing College Cloud Machine
   To change an already configured College Cloud server to a different
   machine, the below steps are to be followed by System Administrator
@@ -525,6 +533,7 @@
    smooth migration to the newly configured College Cloud server
    - Follow the link  [[./installation-manual.org::#dns-settings][Changing DNS settings]] .
 
+
 * Shutting down of College Cloud Server
   College Cloud contains a Vagrant box which on direct shutdown would crash. 
   To ensure proper shut down College Cloud Edition,follow the steps given below : 
@@ -542,8 +551,10 @@
      sudo shutdown -h now
      #+END_SRC
 
+
 * Clone Hard Disk( College Cloud Edition)
   To create multiple copies of College Cloud Edition, follow the [[./clone/index.org][link]]
+
 
 * Passwords
   :PROPERTIES:
@@ -597,6 +608,7 @@
      - Go to   =http://vlabs.ac.in/admin.
      - Login using default [[./installation-manual.org::#passwords][admin user and password]].
      - Follow the instructions detailed in [[https://openedx.atlassian.net/wiki/display/OpenOPS/Managing+OpenEdX+Tips+and+Tricks][Administration commands]].
+
 
 * Support  
   - Get help with Virtual Labs College Cloud Edition by 
