@@ -52,6 +52,20 @@
        to its clients. This would need configuration of LAN settings
        in the router such that router's dhcp server would serve IPs
        from the above IP range to its clients.
+       
+       *NOTE :: During Wi-Fi router configuration, DNS server should be
+       10.2.57.62.* *Adding DNS server ip, varies from router to
+       router. For example*,
+       #+BEGIN_EXAMPLE
+       primary DNS 10.2.57.62
+       or
+       DNS1        10.2.57.62
+       or 
+       nameserver  10.2.57.62
+       or
+       domain name 10.2.57.62
+       #+END_EXAMPLE
+       
   2. Connect the identified College Cloud machine to the configured
      Wi-Fi router through a LAN cable. *Please do not touch the WAN
      port*.
