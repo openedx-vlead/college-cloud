@@ -492,8 +492,8 @@ workshop_folder = dir_str + "workshop-logs-datewise-" + tag_name + "-" + date_to
 full_dump_location = dir_str + "workshop-logs-full-" + tag_name + "-" + date_today + "/"
 feedback_dump_file = workshop_folder + "/feedback-dump-" + tag_name + "-" + date_for_feedback + ".json"
 usage_dump_file = workshop_folder + "/vlabs-analytics-" + tag_name + "-" + date_for_usage + ".json"
-edx_auth_user_data = workshop_folder + "/edx-auth-user-data-" + tag_name + "-" + date_for_usage + ".sql"
-edx_auth_registration_data = workshop_folder + "/edx-auth-registration-data-" + tag_name + "-" + date_for_usage + ".sql"
+edx_auth_user_data = "edx-auth-user-data-" + tag_name + "-" + date_for_usage + ".sql"
+edx_auth_registration_data = "edx-auth-registration-data-" + tag_name + "-" + date_for_usage + ".sql"
 compression_file_name = tag_name + "-" + date_today + ".tar.gz"
 
 
@@ -657,7 +657,7 @@ def date_wise_dump():
 	set_dir_structure(workshop_folder)
 	get_feedback(feedback_api, feedback_dump_file)
 	get_usage(elastic_url, elastic_payload, usage_dump_file)
-	get_user_logs(vagrant_dir, script_dir)
+	get_user_logs(vagrant_dir, script_dir,workshop_folder)
         os.system('sudo cp'+ " " + config_file_name + " " + workshop_folder)
 	make_tarfile(datewise_dumpfile, workshop_folder)
 
@@ -676,14 +676,13 @@ def full_dump():
         set_dir_structure(workshop_folder)
 	set_dir_structure(full_dump_location)
 	os.system("sudo vzctl exec " + ctid_analytics + " elasticdump --input=http://localhost:9200/vlabs --output=/root/vlabs-mapping-full.json --type=mapping")
-	os.system("sudo vzctl exec " + ctid_analytics + " elasticdump --input=http://localhost:9200/vlabs --output=/root/vlabs-data-full.json --type=data")
+	os.system("sudo vzctl exec " + ctid_analytics + " elasticdump --input=http://localhost:9200/vlabs --output=/root/vlabs-analytics-full.json --type=data")
 	os.system("sudo cp /vz/private/" + ctid_analytics + "/root/vlabs-mapping-full.json " + full_dump_location)
-	os.system("sudo cp /vz/private/" + ctid_analytics + "/root/vlabs-data-full.json " + full_dump_location)
+	os.system("sudo cp /vz/private/" + ctid_analytics + "/root/vlabs-analytics-full.json " + full_dump_location)
         os.system("sudo vzctl exec " + ctid_feedback + " mysqldump -uroot -proot feedback > " + full_dump_location + "feedback-dump-full.sql")
         os.system('sudo cp'+ " " + config_file_name + " " + full_dump_location)
-	get_user_logs(vagrant_dir, script_dir)
+        get_user_logs(vagrant_dir, script_dir,full_dump_location)
 	make_tarfile(full_dumpfile, full_dump_location)
-
 
 #+END_SRC
 
