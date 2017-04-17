@@ -66,4 +66,6 @@
   |   6. | Thinkpad P50         | 8 GB             | Intel core i7 8MB cache | 500 GB magnetic |                     |            |
   |------+----------------------+------------------+-------------------------+-----------------+---------------------+------------|
   
+  + Need to call Dell for quotes and price. 
+  + Processor iformation is give [[http://www.intel.in/content/www/in/en/processors/core/core-i7-processor.html][here]].
   
