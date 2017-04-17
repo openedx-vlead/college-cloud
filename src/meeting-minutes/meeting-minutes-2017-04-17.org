@@ -68,7 +68,7 @@
    + Assigned To - Ravi 
    + Deadline - EOD
 
-** Order HDMI cables to provide utility to connect laptops with procector - Ravi
+** Order HDMI cables to provide utility to connect laptops with projector - Ravi
    + Assigned To - Ravi
    + Deadline - ASAP
 
