@@ -104,3 +104,5 @@
 
    
   
+** Create a google group/mailing lists for all attendees of College Cloud Workshop - Raghupathi
+   + Deadline - EOD
