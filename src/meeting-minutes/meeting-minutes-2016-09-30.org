@@ -1,7 +1,7 @@
 #+TITLE: Meeting Minutes
 * Meeting minutes with Systems team
 ** 2016-09-30 Friday
-   Attendees :: Mr.Maruthi Rao, Priya, Sanchita, Siva and Aashay
+   Attendees :: Technical consultant, Priya, Sanchita, Siva and Aashay
 
    Discussed on hardware requirements and other portable media issues
 

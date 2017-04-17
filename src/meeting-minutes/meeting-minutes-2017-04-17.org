@@ -1,0 +1,103 @@
+#+TITLE: Meeting Minutes - College Cloud Edition
+#+DATE: April 17, 2017
+#+Author: VLEAD Systems  
+
+* Agenda 
+  + How to get existing College Cloud Edition working reliably ?
+  + Get a long term robust/ideal College Cloud Edition working.
+  + To have a clear understanding on College Cloud Edition and issues.
+
+* Discussions 
+  + Team has to visit Solan and demonstrate College Cloud Edition
+    working reliably atleast with one lab.
+  + There are two categories of issues -
+    + Content related issues because of porting errors.
+    + Operational/Computational issues.
+  + There was a discussion of what all things are consuming resources ?
+    + Open edX consuming 8 GB or RAM
+    + Containers are eating up the rest.
+  + There was a sugestion to run services from bare metal directly on
+    host. Using containers for such services is an overhead.
+  + Do we need to run all services of Open edX. Some of them may not
+    be needed.
+  + WiFi router is the bottlenect being unable to provide IP addresses
+    and hence connections. People connection on wifi faced problems
+    based on the experiences of past workshopsp.
+  + DNS was another issues where DNS container was regularly swapped
+    in and out of memory resulting in frequent page faults. There page
+    faults are to be reduced.
+  + We need to identify the way to get counts of page faults.
+  + No hypothesis is supported with facts but with experience. We need
+    to gather facts supporting in hyposthesis.
+  + Current machine hosting college cloud is a not a server grade
+    machine and hence dont have proper accelators for
+    virtualization. This machine must then be replaced by server grade
+    machine.
+  + Discussion on how to clone disks for Solan workhop. 
+  + Discussion on running College Cloud Compnents from two different
+    machine where Open edX and other services will be running from a
+    machine and other cluster components to run from another machine.
+
+* Decisions
+  + It was decided to buy the following items -
+    + 2 powerful laptops are to be brought up within a weeks
+      time. 32 GB RAM/ I7 processor/Xenon processor.
+    + Buy some HDMI cables to avoid connection issues of laptop to
+      projectors.
+    + 2 SSD disks for 500 GB each are to be bought.
+    + Buy a kit bag to contain all college cloud related logistics.
+  + Students must only be allowed to connect on LAN. WIFI must be
+    disabled or password must not be shared.
+  + Colleges must have their logistics ready to conduct College Cloud 
+    Workshops. We will not carry our logistics to colleges.
+  + A person must visit the college 2 days in advance to set up system.
+  + We need to put up a list of things College must have as a pre-requisite to conduct college cloud workshop. 
+  + Experimentation with various configurations is to be done to support the hypothesis with facts.
+  + Experimentation with running Open edX and other service from one
+    machine and rest other cluster compoents from other machine was
+    made, and is to be proved.
+  + Professor to send an email once logistics are figured out.
+  + Siva to visit Solan for College Cloud Edition demo. He will setup
+    the workstation in Solan.
+
+* Action items 
+** Order 2 Laptops of 32 GB RAM with Intel or Xenon processor - Ravi
+   + Assigned To - Ravi 
+   + Deadline - EOD
+
+** Order HDMI cables to provide utility to connect laptops with procector - Ravi
+   + Assigned To - Ravi
+   + Deadline - ASAP
+
+** Order a Kit bag to contain all college Cloud logistics - Ravi
+   + Assigned To - Ravi
+   + Deadline - ASAP
+
+** Prepare a table with all the components in College Cloud with memory requirements - Siva/Raghupathi/Ashay
+   A table is to be prepared to list the following for all College
+   Cloud Components (Containers/Servers)-
+    + Component name
+    + RAM assigned currently
+    + Minimum recommended RAM 
+    + Link to the reference of decision
+   + Assigned To - Siva
+   + Deadline - EOD
+
+** Read previous logs to identify if DNS Failed - Siva/Raghupathi
+   There was a discussion on DNS failing to process name
+   resolutions. Logs are to be read to support the assumption.
+   + Deadline - EOD
+
+** Count the number of page faults taking place in current setup of College Cloud - Raghupathi
+** Prepare a list of all logistics a college must have to conduct a college cloud workshop - Lalit/Ravi
+** Prepare a report on all college cloud workshops happened - Ashay/Siva/Raghupathi
+** List of all cluster components in college cloud edition - Siva/Raghupathi
+** Send the list of pre-requisites for college cloud workshop in Solan - Professor
+   We need to send a list of all the pre-requsities to conduct a
+   college cloud workshop in Solan. A proper list is to be prepared by
+   Lalit/Ravi/Siva which is a task mentioned in Action items.
+** Experiment with running Open edX from a seperate machine and rest other cluster components from antoher - Siva/Raghupathi
+   + Deadline - EOD
+
+   
+  
