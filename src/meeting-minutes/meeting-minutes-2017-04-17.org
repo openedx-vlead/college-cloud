@@ -7,6 +7,9 @@
   + Get a long term robust/ideal College Cloud Edition working.
   + To have a clear understanding on College Cloud Edition and issues.
 
+* Attendees
+  + Professor, Thirumal, Tech Consultant, Ravi, Lalit, Siva,
+    Raghupathi, Ashay.
 * Discussions 
   + Team has to visit Solan and demonstrate College Cloud Edition
     working reliably atleast with one lab.
