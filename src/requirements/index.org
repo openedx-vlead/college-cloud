@@ -41,3 +41,29 @@
     - Stream videos of labs from College Cloud 
     - Visit github issue to [[https://github.com/openedx-vlead/college-cloud/issues/26][read the plan]]
     - Check [[https://github.com/openedx-vlead/college-cloud/milestone/7][Milestone for more tasks]]
+
+* Laptop specifications 
+
+  |------+----------------------+------------------+-------------------------+-----------------+---------------------+------------|
+  | S.No | Name                 | RAM              | Processor               | HDD             | Others              | Cost (INR) |
+  |------+----------------------+------------------+-------------------------+-----------------+---------------------+------------|
+  |   1. | Dell New Latitude 14 | DDR4 SDRAM 32 GB | 7th Gen Intel           | 500 GB          | Ubuntu OS           |            |
+  |      | inch 7000 series     | 2133 MHz         | core I7  8 cores        |                 | 35.5 cm HD 1366*768 |            |
+  |      |                      |                  |                         |                 | No Touch            |            |
+  |------+----------------------+------------------+-------------------------+-----------------+---------------------+------------|
+  |   2. | Dell New Latitude 14 | DDR4 SDRAM 32 GB | 7th Gen Intel           | 1 TB PCIe SSD   | Same as above       |            |
+  |      | inch 7000 series     |                  | core I7 4 cores         |                 |                     |            |
+  |------+----------------------+------------------+-------------------------+-----------------+---------------------+------------|
+  |   3. | Same as above        | same as above    | same as above           | 512 GB SED SSD  | same as above       |            |
+  |------+----------------------+------------------+-------------------------+-----------------+---------------------+------------|
+  |   4. | Thinkpad P50         | 8 GB DDR4-2133   | Intel Core i7-6MB       | 500 GB Magnetic | 15.6 inch 1920*1080 | 1,34000    |
+  |      |                      |                  | cache                   |                 | No touch            |            |
+  |------+----------------------+------------------+-------------------------+-----------------+---------------------+------------|
+  |   5. | Dell 14 7000 series  | 16 GB            |                         |                 | Ubunut OS           |            |
+  |      | e7470 ultrabook      | DDR4 SDRAM       | 6th generation i7       |                 | No touch            |            |
+  |      |                      |                  |                         |                 |                     |            |
+  |------+----------------------+------------------+-------------------------+-----------------+---------------------+------------|
+  |   6. | Thinkpad P50         | 8 GB             | Intel core i7 8MB cache | 500 GB magnetic |                     |            |
+  |------+----------------------+------------------+-------------------------+-----------------+---------------------+------------|
+  
+  
