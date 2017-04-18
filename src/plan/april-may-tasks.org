@@ -1,4 +1,4 @@
-#+TITLE: April-May tasks
+#+TITLE: College Cloud edition components and their system resource info
 #+AUTHOR: VLEAD
 #+PROPERTY: results output
 #+PROPERTY: exports code
@@ -37,36 +37,5 @@
    having 256MB RAM.
 
 
-* DONE Read previous logs to identify if DNS Failed - Siva/Raghupathi
-  There was a discussion on DNS failing to process name
-  resolutions. Logs are to be read to support the assumption.
-* DONE List of all cluster components in college cloud edition - Siva/Raghupathi
-  [[.
-
-* DONE Experiment with running Open edX from a seperate machine and rest other cluster components from antoher - Siva/Raghupathi
- 
-* DONE Create a google group/mailing lists for all attendees of College Cloud Workshop - Raghupathi
-  [[
-* Prepare a report on all college cloud workshops happened - Ashay/Siva/Raghupathi
-
-
-* TODO Order 2 Laptops of 32 GB RAM with Intel or Xenon processor - Ravi
-  + Assigned To - Ravi 
-  + Deadline - EOD
-
-* TODO Order HDMI cables to provide utility to connect laptops with projector - Ravi
-  + Assigned To - Ravi
-  + Deadline - ASAP
-
-* TODO Order a Kit bag to contain all college Cloud logistics - Ravi
-  + Assigned To - Ravi
-  + Deadline - ASAP
-
-* TODO Count the number of page faults taking place in current setup of College Cloud - Raghupathi
-* TODO Prepare a list of all logistics a college must have to conduct a college cloud workshop - Lalit/Ravi
-* TODO Send the list of pre-requisites for college cloud workshop in Solan - Professor
-  We need to send a list of all the pre-requsities to conduct a
-  college cloud workshop in Solan. A proper list is to be prepared by
-  Lalit/Ravi/Siva which is a task mentioned in Action items.
  
 
