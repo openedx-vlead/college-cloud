@@ -7,9 +7,11 @@
   + Get a long term robust/ideal College Cloud Edition working.
   + To have a clear understanding on College Cloud Edition and issues.
 
+
 * Attendees
   + Professor, Thirumal, Tech Consultant, Ravi, Lalit, Siva,
     Raghupathi, Ashay.
+
 * Discussions 
   + Team has to visit Solan and demonstrate College Cloud Edition
     working reliably atleast with one lab.
@@ -41,6 +43,7 @@
     machine where Open edX and other services will be running from a
     machine and other cluster components to run from another machine.
 
+
 * Decisions
   + It was decided to buy the following items -
     + 2 powerful laptops are to be brought up within a weeks
@@ -63,20 +66,21 @@
   + Siva to visit Solan for College Cloud Edition demo. He will setup
     the workstation in Solan.
 
+
 * Action items 
-** Order 2 Laptops of 32 GB RAM with Intel or Xenon processor - Ravi
+** [[https://github.com/vlead/lab-specifications/issues/1][#1]] Order 2 Laptops of 32 GB RAM with Intel or Xenon processor - Ravi
    + Assigned To - Ravi 
    + Deadline - EOD
 
-** Order HDMI cables to provide utility to connect laptops with projector - Ravi
+** [[https://github.com/vlead/lab-specifications/issues/1][#1]] Order HDMI cables to provide utility to connect laptops with projector - Ravi
    + Assigned To - Ravi
    + Deadline - ASAP
 
-** Order a Kit bag to contain all college Cloud logistics - Ravi
+** [[https://github.com/vlead/lab-specifications/issues/1][#1]] Order a Kit bag to contain all college Cloud logistics - Ravi
    + Assigned To - Ravi
    + Deadline - ASAP
 
-** Prepare a table with all the components in College Cloud with memory requirements - Siva/Raghupathi/Ashay
+** [[https://github.com/openedx-vlead/college-cloud/issues/62][#62]] Prepare a table with all the components in College Cloud with memory requirements - Siva/Raghupathi/Ashay
    A table is to be prepared to list the following for all College
    Cloud Components (Containers/Servers)-
     + Component name
@@ -86,23 +90,22 @@
    + Assigned To - Siva
    + Deadline - EOD
 
-** Read previous logs to identify if DNS Failed - Siva/Raghupathi
+** [[https://github.com/openedx-vlead/college-cloud/issues/63][#63]] Read previous logs to identify if DNS Failed - Siva/Raghupathi
    There was a discussion on DNS failing to process name
    resolutions. Logs are to be read to support the assumption.
    + Deadline - EOD
 
-** Count the number of page faults taking place in current setup of College Cloud - Raghupathi
-** Prepare a list of all logistics a college must have to conduct a college cloud workshop - Lalit/Ravi
+** [[https://github.com/openedx-vlead/college-cloud/issues/60][#60]] Count the number of page faults taking place in current setup of College Cloud - Raghupathi
+** [[https://github.com/openedx-vlead/college-cloud/issues/67][#67]] Prepare a list of all logistics a college must have to conduct a college cloud workshop - Lalit/Ravi
 ** Prepare a report on all college cloud workshops happened - Ashay/Siva/Raghupathi
-** List of all cluster components in college cloud edition - Siva/Raghupathi
+** [[https://github.com/openedx-vlead/college-cloud/issues/64][#64]] List of all cluster components in college cloud edition - Siva/Raghupathi
 ** Send the list of pre-requisites for college cloud workshop in Solan - Professor
    We need to send a list of all the pre-requsities to conduct a
    college cloud workshop in Solan. A proper list is to be prepared by
    Lalit/Ravi/Siva which is a task mentioned in Action items.
-** Experiment with running Open edX from a seperate machine and rest other cluster components from antoher - Siva/Raghupathi
+** [[https://github.com/openedx-vlead/college-cloud/issues/65][#65]] Experiment with running Open edX from a seperate machine and rest other cluster components from antoher - Siva/Raghupathi
    + Deadline - EOD
 
    
-  
-** Create a google group/mailing lists for all attendees of College Cloud Workshop - Raghupathi
+** [[https://github.com/openedx-vlead/college-cloud/issues/66][#66]] Create a google group/mailing lists for all attendees of College Cloud Workshop - Raghupathi
    + Deadline - EOD
