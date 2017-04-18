@@ -1,0 +1,119 @@
+#+TITLE: Various plans and discussions of College Cloud Edition
+#+AUTHOR: VLEAD
+#+PROPERTY: results output
+#+PROPERTY: exports code
+#+SETUPFILE: ../org-templates/level-1.org
+#+TAGS: boilerplate(b)
+#+options: ^:nil
+
+* Introduction
+  This document contains plan of building college cloud edition
+  solution.
+* Plan for next current college cloud edition.
+    1) Some of the experiments are pointing to institute servers.
+    2) Some labs are having internet needed links on the pages. 
+    3) List down the labs that are having above issues and remove them
+       from college cloud.
+    4) Adding Experiment server in college cloud. So that we can
+       reduce 29-30 openvz containers in college cloud cluster.
+    5) Cloning the HDDs
+       
+** How many labs are problematic?
+   [[./https://docs.google.com/spreadsheets/d/1x1_mV1sjvlYrpp_HjsfYV_7QCKK3WSwK03t52jivZho/edit?ts%3D58ef6a21#gid%3D0][issues in college cloud edition labs]]
+
+** Memory information of Open edX platform
+   |------+-------------------+-------------------+-------------------+--------------------------+--------------+--------------------------+---------------|
+   | S.No |                   | Suggested RAM     | Allotted RAM      | suggested HDD            | Allotted HDD | Suggested CPU            | Allotted CPU  |
+   |      |                   |                   |                   | (GB)                     | (GB)         |                          |               |
+   |------+-------------------+-------------------+-------------------+--------------------------+--------------+--------------------------+---------------|
+   |    1 | Open edX platform | 4GB main/2GB Swap | 8GB Main/2GB swap | 25-100                   | 40           | At least one 2.00GHz CPU | 4 cpus/3392MB |
+   |      |                   |                   |                   | 50 GB is recommended for |              |                          |               |
+   |      |                   |                   |                   | production servers.      |              |                          |               |
+   |      |                   |                   |                   | [[https://openedx.atlassian.net/wiki/display/OpenOPS/Native+Open+edX+Ubuntu+12.04+64+bit+Installation][reference]]                |              |                          |               |
+   |------+-------------------+-------------------+-------------------+--------------------------+--------------+--------------------------+---------------|
+
+** Memory information of Containers
+   |------+-----------------------+-----------------+--------------+-----------------+-------------------------------------|
+   | S.No | Container name        | Recommended RAM | Allotted RAM | Recommended CPU | Allotted CPU                        |
+   |------+-----------------------+-----------------+--------------+-----------------+-------------------------------------|
+   |    1 | vlabs-analytics       | 4GB             | 256MB        |               2 | dynamically takes from host machine |
+   |    2 | analytics-api (flask) | 256 MB          | 2GB          |               1 | dynamically takes from host machine |
+   |------+-----------------------+-----------------+--------------+-----------------+-------------------------------------|
+
+** Memory information of all other containers 
+   By default, each openvz container ( including cluster containers)is
+   having 256MB RAM.
+
+
+** Proposed machine configuration for college cloud demos and deployments
+   *Current Problem*: 
+
+   Several performance issues are observed in the single machine
+   version of college cloud. The main reason might be running VMs
+   (edX) and time sensitive applications in containers, and many
+   containers etc in a machine that is not not suitable for heavy
+   virtualization, hardware acceleration.
+
+   *Approach*:
+   1) Reduce the number of VMs, Containers and edX to free resources during run time.
+   2) Portable system for demonstration purpose.
+   3) Deployment with workstation grade systems.
+
+   One interim approach is splitting the college cloud into 2
+   machines. One machine handles edX, analytics and other machine
+   handles labs, clusters etc. The components can be shuffled as
+   appropriate.
+
+   *Demonstration of College Cloud*: 
+
+   2 Laptops are used. It is portable and easy.  
+
+   *Preferred Laptops*: Dell New Latitude 7480 with 16GB or 32 GB and
+   i7 processor.  Note: Internal HDD should be used to demo college
+   cloud. No USB HDD.
+
+  *Deployment of College Cloud*: Once the demo is over, the institute
+  will be given 2 HDD and deploy college cloud in 2
+  machines. Workstation grade machines are preferred. 
+
+  Preferred Machines: 2 Workstation grade machine. i7 / Xenon with
+  32GB RAM.
+
+  ================
+  Long term approach: Redesign of College cloud with reduced footprint.
+
+  Reduce / simplify resource intensive components / containers / VMs
+  and run in one machine.
+* Plan for new college cloud edition
+
+
+   
+* meeting minutes 
+** [2017-04-17 Mon]
+   *Attendees:* Thirumal, Prof Venkatesh, Ravi Shankar, Maruthi
+   Rao,Raghupathi, Ashay and Siva Shanker
+
+  - By middle of the Summer we have to ready solid working CC
+*** TODO
+    - Identify content issues
+    - Identify Operational issues.
+      Who is consuming resources, RAM, CPUs ( web applications)
+    
+    
+    - Machine Specs  
+    - How many HDDs we are taking with us to Solan
+    - Mailing list( google group) for college cloud edition users .
+    
+        
+
+
+
+
+
+
+
+
+
+
+
+
