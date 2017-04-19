@@ -74,7 +74,21 @@ second.
                 some difficulty. This field is displayed as zero if no
                 pages have been scanned during the interval of time.
 
-  
+* Test results of OpenedX and College Cloud
+** Tested on College Cloud
+| S.No |     Lab1 |   Lab2 |   Lab3 |
+|------+----------+--------+--------|
+| Min  |    31.68 |  31.68 |  32.00 |
+| Max  | 40875.00 | 180.81 | 536.00 |
+| Avg  |  4185.56 |  49.40 |  95.79 |
+
+** Tested on OpenedX platform
+| S.No | Lab1 | Lab2 | Lab3 |
+|------+------+------+------|
+| Min  |    23.00  |  23.00    |    23.00  |
+| Max  |   992.00   | 826.00     |    1068.00  |
+| Avg  |     172.20 |   151.20   |    209.49  |
+
 * Raw Data 
 ** running 3 labs on college cloud and tested sar command on College Cloud
   + [[https://github.com/openedx-vlead/college-cloud/blob/cc-april-delhi/src/pagefault/college-cloud/page-fault1-lab-18-04-2017.txt][collge-cloud with 1 lab]]
