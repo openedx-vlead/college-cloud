@@ -56,8 +56,7 @@ Average:         0.00     16.00    172.20      0.00    131.50      0.00      0.0
     #+END_SRC
 
   + Explaination for the above terms ::
-    + pgpgin/s :: Total number of kilobytes the system paged in from
-disk per second. Note: With old kernels (2.2.x) this value is a number
+    + pgpgin/s :: Total number of kilobytes the system paged in from disk per second. Note: With old kernels (2.2.x) this value is a number
 of blocks per second (and not kilobytes).  considered as number of
 users making a request at an instance of time, where each user make a
 single request.
