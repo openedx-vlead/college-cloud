@@ -2,23 +2,37 @@
 #+Date: April 18, 2017
 #+Author: VLEAD Systems 
 
-
 * Introduction 
   This document refers the raw data fetched from the sar test.
-  
+
+* Objective
+ To count number of page faults per second on college cloud.
+
+* Scenario and setup
+   + No Load
+   + Open edX and 7 Clusters + 3 labs are running on one machine (College Cloud). 
+   + OpenedX  running on one machine and 7 Clusters + 3 labs are running on another machine.
+ 
+** Test Scenario1 
+  - *Tools used:* sar (No Load).
+  - *Test Subject :* OpenedX platform and college cloud running on 16GB machine.
+  - *Number of labs running:* 7 clusters and 3 labs was running and were rest of them were turned off(68 lab containers)
+** Test Scenario2
+  - *Tools used:* sar (No Load).
+  - *Test Subject :* Openedx Platform was running on 16Gb machine .
+  -  *Number of labs running:* 7 clusers and 3 labs are running another machine and were rest of them were turned off (68 lab containers).
+
 
 * Test Procedure and details 
+** Test Scenario1
   + Tool used :: sar
-  + Test Subject :: Open edX on college cloud and Host Server
-  + No of labs running :: 1 Lab was running and rest of them were turned off exclude server nodes.
   + Sample command 
     #+BEGIN_SRC 
     sar -B 1 10
     #+END_SRC
   + The above command transferes 10 times in 1 sec.
   + Here, -B is used to display/reporting paging statistics.
-
-* Understanding the sample results -
+*** Understanding the sample results -
   + Command used 
     #+BEGIN_SRC 
     sar -B 1 10
@@ -74,32 +88,89 @@ second.
                 some difficulty. This field is displayed as zero if no
                 pages have been scanned during the interval of time.
 
-* Test results of OpenedX and College Cloud
-** Tested on College Cloud
+*** Test results of OpenedX and College Cloud
+**** OpenedX and 7 clusters + 3 labs are running one machine.
+***** Page fault results on College Cloud
 | S.No |     Lab1 |   Lab2 |   Lab3 |
 |------+----------+--------+--------|
 | Min  |    31.68 |  31.68 |  32.00 |
 | Max  | 40875.00 | 180.81 | 536.00 |
 | Avg  |  4185.56 |  49.40 |  95.79 |
 
-** Tested on OpenedX platform
+***** Page fault results on OpenedX platform
 | S.No | Lab1 | Lab2 | Lab3 |
 |------+------+------+------|
 | Min  |    23.00  |  23.00    |    23.00  |
 | Max  |   992.00   | 826.00     |    1068.00  |
 | Avg  |     172.20 |   151.20   |    209.49  |
 
-* Raw Data 
-** running 3 labs on college cloud and tested sar command on College Cloud
+*** Raw Data 
+**** running 3 labs on college cloud and tested sar command on College Cloud
   + [[https://github.com/openedx-vlead/college-cloud/blob/cc-april-delhi/src/pagefault/college-cloud/page-fault1-lab-18-04-2017.txt][collge-cloud with 1 lab]]
   + [[https://github.com/openedx-vlead/college-cloud/blob/cc-april-delhi/src/pagefault/college-cloud/page-fault2-lab-18-04-2017.txt][college-cloud with 2 lab]]
   + [[https://github.com/openedx-vlead/college-cloud/blob/cc-april-delhi/src/pagefault/college-cloud/page-fault3-lab-18-04-2017.txt][college-cloud with 3 lab]]
 
-** running 3 labs on college cloud and tested sar command on OpenedX platform
+**** running 3 labs on college cloud and tested sar command on OpenedX platform
   + [[https://github.com/openedx-vlead/college-cloud/blob/cc-april-delhi/src/pagefault/openedx/page-fault1-lab-18-04-2017.txt][Openedx with 1 lab]]
   + [[https://github.com/openedx-vlead/college-cloud/blob/cc-april-delhi/src/pagefault/openedx/page-fault2-lab-18-04-2017.txt][Openedx with 2 lab]]
   + [[https://github.com/openedx-vlead/college-cloud/blob/cc-april-delhi/src/pagefault/openedx/page-fault3-lab-18-04-2017.txt][Openedx with 3 lab]]
   
+
+** Test Scenario2
+  + Tool used :: sar
+  + Sample command 
+    #+BEGIN_SRC 
+    sar -B 1 10
+    #+END_SRC
+  + The above command transferes 10 times in 1 sec.
+  + Here, -B is used to display/reporting paging statistics.
+*** Understanding the sample results -
+  + Command used 
+    #+BEGIN_SRC 
+    sar -B 1 10
+    #+END_SRC
+  + Sample output snippet obtained . 
+    #+BEGIN_SRC
+Linux 3.13.0-95-generic (vagrant-ubuntu-trusty-64) 	04/21/2017 	_x86_64_	(4 CPU)
+
+04:25:57 AM  pgpgin/s pgpgout/s   fault/s  majflt/s  pgfree/s pgscank/s pgscand/s pgsteal/s    %vmeff
+04:25:58 AM      0.00      0.00     29.00      0.00    210.00      0.00      0.00      0.00      0.00
+04:25:59 AM      0.00      0.00     98.00      0.00    198.00      0.00      0.00      0.00      0.00
+04:26:00 AM      0.00      0.00    779.00      0.00    244.00      0.00      0.00      0.00      0.00
+04:26:01 AM      0.00     68.00    184.00      0.00     58.00      0.00      0.00      0.00      0.00
+04:26:02 AM      0.00      0.00  80972.28      0.00  27097.03      0.00      0.00      0.00      0.00
+04:26:03 AM      0.00      0.00     34.00      0.00    101.00      0.00      0.00      0.00      0.00
+04:26:04 AM      0.00    192.00     36.00      0.00     58.00      0.00      0.00      0.00      0.00
+04:26:05 AM      0.00      0.00    119.00      0.00     75.00      0.00      0.00      0.00      0.00
+04:26:06 AM      0.00      0.00     65.00      0.00    131.00      0.00      0.00      0.00      0.00
+04:26:07 AM      0.00    116.00     65.00      0.00     59.00      0.00      0.00      0.00      0.00
+Average:         0.00     37.56   8310.79      0.00   2847.35      0.00      0.00      0.00      0.00
+    #+END_SRC
+*** Test results of OpenedX and College Cloud
+**** Opnedx platform was running one machine and 7 clusters + 3 labs are running another machine.
+***** Page fault results on OpenedX.
+| S.No |     Lab1 |   Lab2 |   Lab3 |
+|------+----------+--------+--------|
+| Min  |    29.00 |  27.00 |  27.00 |
+| Max  | 80972.28 | 799.00 | 774.00 |
+| Avg  |  8310.79 | 136.80 | 119.30 |
+
+***** Page fault results on College Cloud with 7 clusters + 3 labs.
+| S.No |  Lab1 |  Lab2 |  Lab3 |
+|------+-------+-------+-------|
+| Min  | 31.68 | 32.00 | 31.68 |
+| Max  | 64.65 | 40.00 | 43.00 |
+| Avg  | 37.00 | 34.83 | 34.63 |
+
+***** Page fault results on College Cloud without 7 clusters + 71 labs.
+
+  | S.No |     Lab1 |  Lab2 |  Lab3 |
+  |------+----------+-------+-------|
+  | Min  |    33.00 | 32.00 | 31.68 |
+  | Max  | 21725.74 | 45.00 | 44.00 |
+  | Avg  |  2350.25 | 36.47 | 36.21 |
+
+
 * References 
 http://www.thegeekstuff.com/2011/03/sar-examples/?utm_source=feedburner
 
