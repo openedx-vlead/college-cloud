@@ -1,4 +1,4 @@
-#+Title: Inference from the page fault test 
+#+Title: Inference from the page fault test on College Cloud
 #+Date: April 18, 2017
 #+Author: VLEAD Systems 
 
@@ -24,20 +24,19 @@
 
 
 * Test Procedure and details 
-** Test Scenario1
+** Test Procedure1
   + Tool used :: sar
-  + Sample command 
     #+BEGIN_SRC 
     sar -B 1 10
     #+END_SRC
   + The above command transferes 10 times in 1 sec.
   + Here, -B is used to display/reporting paging statistics.
-*** Understanding the sample results -
+*** Understanding the below results -
   + Command used 
     #+BEGIN_SRC 
     sar -B 1 10
     #+END_SRC
-  + Sample output snippet obtained . 
+  + Output snippet obtained . 
     #+BEGIN_SRC
      Linux 3.13.0-95-generic (vagrant-ubuntu-trusty-64) 	04/19/2017 	_x86_64_	(4 CPU)
 
@@ -116,20 +115,19 @@ second.
   + [[https://github.com/openedx-vlead/college-cloud/blob/cc-april-delhi/src/pagefault/cc-with-one-openedx/openedx/page-fault3-lab-18-04-2017.txt][Openedx-with-3labs]]
   
 
-** Test Scenario2
+** Test Procedure2
   + Tool used :: sar
-  + Sample command 
     #+BEGIN_SRC 
     sar -B 1 10
     #+END_SRC
   + The above command transferes 10 times in 1 sec.
   + Here, -B is used to display/reporting paging statistics.
-*** Understanding the sample results -
+*** Understanding the below results -
   + Command used 
     #+BEGIN_SRC 
     sar -B 1 10
     #+END_SRC
-  + Sample output snippet obtained . 
+  + Output snippet obtained . 
     #+BEGIN_SRC
 Linux 3.13.0-95-generic (vagrant-ubuntu-trusty-64) 	04/21/2017 	_x86_64_	(4 CPU)
 
