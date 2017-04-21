@@ -26,6 +26,7 @@
 * Test Procedure and details 
 ** Test Procedure1
   + Tool used :: sar
+  + Followed below command for testing page faults
     #+BEGIN_SRC 
     sar -B 1 10
     #+END_SRC
@@ -117,6 +118,7 @@ second.
 
 ** Test Procedure2
   + Tool used :: sar
+  + Followed below command for testing page faults
     #+BEGIN_SRC 
     sar -B 1 10
     #+END_SRC
