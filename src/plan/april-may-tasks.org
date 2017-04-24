@@ -12,6 +12,20 @@
   Containers).
   1. Services container/Cluster Containers = 7 running + 3 Stopped
   2. Lab Containers =  71 stopped
+* Available resources of the current College Cloud 
+  #+BEGIN_SRC 
+  Processor : Intel(R) Core(TM) i7-3770 , CPU with 3.40GHz (Model : intel-db75en) 
+  RAM : 16 GB 
+  SMPS : 600 W 
+  No of Cores : 4
+  No of Threads: 8
+  Swap: 12 GB
+  #+END_SRC
+  - Full details of mother board model
+    http://ark.intel.com/products/59043/Intel-Desktop-Board-DB75EN
+  - Full details of Processor
+    http://ark.intel.com/products/65719
+
 * Prepare a table with all the components in College Cloud with memory requirements
   College Cloud Components (Containers/Servers)-
   + Component name
@@ -47,10 +61,27 @@
    | ADS                   | 256 MB          | 256 MB       |             | 512 MB | dynamically takes from host machine |                 |
    |                       |                 |              |             |        |                                     |                 |
    |-----------------------+-----------------+--------------+-------------+--------+-------------------------------------+-----------------|
-
+   
 ** Memory information of all lab containers 
    Each openvz container is having 256MB RAM and swap 512 MB.
 
+** Total Recommended resources : 
 
+  (edx + Cluster Containers)4096+4096+256+572+256+256+512+256= 10300
+  MB =~ 10 GB
+   
+   Lab containers 72×256 =18432 MB =~18 GB ( Not recommended)
+
+   so, total RAM = 28 GB
+
+
+** Allocated / Provisioned resources
+   
+   edx + cluster containers = 8 GB + 256MB + 2GB + 2GB +
+   256MB + 256MB + 256MB + 256MB + 256MB + 256MB = 14080 ~=14GB
+   
+   Lab containers 72×256 =18432 MB =~18 GB
+   
+   So, total RAM Allocated = 32 GB
  
 
