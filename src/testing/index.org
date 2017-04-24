@@ -99,8 +99,21 @@ procs -----------------------memory---------------------- ---swap-- -----io---- 
    
 *** Execution 1 - NO Load 
     + [[https://github.com/openedx-vlead/college-cloud/blob/april-may/src/testing/raw-data/no-load-run-1-vagrant-up.txt][Raw data]]
-    + Graph 
-      1. Free RAM / IDLE RAM graph
+    + Graph-01 Free RAM / IDLE RAM graph
+      The graph given below infers the following -
+      + Free RAM / Idle RAM captured at an instance of test. (There
+        were 1200 test instances since we ran =vmstat 1 1200 -n -w -S
+        M= command for 1200 seconds).
+      + Value for FREE RAM is graphed below -
+         |------+-------------|
+         | Stat | RAM (in MB) |
+         |------+-------------|
+         | Max  |        6904 |
+         |------+-------------|
+         | Min  |        6821 |
+         |------+-------------|
+         
       [[./graphs/free-ram-graph.png]]
+      
       
       
