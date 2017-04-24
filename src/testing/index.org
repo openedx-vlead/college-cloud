@@ -119,3 +119,7 @@ procs -----------------------memory---------------------- ---swap-- -----io---- 
       + Number of processes waiting for runtime at an instance of test.
      
       [[./graphs/no-of-process-waiting-for-runtime-no-load.png]]
+    + Graph-03 IDLE CPU at an instance of test 
+      The graph given below inferes the following -
+      + IDLE CPU percentage at an instance of test. 
+        [[graphs/idle-cpu.png]]
