@@ -1,0 +1,36 @@
+#+TITLE: Virtual Labs College Cloud Edition Performance testing - CPU Testing
+#+DATE: [2017-04-24]
+#+PROPERTY: results output
+#+PROPERTY: exports code
+#+SETUPFILE: ./org-templates/level-1.org
+#+options: ^:nil
+#+LATEX: Literal LaTeX code for export
+
+
+* Introduction
+  This document is a Test Suite for multiple test cases with clear
+  objectives and inferences defined for each test performed.
+
+
+* Test Suite : CPU Testing (Full version of College Cloud Edition)
+** Introduction    
+  |-----------------------+-----------------------------------------------------------------|
+  | Id, Name              | PTEST-FULLCC-001 (Performance Test full CC)                     |
+  |-----------------------+-----------------------------------------------------------------|
+  | Overall Objective(s)  | To identify the following                                       |
+  |                       | a. CPU utilization                                              |
+  |                       | b. Swap IO time                                                 |
+  |                       | c. Wait time                                                    |
+  |                       | d. Page faults                                                  |
+  |                       | e. context switches                                             |
+  |-----------------------+-----------------------------------------------------------------|
+  | Description           | In having mulstiple different scenarios,                        |
+  |                       | testing college cloud for above given parameters .              |
+  |                       | Description for individual tests will be given in               |
+  |                       | each test section.                                              |
+  |-----------------------+-----------------------------------------------------------------|
+  | Configuration/Context | a. College cloud full version (running from single machine)     |
+  |                       | b. College cloud Split version (running from diffrent machines) |
+  |                       | c. Variable load                                                |
+  |-----------------------+-----------------------------------------------------------------|
+
