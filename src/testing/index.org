@@ -23,8 +23,9 @@
   |                       | c. Wait time                                                    |
   |                       | d. Page faults                                                  |
   |                       | e. context switches                                             |
+  |                       | d. Memory (RAM) utilization                                     |
   |-----------------------+-----------------------------------------------------------------|
-  | Description           | In having mulstiple different scenarios,                        |
+  | Description           | In having multiple different scenarios,                         |
   |                       | testing college cloud for above given parameters .              |
   |                       | Description for individual tests will be given in               |
   |                       | each test section.                                              |
@@ -41,8 +42,12 @@
     + CPU run queues
     + Swap in/out
     + Wait time for IO 
+    + Memory (RAM) utilization
 
 *** Description
+    [[http://www.linuxcommand.org/man_pages/vmstat8.html][vmstat]] - Virtual memory stats is a command to get summary
+    information on Memory, Processess, CPU, Paging etc.
+    
     + Boot CC normally
     + Use the command given below to get statistics -
       #+BEGIN_SRC command
@@ -61,9 +66,7 @@
     + CPU utilization / unit
     + Memory utilization / unit
    
+*** Execution 1 - NO Load 
    
-*** Execution / Run 1
-    While other scenarios as mentioned above remains constant, below
-    is the first change -
-    + Run test with no load 
     
+      
