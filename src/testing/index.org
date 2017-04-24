@@ -99,5 +99,7 @@ procs -----------------------memory---------------------- ---swap-- -----io---- 
    
 *** Execution 1 - NO Load 
     + [[https://github.com/openedx-vlead/college-cloud/blob/april-may/src/testing/raw-data/no-load-run-1-vagrant-up.txt][Raw data]]
-    
+    + Graph 
+     
+      [[./graphs/free-ram-graph.png][Free RAM / IDLE RAM graph]]
       
