@@ -89,6 +89,7 @@ procs -----------------------memory---------------------- ---swap-- -----io---- 
     
 *** Configuration / Context 
     + Full CC version 
+    + Open edX running 
     + All components running from a single machine 
     + 16 GB RAM / I7 
     
@@ -97,6 +98,6 @@ procs -----------------------memory---------------------- ---swap-- -----io---- 
     + Memory utilization / unit
    
 *** Execution 1 - NO Load 
-    
+    + [[https://github.com/openedx-vlead/college-cloud/blob/april-may/src/testing/raw-data/no-load-run-1-vagrant-up.txt][Raw data]]
     
       
