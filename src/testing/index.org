@@ -114,6 +114,8 @@ procs -----------------------memory---------------------- ---swap-- -----io---- 
          |------+-------------|
          
       [[./graphs/free-ram-graph.png]]
-      
-      
-      
+    + Graph-02 Number of processes waiting for runtime 
+      The graph given below infers the following -
+      + Number of processes waiting for runtime at an instance of test.
+     
+      [[./graphs/no-of-process-waiting-for-runtime-no-load.png]]
