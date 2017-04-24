@@ -6,13 +6,18 @@
 #+TAGS: boilerplate(b)
 #+options: ^:nil
 
+* Introduction 
+  Document contains resource budgeting tables. In College Cloud
+  Edition, we have 81 OpenVZ containers(services containers + lab
+  Containers).
+  1. Services container/Cluster Containers = 7 running + 3 Stopped
+  2. Lab Containers =  71 stopped
 * Prepare a table with all the components in College Cloud with memory requirements
-  A table is to be prepared to list the following for all College
-  Cloud Components (Containers/Servers)-
-   + Component name
-   + RAM assigned currently
-   + Minimum recommended RAM 
-   + Link to the reference of decision
+  College Cloud Components (Containers/Servers)-
+  + Component name
+  + RAM assigned currently
+  + Minimum recommended RAM 
+  + Link to the reference of decision
 ** Memory information of Open edX platform
    |-------------------+-------------------+--------------------------+--------------+--------------------------+---------------|
    | Suggested RAM     | Allotted RAM      | suggested HDD            | Allotted HDD | Suggested CPU            | Allotted CPU  |
@@ -24,17 +29,27 @@
    |                   |                   | [[https://openedx.atlassian.net/wiki/display/OpenOPS/Native+Open+edX+Ubuntu+12.04+64+bit+Installation][reference]]                |              |                          |               |
    |-------------------+-------------------+--------------------------+--------------+--------------------------+---------------|
 
-** Memory information of Containers
-   |------+-----------------------+-----------------+--------------+-----------------+-------------------------------------|
-   | S.No | Container name        | Recommended RAM | Allotted RAM | Recommended CPU | Allotted CPU                        |
-   |------+-----------------------+-----------------+--------------+-----------------+-------------------------------------|
-   |    1 | vlabs-analytics       | 4GB             | 256MB        |               2 | dynamically takes from host machine |
-   |    2 | analytics-api (flask) | 256 MB          | 2GB          |               1 | dynamically takes from host machine |
-   |------+-----------------------+-----------------+--------------+-----------------+-------------------------------------|
+** Memory information of Cluster Containers
+   |-----------------------+-----------------+--------------+-------------+--------+-------------------------------------+-----------------|
+   | Container name        | Recommended RAM | Allotted RAM | Recommended |        | Allotted                            | Reference Links |
+   |                       |                 |              |         CPU | Swap   | CPU                                 |                 |
+   |-----------------------+-----------------+--------------+-------------+--------+-------------------------------------+-----------------|
+   | vlabs-analytics       | 4GB             | 256MB        |           2 | 512 MB | dynamically takes from host machine | [[https://www.digitalocean.com/community/tutorials/how-to-install-elasticsearch-logstash-and-kibana-elk-stack-on-ubuntu-14-04][Reference]]       |
+   | analytics-api (flask) | 256 MB          | 2GB          |           1 | 512 MB | dynamically takes from host machine |                 |
+   | feedback              | 572 MB          | 2GB          |             | 512 MB | dynamically takes from host machine | [[http://www.mysqlcalculator.com/][reference1]]      |
+   |                       |                 |              |             |        |                                     | [[https://dev.mysql.com/doc/refman/5.5/en/windows-installation.html][reference2]]      |
+   |                       |                 |              |             |        |                                     |                 |
+   | Router                | 256 MB          | 256 MB       |             | 512 MB | dynamically takes from host machine |                 |
+   | ansible               | 256 MB          | 256 MB       |             | 512 MB | dynamically takes from host machine |                 |
+   | private DNS           | large enough    | 256 MB       |             | 512 MB | dynamically takes from host machine | [[ftp://ftp.isc.org/isc/bind9/9.4-ESV-R4/doc/arm/Bv9ARM.ch02.html][reference]]       |
+   | public DNS            | large enough    | 256 MB       |             | 512 MB | dynamically takes from host machine | [[ftp://ftp.isc.org/isc/bind9/9.4-ESV-R4/doc/arm/Bv9ARM.ch02.html][reference]]       |
+   | Reverse proxy         | 512 MB to 1 GB  | 256 MB       |             | 512 MB | dynamically takes from host machine | [[https://magento.stackexchange.com/questions/2684/setting-up-a-reverse-proxy-server-specs][reference]]       |
+   | ADS                   | 256 MB          | 256 MB       |             | 512 MB | dynamically takes from host machine |                 |
+   |                       |                 |              |             |        |                                     |                 |
+   |-----------------------+-----------------+--------------+-------------+--------+-------------------------------------+-----------------|
 
-** Memory information of all other containers 
-   By default, each openvz container ( including cluster containers)is
-   having 256MB RAM.
+** Memory information of all lab containers 
+   Each openvz container is having 256MB RAM and swap 512 MB.
 
 
  
