@@ -34,3 +34,36 @@
   |                       | c. Variable load                                                |
   |-----------------------+-----------------------------------------------------------------|
 
+* Test cases 
+** PTEST-FULLCC-001 : TEST01
+*** Objective(s)
+    To identify the following stats - 
+    + CPU run queues
+    + Swap in/out
+    + Wait time for IO 
+
+*** Description
+    + Boot CC normally
+    + Use the command given below to get statistics -
+      #+BEGIN_SRC command
+      vmstat 1 -n -w 
+      #+END_SRC
+    + Capture the output 
+    + Draw inferences 
+    + Run tests for 20 minutes 
+
+*** Configuration / Context 
+    + Full CC version 
+    + All components running from a single machine 
+    + 16 GB RAM / I7 
+    
+*** Performance measurements
+    + CPU utilization / unit
+    + Memory utilization / unit
+   
+   
+*** Execution / Run 1
+    While other scenarios as mentioned above remains constant, below
+    is the first change -
+    + Run test with no load 
+    
