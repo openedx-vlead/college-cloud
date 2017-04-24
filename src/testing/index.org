@@ -35,6 +35,7 @@
   |                       | c. Variable load                                                |
   |-----------------------+-----------------------------------------------------------------|
 
+
 * Test cases 
 ** PTEST-FULLCC-001 : TEST01
 *** Objective(s)
@@ -51,12 +52,41 @@
     + Boot CC normally
     + Use the command given below to get statistics -
       #+BEGIN_SRC command
-      vmstat 1 -n -w 
+      vmstat 1 1200 -n -w -S M 
       #+END_SRC
-    + Capture the output 
-    + Draw inferences 
-    + Run tests for 20 minutes 
+    + This command runs for 1200 times and returns output on screen
+      every one second.
+    + *-S M* is to get output in MB
 
+*** Understanding sample output
+    #+BEGIN_SRC 
+ 
+procs -----------------------memory---------------------- ---swap-- -----io---- -system-- --------cpu--------
+ r  b         swpd         free         buff        cache   si   so    bi    bo   in   cs  us  sy  id  wa  st
+ 0  0          761          229            4          442    0    0   140   135  261    9   9   2  84   4   0
+ 0  0          761          225            4          446    0    0     0    80  127  370   1   0  97   1   0
+ 0  0          761          225            4          446    0    0     0    64  128  338   1   0  99   0   0
+ 1  0          761          225            4          446    0    0     0     0  106  288   1   0  99   0   0
+ 0  0          761          225            4          446    0    0     0     0  142  319   1   1  98   0   0
+  
+     #+END_SRC       
+   + Processess ::
+     + r - the number of processes waiting for run time 
+     + b - the number of processess in sleep mode
+   + Memory ::
+     + swpd - the amount of virtual memory used.
+     + free - amount of free/idle memory  
+     + cache - the amount of memory used as cache
+   + Swap :: 
+     + SI - Swaped in every second from disk in KB
+     + SO - Swapped out every second to disk in KB
+   + System ::
+     + in - The number of inturrupts  per second
+     + cs - The number of context switches per second 
+   + CPU ::
+     + id - time spent idle. 
+     + wa - time spent waiting for IO
+    
 *** Configuration / Context 
     + Full CC version 
     + All components running from a single machine 
@@ -67,6 +97,6 @@
     + Memory utilization / unit
    
 *** Execution 1 - NO Load 
-   
+    
     
       
