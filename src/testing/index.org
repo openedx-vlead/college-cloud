@@ -35,13 +35,12 @@
   |                       | c. Variable load                                                |
   |-----------------------+-----------------------------------------------------------------|
 
-
-* Test cases 
 ** System Configuration/Context for below test cases
     + Full CC version 
     + Open edX running 
     + All components running from a single machine
     + 16 GB RAM / I7 
+
 ** Understanding sample output of 
     #+BEGIN_SRC 
     vmstat 1 1200 -n -w -S M     
@@ -75,6 +74,9 @@ procs -----------------------memory---------------------- ---swap-- -----io---- 
      + id - time spent idle. 
      + wa - time spent waiting for IO
           
+
+* Test cases 
+
 ** PTEST-FULLCC-001 : TEST01 - No load
 *** Objective(s)
     To identify the following stats - 
@@ -132,6 +134,7 @@ procs -----------------------memory---------------------- ---swap-- -----io---- 
       The graph given below inferes the following -
       + IDLE CPU percentage at an instance of test. 
         [[graphs/idle-cpu.png]]
+
 ** PTEST-FULLCC-001 : TEST02 - Simple load( 20 concurrent user requests on one lab for 20 minutes)
 *** Objective(s)
     To identify the following stats - 
@@ -243,3 +246,104 @@ procs -----------------------memory---------------------- ---swap-- -----io---- 
 
          
 
+** PTEST-FULLCC-001 : TEST04 - 50 concurrent user requests on edx platform for 20 minutes
+*** Objective(s)
+    To identify the following stats - 
+    + CPU run queues
+    + Swap in/out
+    + Wait time for IO 
+    + Memory (RAM) utilization
+   when one lab container is running and 50 concurrent user requests
+   on edx home page (http://vlabs.ac.in) for 20 minutes.
+
+
+*** Description
+    Will be identifying CPU, Swap, Memory, etc utilization using
+    *vmstat.
+
+    [[http://www.linuxcommand.org/man_pages/vmstat8.html][vmstat]] - Virtual memory stats is a command to get summary
+    information on Memory, Processess, CPU, Paging etc.
+    
+
+*** Performance measurements
+    + CPU utilization / unit
+    + Memory utilization / unit
+   
+*** Experiment and result
+    + Boot CC normally 
+    + Make sure edx platform is up and running.
+      - If edx platform is not running,then run the below commands
+        from =vlabs= user account
+	#+BEGIN_EXAMPLE
+        cd vagrant-boxes
+        vagrant up
+        vagrant up --provision
+	#+END_EXAMPLE
+    + Start one lab container
+      #+BEGIN_SRC 
+      vzctl start <CTID>
+      #+END_SRC
+    + Use the command given below on CC machine  to get statistics -
+      #+BEGIN_SRC command
+      vmstat 1 1200 -n -w -S M 
+      #+END_SRC
+    + This command runs for 1200 times and returns output on screen
+      every one second.
+    + *-S M* is to get output in MB
+    + Now, put load on the lab using *siege* command. Run the below
+      command from different machine which is connected to CC through
+      LAN
+      #+BEGIN_SRC 
+      siege -c 50 -t 20M http://vlabs.ac.in/
+      #+END_SRC
+    + Output of the above command can be found at [[./raw-data/edx-home-page-one-lab-50-concurrent-users-requests-20min.txt][Raw-Data]]
+
+         
+
+** PTEST-FULLCC-001 : TEST05 - 50 concurrent user requests on feedback-service for 20 minutes
+*** Objective(s)
+    To identify the following stats - 
+    + CPU run queues
+    + Swap in/out
+    + Wait time for IO 
+    + Memory (RAM) utilization
+   when one lab container is running and 50 concurrent user requests
+   on feedback service page (http://feedbac.vlabs.ac.in) for 20
+   minutes.
+
+
+*** Description
+    Will be identifying CPU, Swap, Memory, etc utilization using
+    *vmstat.
+
+    [[http://www.linuxcommand.org/man_pages/vmstat8.html][vmstat]] - Virtual memory stats is a command to get summary
+    information on Memory, Processess, CPU, Paging etc.
+    
+
+*** Performance measurements
+    + CPU utilization / unit
+    + Memory utilization / unit
+   
+*** Experiment and result
+    + Boot CC normally 
+    + Make sure feedback service/container is up and running.
+    + Start one lab container
+      #+BEGIN_SRC 
+      vzctl start <CTID>
+      #+END_SRC
+    + Use the command given below on CC machine  to get statistics -
+      #+BEGIN_SRC command
+      vmstat 1 1200 -n -w -S M 
+      #+END_SRC
+    + This command runs for 1200 times and returns output on screen
+      every one second.
+    + *-S M* is to get output in MB
+    + Now, put load on the lab using *siege* command. Run the below
+      command from different machine which is connected to CC through
+      LAN
+      #+BEGIN_SRC 
+      siege -c 50 -t 20M http://feedback.vlabs.ac.in/
+      #+END_SRC
+    + Output of the above command can be found at [[./raw-data/feedback-plus-onelab-50-concurrent-users-requests-20min.txt][Raw-Data]]
+
+         
