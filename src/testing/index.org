@@ -41,11 +41,27 @@
     + All components running from a single machine
     + 16 GB RAM / I7 
 
-** Understanding sample output of 
+** Understanding sample output
+   :PROPERTIES:
+   :CUSTOM_ID: understand_vmstat
+   :END:      
+   Understanding below command with the output 
     #+BEGIN_SRC 
     vmstat 1 1200 -n -w -S M     
     #+END_SRC
-
+    #+BEGIN_EXAMPLE
+    -n, --one-header:
+              Display the header only once rather than periodically.
+ 
+    -S, --unit character:
+              Switches  outputs  between  1000 (k), 1024 (K), 1000000 (m), or 1048576 (M) bytes.  Note this
+              does not change the swap (si/so) or block (bi/bo) fields.
+    -w, --wide
+              Wide output mode (useful for systems with higher amount of memory, where the  default  output
+              mode  suffers  from  unwanted  column  breakage).  The output is wider than 80 characters per
+              line.
+     
+    #+END_EXAMPLE
     #+BEGIN_SRC 
  
 procs -----------------------memory---------------------- ---swap-- -----io---- -system-- --------cpu--------
@@ -65,14 +81,23 @@ procs -----------------------memory---------------------- ---swap-- -----io---- 
      + free - amount of free/idle memory  
      + cache - the amount of memory used as cache
    + Swap :: 
-     + SI - Swaped in every second from disk in KB
-     + SO - Swapped out every second to disk in KB
+     + si - Swaped in every second from disk in KB
+     + so - Swapped out every second to disk in KB
    + System ::
      + in - The number of inturrupts  per second
      + cs - The number of context switches per second 
+
+   + IO ::
+       bi: Blocks received from a block device (blocks/s).
+       bo: Blocks sent to a block device (blocks/s).
+
    + CPU ::
-     + id - time spent idle. 
-     + wa - time spent waiting for IO
+       These are percentages of total CPU time.
+       us: Time spent running non-kernel code.  (user time, including nice time)
+       sy: Time spent running kernel code.  (system time)
+       id: Time spent idle.  Prior to Linux 2.5.41, this includes IO-wait time.
+       wa: Time spent waiting for IO.  Prior to Linux 2.5.41, included in idle.
+       st: Time stolen from a virtual machine.  Prior to Linux 2.6.11, unknown.
           
 
 * Test cases 
@@ -112,7 +137,8 @@ procs -----------------------memory---------------------- ---swap-- -----io---- 
       The graph given below infers the following -
       + Free RAM / Idle RAM captured at an instance of test. (There
         were 1200 test instances since we ran =vmstat 1 1200 -n -w -S
-        M= command for 1200 seconds).
+        M= command for 1200 seconds). To understand =vmstat= command,
+        please look at [[./index.org::#understand_vmstat][this example]]
       + Value for FREE RAM is graphed below -
          |------+-------------|
          | Stat | RAM (in MB) |
@@ -178,6 +204,7 @@ procs -----------------------memory---------------------- ---swap-- -----io---- 
       #+BEGIN_SRC command
       vmstat 1 1200 -n -w -S M 
       #+END_SRC
+      - To understand =vmstat= command, please look at [[./index.org::#understand_vmstat][this example]]
     + This command runs for 1200 times and returns output on screen
       every one second.
     + *-S M* is to get output in MB
@@ -233,6 +260,7 @@ procs -----------------------memory---------------------- ---swap-- -----io---- 
       #+BEGIN_SRC command
       vmstat 1 1200 -n -w -S M 
       #+END_SRC
+      - To understand =vmstat= command, please look at [[./index.org::#understand_vmstat][this example]]
     + This command runs for 1200 times and returns output on screen
       every one second.
     + *-S M* is to get output in MB
@@ -287,6 +315,7 @@ procs -----------------------memory---------------------- ---swap-- -----io---- 
       #+BEGIN_SRC command
       vmstat 1 1200 -n -w -S M 
       #+END_SRC
+      - To understand =vmstat= command, please look at [[./index.org::#understand_vmstat][this example]]
     + This command runs for 1200 times and returns output on screen
       every one second.
     + *-S M* is to get output in MB
@@ -335,6 +364,7 @@ procs -----------------------memory---------------------- ---swap-- -----io---- 
       #+BEGIN_SRC command
       vmstat 1 1200 -n -w -S M 
       #+END_SRC
+      - To understand =vmstat= command, please look at [[./index.org::#understand_vmstat][this example]]
     + This command runs for 1200 times and returns output on screen
       every one second.
     + *-S M* is to get output in MB
