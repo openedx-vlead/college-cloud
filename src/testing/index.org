@@ -37,6 +37,12 @@
 
 
 * Test cases 
+** System Configuration/Context for below test cases
+    + Full CC version 
+    + Open edX running 
+    + All components running from a single machine
+    + 16 GB RAM / I7 
+      
 ** PTEST-FULLCC-001 : TEST01
 *** Objective(s)
     To identify the following stats - 
@@ -44,6 +50,10 @@
     + Swap in/out
     + Wait time for IO 
     + Memory (RAM) utilization
+
+    when no load on College Cloud and running cluster components.
+
+    + NOTE :: *no load* means, no user requests on college cloud
 
 *** Description
     [[http://www.linuxcommand.org/man_pages/vmstat8.html][vmstat]] - Virtual memory stats is a command to get summary
@@ -87,18 +97,12 @@ procs -----------------------memory---------------------- ---swap-- -----io---- 
      + id - time spent idle. 
      + wa - time spent waiting for IO
     
-*** Configuration / Context 
-    + Full CC version 
-    + Open edX running 
-    + All components running from a single machine 
-    + 16 GB RAM / I7 
-    
+
 *** Performance measurements
     + CPU utilization / unit
     + Memory utilization / unit
    
-*** Execution 1 - NO Load 
-    + [[https://github.com/openedx-vlead/college-cloud/blob/april-may/src/testing/raw-data/no-load-run-1-vagrant-up.txt][Raw data]]
+*** Experiment and result
     + Graph-01 Free RAM / IDLE RAM graph
       The graph given below infers the following -
       + Free RAM / Idle RAM captured at an instance of test. (There
@@ -114,11 +118,13 @@ procs -----------------------memory---------------------- ---swap-- -----io---- 
          |------+-------------|
          
       [[./graphs/free-ram-graph.png]]
+
     + Graph-02 Number of processes waiting for runtime 
       The graph given below infers the following -
       + Number of processes waiting for runtime at an instance of test.
      
       [[./graphs/no-of-process-waiting-for-runtime-no-load.png]]
+
     + Graph-03 IDLE CPU at an instance of test 
       The graph given below inferes the following -
       + IDLE CPU percentage at an instance of test. 
