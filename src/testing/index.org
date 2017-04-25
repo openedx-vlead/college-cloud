@@ -42,8 +42,40 @@
     + Open edX running 
     + All components running from a single machine
     + 16 GB RAM / I7 
-      
-** PTEST-FULLCC-001 : TEST01
+** Understanding sample output of 
+    #+BEGIN_SRC 
+    vmstat 1 1200 -n -w -S M     
+    #+END_SRC
+
+    #+BEGIN_SRC 
+ 
+procs -----------------------memory---------------------- ---swap-- -----io---- -system-- --------cpu--------
+ r  b         swpd         free         buff        cache   si   so    bi    bo   in   cs  us  sy  id  wa  st
+ 0  0          761          229            4          442    0    0   140   135  261    9   9   2  84   4   0
+ 0  0          761          225            4          446    0    0     0    80  127  370   1   0  97   1   0
+ 0  0          761          225            4          446    0    0     0    64  128  338   1   0  99   0   0
+ 1  0          761          225            4          446    0    0     0     0  106  288   1   0  99   0   0
+ 0  0          761          225            4          446    0    0     0     0  142  319   1   1  98   0   0
+  
+     #+END_SRC       
+   + Processess ::
+     + r - the number of processes waiting for run time 
+     + b - the number of processess in sleep mode
+   + Memory ::
+     + swpd - the amount of virtual memory used.
+     + free - amount of free/idle memory  
+     + cache - the amount of memory used as cache
+   + Swap :: 
+     + SI - Swaped in every second from disk in KB
+     + SO - Swapped out every second to disk in KB
+   + System ::
+     + in - The number of inturrupts  per second
+     + cs - The number of context switches per second 
+   + CPU ::
+     + id - time spent idle. 
+     + wa - time spent waiting for IO
+          
+** PTEST-FULLCC-001 : TEST01 - No load
 *** Objective(s)
     To identify the following stats - 
     + CPU run queues
@@ -130,3 +162,114 @@ procs -----------------------memory---------------------- ---swap-- -----io---- 
       The graph given below inferes the following -
       + IDLE CPU percentage at an instance of test. 
         [[graphs/idle-cpu.png]]
+** PTEST-FULLCC-001 : TEST02 - Simple load( 20 concurrent user requests on one lab for 20 minutes)
+*** Objective(s)
+    To identify the following stats - 
+    + CPU run queues
+    + Swap in/out
+    + Wait time for IO 
+    + Memory (RAM) utilization
+
+    when one lab is up and load 20 concurrent user requests for 20 minutes.
+
+
+
+*** Description
+    [[http://www.linuxcommand.org/man_pages/vmstat8.html][vmstat]] - Virtual memory stats is a command to get summary
+    information on Memory, Processess, CPU, Paging etc.
+    
+    + Boot CC normally
+    + Start one lab container
+      #+BEGIN_SRC 
+      vzctl start <CTID>
+      #+END_SRC
+    + Use the command given below to get statistics -
+      #+BEGIN_SRC command
+      vmstat 1 1200 -n -w -S M 
+      #+END_SRC
+    + This command runs for 1200 times and returns output on screen
+      every one second.
+    + *-S M* is to get output in MB
+
+*** Performance measurements
+    + CPU utilization / unit
+    + Memory utilization / unit
+   
+*** Experiment and result
+    + Boot CC normally 
+    + Start one lab container
+      #+BEGIN_SRC 
+      vzctl start <CTID>
+      #+END_SRC
+    + Use the command given below on CC machine  to get statistics -
+      #+BEGIN_SRC command
+      vmstat 1 1200 -n -w -S M 
+      #+END_SRC
+    + This command runs for 1200 times and returns output on screen
+      every one second.
+    + *-S M* is to get output in MB
+    + Now, put load on the lab using *siege* command. Run the below
+      command from different machine which is connected to CC through
+      LAN
+      #+BEGIN_SRC 
+      siege -c 20 -r 1 -t 20M http://cse01-iiith.vlabs.ac.in/
+      #+END_SRC
+    + Output of the above command can be found at [[./raw-data/one-lab-20-concurrent-requests-20min-siege.txt][Raw-Data]]
+
+         
+
+** PTEST-FULLCC-001 : TEST03 - 50 concurrent user requests on one lab for 20 minutes
+*** Objective(s)
+    To identify the following stats - 
+    + CPU run queues
+    + Swap in/out
+    + Wait time for IO 
+    + Memory (RAM) utilization
+
+    when one lab is up and load 50 concurrent user requests for 20
+    minutes.
+
+*** Description
+    [[http://www.linuxcommand.org/man_pages/vmstat8.html][vmstat]] - Virtual memory stats is a command to get summary
+    information on Memory, Processess, CPU, Paging etc.
+    
+    + Boot CC normally
+    + Start one lab container
+      #+BEGIN_SRC 
+      vzctl start <CTID>
+      #+END_SRC
+    + Use the command given below to get statistics -
+      #+BEGIN_SRC command
+      vmstat 1 1200 -n -w -S M 
+      #+END_SRC
+    + This command runs for 1200 times and returns output on screen
+      every one second.
+    + *-S M* is to get output in MB
+
+*** Performance measurements
+    + CPU utilization / unit
+    + Memory utilization / unit
+   
+*** Experiment and result
+    + Boot CC normally 
+    + Start one lab container
+      #+BEGIN_SRC 
+      vzctl start <CTID>
+      #+END_SRC
+    + Use the command given below on CC machine  to get statistics -
+      #+BEGIN_SRC command
+      vmstat 1 1200 -n -w -S M 
+      #+END_SRC
+    + This command runs for 1200 times and returns output on screen
+      every one second.
+    + *-S M* is to get output in MB
+    + Now, put load on the lab using *siege* command. Run the below
+      command from different machine which is connected to CC through
+      LAN
+      #+BEGIN_SRC 
+      siege -c 50 -r 1 -t 20M http://cse01-iiith.vlabs.ac.in/
+      #+END_SRC
+    + Output of the above command can be found at [[./raw-data/one-lab-20-concurrent-requests-20min-siege.txt][Raw-Data]]
+
+         
+
