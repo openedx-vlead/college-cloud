@@ -682,3 +682,61 @@ procs -----------------------memory---------------------- ---swap-- -----io---- 
 
          
 
+
+** PTEST-FULLCC-001 : TEST10 - mpstat - 50 concurrent user requests on edx platform for 20 minutes
+*** Objective(s)
+    To identify the following stats - *CPU usage*
+    when one lab is up and load 50 concurrent user requests on edx
+    platform for 20 minutes.
+
+*** Description
+    Identify processors utilization using *mpstat* command line tool.
+    *mpstat* - Report processors related statistics.
+    
+    + Use the command given below to get statistics of all available
+      processors
+      #+BEGIN_SRC command
+      mpstat 1 -P ALL 1200
+      #+END_SRC
+    + This command runs for 1200 records/times and returns processors
+      utilization output on screen every one second.
+      - [[./index.org::#understand_mpstat][mpstat help manual is here]] or [[Understanding%20mpstat%20smaple%20output][mpstat manual page]]
+
+*** Performance measurements
+    + CPU utilization / unit
+   
+*** Experiment and result
+    + Boot CC normally 
+    + Make sure edx platform is up and running.
+      - If edx platform is not running,then run the below commands
+        from =vlabs= user account
+	#+BEGIN_EXAMPLE
+        cd vagrant-boxes
+        vagrant up
+        vagrant up --provision
+	#+END_EXAMPLE
+    + Start one lab container
+      #+BEGIN_SRC 
+      vzctl start <CTID>
+      #+END_SRC
+    + Use the command given below on CC machine  to get statistics of
+      all available processors.
+      #+BEGIN_SRC command
+      mpstat 1 -P ALL 12000
+      #+END_SRC
+      - To understand =mpstat= command, please look at [[./index.org::#understand_mpstat][mpstat help manual is here]]
+    + This command runs for 1200 times and returns output on screen
+      every one second.
+    + Output of the above command can be found at [[./raw-data/mpstat-50-concurrent-user-requests-edx-homepage-onelab-up-20min.txt][mpstat raw-data]]
+    + Now, put load on the lab using *siege* command. Run the below
+      command from different machine which is connected to CC through
+      LAN
+      #+BEGIN_SRC 
+      siege -c 50 -t 20M http://vlabs.ac.in/
+      #+END_SRC
+      - Look at [[./index.org::#understand_siege][siege help manual]]
+    + Output of the above siege command can be found at [[./raw-data/mpstat-50-concurrent-user-requests-edx-homepage-siege.txt][siege raw-data]]
+
+         
+
+
