@@ -41,7 +41,7 @@
     + All components running from a single machine
     + 16 GB RAM / I7 
 
-** Understanding sample output
+** Understanding vmstat sample output
    :PROPERTIES:
    :CUSTOM_ID: understand_vmstat
    :END:      
@@ -99,10 +99,179 @@ procs -----------------------memory---------------------- ---swap-- -----io---- 
        wa: Time spent waiting for IO.  Prior to Linux 2.5.41, included in idle.
        st: Time stolen from a virtual machine.  Prior to Linux 2.6.11, unknown.
           
+** Understanding mpstat smaple output
+   :PROPERTIES:
+   :CUSTOM_ID: understand_mpstat
+   :END:      
+   #+BEGIN_EXAMPLE
+   mpstat 1 -P ALL 2
+   #+END_EXAMPLE
+  Above command display 2 reports of statistics for all processors at
+  one second intervals
+   #+BEGIN_EXAMPLE 
+   08:42:22 AM  CPU    %usr   %nice    %sys %iowait    %irq   %soft  %steal  %guest   %idle
+   08:42:23 AM  all    0.13    0.00    2.13    0.00    0.00    0.00    0.00    0.00   97.74
+   08:42:23 AM    0    0.00    0.00    2.00    0.00    0.00    0.00    0.00    0.00   98.00
+   08:42:23 AM    1    0.00    0.00    6.00    0.00    0.00    0.00    0.00    0.00   94.00
+   08:42:23 AM    2    0.00    0.00    5.00    0.00    0.00    0.00    0.00    0.00   95.00
+   08:42:23 AM    3    0.00    0.00    2.02    0.00    0.00    0.00    0.00    0.00   97.98
+   08:42:23 AM    4    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00  100.00
+   08:42:23 AM    5    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00  100.00
+   08:42:23 AM    6    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00  100.00
+   08:42:23 AM    7    0.00    0.00    3.03    0.00    0.00    0.00    0.00    0.00   96.97
+   
+   08:42:23 AM  CPU    %usr   %nice    %sys %iowait    %irq   %soft  %steal  %guest   %idle
+   08:42:24 AM  all    0.13    0.00    1.13    0.38    0.00    0.00    0.00    0.00   98.37
+   08:42:24 AM    0    0.00    0.00    3.03    0.00    0.00    0.00    0.00    0.00   96.97
+   08:42:24 AM    1    0.00    0.00    2.00    3.00    0.00    0.00    0.00    0.00   95.00
+   08:42:24 AM    2    0.00    0.00    1.00    0.00    0.00    0.00    0.00    0.00   99.00
+   08:42:24 AM    3    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00  100.00
+   08:42:24 AM    4    1.00    0.00    1.00    0.00    0.00    0.00    0.00    0.00   98.00
+   08:42:24 AM    5    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00  100.00
+   08:42:24 AM    6    1.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00   99.00
+   08:42:24 AM    7    0.00    0.00    1.01    0.00    0.00    0.00    0.00    0.00   98.99
+   
+   Average:     CPU    %usr   %nice    %sys %iowait    %irq   %soft  %steal  %guest   %idle
+   Average:     all    0.69    0.00    1.81    0.10    0.00    0.20    0.00    0.00   97.20
+   Average:       0    1.94    0.00    2.35    0.01    0.00    0.10    0.00    0.00   95.60
+   Average:       1    0.54    0.00    2.41    0.77    0.00    0.09    0.00    0.00   96.19
+   Average:       2    0.87    0.00    1.84    0.01    0.00    1.26    0.00    0.00   96.03
+   Average:       3    0.21    0.00    1.88    0.00    0.00    0.02    0.00    0.00   97.89
+   Average:       4    0.38    0.00    1.94    0.00    0.00    0.01    0.00    0.00   97.66
+   Average:       5    0.31    0.00    1.60    0.02    0.00    0.02    0.00    0.00   98.06
+   Average:       6    1.14    0.00    1.06    0.00    0.00    0.10    0.00    0.00   97.70
+   Average:       7    0.15    0.00    1.39    0.00    0.00    0.01    0.00    0.00   98.45
 
+   #+END_EXAMPLE
+
+   - CPU ::
+   Processor number. The keyword all indicates that statistics are
+   calculated as averages among all processors.
+   
+   - %usr ::
+   Show the percentage of CPU utilization that occurred while
+   executing at the user level (application).
+   
+   - %nice ::
+   Show the percentage of CPU utilization that occurred while
+   executing at the user level with nice priority.
+   
+   - %sys ::
+   Show the percentage of CPU utilization that occurred while
+   executing at the system level (kernel). Note that this does not
+   include time spent servicing hardware and software interrupts.
+   
+   - %iowait ::
+   Show the percentage of time that the CPU or CPUs were idle during
+   which the system had an outstanding disk I/O request.
+
+   - %irq ::
+   Show the percentage of time spent by the CPU or CPUs to service
+   hardware interrupts.
+
+   - %soft ::
+   Show the percentage of time spent by the CPU or CPUs to service
+   software interrupts.
+   
+   - %steal ::
+   Show the percentage of time spent in involuntary wait by the
+   virtual CPU or CPUs while the hypervisor was servicing another
+   virtual processor.
+   
+   - %guest ::
+   Show the percentage of time spent by the CPU or CPUs to run a
+   virtual pro- cessor.
+   
+   - %idle ::
+   Show the percentage of time that the CPU or CPUs were idle and the
+   system did not have an outstanding disk I/O request.
+** Understanding siege sample output
+   :PROPERTIES:
+   :CUSTOM_ID: understand_siege
+   :END:      
+   #+BEGIN_EXAMPLE
+   siege -c25 -r10 http://cse01-iiith.vlabs.ac.in/
+   #+END_EXAMPLE
+   Above command would display like below
+   #+BEGIN_EXAMPLE
+
+       ** Siege 2.60
+       ** Preparing 100 concurrent users for battle.
+       The server is now under siege...done
+       Transactions:                    339 hits
+       Availability:                  93.39 %
+       Elapsed time:                  67.47 secs
+       Data transferred:            4273708 bytes
+       Response time:                  8.25 secs
+       Transaction rate:               5.02 trans/sec
+       Throughput:                 63342.34 bytes/sec
+       Concurrency:                   41.47
+       Successful transactions:         337
+       Failed transactions:              26
+       Longest transaction:           17.77 secs
+       Shortest transaction:           0.37 secs
+
+   #+END_EXAMPLE
+   + Transactions :: The number of server hits.  In the example, 20
+                     simulated users [ -c25 ] each hit the server 10
+                     times [ -r10 ], a total of 250 transactions. It
+                     is possible for the number of transactions to
+                     exceed the number of hits that were schedÅ]
+                     uled. Siege counts every server hit a
+                     transaction, which means redirections and
+                     authentication challenges count as two hits, not
+                     one. With this regard, siege follows the HTTP
+                     specification and it mimics browser behavior.
+
+   + Availability :: This is the percentage of socket connections
+                     successfully handled by the server. It is the
+                     result of socket failures (including timeouts)
+                     divided by the sum of all connection
+                     attempts. This number does not include 400 and
+                     500 level server errors which are recorded in
+                     "Failed transactions" described below.
+
+   + Elapsed time :: The duration of the entire siege test.  This is
+                     measured from the time the user invokes siege
+                     until the last simulated user completes its
+                     transactions.  Shown above, the test took 14.67
+                     seconds to complete.
+   + Data transferred :: The sum of data transferred to every siege
+        simulated user.  It includes the header information as well as
+        content.  Because it includes header information, the number
+        reported by siege will be larger then the number reported by
+        the server.  In internet mode, which hits random URLs in a
+        configuration file, this number is expected to vary from run
+        to run.
+
+   + Response time :: The average time it took to respond to each
+                      simulated user's requests.
+
+   + Transaction rate :: The average number of transactions the server
+        was able to handle per second, in a nutshell: transactions
+        divided by elapsed time.
+
+   + Throughput :: The average number of bytes transferred every
+                   second from the server to all the simulated users.
+
+   + Concurrency :: The average number of simultaneous connections, a
+                    number which rises as server performance
+                    decreases.
+
+   + Successful transactions :: The number of times the server
+        responded with a return code < 400.
+
+   + Failed transactions :: The number of times the server responded
+        with a return code >= 400 plus the sum of all failed socket
+        transactions which includes socket timeouts.
+   + Longest transaction :: The greatest amount of time that any
+        single transaction took, out of all transÅ] actions.
+
+   + Shortest transaction :: The smallest amount of time that any
+        single transaction took, out of all transÅ] actions.
 * Test cases 
 
-** PTEST-FULLCC-001 : TEST01 - No load
+** PTEST-FULLCC-001 : TEST01 - vmstat - No load
 *** Objective(s)
     To identify the following stats - 
     + CPU run queues
@@ -161,7 +330,8 @@ procs -----------------------memory---------------------- ---swap-- -----io---- 
       + IDLE CPU percentage at an instance of test. 
         [[graphs/idle-cpu.png]]
 
-** PTEST-FULLCC-001 : TEST02 - Simple load( 20 concurrent user requests on one lab for 20 minutes)
+
+** PTEST-FULLCC-001 : TEST02 - vmstat - Simple load( 20 concurrent user requests on one lab for 20 minutes)
 *** Objective(s)
     To identify the following stats - 
     + CPU run queues
@@ -218,7 +388,7 @@ procs -----------------------memory---------------------- ---swap-- -----io---- 
 
          
 
-** PTEST-FULLCC-001 : TEST03 - 50 concurrent user requests on one lab for 20 minutes
+** PTEST-FULLCC-001 : TEST03 - vmstat - 50 concurrent user requests on one lab for 20 minutes
 *** Objective(s)
     To identify the following stats - 
     + CPU run queues
@@ -274,7 +444,7 @@ procs -----------------------memory---------------------- ---swap-- -----io---- 
 
          
 
-** PTEST-FULLCC-001 : TEST04 - 50 concurrent user requests on edx platform for 20 minutes
+** PTEST-FULLCC-001 : TEST04 - vmstat - 50 concurrent user requests on edx platform for 20 minutes
 *** Objective(s)
     To identify the following stats - 
     + CPU run queues
@@ -329,7 +499,7 @@ procs -----------------------memory---------------------- ---swap-- -----io---- 
 
          
 
-** PTEST-FULLCC-001 : TEST05 - 50 concurrent user requests on feedback-service for 20 minutes
+** PTEST-FULLCC-001 : TEST05 - vmstat - 50 concurrent user requests on feedback-service for 20 minutes
 *** Objective(s)
     To identify the following stats - 
     + CPU run queues
@@ -377,3 +547,138 @@ procs -----------------------memory---------------------- ---swap-- -----io---- 
     + Output of the above command can be found at [[./raw-data/feedback-plus-onelab-50-concurrent-users-requests-20min.txt][Raw-Data]]
 
          
+
+** PTEST-FULLCC-001 : TEST07 - mpstat - No load
+*** Objective(s)
+    To identify the following stats - 
+    + CPU run queues
+    when no load on College Cloud and running cluster components.
+
+    + NOTE :: *no load* means, no user requests on college cloud
+
+*** Description
+    Identify processors utilization using *mpstat* command line tool.
+    *mpstat* - Report processors related statistics.
+    
+    + Use the command given below to get statistics of all available
+      processors
+      #+BEGIN_SRC command
+      mpstat 1 -P ALL 1200
+      #+END_SRC
+    + This command runs for 1200 records/times and returns processors
+      utilization output on screen every one second.
+      - [[./index.org::#understand_mpstat][mpstat help manual is here]]
+
+*** Performance measurements
+    + CPU utilization / unit
+   
+*** Experiment and result
+    + Boot CC normally 
+    + Use the command given below on CC machine  to get statistics of
+      all available processors.
+      #+BEGIN_SRC command
+      mpstat 1 -P ALL 12000
+      #+END_SRC
+      - To understand =mpstat= command, please look at [[./index.org::#understand_mpstat][mpstat help manual is here]]
+    + This command runs for 1200 times and returns output on screen
+      every one second.
+    + Output of the above command can be found at [[./raw-data/mpstat-no-load-with-vagrant-up-20min.txt][Raw-Data]]
+
+
+** PTEST-FULLCC-001 : TEST08 - mpstat - Simple load( 20 concurrent user requests on one lab for 20 minutes)
+*** Objective(s)
+    To identify the following stats - 
+    + CPU run queues
+    when one lab is up and load 20 concurrent user requests for 20 minutes.
+
+*** Description
+    Identify processors utilization using *mpstat* command line tool.
+    *mpstat* - Report processors related statistics.
+    
+    + Use the command given below to get statistics of all available
+      processors
+      #+BEGIN_SRC command
+      mpstat 1 -P ALL 1200
+      #+END_SRC
+    + This command runs for 1200 records/times and returns processors
+      utilization output on screen every one second.
+      - [[./index.org::#understand_mpstat][mpstat help manual is here]]
+
+*** Performance measurements
+    + CPU utilization / unit
+   
+*** Experiment and result
+    + Boot CC normally 
+    + Start one lab container
+      #+BEGIN_SRC 
+      vzctl start <CTID>
+      #+END_SRC
+    + Use the command given below on CC machine  to get statistics of
+      all available processors.
+      #+BEGIN_SRC command
+      mpstat 1 -P ALL 12000
+      #+END_SRC
+      - To understand =mpstat= command, please look at [[./index.org::#understand_mpstat][mpstat help manual is here]]
+    + This command runs for 1200 times and returns output on screen
+      every one second.
+    + Output of the above command can be found at [[./raw-data/mpstat-20-concurrent-user-requests-with-vagrant-up-onelab-up-20min.txt][Raw-Data]]
+    + Now, put load on the lab using *siege* command. Run the below
+      command from different machine which is connected to CC through
+      LAN
+      #+BEGIN_SRC 
+      siege -c 20 -t 20M http://cse01-iiith.vlabs.ac.in/
+      #+END_SRC
+      - Look at [[./index.org::#understand_siege][siege help manual]]
+    + Output of the above siege command can be found at [[./raw-data/mpstat-20-concurrent-user-requests-20min-siege.txt][Raw-Data]]
+
+         
+
+** PTEST-FULLCC-001 : TEST09 - mpstat - 50 concurrent user requests on one lab for 20 minutes
+*** Objective(s)
+    To identify the following stats - 
+    + CPU run queues
+    when one lab is up and load 50 concurrent user requests for 20
+    minutes.
+
+*** Description
+    Identify processors utilization using *mpstat* command line tool.
+    *mpstat* - Report processors related statistics.
+    
+    + Use the command given below to get statistics of all available
+      processors
+      #+BEGIN_SRC command
+      mpstat 1 -P ALL 1200
+      #+END_SRC
+    + This command runs for 1200 records/times and returns processors
+      utilization output on screen every one second.
+      - [[./index.org::#understand_mpstat][mpstat help manual is here]]
+
+*** Performance measurements
+    + CPU utilization / unit
+   
+*** Experiment and result
+    + Boot CC normally 
+    + Start one lab container
+      #+BEGIN_SRC 
+      vzctl start <CTID>
+      #+END_SRC
+    + Use the command given below on CC machine  to get statistics of
+      all available processors.
+      #+BEGIN_SRC command
+      mpstat 1 -P ALL 12000
+      #+END_SRC
+      - To understand =mpstat= command, please look at [[./index.org::#understand_mpstat][mpstat help manual is here]]
+    + This command runs for 1200 times and returns output on screen
+      every one second.
+    + Output of the above command can be found at [[./raw-data/mpstat-50-concurrent-user-requests-with-vagrant-up-onelab-up-20min.txt][Raw-Data]]
+    + Now, put load on the lab using *siege* command. Run the below
+      command from different machine which is connected to CC through
+      LAN
+      #+BEGIN_SRC 
+      siege -c 50 -t 20M http://cse01-iiith.vlabs.ac.in/
+      #+END_SRC
+      - Look at [[./index.org::#understand_siege][siege help manual]]
+    + Output of the above siege command can be found at [[./raw-data/mpstat-50-concurrent-user-request-siege.txt][Raw-Data]]
+
+         
+

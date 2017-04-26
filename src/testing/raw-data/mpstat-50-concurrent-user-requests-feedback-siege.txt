@@ -1,0 +1,19 @@
+siege -c50 -t20M http://feedback.vlabs.ac.in/
+** SIEGE 3.0.8
+** Preparing 50 concurrent users for battle.
+The server is now under siege...
+Lifting the server siege...      done.
+
+Transactions:		      118360 hits
+Availability:		      100.00 %
+Elapsed time:		     1199.68 secs
+Data transferred:	      601.86 MB
+Response time:		        0.01 secs
+Transaction rate:	       98.66 trans/sec
+Throughput:		        0.50 MB/sec
+Concurrency:		        0.64
+Successful transactions:      118360
+Failed transactions:	           0
+Longest transaction:	        0.13
+Shortest transaction:	        0.00
+
