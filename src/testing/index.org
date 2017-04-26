@@ -80,7 +80,7 @@
       + Free RAM / Idle RAM captured at an instance of test. (There
         were 1200 test instances since we ran =vmstat 1 1200 -n -w -S
         M= command for 1200 seconds). To understand =vmstat= command,
-        please look at [[./manuals/command-manuals.org::#understand_vmstat][this example]]
+        please look at [[./manuals/command-manuals.org][this example]]
       + Value for FREE RAM is graphed below -
          |------+-------------|
          | Stat | RAM (in MB) |
@@ -160,7 +160,7 @@
     + Output of the above command can be found at [[./raw-data/one-lab-20-concurrent-requests-20min-siege.txt][Raw-Data]]
 
          
-
+    
 ** PTEST-FULLCC-001 : TEST03 - vmstat - 50 concurrent user requests on one lab for 20 minutes
 *** Objective(s)
     To identify the following stats - 
@@ -352,7 +352,7 @@
       #+BEGIN_SRC command
       mpstat 1 -P ALL 12000
       #+END_SRC
-      - To understand =mpstat= command, please look at [[./index.org::#understand_mpstat][mpstat help manual is here]]
+      - To understand =mpstat= command, please look at [[./manuals/command-manuals.org][mpstat help manual is here]]
     + This command runs for 1200 times and returns output on screen
       every one second.
     + Output of the above command can be found at [[./raw-data/mpstat-no-load-with-vagrant-up-20min.txt][Raw-Data]]
@@ -391,7 +391,7 @@
       #+BEGIN_SRC command
       mpstat 1 -P ALL 12000
       #+END_SRC
-      - To understand =mpstat= command, please look at [[./index.org::#understand_mpstat][mpstat help manual is here]]
+      - To understand =mpstat= command, please look at [[./manuals/command-manuals.org][mpstat help manual is here]]
     + This command runs for 1200 times and returns output on screen
       every one second.
     + Output of the above command can be found at [[./raw-data/mpstat-20-concurrent-user-requests-with-vagrant-up-onelab-up-20min.txt][Raw-Data]]
@@ -401,7 +401,7 @@
       #+BEGIN_SRC 
       siege -c 20 -t 20M http://cse01-iiith.vlabs.ac.in/
       #+END_SRC
-      - Look at [[./index.org::#understand_siege][siege help manual]]
+      - Look at [[./manuals/command-manuals.org][siege help manual]]
     + Output of the above siege command can be found at [[./raw-data/mpstat-20-concurrent-user-requests-20min-siege.txt][Raw-Data]]
 
          
@@ -440,8 +440,9 @@
       #+BEGIN_SRC command
       mpstat 1 -P ALL 12000
       #+END_SRC
-      - To understand =mpstat= command, please look at [[./index.org::#understand_mpstat][mpstat help
+      - To understand =mpstat= command, please look at [[./manuals/command-manuals.org][mpstat help
         manual is here]]
+
     + This command runs for 1200 times and returns output on screen
       every one second.
     + Output of the above command can be found at [[./raw-data/mpstat-50-concurrent-user-requests-with-vagrant-up-onelab-up-20min.txt][mpstat-raw-data]]
@@ -451,7 +452,7 @@
       #+BEGIN_SRC 
       siege -c 50 -t 20M http://cse01-iiith.vlabs.ac.in/
       #+END_SRC
-      - Look at [[./index.org::#understand_siege][siege help manual]]
+      - Look at [[./manuals/command-manuals.org][siege help manual]]
     + Output of the above siege command can be found at [[./raw-data/mpstat-50-concurrent-user-request-siege.txt][siege-raw-data]]
 
          
@@ -508,7 +509,7 @@
       #+BEGIN_SRC 
       siege -c 50 -t 20M http://vlabs.ac.in/
       #+END_SRC
-      - Look at [[./index.org::#understand_siege][siege help manual]]
+      - Look at [[./manuals/command-manuals.org][siege help manual]]
     + Output of the above siege command can be found at [[./raw-data/mpstat-50-concurrent-user-requests-edx-homepage-siege.txt][siege raw-data]]
 
          
