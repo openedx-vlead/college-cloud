@@ -1,0 +1,19 @@
+siege -c50 -t20M http://cse01-iiith.vlabs.ac.in/
+** SIEGE 3.0.8
+** Preparing 50 concurrent users for battle.
+The server is now under siege...
+Lifting the server siege...      done.
+
+Transactions:		      118738 hits
+Availability:		      100.00 %
+Elapsed time:		     1199.05 secs
+Data transferred:	      365.19 MB
+Response time:		        0.01 secs
+Transaction rate:	       99.03 trans/sec
+Throughput:		        0.30 MB/sec
+Concurrency:		        0.57
+Successful transactions:      118738
+Failed transactions:	           0
+Longest transaction:	        0.82
+Shortest transaction:	        0.00
+

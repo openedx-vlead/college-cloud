@@ -1,0 +1,244 @@
+#+TITLE: Virtual Labs College Cloud Edition Performance testing - CPU Testing
+#+DATE: [2017-04-24]
+#+PROPERTY: results output
+#+PROPERTY: exports code
+#+SETUPFILE: ./../../org-templates/level-2.org
+#+options: ^:nil
+#+LATEX: Literal LaTeX code for export
+
+
+* Introduction
+  This document describes about various commands used for performance
+  testing. 
+
+* Understand about commands
+  understand about various commands used for performance testing
+** Understanding vmstat sample output
+   :PROPERTIES:
+   :CUSTOM_ID: understand_vmstat
+   :END:      
+   Understanding below command with the output 
+    #+BEGIN_SRC 
+    vmstat 1 1200 -n -w -S M     
+    #+END_SRC
+    #+BEGIN_EXAMPLE
+    -n, --one-header:
+              Display the header only once rather than periodically.
+ 
+    -S, --unit character:
+              Switches  outputs  between  1000 (k), 1024 (K), 1000000 (m), or 1048576 (M) bytes.  Note this
+              does not change the swap (si/so) or block (bi/bo) fields.
+    -w, --wide
+              Wide output mode (useful for systems with higher amount of memory, where the  default  output
+              mode  suffers  from  unwanted  column  breakage).  The output is wider than 80 characters per
+              line.
+     
+    #+END_EXAMPLE
+    #+BEGIN_SRC 
+ 
+procs -----------------------memory---------------------- ---swap-- -----io---- -system-- --------cpu--------
+ r  b         swpd         free         buff        cache   si   so    bi    bo   in   cs  us  sy  id  wa  st
+ 0  0          761          229            4          442    0    0   140   135  261    9   9   2  84   4   0
+ 0  0          761          225            4          446    0    0     0    80  127  370   1   0  97   1   0
+ 0  0          761          225            4          446    0    0     0    64  128  338   1   0  99   0   0
+ 1  0          761          225            4          446    0    0     0     0  106  288   1   0  99   0   0
+ 0  0          761          225            4          446    0    0     0     0  142  319   1   1  98   0   0
+  
+     #+END_SRC       
+   + Processess ::
+     + r - the number of processes waiting for run time 
+     + b - the number of processess in sleep mode
+   + Memory ::
+     + swpd - the amount of virtual memory used.
+     + free - amount of free/idle memory  
+     + cache - the amount of memory used as cache
+   + Swap :: 
+     + si - Swaped in every second from disk in KB
+     + so - Swapped out every second to disk in KB
+   + System ::
+     + in - The number of inturrupts  per second
+     + cs - The number of context switches per second 
+
+   + IO ::
+       bi: Blocks received from a block device (blocks/s).
+       bo: Blocks sent to a block device (blocks/s).
+
+   + CPU ::
+       These are percentages of total CPU time.
+       us: Time spent running non-kernel code.  (user time, including nice time)
+       sy: Time spent running kernel code.  (system time)
+       id: Time spent idle.  Prior to Linux 2.5.41, this includes IO-wait time.
+       wa: Time spent waiting for IO.  Prior to Linux 2.5.41, included in idle.
+       st: Time stolen from a virtual machine.  Prior to Linux 2.6.11, unknown.
+          
+** Understanding mpstat smaple output
+   :PROPERTIES:
+   :CUSTOM_ID: understand_mpstat
+   :END:      
+   #+BEGIN_EXAMPLE
+   mpstat 1 -P ALL 2
+   #+END_EXAMPLE
+  Above command display 2 reports of statistics for all processors at
+  one second intervals
+   #+BEGIN_EXAMPLE 
+   08:42:22 AM  CPU    %usr   %nice    %sys %iowait    %irq   %soft  %steal  %guest   %idle
+   08:42:23 AM  all    0.13    0.00    2.13    0.00    0.00    0.00    0.00    0.00   97.74
+   08:42:23 AM    0    0.00    0.00    2.00    0.00    0.00    0.00    0.00    0.00   98.00
+   08:42:23 AM    1    0.00    0.00    6.00    0.00    0.00    0.00    0.00    0.00   94.00
+   08:42:23 AM    2    0.00    0.00    5.00    0.00    0.00    0.00    0.00    0.00   95.00
+   08:42:23 AM    3    0.00    0.00    2.02    0.00    0.00    0.00    0.00    0.00   97.98
+   08:42:23 AM    4    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00  100.00
+   08:42:23 AM    5    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00  100.00
+   08:42:23 AM    6    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00  100.00
+   08:42:23 AM    7    0.00    0.00    3.03    0.00    0.00    0.00    0.00    0.00   96.97
+   
+   08:42:23 AM  CPU    %usr   %nice    %sys %iowait    %irq   %soft  %steal  %guest   %idle
+   08:42:24 AM  all    0.13    0.00    1.13    0.38    0.00    0.00    0.00    0.00   98.37
+   08:42:24 AM    0    0.00    0.00    3.03    0.00    0.00    0.00    0.00    0.00   96.97
+   08:42:24 AM    1    0.00    0.00    2.00    3.00    0.00    0.00    0.00    0.00   95.00
+   08:42:24 AM    2    0.00    0.00    1.00    0.00    0.00    0.00    0.00    0.00   99.00
+   08:42:24 AM    3    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00  100.00
+   08:42:24 AM    4    1.00    0.00    1.00    0.00    0.00    0.00    0.00    0.00   98.00
+   08:42:24 AM    5    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00  100.00
+   08:42:24 AM    6    1.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00   99.00
+   08:42:24 AM    7    0.00    0.00    1.01    0.00    0.00    0.00    0.00    0.00   98.99
+   
+   Average:     CPU    %usr   %nice    %sys %iowait    %irq   %soft  %steal  %guest   %idle
+   Average:     all    0.69    0.00    1.81    0.10    0.00    0.20    0.00    0.00   97.20
+   Average:       0    1.94    0.00    2.35    0.01    0.00    0.10    0.00    0.00   95.60
+   Average:       1    0.54    0.00    2.41    0.77    0.00    0.09    0.00    0.00   96.19
+   Average:       2    0.87    0.00    1.84    0.01    0.00    1.26    0.00    0.00   96.03
+   Average:       3    0.21    0.00    1.88    0.00    0.00    0.02    0.00    0.00   97.89
+   Average:       4    0.38    0.00    1.94    0.00    0.00    0.01    0.00    0.00   97.66
+   Average:       5    0.31    0.00    1.60    0.02    0.00    0.02    0.00    0.00   98.06
+   Average:       6    1.14    0.00    1.06    0.00    0.00    0.10    0.00    0.00   97.70
+   Average:       7    0.15    0.00    1.39    0.00    0.00    0.01    0.00    0.00   98.45
+
+   #+END_EXAMPLE
+
+   - CPU ::
+   Processor number. The keyword all indicates that statistics are
+   calculated as averages among all processors.
+   
+   - %usr ::
+   Show the percentage of CPU utilization that occurred while
+   executing at the user level (application).
+   
+   - %nice ::
+   Show the percentage of CPU utilization that occurred while
+   executing at the user level with nice priority.
+   
+   - %sys ::
+   Show the percentage of CPU utilization that occurred while
+   executing at the system level (kernel). Note that this does not
+   include time spent servicing hardware and software interrupts.
+   
+   - %iowait ::
+   Show the percentage of time that the CPU or CPUs were idle during
+   which the system had an outstanding disk I/O request.
+
+   - %irq ::
+   Show the percentage of time spent by the CPU or CPUs to service
+   hardware interrupts.
+
+   - %soft ::
+   Show the percentage of time spent by the CPU or CPUs to service
+   software interrupts.
+   
+   - %steal ::
+   Show the percentage of time spent in involuntary wait by the
+   virtual CPU or CPUs while the hypervisor was servicing another
+   virtual processor.
+   
+   - %guest ::
+   Show the percentage of time spent by the CPU or CPUs to run a
+   virtual pro- cessor.
+   
+   - %idle ::
+   Show the percentage of time that the CPU or CPUs were idle and the
+   system did not have an outstanding disk I/O request.
+** Understanding siege sample output
+   :PROPERTIES:
+   :CUSTOM_ID: understand_siege
+   :END:      
+   #+BEGIN_EXAMPLE
+   siege -c25 -r10 http://cse01-iiith.vlabs.ac.in/
+   #+END_EXAMPLE
+   Above command would display like below
+   #+BEGIN_EXAMPLE
+
+       ** Siege 2.60
+       ** Preparing 100 concurrent users for battle.
+       The server is now under siege...done
+       Transactions:                    339 hits
+       Availability:                  93.39 %
+       Elapsed time:                  67.47 secs
+       Data transferred:            4273708 bytes
+       Response time:                  8.25 secs
+       Transaction rate:               5.02 trans/sec
+       Throughput:                 63342.34 bytes/sec
+       Concurrency:                   41.47
+       Successful transactions:         337
+       Failed transactions:              26
+       Longest transaction:           17.77 secs
+       Shortest transaction:           0.37 secs
+
+   #+END_EXAMPLE
+   + Transactions :: The number of server hits.  In the example, 20
+                     simulated users [ -c25 ] each hit the server 10
+                     times [ -r10 ], a total of 250 transactions. It
+                     is possible for the number of transactions to
+                     exceed the number of hits that were schedÅ]
+                     uled. Siege counts every server hit a
+                     transaction, which means redirections and
+                     authentication challenges count as two hits, not
+                     one. With this regard, siege follows the HTTP
+                     specification and it mimics browser behavior.
+
+   + Availability :: This is the percentage of socket connections
+                     successfully handled by the server. It is the
+                     result of socket failures (including timeouts)
+                     divided by the sum of all connection
+                     attempts. This number does not include 400 and
+                     500 level server errors which are recorded in
+                     "Failed transactions" described below.
+
+   + Elapsed time :: The duration of the entire siege test.  This is
+                     measured from the time the user invokes siege
+                     until the last simulated user completes its
+                     transactions.  Shown above, the test took 14.67
+                     seconds to complete.
+   + Data transferred :: The sum of data transferred to every siege
+        simulated user.  It includes the header information as well as
+        content.  Because it includes header information, the number
+        reported by siege will be larger then the number reported by
+        the server.  In internet mode, which hits random URLs in a
+        configuration file, this number is expected to vary from run
+        to run.
+
+   + Response time :: The average time it took to respond to each
+                      simulated user's requests.
+
+   + Transaction rate :: The average number of transactions the server
+        was able to handle per second, in a nutshell: transactions
+        divided by elapsed time.
+
+   + Throughput :: The average number of bytes transferred every
+                   second from the server to all the simulated users.
+
+   + Concurrency :: The average number of simultaneous connections, a
+                    number which rises as server performance
+                    decreases.
+
+   + Successful transactions :: The number of times the server
+        responded with a return code < 400.
+
+   + Failed transactions :: The number of times the server responded
+        with a return code >= 400 plus the sum of all failed socket
+        transactions which includes socket timeouts.
+   + Longest transaction :: The greatest amount of time that any
+        single transaction took, out of all transÅ] actions.
+
+   + Shortest transaction :: The smallest amount of time that any
+        single transaction took, out of all transÅ] actions.
+
