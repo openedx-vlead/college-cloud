@@ -41,7 +41,7 @@
     + All components running from a single machine
     + 16 GB RAM / I7 
 
-
+      
 * Test cases 
 
 ** PTEST-FULLCC-001 : TEST01 - vmstat - No load
@@ -56,6 +56,7 @@
 
     + NOTE :: *no load* means, no user requests on college cloud
 
+
 *** Description
     [[http://www.linuxcommand.org/man_pages/vmstat8.html][vmstat]] - Virtual memory stats is a command to get summary
     information on Memory, Processess, CPU, Paging etc.
@@ -69,11 +70,13 @@
       every one second.
     + *-S M* is to get output in MB
 
+
 *** Performance measurements
     + CPU utilization / unit
     + Memory utilization / unit
    
-*** Experiment and result
+
+*** RUN 1: vmstat - No load
     + [[./raw-data/no-load-run-1-vagrant-up.txt][Raw-Data]]
     + Graph-01 Free RAM / IDLE RAM graph
       The graph given below infers the following -
@@ -102,42 +105,8 @@
       The graph given below inferes the following -
       + IDLE CPU percentage at an instance of test. 
         [[graphs/idle-cpu.png]]
-	
 
-** PTEST-FULLCC-001 : TEST02 - vmstat - Simple load( 20 concurrent user requests on one lab for 20 minutes)
-*** Objective(s)
-    To identify the following stats - 
-    + CPU run queues
-    + Swap in/out
-    + Wait time for IO 
-    + Memory (RAM) utilization
-
-    when one lab is up and load 20 concurrent user requests for 20 minutes.
-
-
-
-*** Description
-    [[http://www.linuxcommand.org/man_pages/vmstat8.html][vmstat]] - Virtual memory stats is a command to get summary
-    information on Memory, Processess, CPU, Paging etc.
-    
-    + Boot CC normally
-    + Start one lab container
-      #+BEGIN_SRC 
-      vzctl start <CTID>
-      #+END_SRC
-    + Use the command given below to get statistics -
-      #+BEGIN_SRC command
-      vmstat 1 1200 -n -w -S M 
-      #+END_SRC
-    + This command runs for 1200 times and returns output on screen
-      every one second.
-    + *-S M* is to get output in MB
-
-*** Performance measurements
-    + CPU utilization / unit
-    + Memory utilization / unit
-   
-*** Experiment and result
+*** RUN 2: vmstat - Simple load( 20 concurrent user requests on one lab for 20 minutes)
     + Boot CC normally 
     + Start one lab container
       #+BEGIN_SRC 
@@ -160,40 +129,7 @@
     + Output of the above command can be found at [[./raw-data/one-lab-20-concurrent-requests-20min-siege.txt][Raw-Data]]
 
          
-    
-** PTEST-FULLCC-001 : TEST03 - vmstat - 50 concurrent user requests on one lab for 20 minutes
-*** Objective(s)
-    To identify the following stats - 
-    + CPU run queues
-    + Swap in/out
-    + Wait time for IO 
-    + Memory (RAM) utilization
-
-    when one lab is up and load 50 concurrent user requests for 20
-    minutes.
-
-*** Description
-    [[http://www.linuxcommand.org/man_pages/vmstat8.html][vmstat]] - Virtual memory stats is a command to get summary
-    information on Memory, Processess, CPU, Paging etc.
-    
-    + Boot CC normally
-    + Start one lab container
-      #+BEGIN_SRC 
-      vzctl start <CTID>
-      #+END_SRC
-    + Use the command given below to get statistics -
-      #+BEGIN_SRC command
-      vmstat 1 1200 -n -w -S M 
-      #+END_SRC
-    + This command runs for 1200 times and returns output on screen
-      every one second.
-    + *-S M* is to get output in MB
-
-*** Performance measurements
-    + CPU utilization / unit
-    + Memory utilization / unit
-   
-*** Experiment and result
+*** RUN 3: vmstat - 50 concurrent user requests on one lab for 20 minutes
     + Boot CC normally 
     + Start one lab container
       #+BEGIN_SRC 
@@ -216,31 +152,7 @@
     + Output of the above command can be found at [[./raw-data/one-lab-20-concurrent-requests-20min-siege.txt][Raw-Data]]
 
          
-
-** PTEST-FULLCC-001 : TEST04 - vmstat - 50 concurrent user requests on edx platform for 20 minutes
-*** Objective(s)
-    To identify the following stats - 
-    + CPU run queues
-    + Swap in/out
-    + Wait time for IO 
-    + Memory (RAM) utilization
-   when one lab container is running and 50 concurrent user requests
-   on edx home page (http://vlabs.ac.in) for 20 minutes.
-
-
-*** Description
-    Will be identifying CPU, Swap, Memory, etc utilization using
-    *vmstat.
-
-    [[http://www.linuxcommand.org/man_pages/vmstat8.html][vmstat]] - Virtual memory stats is a command to get summary
-    information on Memory, Processess, CPU, Paging etc.
-    
-
-*** Performance measurements
-    + CPU utilization / unit
-    + Memory utilization / unit
-   
-*** Experiment and result
+*** RUN 4: vmstat - 50 concurrent user requests on edx platform for 20 minutes
     + Boot CC normally 
     + Make sure edx platform is up and running.
       - If edx platform is not running,then run the below commands
@@ -271,32 +183,7 @@
     + Output of the above command can be found at [[./raw-data/edx-home-page-one-lab-50-concurrent-users-requests-20min.txt][Raw-Data]]
 
          
-
-** PTEST-FULLCC-001 : TEST05 - vmstat - 50 concurrent user requests on feedback-service for 20 minutes
-*** Objective(s)
-    To identify the following stats - 
-    + CPU run queues
-    + Swap in/out
-    + Wait time for IO 
-    + Memory (RAM) utilization
-   when one lab container is running and 50 concurrent user requests
-   on feedback service page (http://feedbac.vlabs.ac.in) for 20
-   minutes.
-
-
-*** Description
-    Will be identifying CPU, Swap, Memory, etc utilization using
-    *vmstat.
-
-    [[http://www.linuxcommand.org/man_pages/vmstat8.html][vmstat]] - Virtual memory stats is a command to get summary
-    information on Memory, Processess, CPU, Paging etc.
-    
-
-*** Performance measurements
-    + CPU utilization / unit
-    + Memory utilization / unit
-   
-*** Experiment and result
+*** RUN 5: vmstat - 50 concurrent user requests on feedback-service for 20 minutes
     + Boot CC normally 
     + Make sure feedback service/container is up and running.
     + Start one lab container
@@ -321,13 +208,14 @@
 
          
 
-** PTEST-FULLCC-001 : TEST07 - mpstat - No load
+** PTEST-FULLCC-001 : TEST02 - mpstat + vmstat - No load
 *** Objective(s)
     To identify the following stats - 
     + CPU run queues
-    when no load on College Cloud and running cluster components.
+    + Swap in/out
+    + Wait time for IO 
+    + Memory (RAM) utilization
 
-    + NOTE :: *no load* means, no user requests on college cloud
 
 *** Description
     Identify processors utilization using *mpstat* command line tool.
@@ -342,59 +230,37 @@
       utilization output on screen every one second.
       - [[./index.org::#understand_mpstat][mpstat help manual is here]]
 
-*** Performance measurements
-    + CPU utilization / unit
-   
-*** Experiment and result
-    + Boot CC normally 
-    + Use the command given below on CC machine  to get statistics of
-      all available processors.
-      #+BEGIN_SRC command
-      mpstat 1 -P ALL 12000
-      #+END_SRC
-      - To understand =mpstat= command, please look at [[./manuals/command-manuals.org][mpstat help manual is here]]
-    + This command runs for 1200 times and returns output on screen
-      every one second.
-    + Output of the above command can be found at [[./raw-data/mpstat-no-load-with-vagrant-up-20min.txt][Raw-Data]]
-
-
-** PTEST-FULLCC-001 : TEST08 - mpstat - Simple load( 20 concurrent user requests on one lab for 20 minutes)
-*** Objective(s)
-    To identify the following stats - 
-    + CPU run queues
-    when one lab is up and load 20 concurrent user requests for 20 minutes.
-
-*** Description
-    Identify processors utilization using *mpstat* command line tool.
-    *mpstat* - Report processors related statistics.
-    
-    + Use the command given below to get statistics of all available
-      processors
-      #+BEGIN_SRC command
-      mpstat 1 -P ALL 1200
-      #+END_SRC
-    + This command runs for 1200 records/times and returns processors
-      utilization output on screen every one second.
-      - [[./index.org::#understand_mpstat][mpstat help manual is here]]
 
 *** Performance measurements
     + CPU utilization / unit
    
-*** Experiment and result
+
+*** RUN 1 : mpstat + vmstat - No load
     + Boot CC normally 
+    + Use the commands given below on CC machine  to get statistics.
+      #+BEGIN_SRC command
+      vmstat 1 1200 -n -w -s M & 
+      mpstat 1 -P ALL 1200 &
+      #+END_SRC
+      - To understand =mpstat= and =vmstat= commands, please look at
+        [[./manuals/command-manuals.org][mpstat and vmstat help manual]]
+    + Output of the =vmstat= command can be found at [[./raw-data/test-case2/test-case2-vmstat-run1.txt][vmstat-raw-data]]
+    + Output of the =mpstat= command can be found at [[./raw-data/test-case2/test-case2-mpstat-run1.txt][mpstat-raw-data]]
+
+*** RUN 2 : mpstat + mpstat - Simple load( 20 concurrent user requests on one lab for 20 minutes
     + Start one lab container
       #+BEGIN_SRC 
       vzctl start <CTID>
       #+END_SRC
-    + Use the command given below on CC machine  to get statistics of
-      all available processors.
+    + Use the commands given below on CC machine  to get statistics.
       #+BEGIN_SRC command
-      mpstat 1 -P ALL 12000
+      mpstat 1 -P ALL 1200 
+      vmstat 1 1200 -n -w -s M 
       #+END_SRC
-      - To understand =mpstat= command, please look at [[./manuals/command-manuals.org][mpstat help manual is here]]
-    + This command runs for 1200 times and returns output on screen
-      every one second.
-    + Output of the above command can be found at [[./raw-data/mpstat-20-concurrent-user-requests-with-vagrant-up-onelab-up-20min.txt][Raw-Data]]
+      - To understand =mpstat= and =vmstat= commands, please look at
+        [[./manuals/command-manuals.org][mpstat and vmstat help manual]]
+    + Output of the =mpstat= command can be found at [[./raw-data/test-case2/test-case2-mpstat-run2.txt][mpstat-raw-data]]
+    + Output of the =vmstat= command can be found at [[./raw-data/test-case2/test-case2-vmstat-run2.txt][vmstat-raw-data]]
     + Now, put load on the lab using *siege* command. Run the below
       command from different machine which is connected to CC through
       LAN
@@ -402,50 +268,23 @@
       siege -c 20 -t 20M http://cse01-iiith.vlabs.ac.in/
       #+END_SRC
       - Look at [[./manuals/command-manuals.org][siege help manual]]
-    + Output of the above siege command can be found at [[./raw-data/mpstat-20-concurrent-user-requests-20min-siege.txt][Raw-Data]]
+    + Output of the above siege command can be found at [[./raw-data/test-case2/test-case2-mpstat-vmstat-run2-siege.txt][siege-raw-data]]
 
-         
 
-** PTEST-FULLCC-001 : TEST09 - mpstat - 50 concurrent user requests on one lab for 20 minutes
-*** Objective(s)
-    To identify the following stats - 
-    + CPU run queues
-    when one lab is up and load 50 concurrent user requests for 20
-    minutes.
-
-*** Description
-    Identify processors utilization using *mpstat* command line tool.
-    *mpstat* - Report processors related statistics.
-    
-    + Use the command given below to get statistics of all available
-      processors
-      #+BEGIN_SRC command
-      mpstat 1 -P ALL 1200
-      #+END_SRC
-    + This command runs for 1200 records/times and returns processors
-      utilization output on screen every one second.
-      - [[./index.org::#understand_mpstat][mpstat help manual is here]]
-
-*** Performance measurements
-    + CPU utilization / unit
-   
-*** Experiment and result
-    + Boot CC normally 
+*** RUN 3 : mpstat + vmstat - 50 concurrent user requests on one lab for 20 minutes
     + Start one lab container
       #+BEGIN_SRC 
       vzctl start <CTID>
       #+END_SRC
-    + Use the command given below on CC machine  to get statistics of
-      all available processors.
+    + Use the commands given below on CC machine  to get statistics.
       #+BEGIN_SRC command
-      mpstat 1 -P ALL 12000
+      mpstat 1 -P ALL 1200 
+      vmstat 1 1200 -n -w -s M 
       #+END_SRC
-      - To understand =mpstat= command, please look at [[./manuals/command-manuals.org][mpstat help
-        manual is here]]
-
-    + This command runs for 1200 times and returns output on screen
-      every one second.
-    + Output of the above command can be found at [[./raw-data/mpstat-50-concurrent-user-requests-with-vagrant-up-onelab-up-20min.txt][mpstat-raw-data]]
+      - To understand =mpstat= and =vmstat= commands, please look at
+        [[./manuals/command-manuals.org][mpstat and vmstat help manual]]
+    + Output of the =mpstat= command can be found at [[./raw-data/test-case2/test-case2-mpstat-run3.txt][mpstat-raw-data]]
+    + Output of the =vmstat= command can be found at [[./raw-data/test-case2/test-case2-vmstat-run3.txt][vmstat-raw-data]]
     + Now, put load on the lab using *siege* command. Run the below
       command from different machine which is connected to CC through
       LAN
@@ -453,35 +292,10 @@
       siege -c 50 -t 20M http://cse01-iiith.vlabs.ac.in/
       #+END_SRC
       - Look at [[./manuals/command-manuals.org][siege help manual]]
-    + Output of the above siege command can be found at [[./raw-data/mpstat-50-concurrent-user-request-siege.txt][siege-raw-data]]
-
-         
+    + Output of the above siege command can be found at [[./raw-data/test-case2/test-case2-mpstat-vmstat-run3-siege.txt][siege-raw-data]]
 
 
-** PTEST-FULLCC-001 : TEST10 - mpstat - 50 concurrent user requests on edx platform for 20 minutes
-*** Objective(s)
-    To identify the following stats - *CPU usage*
-    when one lab is up and load 50 concurrent user requests on edx
-    platform for 20 minutes.
-
-*** Description
-    Identify processors utilization using *mpstat* command line tool.
-    *mpstat* - Report processors related statistics.
-    
-    + Use the command given below to get statistics of all available
-      processors
-      #+BEGIN_SRC command
-      mpstat 1 -P ALL 1200
-      #+END_SRC
-    + This command runs for 1200 records/times and returns processors
-      utilization output on screen every one second.
-      - [[./manuals/command-manuals.org][mpstat help manual is here]] or *Understanding mpstat smaple output*
-
-*** Performance measurements
-    + CPU utilization / unit
-   
-*** Experiment and result
-    + Boot CC normally 
+*** RUN 4 : mpstat + mpstat - 50 concurrent user requests on edx platform for 20 minutes
     + Make sure edx platform is up and running.
       - If edx platform is not running,then run the below commands
         from =vlabs= user account
@@ -494,15 +308,15 @@
       #+BEGIN_SRC 
       vzctl start <CTID>
       #+END_SRC
-    + Use the command given below on CC machine  to get statistics of
-      all available processors.
+    + Use the commands given below on CC machine  to get statistics.
       #+BEGIN_SRC command
-      mpstat 1 -P ALL 12000
+      mpstat 1 -P ALL 1200 
+      vmstat 1 1200 -n -w -s M 
       #+END_SRC
-      - To understand =mpstat= command, please look at [[./manuals/command-manuals.org][mpstat help manual is here]]
-    + This command runs for 1200 times and returns output on screen
-      every one second.
-    + Output of the above command can be found at [[./raw-data/mpstat-50-concurrent-user-requests-edx-homepage-onelab-up-20min.txt][mpstat raw-data]]
+      - To understand =mpstat= and =vmstat= commands, please look at
+        [[./manuals/command-manuals.org][mpstat and vmstat help manual]]
+    + Output of the =mpstat= command can be found at [[./raw-data/test-case2/test-case2-mpstat-run4.txt][mpstat-raw-data]]
+    + Output of the =vmstat= command can be found at [[./raw-data/test-case2/test-case2-vmstat-run4.txt][vmstat-raw-data]]
     + Now, put load on the lab using *siege* command. Run the below
       command from different machine which is connected to CC through
       LAN
@@ -510,8 +324,122 @@
       siege -c 50 -t 20M http://vlabs.ac.in/
       #+END_SRC
       - Look at [[./manuals/command-manuals.org][siege help manual]]
-    + Output of the above siege command can be found at [[./raw-data/mpstat-50-concurrent-user-requests-edx-homepage-siege.txt][siege raw-data]]
+    + Output of the above siege command can be found at [[./raw-data/test-case2/test-case2-mpstat-vmstat-run4-siege.txt][siege-raw-data]]
 
-         
+
+*** RUN 5 : mpstat + mpstat - 50 concurrent user requests on feedback for 20 minutes
+    + Start feedback service container if not started
+      #+BEGIN_SRC 
+      vzctl start 278
+      #+END_SRC
+    + Start one lab container if not started 
+      #+BEGIN_SRC 
+      vzctl start <CTID>
+      #+END_SRC
+    + Use the commands given below on CC machine  to get statistics.
+      #+BEGIN_SRC command
+      mpstat 1 -P ALL 1200 
+      vmstat 1 1200 -n -w -s M 
+      #+END_SRC
+      - To understand =mpstat= and =vmstat= commands, please look at
+        [[./manuals/command-manuals.org][mpstat and vmstat help manual]]
+    + Output of the =mpstat= command can be found at [[./raw-data/test-case2/test-case2-mpstat-run5.txt][mpstat-raw-data]]
+    + Output of the =vmstat= command can be found at [[./raw-data/test-case2/test-case2-vmstat-run5.txt][vmstat-raw-data]]
+    + Now, put load on the lab using *siege* command. Run the below
+      command from different machine which is connected to CC through
+      LAN
+      #+BEGIN_SRC 
+      siege -c 50 -t 20M http://feedback.vlabs.ac.in/
+      #+END_SRC
+      - Look at [[./manuals/command-manuals.org][siege help manual]]
+    + Output of the above siege command can be found at [[./raw-data/test-case2/test-case2-mpstat-vmstat-run5-siege.txt][siege-raw-data]]
+
+** PTEST_FULLCC-002 : TEST03 - mpstat + vmstat + page faults
+*** Objective(s)
+     To identify the following stats - 
+     + CPU run queues
+     + Swap in/out
+     + Wait time for IO 
+     + Memory (RAM) utilization
+     + Processors utilization
+     + Page Faults
+
+
+*** Description
+    Identify processors utilization using *mpstat* command line tool.
+    *mpstat* - Report processors related statistics.
+
+    + Use the command given below to get statistics of all available
+      processors
+      #+BEGIN_SRC command
+      mpstat 1 -P ALL 1200
+      #+END_SRC
+
+
+    Identify Virtual memory stats using vmstat command.
+    
+    [[http://www.linuxcommand.org/man_pages/vmstat8.html][vmstat]] - Virtual memory stats, is a command to get summary
+    information on Memory, Processess, CPU, Paging etc.
+
+    + Use the command given below to get statistics
+      #+BEGIN_SRC command
+      vmstat -n -w -S M 1 1200
+      #+END_SRC
+
+    Identify page faults as well using *sar* command 
+    + Use the command given below to get page faults
+      #+BEGIN_SRC command
+      sar -B 1 1200
+      #+END_SRC
+    + [[./index.org::#understand_mpstat][mpstat + vmstat help manual is here]]
+
+
+*** RUN 1 :: Two labs, edx platform and cluster containers running
+    1. Started two lab containers on college cloud
+    2. started edx platform
+    3. All other cluster component server containers are running
+    4. Now, take the following urls of the labs and vlabs-home page.
+       #+BEGIN_EXAMPLE
+       http://vlabs.ac.in/
+       http://mfs-iiith.vlabs.ac.in/exp1/simulation/mfs_exp1.html
+       http://mfs-iiith.vlabs.ac.in/exp2/simulation/mfs_exp2b.html
+       http://cse01-iiith.vlabs.ac.in/exp1/UnarySystem.html
+       http://cse01-iiith.vlabs.ac.in/exp1/RomanSystem.html
+       http://cse01-iiith.vlabs.ac.in/exp3/quick.html
+       http://cse01-iiith.vlabs.ac.in/exp3/merge.html
+       #+END_EXAMPLE
+    5. And now, add them to =/etc/siege/urls.txt= file on a machine
+       from where siege command would be running.
+
+    6. Run the below script =load.sh= on college cloud machine
+       #+BEGIN_SRC 
+       ###this script collects all stats( vmstats, mpstats and page faults at a time on the basis of load put by siege command
+       ### following urls added to =/etc/siege/urls.txt= file (without commenting the lines) on a machine
+       from where siege command will run.
+       #http://vlabs.ac.in/
+       #http://mfs-iiith.vlabs.ac.in/exp1/simulation/mfs_exp1.html
+       #http://mfs-iiith.vlabs.ac.in/exp2/simulation/mfs_exp2b.html
+       #http://cse01-iiith.vlabs.ac.in/exp1/UnarySystem.html
+       #http://cse01-iiith.vlabs.ac.in/exp1/RomanSystem.html
+       #http://cse01-iiith.vlabs.ac.in/exp3/quick.html
+       #http://cse01-iiith.vlabs.ac.in/exp3/merge.html
+   
+       #### Collect page faults 
+       sar -B 1 1200 > twolabs-edxhomepage-page_faults.txt
+       #### Collect Virtual Memory status 
+       vmstat 1 1200 -n -w -S M > twolabs-edxhomepage-vmstat.txt
+       #### Collect processors statistics 
+       mpstat -P ALL 1 1200 > twolabs-edxhomepage-mpstat.txt
+       #+END_SRC
+    7. Now, siege command shown below along with the above script. 6
+       and 7 both should run at a time. Put load on the lab using
+       *siege* command. Run the below command from different machine
+       which is connected to CC through LAN
+       #+BEGIN_EXAMPLE
+       siege -c50 -t20M -v 
+       #+END_EXAMPLE
+    8. Output of the =mpstat= command can be found at [[./raw-data/twolabs-edxhomepage-mpstat.txt][mpstat-raw-data]]
+    9. Output of the =vmstat= command can be found at [[./raw-data/twolabs-edxhomepage-vmstat.txt][vmstat-raw-data]]
+    10. Output of the =sar= command can be found at [[./raw-data/twolabs-edxhomepage-page_faults.txt][vmstat-raw-data]]
 
 
