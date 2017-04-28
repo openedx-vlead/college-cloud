@@ -440,6 +440,7 @@
        #+END_EXAMPLE
     8. Output of the =mpstat= command can be found at [[./raw-data/twolabs-edxhomepage-mpstat.txt][mpstat-raw-data]]
     9. Output of the =vmstat= command can be found at [[./raw-data/twolabs-edxhomepage-vmstat.txt][vmstat-raw-data]]
-    10. Output of the =sar= command can be found at [[./raw-data/twolabs-edxhomepage-page_faults.txt][vmstat-raw-data]]
+    10. Output of the =sar= command can be found at [[./raw-data/twolabs-edxhomepage-page_faults.txt][sar-raw-data]]
 
 
+    
