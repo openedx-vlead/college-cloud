@@ -1,0 +1,18 @@
+** SIEGE 2.70
+** Preparing 100 concurrent users for battle.
+The server is now under siege...[error] unable to write to socket sock.c:562: Connection reset by peer
+
+Lifting the server siege...      done.
+Transactions:		      224078 hits
+Availability:		      100.00 %
+Elapsed time:		     1199.56 secs
+Data transferred:	      600.92 MB
+Response time:		        0.03 secs
+Transaction rate:	      186.80 trans/sec
+Throughput:		        0.50 MB/sec
+Concurrency:		        6.15
+Successful transactions:      224078
+Failed transactions:	           3
+Longest transaction:	        7.80
+Shortest transaction:	        0.00
+
