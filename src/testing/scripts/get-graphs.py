@@ -11,19 +11,22 @@ label = sys.argv[2]
 color_name = sys.argv[3]
 graph_title = sys.argv[4]
 fig = plt.figure()
-image_filename = "./graphs1/" + file_name + ".png"
+image_filename = "./graphs-cs/" + file_name + ".png"
 fig.suptitle(graph_title, fontsize=14, fontweight='bold')
-plt.ylabel('Number of Processes waiting for runtime')
+plt.ylabel('Number of Context swiches ')
 plt.xlabel(' > Time  in seconds')
 
 
 tmp_file_name = ".tmp"
 
 # Remove top 3 lines from all the files 
-os.system("tail -n +3 " + file_name + "> file.tmp && mv file.tmp " + file_name)
-os.system("awk '{print $1}' " + file_name + "> " + file_name + ".r")
+#os.system("tail -n +3 " + file_name + "> file.tmp && mv file.tmp " + file_name)
+#os.system("awk '{print $1}' " + file_name + "| tail -n +3" +  ">"  + file_name + ".updated") # this line for printing number of processes waiting for run time ( r value)
+#os.system("awk '{print $4}' " + file_name + "| tail -n +3" +  ">"  + file_name + ".updated") # this line for printingfree ram  ( free )
+
+os.system("awk '{print $12}' " + file_name + "| tail -n +3" +  ">"  + file_name + ".updated")  # this line is for printing  Context switches ( cs)
 	
-new_file_name = file_name  + ".r"
+new_file_name = file_name  + ".updated"
 
 with open(new_file_name, "r") as f:
 	lines = f.read().splitlines()

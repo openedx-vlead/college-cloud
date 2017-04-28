@@ -2,4 +2,4 @@ python get-graphs.py "test-case2-vmstat-run1.txt" "run1 status" "red" "Run1 : on
 python get-graphs.py "test-case2-vmstat-run2.txt" "run2 status" "cyan" "Run2: edx + cluster components + one lab running"
 python get-graphs.py "test-case2-vmstat-run3.txt" "run3 status" "blue" "Run3: edx + cluster components + one lab running"
 python get-graphs.py "test-case2-vmstat-run4.txt" "run4 status" "green" "Run4: edx + cluster components + one lab running"
-python get-graphs.py "test-case2-vmstat-run5.txt" "run5 status" "green" "Run5: edx + cluster components + one lab running"
+python get-graphs.py "test-case2-vmstat-run5.txt" "run5 status" "blue" "Run5: edx + cluster components + one lab running"
