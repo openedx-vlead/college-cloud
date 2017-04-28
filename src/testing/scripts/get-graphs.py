@@ -9,12 +9,12 @@ import os
 file_name = sys.argv[1]
 label = sys.argv[2]
 color_name = sys.argv[3]
-
+graph_title = sys.argv[4]
 fig = plt.figure()
-fig1 = plt.figure()
-fig.suptitle('Comparing processes in various test cases', fontsize=14, fontweight='bold')
+image_filename = "./graphs1/" + file_name + ".png"
+fig.suptitle(graph_title, fontsize=14, fontweight='bold')
 plt.ylabel('Number of Processes waiting for runtime')
-plt.xlabel('Time or instance of an output ')
+plt.xlabel(' > Time  in seconds')
 
 
 tmp_file_name = ".tmp"
@@ -32,7 +32,8 @@ with open(new_file_name, "r") as f:
 	plt.plot(lines, color_name)
 		
 	
-plt.show()
+#plt.show()
+fig.savefig(image_filename)
 
 
 	
