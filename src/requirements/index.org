@@ -56,3 +56,10 @@
     :END:    
     - Create the steps for copy/clone of College Cloud Edition.
     [[../clone/index.org][Steps for cloning College Cloud Edition]]
+*** Req8
+    :PROPERTIES:
+    :CUSTOM_ID: req8
+    :END:    
+    - Create installation manual for running and configuring college
+      cloud edition with two machines
+    [[../clone/index.org][Steps for cloning College Cloud Edition]]

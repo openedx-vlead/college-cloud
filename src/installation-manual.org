@@ -505,6 +505,9 @@
 
 
 * Changing College Cloud Machine
+  :PROPERTIES:
+  :CUSTOM_ID: change-cc
+  :END:    
   To change an already configured College Cloud server to a different
   machine, the below steps are to be followed by System Administrator
   and existing lab users.
@@ -549,6 +552,9 @@
 
 
 * Shutting down of College Cloud Server
+  :PROPERTIES:
+  :CUSTOM_ID: shutdown
+  :END:      
   College Cloud contains a Vagrant box which on direct shutdown would crash. 
   To ensure proper shut down College Cloud Edition,follow the steps given below : 
   1. Log in as [[./installation-manual.org::#passwords][vlabs]] user
@@ -569,7 +575,9 @@
 * Clone Hard Disk( College Cloud Edition)
   To create multiple copies of College Cloud Edition, follow the [[./clone/index.org][link]]
 
-
+  :PROPERTIES:
+  :CUSTOM_ID: clone-cc
+  :END:      
 * Passwords
   :PROPERTIES:
   :CUSTOM_ID: passwords
