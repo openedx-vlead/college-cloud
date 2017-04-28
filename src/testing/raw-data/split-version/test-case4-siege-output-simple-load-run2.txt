@@ -1,0 +1,18 @@
+[alert] Zip encoding disabled; siege requires zlib support to enable it
+** SIEGE 4.0.2
+** Preparing 50 concurrent users for battle.
+The server is now under siege...
+Lifting the server siege...
+Transactions:		     2851669 hits
+Availability:		      100.00 %
+Elapsed time:		     1199.22 secs
+Data transferred:	    80957.73 MB
+Response time:		        0.01 secs
+Transaction rate:	     2377.94 trans/sec
+Throughput:		       67.51 MB/sec
+Concurrency:		       16.98
+Successful transactions:     2693246
+Failed transactions:	           0
+Longest transaction:	        0.24
+Shortest transaction:	        0.00
+
