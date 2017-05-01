@@ -62,4 +62,4 @@
     :END:    
     - Create installation manual for running and configuring college
       cloud edition with two machines
-    [[../clone/index.org][Steps for cloning College Cloud Edition]]
+    [[./installation-manual-for-two-machines.org][Steps for configuring College Cloud Edition with two machines]]
