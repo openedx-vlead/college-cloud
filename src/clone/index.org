@@ -7,25 +7,32 @@
 #+LATEX: Literal LaTeX code for export
 
 * Introduction
-  This document provides steps to create a copy of original College
-  Cloud Edition ( Hard Disk).
-
+  This document provides steps to create a copy of College Cloud
+  Edition (Master HDD).
+* Definitions
+  - Master HDD ::
+		 Hard Disk Drive running College Cloud Edition of
+                 latest version
+  - New HDD ::
+	      An empty Hard Disk Drive to be used for copying the
+              =Master HDD=
 * Requirements
   1. A machine should have 
-     + Any Linux based Operating system running on it
-     + Good RAM ( At least 8GB RAM)
-     + Good Processor ( At least i5 )
+     + Running any =GNU/Linux= based Operating System distribution
+     + RAM (At least =8 GB=)
+     + Processor (At least =i5=)
      + 3 SATA ports on mother board
-  2. College Cloud Edition( Master copy that VLEAD-Hyderabad provided).
-  3. A new Hard Disk Drive (HDD At least 500 GB).
+  2. Hard Disk Drive (master HDD) running College Cloud Edition latest
+     version (visit [[https://github.com/openedx-vlead/college-cloud/releasesMaster][link]] for latest releases)
+  3. A =New Hard Disk Drive= (HDD with minimum storage capacity of
+     500 GB).
 * Steps
 
-
-  1. Note down the *Serial numbers* of both the HDDs( master and New).
-  2. Attach the master copy and new HDD to the machine using SATA and
-     Power cables.
-  3. Boot the machine from the HDD which has linux based Operating
-     Systems( Not from Master copy).
+  1. Note down the *Serial numbers* of both the HDDs (=Master HDD= and =New HDD=).
+  2. Attach the =master HDD= and =New HDD= to the machine using SATA
+     and Power cables.
+  3. Boot the machine from the HDD which is running linux based Operating
+     Systems (Not from =Master HDD= and =New HDD=).
 
 ** Steps for CentOS Operating System 
    1. Login to the machine 
