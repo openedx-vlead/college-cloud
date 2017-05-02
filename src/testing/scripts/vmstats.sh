@@ -8,8 +8,14 @@
 
 
 ###un comment following lines to generate graphs for edx machine(split version of college cloud edition)
-python get-graphs.py "split-cc-vmstat-edx-run1.txt"  "run1 status" "red" "Run1 : only edx running "
-python get-graphs.py "split-cc-vmstat-edx-run2.txt" "run2 status" "cyan" "Run2: edx running"
-python get-graphs.py "split-cc-vmstat-edx-run3.txt" "run3 status" "blue" "Run3: edx running"
-python get-graphs.py "split-cc-vmstat-edx-run4.txt" "run4 status" "green" "Run4: edx running"
-python get-graphs.py "split-cc-vmstat-edx-run5.txt" "run5 status" "blue" "Run5: edx running"
+##python get-graphs.py "split-cc-vmstat-edx-run1.txt"  "run1 status" "red" "Run1 : only edx running "
+##python get-graphs.py "split-cc-vmstat-edx-run2.txt" "run2 status" "cyan" "Run2: edx running"
+##python get-graphs.py "split-cc-vmstat-edx-run3.txt" "run3 status" "blue" "Run3: edx running"
+##python get-graphs.py "split-cc-vmstat-edx-run4.txt" "run4 status" "green" "Run4: edx running"
+##python get-graphs.py "split-cc-vmstat-edx-run5.txt" "run5 status" "blue" "Run5: edx running"
+##
+python get-graphs.py "split-cc-vmstat-cluster-run1.txt"  "run1 status" "red" "Run1 : cluster containers running "
+python get-graphs.py "split-cc-vmstat-cluster-run2.txt" "run2 status" "cyan" "Run2: cluster containers and one lab container running"
+python get-graphs.py "split-cc-vmstat-cluster-run3.txt" "run3 status" "blue" "Run3: cluster containers and one lab container running"
+python get-graphs.py "split-cc-vmstat-cluster-run4.txt" "run4 status" "green" "Run4: cluster containers and one lab container running"
+python get-graphs.py "split-cc-vmstat-cluster-run5.txt" "run5 status" "blue" "Run5: cluster containers and one lab container running"

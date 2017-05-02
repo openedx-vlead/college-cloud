@@ -14,18 +14,18 @@
   :CUSTOM_ID: requirements
   :END:    
   1. Two machines with following configuration
-     + Machine 1 :: In this machine, Only edx platform would be
+     + EdX Machine :: In this machine, Only edx platform would be
                          running.
      #+BEGIN_EXAMPLE
      Processor : Intel(R) Core(TM) i7-3770 , CPU with 3.40GHz (Model : intel-db75en) 
-     RAM : 32 GB 
+     RAM : 16 GB 
      No of Cores : 8  
      #+END_EXAMPLE
-     + Machine 2 :: In this machine, labs and cluster containers
-                        would be running.
+     + Cluster Machine :: In this machine, labs and cluster
+          containers would be running.
      #+BEGIN_EXAMPLE
      Processor : Intel(R) Core(TM) i7-3770 , CPU with 3.40GHz (Model : intel-db75en) 
-     RAM : 16 GB 
+     RAM : 32 GB 
      No of Cores: 8
      #+END_EXAMPLE
 
@@ -56,12 +56,11 @@
        or
        domain name 10.2.57.62
        #+END_EXAMPLE
-** Machine 1 setup 
-*** Configuring College Cloud Server
+** EdX Machine setup 
+*** Configuring EdX College Cloud Server
     :PROPERTIES:
    :CUSTOM_ID: cluster-cc1
    :END:    
-
    1. Connect the identified College Cloud machine to the configured
       Wi-Fi router through a LAN cable. *Please do not touch the WAN
       port*.
@@ -71,18 +70,11 @@
    4. Please use [[./installation-manual.org::#passwords][default linux user credentials]] to login.
       + NOTE :: It is advised that the password is changed after the
                	first login . To change the password, follow the [[./installation-manual.org::#passwords][link]]
-*** More procedures to be done on machine 1
-    There are other procedures to be in machine1. They are available
-    at the following locations
-    
-    - [[./installation-manual.org::#using-cc-server][How to use College cloud Edition]]
-    - [[./installation-manual.org::#cc-work-flow][Workflow of College Cloud Edition]]
-    - [[./installation-manual.org::#analytics-feedback][Collecting/Sharing Analytics and Feedback]]
 
-** Machine 2 setup
+** Cluster Machine setup
    *In this machine, edx platform should not be running as it is
    running from machine1*
-*** Configuring College Cloud Server
+*** Configuring Cluster College Cloud Server
     :PROPERTIES:
     :CUSTOM_ID: cluster-cc2
     :END:      
@@ -97,24 +89,14 @@
       + NOTE :: It is advised that the password is changed after the
                	first login . To change the password, follow the [[./installation-manual.org::#passwords][link]]
 
-*** Launch Virtual Labs (Open edX) platform
-   1. Run the following command on terminal to run Virtual Labs on Open
-      edX platform. This may take a few minutes to launch the platform.
-       #+BEGIN_EXAMPLE
-       cd vagrant-boxes
-       vagrant-boxes$vagrant up     #Look for Vagrant file in "vlabs" account and run this command
-       vagrant-boxes$vagrant up --provision
-       #+END_EXAMPLE
-   2. College Cloud edition of Virtual Labs is now ready for use.
-   3. [[./installation-manual.org::#instructions][Follow the instructions]] to access vlabs.ac.in page
-   4. Access the vlabs.ac.in page, at this time no lab simulations
-      would be accessible. To access the simulations of the labs,
-      first understand [[./installation-manual.org::#using-cc-server][Using College Cloud Edition]]
-*** Stop all the containers including cluster containers
-     Stop the containers that are running on college cloud including
-     cluster server containers.
-
-
+		
+*** More procedures to be done on cluster machine
+    There are other procedures to be in machine1. They are available
+    at the following locations
+    
+    - [[./installation-manual.org::#using-cc-server][How to use College cloud Edition]]
+    - [[./installation-manual.org::#cc-work-flow][Workflow of College Cloud Edition]]
+    - [[./installation-manual.org::#analytics-feedback][Collecting/Sharing Analytics and Feedback]]
   
 * Other steps/procedures
   - [[./installation-manual.org::#change-cc][Changing College Cloud Machine]]
