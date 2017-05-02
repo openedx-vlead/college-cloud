@@ -105,10 +105,11 @@
       #+END_SRC
    6. Set *no proxy* on browsers
    7. Access http://vlabs.ac.in page
-   8. Choosing labs
+   8. Choosing required labs
+
       In order to choose required lab, please go to the section *More
-      on cluster machine* in this document page. *How to use college
-      cloud edition*
+      on cluster machine(How to use college cloud edition)* in this
+      document page.
       
 * Other steps/procedures
   - [[./installation-manual.org::#change-cc][Changing College Cloud Machine]]
