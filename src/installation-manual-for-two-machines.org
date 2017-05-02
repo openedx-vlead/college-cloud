@@ -1,4 +1,4 @@
-#+TITLE: Installation Manual for two machine setup of Virtual Labs College Cloud Edition
+#+TITLE: Installation Manual for the setup of Virtual Labs College Cloud Edition on Two machines
 #+AUTHOR: VLEAD
 #+PROPERTY: results output
 #+PROPERTY: exports code
@@ -7,47 +7,68 @@
 #+LATEX: Literal LaTeX code for export
 
 * Introduction
-  This manual details the configuration to be followed for Virtual
-  Labs College Cloud Edition with two machines
+  This manual details the configuration to be followed for installation of the Virtual
+  Labs College Cloud Edition on two machines.
+
+* Audience
+  This doument is meant for System Administrators who want to setup the College Cloud in their institute, the two machine style. 
+  
 * Requirements 
   :PROPERTIES:
   :CUSTOM_ID: requirements
   :END:    
-  1. Two machines with following configuration
-     + Cluster Machine :: In this machine, labs and cluster containers
-          would be running.
+  
+  The following are a list of recommended requirements to setup the college cloud.
+  
+  1. Two machines with the following configuration
+     + Cluster Machine :: Labs and cluster containers
+          would be running on this machine.
      #+BEGIN_EXAMPLE
      Processor : Intel(R) Core(TM) i7-3770 , CPU with 3.40GHz (Model : intel-db75en) 
      RAM : 32 GB 
      No of Cores: 8
      #+END_EXAMPLE
 
-     + EdX Machine :: In this machine, Only edx platform would be
-                         running.
+     + edX Machine :: This machine is dedicated solely for the edX platform to run.     
      #+BEGIN_EXAMPLE
      Processor : Intel(R) Core(TM) i7-3770 , CPU with 3.40GHz (Model : intel-db75en) 
      RAM : 16 GB 
      No of Cores : 8  
      #+END_EXAMPLE
      
-  2. *Two* College Cloud Editions
-  3. Wifi Router
-  4. Computer Lab with at least 30-50 Systems/Desktops.
+  2. *Two* SATA Hard disks (minimum 500GB each) for the transfer of College Cloud Editions.
+   
+  3. Wifi Router : A basic router which supports DHCP.  
+  
+  4. Computer Lab with at least 30-50 Desktops.
+  
   5. Network Switch Input, from where all the labs would obtain DHCP
-     IP) to Computer Lab machines/Desktops. This would make College
+     IP) to Computer Lab Desktops. This would make College
      Cloud accessible over the LAN network providing better results.
+     
   6. System Administrator with basic knowledge of CentOS operating systems and
      networking.
-* Steps for configuring two machines
+     
+* Steps for configuring the two machines
+  The following diagram depicts the setup of the two machines that need to be configured.
+  
+  #+BEGIN_HTML
+  <img src="../images/two-machine-college-cloud-2017-05-02.jpg">
+  <p align="center"> Two machine college cloud setup </p>
+  #+END_HTML
+  
+  To edit the Portable-media-diagram image click [[https://docs.google.com/drawings/d/1xYjjAdq35p056lumlTUoEyErOTUOKt5GSjt6RdP3S9U/pub?w=948&h=461][here]]
+  
 ** Configure Wifi router
-   + Configure WiFi-Router ::  Router would need to serve 10.2.57.0/24
-       to its clients. This would need configuration of LAN settings
-       in the router such that router's dhcp server would serve IPs
-       from the above IP range to its clients.
+   The sysadmin must configure the router to serve 10.2.57.0/24 IP range
+   to its clients. This would require configuring the LAN settings
+   in the router such that router's dhcp server serves IPs
+   from the above IP range.
        	
-       *NOTE :: During Wi-Fi router configuration, DNS server should be
-       10.2.57.62.* *Adding DNS server ip, varies from router to
-       router. For example*,
+       - NOTE :: During Wi-Fi router configuration, DNS server should be set to
+       *10.2.57.62.* 
+       Adding DNS server IP, varies from router to
+       router. For example,
        #+BEGIN_EXAMPLE
        primary DNS 10.2.57.62
        or
@@ -59,24 +80,31 @@
        #+END_EXAMPLE
 
 ** Cluster Machine setup
-   *In this machine, edx platform should not be running as it is
-   running from machine1*
+   In this machine, edX platform should not be running as it is
+   running from =System 1= as depicted in the diagram above.
+
 *** Configuring Cluster College Cloud Server
     :PROPERTIES:
     :CUSTOM_ID: cluster-cc2
     :END:      
 
-   1. Connect the identified College Cloud machine to the configured
+   1. Identify the cluster machine mentioned above in the requirements section. 
+   
+   2. Connect the College Cloud Edition Hard Disk Drive to the
+      Cluster machine.
+  
+   3. Connect the Cluster machine to the configured
       Wi-Fi router through a LAN cable. *Please do not touch the WAN
       port*.
-   2. Connect the College Cloud Edition Hard Disk Drive to the
-      identified College Cloud machine.
-   3. Boot the machine from College Cloud Edition Hard Disk Drive.
-   4. Please use [[./installation-manual.org::#passwords][default linux user credentials]] to login.
+      
+   4. Boot the machine from College Cloud Edition Hard Disk Drive.
+   
+   5. Please use [[./installation-manual.org::#passwords][default linux user credentials]] to login.
       + NOTE :: It is advised that the password is changed after the
                	first login . To change the password, follow the [[./installation-manual.org::#passwords][link]]
+
 *** More on cluster machine
-        :PROPERTIES:
+   :PROPERTIES:
    :CUSTOM_ID: more_on_cluster
    :END:    
     There are other things in cluster machine. They are
@@ -84,38 +112,51 @@
     - [[./installation-manual.org::#using-cc-server][How to use College cloud Edition]]
     - [[./installation-manual.org::#cc-work-flow][Workflow of College Cloud Edition]]
     - [[./installation-manual.org::#analytics-feedback][Collecting/Sharing Analytics and Feedback]]
-** EdX Machine setup 
-*** Configuring EdX College Cloud Server
+
+** edX Machine setup 
+*** Configuring edX College Cloud Server
     :PROPERTIES:
    :CUSTOM_ID: cluster-cc1
-   :END:    
-   1. Connect the identified College Cloud machine to the configured
+   :END:
+   
+   1. Identify the edX machine mentioned above in the requirements section. 
+
+   2. Connect the College Cloud Edition Hard Disk Drive to the
+      edX machine.
+
+   3. Connect the identified College Cloud machine to the configured
       Wi-Fi router through a LAN cable. *Please do not touch the WAN
       port*.
-   2. Connect the College Cloud Edition Hard Disk Drive to the
-      identified College Cloud machine.
-   3. Boot the machine from College Cloud Edition Hard Disk Drive.
-   4. Please use [[./installation-manual.org::#passwords][default linux user credentials]] to login.
+      
+   4. Boot the machine from College Cloud Edition Hard Disk Drive.
+   
+   5. Please use [[./installation-manual.org::#passwords][default linux user credentials]] to login.
       + NOTE :: It is advised that the password is changed after the
                	first login . To change the password, follow the [[./installation-manual.org::#passwords][link]]
-   5. Finally, fire this commands from =vlabs= user
+                
+   6. Finally, fire this commands from =vlabs= user
       #+BEGIN_SRC 
       cd vagrant-boxes
       vagrant up --provision
       #+END_SRC
-   6. Set *no proxy* on browsers
-   7. Access http://vlabs.ac.in page
-   8. Choosing required labs
-
+      
+   7. Set *no proxy* on browsers
+   
+   8. Access http://vlabs.ac.in page
+   
+   9. Choosing required labs :
       In order to choose required lab, please go to the section *More
       on cluster machine(How to use college cloud edition)* in this
       document page.
       
-* Other steps/procedures
+* Links to How-to's
+  The links below can be used in case you feel the need to do the following :
   - [[./installation-manual.org::#change-cc][Changing College Cloud Machine]]
   - [[./installation-manual.org::#shutdown][How to shutdown of College Cloud Server]]
-  - [[./installation-manual.org::#clone-cc][Clone Hard Disk( College Cloud Edition)]]
+  - [[./installation-manual.org::#clone-cc][Clone Hard Disk(College Cloud Edition)]]
+
 * Reference manual
   [[./installation-manual.org][College cloud installation manual]]
-* other references
+
+* Other references
   [[http://stackoverflow.com/questions/18098510/starting-vagrant-vm-on-host-boot][vagrant up on system start up]]
