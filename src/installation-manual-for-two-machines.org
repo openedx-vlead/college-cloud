@@ -79,8 +79,8 @@
         :PROPERTIES:
    :CUSTOM_ID: more_on_cluster
    :END:    
-    There are other procedures to be in machine1. They are available
-    at the following locations
+    There are other things in cluster machine. They are
+    available at the following locations.
     - [[./installation-manual.org::#using-cc-server][How to use College cloud Edition]]
     - [[./installation-manual.org::#cc-work-flow][Workflow of College Cloud Edition]]
     - [[./installation-manual.org::#analytics-feedback][Collecting/Sharing Analytics and Feedback]]
