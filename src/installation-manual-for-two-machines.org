@@ -14,7 +14,7 @@
   :CUSTOM_ID: requirements
   :END:    
   1. Two machines with following configuration
-     + Cluster Machine :: In this machine, labs and cluster containers
+     + Cluster Machine :: On this machine, labs and cluster containers
           would be running.
      #+BEGIN_EXAMPLE
      Processor : Intel(R) Core(TM) i7-3770 , CPU with 3.40GHz (Model : intel-db75en) 
@@ -22,7 +22,7 @@
      No of Cores: 8
      #+END_EXAMPLE
 
-     + EdX Machine :: In this machine, Only edx platform would be
+     + EdX Machine :: On this machine, Only edx platform would be
                          running.
      #+BEGIN_EXAMPLE
      Processor : Intel(R) Core(TM) i7-3770 , CPU with 3.40GHz (Model : intel-db75en) 
@@ -79,8 +79,9 @@
         :PROPERTIES:
    :CUSTOM_ID: more_on_cluster
    :END:    
-    There are other things in cluster machine. They are
-    available at the following locations.
+    There are other things to be done in cluster machine by system
+    admin or workshop co-ordinator. They are available at the
+    following locations.
     - [[./installation-manual.org::#using-cc-server][How to use College cloud Edition]]
     - [[./installation-manual.org::#cc-work-flow][Workflow of College Cloud Edition]]
     - [[./installation-manual.org::#analytics-feedback][Collecting/Sharing Analytics and Feedback]]
@@ -119,3 +120,4 @@
   [[./installation-manual.org][College cloud installation manual]]
 * other references
   [[http://stackoverflow.com/questions/18098510/starting-vagrant-vm-on-host-boot][vagrant up on system start up]]
+  
