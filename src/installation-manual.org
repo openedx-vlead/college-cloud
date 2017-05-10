@@ -168,18 +168,19 @@
                 setup settings.*
 
 ** Starting Lab containers
-    1. Go to the platform http://vlabs.ac.in
-    2. Select the course/lab to be included in the workshop. Please
-       make a note of the course/lab name.
-    3. Go to =http://<College-Cloud-Machine-IP>:3000= 
-    4. Sign into =OpenVZ web panel=. For credentials, please follow
-       the [[./installation-manual.org::#passwords][link]] .
-    5. Click on =localhost= located at left side of the panel.
-    6. Search for the lab name that has been selected in step 2.
-    7. Choose the selected lab by clicking on CTID (example.213) and
+:PROPERTIES:
+:CUSTOM_ID: start-lab-containers
+:END:
+    1. Make a list of labs that have to served from the college cloud.
+    2. Go to =http://<College-Cloud-Machine-IP>:3000= 
+    3. Sign into =OpenVZ web panel=. For credentials, please follow
+       the [[./installation-manual.org::#passwords][link]] and find the login credentials for =OpenVZ web panel=.
+    4. Click on =localhost= located at left side of the panel.
+    5. Search for the lab name that has been selected in step 1.
+    6. Choose the selected lab by clicking on CTID (example.213) and
        look for =change state= button on the panel.
-    8. Select =start= and wait for about 1-2 minutes. 
-    9. Observe the change of color of the selected course/lab in green
+    7. Select =start= and wait for about 1-2 minutes. 
+    8. Observe the change of color of the selected course/lab in green
        color and running state.
 
 ** Enabling Labs
@@ -626,7 +627,7 @@
     :PROPERTIES:
     :CUSTOM_ID: platform_password
     :END:    
-    Use the followingsteps to change the Open edX platform  admin( default) user password
+    Use the following steps to change the Open edX platform  admin( default) user password
      - Go to   =http://vlabs.ac.in/admin.
      - Login using default [[./installation-manual.org::#passwords][admin user and password]].
      - Follow the instructions detailed in [[https://openedx.atlassian.net/wiki/display/OpenOPS/Managing+OpenEdX+Tips+and+Tricks][Administration commands]].

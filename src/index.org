@@ -35,6 +35,9 @@
   
 * Installation manual 
   [[./installation-manual.org][Installation Manual]]
+
+* Installation manual for 2 machines
+  [[./installation-manual-for-two-machines.org][Installation Manual for 2 machines]]
 * Steps for Cloning College Cloud Edition
   [[./clone/index.org][Steps to clone College Cloud Edition]]
 * Proposed and changed designed plans
@@ -44,4 +47,5 @@
 * GitHub Issues
   - [[https://github.com/openedx-vlead/portable-media/issues/1][Cluster and Open edX Platform setup]]
   - [[https://github.com/openedx-vlead/portable-media/issues/2][Analytics for the College Cloud]]
+
 

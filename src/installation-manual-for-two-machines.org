@@ -11,7 +11,8 @@
   Labs College Cloud Edition on two machines.
 
 * Audience
-  This doument is meant for System Administrators who want to setup the College Cloud in their institute, the two machine style. 
+  This doument is meant for System Administrators who want to setup the College
+  Cloud in their institute, the two machine style.
   
 * Requirements 
   :PROPERTIES:
@@ -50,6 +51,7 @@
   6. System Administrator with basic knowledge of CentOS operating systems and
      networking.
      
+
 * Steps for configuring the two machines
   The following diagram depicts the setup of the two machines that need to be configured.
   
@@ -84,10 +86,7 @@
    In this machine, edX platform should not be running as it is
    running from =System 1= as depicted in the diagram above.
 
-*** Configuring Cluster College Cloud Server
-    :PROPERTIES:
-    :CUSTOM_ID: cluster-cc2
-    :END:      
+   Steps to configure cluster machine
 
    1. Identify the cluster machine mentioned above in the requirements section. 
    
@@ -104,16 +103,6 @@
       + NOTE :: It is advised that the password is changed after the
                	first login . To change the password, follow the [[./installation-manual.org::#passwords][link]]
 
-*** More on cluster machine
-   :PROPERTIES:
-   :CUSTOM_ID: more_on_cluster
-   :END:    
-    There are other things to be done in cluster machine by system
-    admin or workshop co-ordinator. They are available at the
-    following locations.
-    - [[./installation-manual.org::#using-cc-server][How to use College cloud Edition]]
-    - [[./installation-manual.org::#cc-work-flow][Workflow of College Cloud Edition]]
-    - [[./installation-manual.org::#analytics-feedback][Collecting/Sharing Analytics and Feedback]]
 
 ** edX Machine setup 
 *** Configuring edX College Cloud Server
@@ -135,22 +124,20 @@
    5. Please use [[./installation-manual.org::#passwords][default linux user credentials]] to login.
       + NOTE :: It is advised that the password is changed after the
                	first login . To change the password, follow the [[./installation-manual.org::#passwords][link]]
-                
-   6. Finally, fire this commands from =vlabs= user
-      #+BEGIN_SRC 
-      cd vagrant-boxes
-      vagrant up --provision
-      #+END_SRC
-      
-   7. Set *no proxy* on browsers
-   
-   8. Access http://vlabs.ac.in page
-   
-   9. Choosing required labs :
-      In order to choose required lab, please go to the section *More
-      on cluster machine(How to use college cloud edition)* in this
-      document page.
-      
+
+
+* Start and Stop Labs
+  Since this setup cannot support all the virtual labs, please limit to 5
+  labs.  This is achieved by starting only those machines running the selected
+  labs and stop all other lab machines.
+
+  To stop and start machines, read this [[./installation-manual.org::#start-lab-containers][documentation]].
+
+
+* Collection of Logs
+  Please follow this [[./installation-manual.org::#analytics-feedbacks][documentation]] to collect logs.
+
+
 * Links to How-to's
   The links below can be used in case you feel the need to do the following :
   - [[./installation-manual.org::#change-cc][Changing College Cloud Machine]]
