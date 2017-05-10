@@ -54,13 +54,12 @@
 
 * Steps for configuring the two machines
   The following diagram depicts the setup of the two machines that need to be configured.
-  
+
   #+BEGIN_HTML
-  <img src="../images/two-machine-college-cloud-2017-05-02.jpg">
-  <p align="center"> Two machine college cloud setup </p>
+  <img src="https://docs.google.com/drawings/d/1DlGaCP_ocrpIY-mcRoOlAmqzaqJ-zOJmLWqKRTkDagA/pub?w=960&amp;h=720">
   #+END_HTML
-  
-  To edit the Portable-media-diagram image click [[https://docs.google.com/drawings/d/1xYjjAdq35p056lumlTUoEyErOTUOKt5GSjt6RdP3S9U/pub?w=948&h=461][here]]
+
+  [[https://docs.google.com/drawings/d/1DlGaCP_ocrpIY-mcRoOlAmqzaqJ-zOJmLWqKRTkDagA/edit?ts=59130082][Edit the image]]
   
 ** Configure Wifi router
    The sysadmin must configure the router to serve 10.2.57.0/24 IP range
